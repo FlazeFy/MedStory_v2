@@ -1,0 +1,163 @@
+/*Leonardho R. Sitanggang
+    1302194041  SE-43-03
+*/
+body {
+    background-image: url("assets/background1.png");
+    min-height: 100%;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-size: cover;
+}
+
+.Inputan {
+    font-family: 'Lucida Sans';
+    font-size: 14px;
+    color:#ffffff;
+    background-color: #22A7F0;
+    border-width: 0 0 3.5px;
+    border-bottom: 3.5px solid #ffffff;
+    border-radius: 3px;
+    padding: 7px 30px;
+    text-align: left;
+}
+::placeholder {
+    color: white;
+}
+.Inputan:hover {
+    border-bottom: 4px solid #0c415e;
+    border-radius: 3px;
+}
+
+.Inputan:focus {
+    border-bottom: 4px solid #0c415e;
+    border-radius: 3px;
+    outline: none;
+}
+
+/*Icon*/
+.iconUser {
+    width: 25px;
+    height: 25px;
+    top: 34.5%;
+    left: 14%;
+    position: fixed;
+}
+.iconPass {
+    width: 25px;
+    height: 25px;   
+    top: 49.5%;
+    left: 14%;
+    position: fixed;
+}
+
+.ButtonA {
+    background-color: #4183D7;
+    font-family: 'Lucida Sans';
+    font-size: 16px;
+    color: white;
+    border-radius: 10px;
+    display: block;
+    margin: auto;
+    padding: 6px 18px;
+    border: 3px solid white;
+    position: absolute;
+    top:80%;
+    right: 10%;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+.ButtonB {
+    background-color: white;
+    font-family: 'Lucida Sans';
+    font-size: 16px;
+    color: #4183D7;
+    border-radius: 10px;
+    display: block;
+    margin: auto;
+    padding: 6px 16px;
+    border: 3px solid #4183D7;
+    position: absolute;
+    top:80%;
+    left: 10%;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+.ButtonC {
+    border-width: 0 0 2.5px;
+    border-bottom: 2.5px solid #212121;
+    font-family: 'Lucida Sans';
+    font-size: 12px;
+    color:#212121;
+    background: none;
+    cursor: pointer;
+}
+.Judul {
+    text-align: center;
+    font-family: 'Lucida Sans';
+    font-size: 24px;
+    color: white;
+}
+
+.LandingBox {
+    font-family: 'Lucida Sans';
+    position: fixed;
+    top: 50%;
+    right: 1%;
+    transform:  translate(-50%, -50%);
+    max-width: 275px;
+    padding: 20px 55px;
+    max-height: 500px;
+    background: #22A7F0;
+    border: 5px solid azure;
+    border-radius: 20px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/*Set khusus gambar*/
+@media screen and (max-width: 1024px) { 
+    body {
+      left: 50%;
+      margin-left: -512px;   
+    }
+}
+
+/*Create Acc*/
+h6{
+    color: #22A7F0;
+    font-family: 'Lucida Sans';
+    font-weight: lighter;
+    margin: 6px;
+}
+.form-control {
+    font-family: 'Lucida Sans';
+    color: #4183D7;
+    font-size: 14px;
+    border-width: 0 0 0px;
+    border-bottom: 2.5px solid #808080;
+    border-radius: 3px;
+}
+.container-fluid{
+    background: white;
+    border-radius: 10px;
+    position: fixed;
+    box-shadow: 2px 6px 10px 0px rgba(0,0,0,0.2);
+    opacity: 91%;
+}
+.ButtonD {
+    background-color: #4183D7;
+    font-family: 'Lucida Sans';
+    font-size: 16px;
+    color: white;
+    border-radius: 10px;
+    display: block;
+    padding: 6px 18px;
+    border: 3px solid white;
+    position: fixed;
+    top: 8%;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+    cursor: pointer;
+}

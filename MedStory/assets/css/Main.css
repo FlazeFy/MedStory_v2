@@ -1,0 +1,368 @@
+/*Leonardho R. Sitanggang
+    1302194041  SE-43-03
+*/
+/*Bootstrap Edit*/
+body{
+    background: rgb(233, 233, 233);
+}
+.col-md-4{
+    margin-bottom: 15px;
+    width: 250px;
+}
+h2{
+    color: #333333;
+    margin-left: 5%;
+    font-family: 'Lucida Sans';
+    font-size: 26px;
+}
+h6 {
+    color: #22A7F0;
+    font-family: 'Lucida Sans';
+}
+#MyData{
+    height: 35px;
+    width: 35px;
+    align-items: center;
+    margin-top: -4px;
+}
+.card{
+    z-index: 1;
+}
+#Inputan {
+    font-family: 'Lucida Sans';
+    font-size: 14px;
+    border-width: 0 0 0px;
+    border-bottom: 2.5px solid #22A7F0;
+    border-radius: 3px;
+    height: 35px;
+    width: 500px;
+}
+
+/*Navigation Tab*/
+#Navigation {
+    text-align: center;
+    font-family: 'Lucida Sans';
+    position: absolute;
+    font-size: 16px;
+    color: white;
+    z-index: 4;
+}
+ul {
+    list-style-type: none;
+    position: fixed;
+    margin: 0;
+    padding: 0px;
+    height: auto;
+    margin-top: -8.2px;
+    width: 100%;
+    overflow: hidden;
+    background-color: #4183D7;
+    box-shadow: 0px 0px 8px 2px #808080;
+    text-align: center;
+}
+li {
+    height: 50px;
+    display: inline-block;
+}
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+li a:hover {
+    background: rgba(224, 224, 224, 0.15);
+    border-radius: 8px;
+    text-decoration: none;
+    color: whitesmoke;
+}
+#signOut {
+    background-color: #F6404F;
+    height: 60px;
+}
+#active {
+    color: white;
+    border-radius: 4px;
+    border-bottom: 4.5px solid rgb(40, 207, 54);
+    position: relative;
+    bottom: 5%;
+}
+#Profil {
+    background-color: #2e2e2e;
+}
+
+/* The dropdown container */
+#ddParent {
+    float: right;
+    overflow: hidden;
+
+}
+/* Dropdown button */
+#ddParent #dropbutton {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit; 
+    margin: 0;  
+} 
+/* Dropdown content*/
+#dropdown-content {
+    display: none;
+    position: relative;
+    background-color: #22A7F0;
+    border-radius: 0px 0px 10px 10px;
+    opacity: 95%;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,s0.2);
+    z-index: 3;
+    transition: all 1s ease-in;
+}
+  
+/* Dropdown link. */
+#dropdown-content a {
+    float: none;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-family: 'Lucida Sans';
+    font-size: 14px;
+}
+
+#dropdown-content a:hover {
+    background: rgba(224, 224, 224, 0.15);
+}
+
+#ddParent:hover #dropdown-content {
+    display: block;
+    position: fixed;
+}
+
+
+/*Side Navigation Tab*/
+#Navigation2 ul {
+    width: 67px;
+    background-color: #293542;
+    height: 290px; 
+    position: fixed;  
+    margin-top: 20%;
+    border-radius: 0px 10px 10px 0px;
+    align-items: center;
+    box-shadow: 0px 0px 8px 2px #808080;
+    opacity: 90%;
+    z-index: 4;
+}
+
+#Navigation2 li a:hover {
+    background-color: #212121;
+    border-radius: 5px;
+}
+#Navigation2 .active {
+    background-color: #4d6ddd;
+    color: white;
+    height: 35px;
+    width: 35px;
+}
+#sideIcon {
+    height: 35px;
+    width: 35px;
+    align-items: center;
+    margin-top: auto;
+    justify-content: center;
+}
+
+/*Riwayat Kesehatan.*/
+#itemFrame{
+    background-color: rgb(247, 247, 247);
+    border-radius: 15px;
+    margin-top: 0.5%;
+}
+
+/*Properties*/
+footer {
+    background-color: #4183D7;
+  	color: white;
+  	text-align: center;
+}
+
+#logo {
+    width: 100px;
+    height: 50px;
+    float: left;
+    margin-left: 2%;
+    margin-top: 0.4%;
+}
+
+#set {
+    width: 35px;
+    height: 35px;
+    border-radius: 10px;
+    margin-top: -7.5%;
+}
+
+#img2 {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    position: relative;
+    align-items: right;
+    margin-top: 20px;
+    float: right;
+}
+
+p{
+    font-family: 'Lucida Sans';
+    font-size: 15px;  
+}
+
+/*historyCheckup Properties*/
+h4 {
+    color: #212121;
+    font-family: 'Lucida Sans';
+    font-size: 16px;
+    text-align: left;
+    float: left;
+}
+h1 {
+    text-align: center;
+    font-family: 'Lucida Sans';
+    font-size: 24px;
+    top: 4px;
+    color: #22A7F0;
+}
+/*Toogle switch*/
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 40px;
+	height: 24px;
+  }
+  
+  .switch input { 
+	opacity: 0;
+	width: 0;
+	height: 0;
+  }
+  
+  .slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
+  }
+  
+  .slider:before {
+	position: absolute;
+	content: "";
+	height: 16px;
+	width: 16px;
+	left: 3px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+  }
+  
+  input:checked + .slider {
+	background-color: #22A7F0;
+  }
+  
+  input:focus + .slider {
+	box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+	-webkit-transform: translateX(18px);
+	-ms-transform: translateX(18px);
+	transform: translateX(18px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+	border-radius: 34px;
+  }
+  
+  .slider.round:before {
+	border-radius: 50%;
+  }
+
+/*Icon size*/
+@media screen and (max-width: 992px) {
+	#col {
+        flex: 50%;padding: 15px;
+    }
+}
+@media screen and (max-width: 768px) {
+	#col {
+        flex: 100%;padding: 15px;
+		margin-top: 25px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+	#col2 {
+        flex: 50%;padding: 0px;
+    }
+}
+@media screen and (max-width: 768px) {
+	#col2 {
+        flex: 100%;padding: 0px;
+		margin-top: 25px;
+    }
+}
+
+/*Account button*/
+#submit{
+    float: right;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Lucida Sans';
+    border: none;
+    padding: 5px;
+    background: #22A7F0;
+}
+#uploadFile{
+    border-radius: 5px;
+    border-color: #4183D7;
+    border-width: 2px;
+    background-color: whitesmoke;
+    color: #4183D7;
+    font-family: 'Lucida Sans';
+}
+
+/*Collapse*/
+.collapsible {
+    background-color:white;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border-color: #22A7F0;
+    border-width: 3px;
+    border-radius: 10px;
+}
+  
+.active, .collapsible:hover {
+    background: rgba(211, 211, 211, 0.15);
+    border-radius: 10px;
+    text-decoration: none;
+    color: whitesmoke;
+}
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: white;
+}
+  

@@ -1,0 +1,7 @@
+{
+	"pemeriksaan_Darah": {
+		"jenis_pemeriksaan": "Jenis komponen sel darah, hasil ini dapat digunakan untuk mendiagnosa penyakit",
+		"hasil_pemeriksaan": "Kadar hasil Anda",
+		"normal": "Satuan normal / standar"
+	}
+}
