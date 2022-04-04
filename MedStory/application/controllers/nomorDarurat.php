@@ -9,6 +9,7 @@
 		public function index(){
 			$data = [];
 			$data['dataFaskes']= $this->nomorDaruratModel->get_data_faskes();
+			$data['dataPraktik']= $this->nomorDaruratModel->get_data_dokter();
 			$this->load->view('nomorDaruratPage', $data);
 		}
 	}

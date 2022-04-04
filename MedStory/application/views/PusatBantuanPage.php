@@ -5,7 +5,7 @@
 <html>
 
     <head>
-        <title>PusatBantuanPage_1302190103</title>
+        <title>MedStory | Pusat Bantuan</title>
         <!--Meta tags-->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,7 +15,7 @@
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
         <!--Source file.-->
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/MainPage.css'; ?>" />
+        <link rel="stylesheet" type="text/css" href="http://localhost/MedStory/assets/css/Main.css"/>
         
     </head>
     <body>
@@ -23,7 +23,7 @@
         <div id="Navigation">
             <ul>
                 <img id="logo" src="assets/logoWhite.png">
-                <li><a href="myData">Dataku</a></li>
+                <li><a href="smartDoc">Dataku</a></li>
                 <li><a href="history">Riwayat</a></li>
                 <li><a href="diskusi">Forum</a></li>
                 <li style="float:right"><a type="button" id="signOut" onclick="signOut()">Ganti Akun</a></li>

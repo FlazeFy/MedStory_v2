@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AccountPage_1302194041</title>
+    <title>MedStory | Account</title>
     <!--Meta tags.-->
   	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,42 +10,33 @@
 		<!--CDN Bootstrap CSS.-->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+		<link rel="icon" type="image/png" href="http://localhost/MedStory/assets/icon/Logo.png"/>
 
 		<!--Source file.-->
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/MainPage.css'; ?>" />
+		<link rel="stylesheet" type="text/css" href="http://localhost/MedStory/assets/css/Main.css" />
 	</head>
 
 	<body>
 		<!--Main navigation bar.-->
 		<div id="Navigation">
 			<ul>
-				<img id="logo" src="assets/logoWhite.png">
-				<li><a href="myData">Dataku</a></li>
-				<li><a href="history">Riwayat</a></li>
-				<li><a href="diskusi">Forum</a></li>
-				<li style="float:right"><a type="button" id="signOut" onclick="signOut()">Ganti Akun</a></li>
-				<li style="float:right;"><a id="Profil" href="" style="font-size:14px"><img id="MyData" src="assets/MyData.png"> 
-					<?= $data = $this->session->userdata('userTrack'); ?></a></li>
-				<div id="ddParent">
-					<button id="dropbutton"><img id="set" src="assets/Setting.png"></button>
-						<!--DropDown navigation bar.-->
-						<div id="dropdown-content">
-							<a href="pusatBantuan">Pusat Bantuan</a>
-							<a href="tentang">Tentang</a>
-							<a href="kebijakan">Kebijakan & Privasi</a>
-					</div>
-				</div>
-			</ul>
-		</div>
-
-		<!--Side navigation bar.-->
-		<div id="Navigation2">
-			<ul>
-				<li><a href="myData"><img id="sideIcon" src="assets/Print.png"></a></li><br><br>
-				<li><a href="cariDokter"><img id="sideIcon" src="assets/Consult.png"></a></li><br><br>
-				<li><a href="nomorDarurat"><img id="sideIcon" src="assets/Call.png"></a></li><br><br>
-				<li><a href="covid"><img id="sideIcon" src="assets/Virus.png"></a></li>
-			</ul>
+                <img id="logo" src="http://localhost/MedStory/assets/logoWhite.png">
+                <li><a href="smartDoc">SmartDoc</a></li>
+                <li><a href="history">Forum</a></li>
+                <li><a href="diskusi">Dataku</a></li>
+				<li><a href="nomorDarurat">Darurat</a></li>
+                <li style="float:right"><a type="button" id="signOut" onclick="signOut()">Ganti Akun</a></li>
+                <li style="float:right"><a id="Profil" href="account" style="font-size:14px"><img id="MyData" src="http://localhost/MedStory/assets/MyData.png"> <?= $data = $this->session->userdata('userTrack'); ?></a></li>
+                <div id="ddParent">
+                    <button id="dropbutton"><img id="set" src="http://localhost/MedStory/assets/Setting.png"></button>
+                        <!--DropDown menu navigation-->
+                        <div id="dropdown-content">
+                            <a href="pusatBantuan">Pusat Bantuan</a>
+                            <a href="tentang">Tentang</a>
+                            <a href="kebijakan">Kebijakan & Privasi</a>
+						</div>
+                </div>
+            </ul>
 		</div>
 
 		<!--Contents of page.-->
@@ -60,7 +51,7 @@
 					<div class="card-body">
 						<!--Mini profil.-->
 						<div class="d-flex flex-column align-items-center text-center">
-							<img src="assets/uploads/user_<?php foreach ($dataUser as $data){echo $data['namaPengguna'];} ?>.jpg" alt="Admin" 
+							<img src="http://localhost/MedStory/assets/uploads/user_<?php foreach ($dataUser as $data){echo $data['namaPengguna'];} ?>.jpg" alt="Admin" 
 								class="rounded-circle img-fluid" style="width:200px; height:200px;">
 
 						<div class="mt-3">
@@ -146,7 +137,7 @@
 					<div class="container">
 						<a data-toggle="collapse" href="#collapseDataDiri" role="button" aria-expanded="false" aria-controls="collapseExample">
 							<h6 style="color: #4183D7;">Data Diri
-							<img  src="assets/Drop Down.png" style="width: 28px; float: right;"></h6>
+							<img  src="http://localhost/MedStory/assets/icon/Drop Down.png" style="width: 28px; float: right;"></h6>
 						</a>
 							<div id="collapseDataDiri" class='card-body collapse' style='width:100%;'>
 								<div class="row">
@@ -182,7 +173,7 @@
 
 				<div class="row">
 					<div class="col-sm-12">
-						<img src="assets/Info.png" style="width:20px; float: left;">
+						<img src="http://localhost/MedStory/assets/Info.png" style="width:20px; float: left;">
 						<p style="float: left; color: #4183D7; font-size: 13px;">Password harus memiliki min 8 karakter, 1 huruf kapital, dan 1 angka.</p>
 						<button class='btn btn-success' style='float:right; box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 10px;' type="submit">Simpan Perubahan</button>
 					</div>
@@ -204,8 +195,8 @@
 							<label class="custom-file-label text-left" for="uploadImage">max 3 mb per file</label>
 						</div>
 					</div>
-				<button type="submit" style="font-size: 12px; border:none; border-radius:5px;"><img src="assets/Upload.png" style="width:30px;">Unggah Bukti</button>
-				<img src="assets/Id Card.png" style="width:60px; float: right;"><br><br>
+				<button type="submit" style="font-size: 12px; border:none; border-radius:5px;"><img src="http://localhost/MedStory/assets/Upload.png" style="width:30px;">Unggah Bukti</button>
+				<img src="http://localhost/MedStory/assets/Id Card.png" style="width:60px; float: right;"><br><br>
 			</div>
 		</form><br>
 

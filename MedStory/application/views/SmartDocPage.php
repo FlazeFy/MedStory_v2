@@ -1,11 +1,11 @@
-<!--Muhammad Rafi Alfarisi
-    1302194024  SE-43-03
+<!--Leonardho R Sitanggang
+    1302194041  SE-43-03
 -->
 <!DOCTYPE html>
 <html>
 
     <head>
-        <title>MedStory | Darurat</title>
+        <title>MedStory | SmartDoc</title>
         <!--Meta tags-->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -38,19 +38,19 @@
 			<div id="Navigation">
 				<ul>
 					<img id="logo" src="http://localhost/MedStory/assets/logoWhite.png">
-					<li><a href="smartDoc">SmartDoc</a></li>
+					<li id="active"><a href="myData">SmartDoc</a></li>
 					<li><a href="history">Forum</a></li>
 					<li><a href="diskusi">Dataku</a></li>
-					<li id="active"><a href="nomorDarurat">Darurat</a></li>
+					<li><a href="nomorDarurat">Darurat</a></li>
 						<li style="float:right"><a type="button" id="signOut" onclick="signOut()">Ganti Akun</a></li>
 						<li style="float:right"><a id="Profil" href="account" style="font-size:14px"><img id="MyData" src="http://localhost/MedStory/assets/MyData.png"> <?= $data = $this->session->userdata('userTrack'); ?></a></li>
 						<div id="ddParent">
 						<button id="dropbutton"><img id="set" src="http://localhost/MedStory/assets/Setting.png"></button>
 						<!--DropDown menu navigation-->
 						<div id="dropdown-content">
-								<a href="pusatBantuan">Pusat Bantuan</a>
-								<a href="tentang">Tentang</a>
-								<a href="kebijakan">Kebijakan & Privasi</a>
+							<a href="pusatBantuan">Pusat Bantuan</a>
+							<a href="tentang">Tentang</a>
+							<a href="kebijakan">Kebijakan & Privasi</a>
 						</div>
 					</div>
 				</ul>
@@ -63,96 +63,59 @@
 
 			<br><br><br>
 			<div class="container bg-white" id="card-car" style="margin-bottom: 1%; margin-top: 1%; padding-top: 0.5%; border-radius: 10px;">
-				<div id="accordion">
-					<button class="btn btn-primary" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample2"
-						style='box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 10px;'>Fasilitas Kesehatan</button>
-					<button class="btn btn-primary" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2"
-						style='box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 10px;'>Praktek Dokter</button>
-					<hr>
-					<div class="row">
-						<div class="col-md-12">
-							<div class="collapse show" id="multiCollapseExample1" data-parent="#accordion">
-								<div class="container">
-									<h5 style="text-align: left; color:#696969; margin-top:10px;">Fasilitas Kesehatan</h5>
-									<?php
-										$i = 1; 
-										$status = ' show';
-										foreach($dataFaskes as $data){ echo"
-										<div id='accordion2'>
-											<div class='card' style='border-radius:6px; margin:15px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; border:0;'>
-												<div class='card-header' id='headingOne' style='border-width:1px; border-radius:6px; background:white;'> 
-													<h5 class='mb-0'>
-														<h3 style='font-size:18px;'>".$data['namaFaskes']."</h3>
-														<div class='container'>
-															<h3 style='font-size:18px; float:right;'>".$data['rating']."</h3>
-															<img src='http://localhost/MedStory/assets/Rating.png' width='20px' height='20px' alt='rating' style='float:right;'>
-														</div>
-														<h5 style='font-size:14px; color:#212121;'>".$data['alamat']."</h5>
-														<h5 style='font-size:14px; color:#212121;'>".$data['kontak']."</h5>
-													</h5>
-													<h5 style='font-size:14px; float:left; text-decoration:underline; color:#4183D7;' type='button' data-toggle='collapse' data-target='#collapse".$i."' aria-expanded='true' aria-controls='collapseOne'>Detail
-														<img src='http://localhost/MedStory/assets/icon/Drop Down.png' style='width:25px; height:20px; float:left; padding-left:3px;'></h5>
-												</div>
-												<!--Extend-->
-												<div id='collapse".$i."' class='collapse".$status."' aria-labelledby='headingOne' data-parent='#accordion2'>
-													<div class='card-body'>
-														<div class='container'>
-															<div class='row'>
-																<div class='col-md-6'>
-																	<img src='http://localhost/MedStory/assets/faskesImage/faskes".$data['id_faskes'].".jpeg' width='350px' height='170px' style='border-radius:6px;' alt=''><hr>
-																	<h5 class='font-weight-bold'>Fasilitas :</h5>                        
-																	<p>".$data['fasilitas']."</p>
-																</div>
-																<div class='col-md-6'>
-																	<h5 class='font-weight-bold'>Poliklinik :</h5>
-																	<p>".$data['poliklinik']."</p>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>";
-										$i++;
-										$status = ' ';}
-									?>
-								</div>
+				<h5 style="text-align: left; color:#696969;">Kalkulator BMI</h5>	
+				<div class='card-body'>
+					<div class='container'>
+						<div class='row'>
+							<div class='col-md-6'>
+								<h5 class='font-weight-bold'>Apa itu BMI?</h5>                        
+								<p>Body Mass Index (BMI) atau Indeks Massa Tubuh (IMT) adalah angka yang menjadi penilaian standar untuk menentukan apakah berat badan Anda tergolong normal, kurang, berlebih, atau obesitas.</p>
+							</div>
+							<div class='col-md-6'>
+								<div class="row">
+									<div class="col-sm">
+										<h5 class='font-weight-100' style='font-size: 16px;'>Tinggi Badan (Cm)</h5>
+										<input type="number" class="form-control" id="tinggi" style="background:white; border-width: 0 0 3px; 
+											border-bottom: 3.5px solid #4183D7; color:#212121;">
+									</div>
+									<div class="col-sm">
+										<h5 class='font-weight-100' style='font-size: 16px;'>Berat Badan (Kg)</h5>
+										<input type="number" class="form-control" id="berat" style="background:white; border-width: 0 0 3px; 
+											border-bottom: 3.5px solid #4183D7; color:#212121;">
+									</div>
+									<div class="col-sm">
+										<button class='btn btn-success' style='height:100px;' id='hitung'>Hitung</button>
+									</div>
+								</div>	
+								<h5 class='font-weight-bold' id='hasil'></h5>				
 							</div>
 						</div>
-						<div class="col-md-12">
-							<div class="collapse" id="multiCollapseExample2" data-parent="#accordion">
-								<div class="container">
-									<h5 style="text-align: left; color:#696969; margin-top:10px;">Praktek Dokter</h5>
-									<?php 
-										$j = 1; 
-										$status = ' show';
-										foreach($dataPraktik as $data){		
-											echo"
-											<div id='accordion3'>
-												<div class='card' style='border-radius:6px; margin:15px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; border:0;'>
-													<div class='card-header' style='border-width:1px; border-radius:6px; background:white;'>
-														<img src='assets/doc".$j.".jpg' alt='Card image cap' class='rounded-circle img-fluid' style='width:50px; height:50px; float:left; margin-right:10px;'>
-														<h3 style='font-size:20px;'>".$data['namaDokter']." - ".$data['spesialis']."</h3>
-														<h5 style='font-size:18px; float:right;'>".$data['lokasi']."</h5>
-														<h5 style='font-size:14px; float:left; text-decoration:underline; color:#4183D7;' type='button' id='headingOne' data-toggle='collapse' data-target='#collapseB".$j."' 
-														style='border-width:1px;' aria-expanded='true' aria-controls='collapseOne'>Detail
-															<img src='http://localhost/MedStory/assets/icon/Drop Down.png' style='width:25px; height:20px; float:left; padding-left:3px;'></h5>				
-													</div>
-													<div id='collapseB".$j."' class='collapse".$status."' aria-labelledby='headingOne' data-parent='#accordion3'>
-														<div class='card-body'>
-															<h5 style='font-size:14px; color:#404040;'>".$data['jamMulai']."-".$data['jamSelesai']."</h5>
-															<h5 style='font-size:14px; color:#404040;'>".$data['hariPraktik']."</h5>
-														</div>
-													</div>
-												</div>
-											</div>";
-										$j++;
-										$status = ' ';}
-									?>
-								</div>
+					</div>
+				</div>
+			</div>
+			<div class="container bg-white" id="card-car" style="margin-bottom: 1%; margin-top: 1%; padding-top: 0.5%; border-radius: 10px;">
+				<h5 style="text-align: left; color:#696969;">RoboDoc</h5>	
+				<div class='card-body'>
+					<div class='container'>
+						<div class='row'>
+							<div class='col-md-6'>
+								<h5 class='font-weight-bold'>Apa itu RoboDoc?</h5>                        
+								<p>RoboDoc adalah fitur yang dapat mendukung Anda untuk mengetahui penyakit yang Anda derita dengan cepat dan tanpa perlu diagnosa lansung dengan dokter. Anda cukup memberitahukan gejala yang Anda derita kepada RoboDoc. Dan kami akan menampilkan daftar kemungkinan penyakit yang Anda derita.</p>
+							</div>
+							<div class='col-md-6'>
+								<div class="row">
+									<div class="col-sm">
+										<h5 class='font-weight-100' style='font-size: 16px;'>Gejala</h5>
+										<textarea rows="3" cols="60" name="gejala" style="background:#f4f4f4; border-width: 0 0 3px; 
+											border-bottom: 3.5px solid #4183D7; color:#212121; border-radius:5px;" required>Sertakan tanda "," untuk menambahkan gejala lainnya</textarea><br>
+									</div>
+									<div class="col-sm">
+										<button class='btn btn-success' type='submit'>Cari</button>
+									</div>
+								</div>	
+								<h5 class='font-weight-bold' id='hasil'></h5>				
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>
@@ -209,7 +172,7 @@
           </div>
         </section>
 
-        <div class="text-center p-4" style="background-color: #333333; color: whitesmoke;">1302194024-Muhammad Rafi Alfarisi</div>
+        <div class="text-center p-4" style="background-color: #333333; color: whitesmoke;">1302194041-Leonardho R Sitanggang</div>
         </footer>
 
 		<!--Javascript signout-->
@@ -241,6 +204,38 @@
 			function topFunction() {
 				document.body.scrollTop = 0;
 				document.documentElement.scrollTop = 0;
+			}
+
+			//BMI
+			window.onload = () => {
+				let button = document.querySelector("#hitung");
+			
+				// Function for calculating BMI
+				button.addEventListener("click", calculateBMI);
+			};
+			
+			function calculateBMI() {
+				let tinggi = parseInt(document.querySelector("#tinggi").value);
+				let berat = parseInt(document.querySelector("#berat").value);
+				let result = document.querySelector("#hasil");
+			
+				if (tinggi === "" || isNaN(tinggi)) 
+					result.innerHTML = "Tinggi badan tidak valid";
+			
+				else if (berat === "" || isNaN(berat)) 
+					result.innerHTML = "Berat badan tidak valid";
+			
+				else {
+					let bmi = (berat / ((tinggi * tinggi) / 10000)).toFixed(2);
+		
+					if (bmi < 18.6) {
+						result.innerHTML = `Kurus : <span>${bmi}</span>`;
+					} else if (bmi >= 18.6 && bmi < 24.9) {
+						result.innerHTML = `Normal : <span>${bmi}</span>`;
+					} else { 
+						result.innerHTML = `Obesitas : <span>${bmi}</span>`;
+					}
+				}
 			}
         </script>
 

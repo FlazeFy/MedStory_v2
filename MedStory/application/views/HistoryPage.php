@@ -38,10 +38,10 @@
         <div id="Navigation">
             <ul>
                 <img id="logo" src="http://localhost/MedStory/assets/logoWhite.png">
-                <li><a href="myData">SmartDoc</a></li>
+                <li><a href="smartDoc">SmartDoc</a></li>
                 <li  id="active"><a href="">Forum</a></li>
                 <li><a href="diskusi">Dataku</a></li>
-				<li><a href="">Darurat</a></li>
+				<li><a href="nomorDarurat">Darurat</a></li>
                 <li style="float:right"><a type="button" id="signOut" onclick="signOut()">Ganti Akun</a></li>
                 <li style="float:right"><a id="Profil" href="account" style="font-size:14px"><img id="MyData" src="http://localhost/MedStory/assets/MyData.png"> <?= $data = $this->session->userdata('userTrack'); ?></a></li>
                 <div id="ddParent">
