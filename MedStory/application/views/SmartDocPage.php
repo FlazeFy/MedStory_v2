@@ -75,12 +75,12 @@
 								<div class="row">
 									<div class="col-sm">
 										<h5 class='font-weight-100' style='font-size: 16px;'>Tinggi Badan (Cm)</h5>
-										<input type="number" class="form-control" id="tinggi" style="background:white; border-width: 0 0 3px; 
+										<input type="number" class="form-control" id="tinggi" style="background:#f4f4f4; border-width: 0 0 3px; 
 											border-bottom: 3.5px solid #4183D7; color:#212121;">
 									</div>
 									<div class="col-sm">
 										<h5 class='font-weight-100' style='font-size: 16px;'>Berat Badan (Kg)</h5>
-										<input type="number" class="form-control" id="berat" style="background:white; border-width: 0 0 3px; 
+										<input type="number" class="form-control" id="berat" style="background:#f4f4f4; border-width: 0 0 3px; 
 											border-bottom: 3.5px solid #4183D7; color:#212121;">
 									</div>
 									<div class="col-sm">
@@ -119,6 +119,57 @@
 					</div>
 				</div>
 			</div>
+			<div class="container bg-white" id="card-car" style="margin-bottom: 1%; margin-top: 1%; padding-top: 0.5%; border-radius: 10px;">
+				<h5 style="text-align: left; color:#696969;">Kalkulator Kalori</h5>	
+				<div class='card-body'>
+					<div class='container'>
+						<div class='row'>
+							<div class='col-md-6'>
+								<h5 class='font-weight-bold'>Apa itu Kalkulator kalori?</h5>                        
+								<p>Dengan alat ini Anda mengetahui berapa asupan kalori yang dibutuhkan. Hasil perhitungannya dapat Anda gunakan sebagai salah satu acuan untuk mengontrol asupan kalori per hari.</p>
+							</div>
+							<div class='col-md-6'>
+								<div class="row">
+									<div class="col-sm">
+										<h5 class='font-weight-100' style='font-size: 16px;'>Tinggi Badan (Cm)</h5>
+										<input type="number" class="form-control" id="tinggi" style="background:#f4f4f4; border-width: 0 0 3px; 
+											border-bottom: 3.5px solid #4183D7; color:#212121;">
+									</div>
+									<div class="col-sm">
+										<h5 class='font-weight-100' style='font-size: 16px;'>Berat Badan (Kg)</h5>
+										<input type="number" class="form-control" id="berat" style="background:#f4f4f4; border-width: 0 0 3px; 
+											border-bottom: 3.5px solid #4183D7; color:#212121;">
+									</div>
+									<div class="col-sm">
+										<h5 class='font-weight-100' style='font-size: 16px;'>Umur (Thn)</h5>
+										<input type="number" class="form-control" id="umur" style="background:#f4f4f4; border-width: 0 0 3px; 
+											border-bottom: 3.5px solid #4183D7; color:#212121;">
+									</div>
+								</div>	
+								<div class="row">
+									<div class="col-sm">
+										<h5 class='font-weight-100' style='font-size: 16px;'>Aktivitas</h5>
+										<select class="form-control" id="aktivitas" style="background:#f4f4f4; border-width: 0 0 3px; 
+											border-bottom: 3.5px solid #4183D7; color:#212121;">
+											<option value="1">Tidak pernah berolahraga dalam seminggu</option>
+											<option value="2">1-3 kali dalam seminggu</option>
+											<option value="3">3-5 kali dalam seminggu</option>
+											<option value="4">6-7 kali dalam seminggu</option>
+											<option value="5">Setiap hari / Pekerjaan fisik</option>
+										</select>
+									</div>
+								</div>	
+								<div class="row">
+									<div class="col-sm">
+										<button class='btn btn-success' style='margin-top:10px;'>Hitung</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		
         <!-- Footer -->
         <footer class="text-center text-lg-start bg-light text-muted">

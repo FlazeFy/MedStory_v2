@@ -14,6 +14,10 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 		<link rel="icon" type="image/png" href="http://localhost/MedStory/assets/icon/Logo.png"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
         <!--Source file.-->
         <link rel="stylesheet" type="text/css" href="http://localhost/MedStory/assets/css/Main.css" />
@@ -30,6 +34,123 @@
 				background-color: #22A7F0;
 				padding: 15px;
 				border-radius: 6px;
+			}
+			.carousel {
+				margin: 10px auto;
+				padding: 0 30px;
+			}
+			.carousel .item {
+				color: #808080;
+				min-height: 325px;
+				text-align: center;
+				overflow: hidden;
+				background: white;
+			}
+			.carousel .thumb-wrapper {
+				padding: 15px 10px;
+				background: #fff;
+				border-radius: 6px;
+				text-align: center;
+				position: relative;
+				box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+			}
+			.carousel .item .img-box {
+				height: 120px;
+				margin-bottom: 10px;
+				width: 100%;
+				position: relative;
+			}
+			.carousel .item img {	
+				
+				display: inline-block;
+				position: absolute;
+				bottom: 0;
+				margin: 0 auto;
+				left: 0;
+				right: 0;
+			}
+			.carousel .item h4 {
+				font-size: 18px;
+			}
+			.carousel .item h4, .carousel .item p, .carousel .item ul {
+				margin-bottom: 5px;
+			}
+			.carousel .thumb-content .btn {
+				color: #7ac400;
+				font-size: 11px;
+				text-transform: uppercase;
+				font-weight: bold;
+				background: none;
+				border: 1px solid #7ac400;
+				padding: 6px 14px;
+				margin-top: 5px;
+				line-height: 16px;
+				border-radius: 20px;
+			}
+			.carousel .thumb-content .btn:hover, .carousel .thumb-content .btn:focus {
+				color: #fff;
+				background: #7ac400;
+				box-shadow: none;
+			}
+			.carousel .thumb-content .btn i {
+				font-size: 14px;
+				font-weight: bold;
+				margin-left: 5px;
+			}
+			.carousel .item-price {
+				font-size: 13px;
+				padding: 2px 0;
+			}
+			.carousel .item-price strike {
+				opacity: 0.7;
+				margin-right: 5px;
+			}
+			.carousel-control-prev, .carousel-control-next {
+				height: 44px;
+				width: 40px;
+				background: #4183D7;	
+				margin: auto 0;
+				border-radius: 4px;
+				opacity: 0.8;
+			}
+			.carousel-control-prev:hover, .carousel-control-next:hover {
+				background: #4183D7;
+				opacity: 1;
+			}
+			.carousel-control-prev i, .carousel-control-next i {
+				font-size: 36px;
+				position: absolute;
+				top: 50%;
+				display: inline-block;
+				margin: -19px 0 0 0;
+				z-index: 5;
+				left: 0;
+				right: 0;
+				color: #fff;
+				text-shadow: none;
+				font-weight: bold;
+			}
+			.carousel-control-prev i {
+				margin-left: -2px;
+			}
+			.carousel-control-next i {
+				margin-right: -4px;
+			}		
+			.carousel-indicators {
+				bottom: 0px;
+			}
+			.carousel-indicators li, .carousel-indicators li.active {
+				width: 10px;
+				height: 10px;
+				margin: 4px;
+				border-radius: 50%;
+				border: none;
+			}
+			.carousel-indicators li {	
+				background: rgba(0, 0, 0, 0.2);
+			}
+			.carousel-indicators li.active {	
+				background: rgb(40, 207, 54);
 			}
 		</style>
     </head>
@@ -67,43 +188,67 @@
         <h5 style="margin-left: 13%;">Selamat datang, <?= $data = $this->session->userdata('userTrack'); ?></h5>
         <div class="container bg-white" id="card-car" style="margin-bottom: 1%; margin-top: 1%; padding-top: 0.5%; border-radius: 10px;">
           <h5 style="text-align: left; color:#696969;">Informasi kesehatan</h5>				
-				<!--Slider-->
-				<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
-				<ol class="carousel-indicators" style='z-index: 2'>
-				<?php 
-					$status =' active';
-					$i = 0;
-					foreach ($dataBerita as $data) {
-						echo "<li data-target='#carouselExampleIndicators' data-slide-to='".$i."' class='".$status."'></li>";
-						$status = ' ';
-						$i++;
+		  	<div class='col-md'>
+				<div id='myCarouselNews' class='carousel slide' data-ride='carousel' data-interval='0'>
+				<!-- Carousel indicators -->
+				<ol class='carousel-indicators'>
+				<?php
+					$item = 0;
+					$page = 0;
+					foreach ($dataBerita as $data){
+						if($item == 0 && $page == 0){
+							echo"<li data-target='#myCarouselNews' data-slide-to='0' class='active'></li>";
+							$item++;
+						} else if ($item % 3 == 0){
+							echo"<li data-target='#myCarouselNews' data-slide-to='".$page."'></li>";
+							$item++;
+							$page++;
+						} else if ($item % 3 != 0){
+							$item++;
+						}
 					}
 				?>
-				</ol>
-				<div class="carousel-inner">
+				</ol>   
+
+				<!-- Wrapper for carousel items -->
+				<div class='carousel-inner'>
 				<?php
-				$status = ' active';
-				foreach ($dataBerita as $data) {
-				echo "
-					<div class='carousel-item ".$status."' style='height:430px'  type='button'>
-						<img class='d-block w-100' src='http://localhost/MedStory/assets/newsImage/Main".$data['idBerita'].".jpeg' alt='Main".$data['idBerita'].".jpeg' style='height:410px; border-radius: 10px; opacity:95%'>
-						<div class='carousel-caption d-none d-md-block' style='z-index:1'>
-							<h3 style='font-family: Lucida Sans; font-size: 26px; background: rgba(130, 130, 130, 0.5); border-radius:5px;'>".$data['title']."</h3>
-							<p>".$data['tanggal']."</p>
-						</div>
-					</div>";
-					$status = ' ';
-				}
+					$k = 1;
+					$state = ' active';
+					foreach ($dataBerita as $berita){
+						if($k % 4 == 0  || $k == 1){
+							echo"<div class='item carousel-item".$state."' >
+							<div class='row' style='margin:20px;'>";
+						}
+						echo"<div class='col-sm'>
+								<div class='thumb-wrapper'>
+									<div class='img-box'>
+										<img src='http://localhost/MedStory/assets/newsImage/Main".$berita['idBerita'].".jpeg' alt='Card image cap' 
+											style='width:270px; height:120px; border-radius:10px;'>								
+									</div>
+									<div class='thumb-content'>
+										<h5 style='color:#212121; font-size:16px;'>".$berita['title']."</h5>									
+										<p class='item-price'>".$berita['tanggal']."</p>
+									</div>						
+								</div>
+							</div>";
+							
+							$k++;
+							$state = ' ';
+						if($k % 4 == 0){
+							echo"</div>
+							</div>";
+						}
+					}
 				?>
-				<!--Slider Control-->
 				</div>
-				<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="sr-only">Previous</span>
+				</div></div></div>
+				<!-- Carousel controls -->
+				<a class='carousel-control-prev' href='#myCarouselNews' data-slide='prev'>
+					<i class='fa fa-angle-left'></i>
 				</a>
-				<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="sr-only">Next</span>
+				<a class='carousel-control-next' href='#myCarouselNews' data-slide='next'>
+					<i class='fa fa-angle-right'></i>
 				</a>
 			</div>
 		</div>
@@ -182,14 +327,14 @@
 												echo"</div>"; $count++;}} 
 												if(($count == 0) &&($data['namaPengguna'] == $this->session->userdata('userTrack'))) {
 													echo "<div class='container' style='margin-top:1%; margin-bottom:2%;'>
-													<p style='font-style:italic; text-align:center;'>Maaf, pertanyaan Anda belum dijawab</p>
+													<p style='font-style:italic; text-align:center; color:grey;'>Maaf, pertanyaan Anda belum dijawab</p>
 													<img src='http://localhost/MedStory/assets/icon/Questions.gif' alt='Sorry.png' style='display: block;
 														margin-left: auto; margin-right: auto; width: 200px; height: 200px;'>
 													<p style='font-style:italic; text-align:center; font-size:18px; color:#7289da;'>Jangan khawatir, ini hanya masalah waktu</p>
 												</div>";
 												} else if (($count == 0) &&($data['namaPengguna'] != $this->session->userdata('userTrack'))){
 													echo "<div class='container' style='margin-top:1%; margin-bottom:2%;'>
-													<p style='font-style:italic; text-align:center;'>Pertanyaan ini belum dijawab</p>
+													<p style='font-style:italic; text-align:center; color:grey;'>Pertanyaan ini belum dijawab</p>
 													<img src='http://localhost/MedStory/assets/icon/Questions.gif' alt='Error404.png' style='display: block;
 														margin-left: auto; margin-right: auto; width: 200px; height: 200px;'>
 													<p style='font-style:italic; text-align:center; font-size:18px; color:#7289da;'>Ayo jadi yang pertama</p>
@@ -296,7 +441,7 @@
 												echo"</div>"; $count++;}} 
 												if(($count == 0) &&($data['namaPengguna'] == $this->session->userdata('userTrack'))) {
 													echo "<div class='container' style='margin-top:1%; margin-bottom:2%;'>
-													<p style='font-style:italic; text-align:center;'>Maaf, pertanyaan Anda belum dijawab</p>
+													<p style='font-style:italic; text-align:center; color:grey;'>Maaf, pertanyaan Anda belum dijawab</p>
 													<img src='http://localhost/MedStory/assets/icon/Questions.gif' alt='Sorry.png' style='display: block;
 														margin-left: auto; margin-right: auto; width: 200px; height: 200px;'>
 													<p style='font-style:italic; text-align:center; font-size:18px; color:#7289da;'>Jangan khawatir, ini hanya masalah waktu</p>

@@ -1,5 +1,5 @@
-<!--Muhammad Rafi Alfarisi
-    1302194024  SE-43-03
+<!--Leonardho R Sitanggang
+    1302194041  SE-43-03
 -->
 <!DOCTYPE html>
 <html>
@@ -13,7 +13,11 @@
         <!--CDN Bootstrap CSS-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-				<link rel="icon" type="image/png" href="http://localhost/MedStory/assets/icon/Logo.png"/>
+		<link rel="icon" type="image/png" href="http://localhost/MedStory/assets/icon/Logo.png"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
         <!--Source file.-->
         <link rel="stylesheet" type="text/css" href="http://localhost/MedStory/assets/css/Main.css" />
@@ -31,6 +35,123 @@
 				padding: 15px;
 				border-radius: 6px;
 			}
+			.carousel {
+				margin: 5px auto;
+				padding: 0 30px;
+			}
+			.carousel .item {
+				color: #808080;
+				min-height: 325px;
+				text-align: center;
+				overflow: hidden;
+				background: white;
+			}
+			.carousel .thumb-wrapper {
+				padding: 15px 10px;
+				background: #fff;
+				border-radius: 6px;
+				text-align: center;
+				position: relative;
+				box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+			}
+			.carousel .item .img-box {
+				height: 120px;
+				margin-bottom: 10px;
+				width: 100%;
+				position: relative;
+			}
+			.carousel .item img {	
+				display: inline-block;
+				position: absolute;
+				bottom: 0;
+				margin: 0 auto;
+				left: 0;
+				right: 0;
+			}
+			.carousel .item h4 {
+				font-size: 18px;
+			}
+			.carousel .item h4, .carousel .item p, .carousel .item ul {
+				margin-bottom: 5px;
+			}
+			.carousel .thumb-content .btn {
+				color: #7ac400;
+				font-size: 11px;
+				text-transform: uppercase;
+				font-weight: bold;
+				background: none;
+				border: 1px solid #7ac400;
+				padding: 6px 14px;
+				margin-top: 5px;
+				line-height: 16px;
+				border-radius: 20px;
+			}
+			.carousel .thumb-content .btn:hover, .carousel .thumb-content .btn:focus {
+				color: #fff;
+				background: #7ac400;
+				box-shadow: none;
+			}
+			.carousel .thumb-content .btn i {
+				font-size: 14px;
+				font-weight: bold;
+				margin-left: 5px;
+			}
+			.carousel .item-price {
+				font-size: 13px;
+				padding: 2px 0;
+			}
+			.carousel .item-price strike {
+				opacity: 0.7;
+				margin-right: 5px;
+			}
+			.carousel-control-prev, .carousel-control-next {
+				height: 44px;
+				width: 40px;
+				background: #4183D7;	
+				margin: auto 0;
+				border-radius: 4px;
+				opacity: 0.8;
+			}
+			.carousel-control-prev:hover, .carousel-control-next:hover {
+				background: #4183D7;
+				opacity: 1;
+			}
+			.carousel-control-prev i, .carousel-control-next i {
+				font-size: 36px;
+				position: absolute;
+				top: 50%;
+				display: inline-block;
+				margin: -19px 0 0 0;
+				z-index: 5;
+				left: 0;
+				right: 0;
+				color: #fff;
+				text-shadow: none;
+				font-weight: bold;
+			}
+			.carousel-control-prev i {
+				margin-left: -2px;
+			}
+			.carousel-control-next i {
+				margin-right: -4px;
+			}		
+			.carousel-indicators {
+				bottom: -20px;
+			}
+			.carousel-indicators li, .carousel-indicators li.active {
+				width: 10px;
+				height: 10px;
+				margin: 4px;
+				border-radius: 50%;
+				border: none;
+			}
+			.carousel-indicators li {	
+				background: rgba(0, 0, 0, 0.2);
+			}
+			.carousel-indicators li.active {	
+				background: rgb(40, 207, 54);
+			}
+
 		</style>
     </head>
     <body>
@@ -100,14 +221,98 @@
 															<div class='row'>
 																<div class='col-md-6'>
 																	<img src='http://localhost/MedStory/assets/faskesImage/faskes".$data['id_faskes'].".jpeg' width='350px' height='170px' style='border-radius:6px;' alt=''><hr>
-																	<h5 class='font-weight-bold'>Fasilitas :</h5>                        
+																	<h5 class='font-weight-bold'>Fasilitas</h5>                        
 																	<p>".$data['fasilitas']."</p>
 																</div>
 																<div class='col-md-6'>
-																	<h5 class='font-weight-bold'>Poliklinik :</h5>
+																	<h5 class='font-weight-bold'>Poliklinik</h5>
 																	<p>".$data['poliklinik']."</p>
-																</div>
-															</div>
+
+																</div>";
+
+																$jml = 0;
+																foreach ($dataPraktik as $dataDokter){
+																	if ($dataDokter['lokasi'] == $data['namaFaskes']){
+																		$jml++;
+																	} 
+																}
+																if ($jml > 0){ 
+																	echo"<!--List dokter.-->
+																	<div class='col-md'>
+																		<h5 class='font-weight-bold'>Dokter</h5>
+																		<div id='myCarousel".$i."' class='carousel slide' data-ride='carousel' data-interval='0'>
+																		<!-- Carousel indicators -->
+																		<ol class='carousel-indicators'>";
+																		$item = 0;
+																		$page = 0;
+																		foreach ($dataPraktik as $dataDokter){
+																			if ($dataDokter['lokasi'] == $data['namaFaskes']){
+																				if($item == 0 && $page == 0){
+																					echo"<li data-target='#myCarousel".$i."' data-slide-to='0' class='active'></li>";
+																					$item++;
+																				} else if ($item % 3 == 0){
+																					echo"<li data-target='#myCarousel".$i."' data-slide-to='".$page."'></li>";
+																					$item++;
+																					$page++;
+																				} else if ($item % 3 != 0){
+																					$item++;
+																				}
+																			}
+																		}
+																		echo"</ol>   
+
+																		<!-- Wrapper for carousel items -->
+																		<div class='carousel-inner'>";
+																			$k = 1;
+																			$state = ' active';
+																			foreach ($dataPraktik as $dataDokter2){
+																				if ($dataDokter2['lokasi'] == $data['namaFaskes']){
+																					if($k % 4 == 0  || $k == 1){
+																						echo"<div class='item carousel-item".$state."' >
+																						<div class='row' style='margin:20px;'>";
+																					}
+																				echo"<div class='col-sm'>
+																						<div class='thumb-wrapper'>
+																							<h6>".$dataDokter2['spesialis']."</h6>
+																							<div class='img-box'>
+																								<img src='http://localhost/MedStory/assets/uploads/dokter/".$dataDokter2['namaDokter'].".jpg' alt='Card image cap' class='rounded-circle img-fluid' style='width:100px; height:100px;'>								
+																							</div>
+																							<div class='thumb-content'>
+																								<h5 style='color:#212121; font-size:16px;'>".$dataDokter2['namaDokter']."</h5>									
+																								<p class='item-price'>".$dataDokter2['hariPraktik']."</p>
+																								<p class='item-price'>".$dataDokter2['jamMulai']." - ".$dataDokter2['jamSelesai']."</p>
+																							</div>						
+																						</div>
+																					</div>";
+																					
+																					$k++;
+																					$state = ' ';
+																					if($k % 4 == 0){
+																						echo"</div>
+																					</div>";
+																					}
+																				}
+																			}
+																		echo"</div>
+																		</div></div></div>
+																		<!-- Carousel controls -->
+																		<a class='carousel-control-prev' href='#myCarousel".$i."' data-slide='prev'>
+																			<i class='fa fa-angle-left'></i>
+																		</a>
+																		<a class='carousel-control-next' href='#myCarousel".$i."' data-slide='next'>
+																			<i class='fa fa-angle-right'></i>
+																		</a>
+																	</div>";
+																} else {
+																	echo "<div class='container' style='margin-top:1%; margin-bottom:2%;'>
+																		<p style='font-style:italic; text-align:center; color:grey;'>Maaf, tidak ada dokter yang terdaftar di fasilitas ini</p>
+																		<img src='http://localhost/MedStory/assets/icon/NoDoctor.gif' alt='Not Found.png' style='display: block;
+																			margin-left: auto; margin-right: auto; width: 200px; height: 200px;'>
+																		<p style='font-style:italic; text-align:center; font-size:18px; color:#7289da;'>Jangan khawatir, ini hanya masalah waktu</p>
+																	</div>";
+																}
+															
+															echo"</div>
 														</div>
 													</div>
 												</div>
@@ -131,9 +336,9 @@
 											<div id='accordion3'>
 												<div class='card' style='border-radius:6px; margin:15px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; border:0;'>
 													<div class='card-header' style='border-width:1px; border-radius:6px; background:white;'>
-														<img src='assets/doc".$j.".jpg' alt='Card image cap' class='rounded-circle img-fluid' style='width:50px; height:50px; float:left; margin-right:10px;'>
-														<h3 style='font-size:20px;'>".$data['namaDokter']." - ".$data['spesialis']."</h3>
-														<h5 style='font-size:18px; float:right;'>".$data['lokasi']."</h5>
+														<img src='http://localhost/MedStory/assets/uploads/dokter/".$data['namaDokter'].".jpg' alt='Card image cap' class='rounded-circle img-fluid' style='width:50px; height:50px; float:left; margin-right:10px;'>
+														<h3 style='font-size:18px;'>".$data['namaDokter']." - ".$data['spesialis']."</h3>
+														<h5 style='font-size:16px; float:right;'>".$data['lokasi']."</h5>
 														<h5 style='font-size:14px; float:left; text-decoration:underline; color:#4183D7;' type='button' id='headingOne' data-toggle='collapse' data-target='#collapseB".$j."' 
 														style='border-width:1px;' aria-expanded='true' aria-controls='collapseOne'>Detail
 															<img src='http://localhost/MedStory/assets/icon/Drop Down.png' style='width:25px; height:20px; float:left; padding-left:3px;'></h5>				
@@ -209,7 +414,7 @@
           </div>
         </section>
 
-        <div class="text-center p-4" style="background-color: #333333; color: whitesmoke;">1302194024-Muhammad Rafi Alfarisi</div>
+        <div class="text-center p-4" style="background-color: #333333; color: whitesmoke;">1302194041-Leonardho R Sitanggang</div>
         </footer>
 
 		<!--Javascript signout-->
