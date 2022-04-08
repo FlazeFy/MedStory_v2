@@ -31,6 +31,103 @@
 				padding: 15px;
 				border-radius: 6px;
 			}
+			* {
+			box-sizing: border-box;
+			}
+
+			/*the container must be positioned relative:*/
+			.autocomplete {
+			position: relative;
+			display: inline-block;
+			}
+
+			input {
+			border: 1px solid transparent;
+			background-color: #f1f1f1;
+			padding: 10px;
+			font-size: 16px;
+			}
+
+			input[type=text] {
+			background-color: #f1f1f1;
+			width: 100%;
+			}
+
+			input[type=submit] {
+			background-color: DodgerBlue;
+			color: #fff;
+			cursor: pointer;
+			}
+
+			.autocomplete-items {
+			position: absolute;
+			border-bottom: none;
+			border-top: none;
+			z-index: 99;
+			/*position the autocomplete items to be the same width as the container:*/
+			top: 100%;
+			left: 0;
+			right: 0;
+			border-radius:5px;
+			}
+
+			.autocomplete-items div {
+			padding: 10px;
+			color:white;
+			cursor: pointer;
+			background-color: #22A7F0;
+			border-bottom: 1px solid #d4d4d4; 
+			border-radius:5px;
+			}
+
+			/*when hovering an item:*/
+			.autocomplete-items div:hover {
+			background-color: #4183D7; 
+			}
+
+			/*when navigating through the items using the arrow keys:*/
+			.autocomplete-active {
+			background-color: DodgerBlue !important; 
+			color: white; 
+			}
+
+.nav-pills-custom .nav-link {
+    color: #212121;
+    background: #fff;
+    position: relative;
+}
+
+.nav-pills-custom .nav-link:hover {
+    color: white;
+    background: #22A7F0;
+    position: relative;
+}
+
+.nav-pills-custom .nav-link.active {
+    color: white;
+    background: #4183D7;
+}
+
+
+/* Add indicator arrow for the active tab */
+@media (min-width: 992px) {
+    .nav-pills-custom .nav-link::before {
+        content: '';
+        display: block;
+        border-top: 8px solid transparent;
+        border-left: 10px solid #4183D7;
+        border-bottom: 8px solid transparent;
+        position: absolute;
+        top: 50%;
+        right: -10px;
+        transform: translateY(-50%);
+        opacity: 0;
+    }
+}
+
+.nav-pills-custom .nav-link.active::before {
+    opacity: 1;
+}
 		</style>
     </head>
     <body>
@@ -104,18 +201,123 @@
 							</div>
 							<div class='col-md-6'>
 								<div class="row">
-									<div class="col-sm">
-										<h5 class='font-weight-100' style='font-size: 16px;'>Gejala</h5>
-										<textarea rows="3" cols="60" name="gejala" style="background:#f4f4f4; border-width: 0 0 3px; 
-											border-bottom: 3.5px solid #4183D7; color:#212121; border-radius:5px;" required>Sertakan tanda "," untuk menambahkan gejala lainnya</textarea><br>
-									</div>
-									<div class="col-sm">
-										<button class='btn btn-success' type='submit'>Cari</button>
-									</div>
-								</div>	
+									<form autocomplete="off" action="smartDoc/searchGejala" method="POST">
+										<div class="col-sm">
+											<h5 class='font-weight-100' style='font-size: 16px;'>Gejala</h5>
+											<div class="autocomplete" style="width:300px;">
+												<textarea rows="3" cols="60" name="gejala" style="background:#f4f4f4; border-width: 0 0 3px; 
+													border-bottom: 3.5px solid #4183D7; color:#212121; border-radius:5px;" id="myInput" required>Sertakan tanda "," untuk menambahkan gejala lainnya</textarea><br>
+											</div>
+										</div>
+										<div class="col-sm">
+											<button class='btn btn-success' type='submit'>Cari</button>
+										</div>
+									</form>
+								</div>
+								
+
 								<h5 class='font-weight-bold' id='hasil'></h5>				
 							</div>
 						</div>
+						
+						<!-- Demo header-->
+						<section class="">
+							<h5 class='font-weight-100' style='font-size: 16px;'>Menampilkan
+							<?php
+								$count = 0;
+								$namaGejala = $this->session->userdata('gejala');
+								foreach($dataGejala as $gejala){
+									if($gejala['nama_gejala'] == $namaGejala){
+										foreach($dataRelasi as $relasi){
+											if($relasi['id_gejala'] == $gejala['id_gejala']){
+												foreach($dataPenyakit as $penyakit){
+													if($penyakit['id_penyakit'] == $relasi['id_penyakit']){
+														$count++;
+													}
+												}
+											}
+										}
+									}
+								}
+								echo $count." Pencarian";
+							?>
+							</h5>
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-md-3" style="max-height: calc(80vh - 140px); max-width:auto; overflow-y: auto;">
+										<!-- Tabs nav -->
+										<div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+											<?php
+												$state = ' active';
+												$namaGejala = $this->session->userdata('gejala');
+												foreach($dataGejala as $gejala){
+													if($gejala['nama_gejala'] == $namaGejala){
+														foreach($dataRelasi as $relasi){
+															if($relasi['id_gejala'] == $gejala['id_gejala']){
+																foreach($dataPenyakit as $penyakit){
+																	if($penyakit['id_penyakit'] == $relasi['id_penyakit']){
+																		echo"<a class='nav-link mb-3 p-3 shadow".$state."' id='v-pills-".$penyakit['id_penyakit']."-tab' data-toggle='pill' href='#v-pills-".$penyakit['id_penyakit']."' role='tab' aria-controls='v-pills-".$penyakit['id_penyakit']."' aria-selected='true'>
+																		<span class='font-weight-bold small text-uppercase'>".$penyakit['nama_penyakit']."</span></a>";
+																		$state = ' ';
+																	}
+																}
+															}
+														}
+													}
+												}
+											?>
+										</div>
+									</div>
+
+									<div class='col-md-9'>
+										<!-- Tabs content -->
+										<div class='tab-content' id='v-pills-tabContent'>
+											<?php
+												$state = ' active';
+												$namaGejala = $this->session->userdata('gejala');
+												foreach($dataGejala as $gejala){
+													if($gejala['nama_gejala'] == $namaGejala){
+														foreach($dataRelasi as $relasi){
+															if($relasi['id_gejala'] == $gejala['id_gejala']){
+																foreach($dataPenyakit as $penyakit){
+																	if($penyakit['id_penyakit'] == $relasi['id_penyakit']){
+																		echo"<div class='tab-pane fade shadow rounded bg-white show ".$state." p-4' id='v-pills-".$penyakit['id_penyakit']."' role='tabpanel' aria-labelledby='v-pills-".$penyakit['id_penyakit']."-tab' style='border: 3px solid #4183D7;'>
+																			<h5 style='font-size:16px; color:#4183D7; margin-bottom:20px;'>".$penyakit['nama_penyakit']."</h5>
+																			<div style='float:right; margin-top:-50px;'>
+																				<h5 style='font-size:14px; color:#212121;'><img style='width:25px;' src='http://localhost/MedStory/assets/icon/rasio.png'> Rasio di Indonesia</h5>
+																					<p style='font-size:12px; color:#616161;'>".$penyakit['rasio']."</p>
+																			</div>
+																			<h5 style='font-size:16px; color:#212121;'><img style='width:25px;' src='http://localhost/MedStory/assets/icon/penanganan.png'> Penanganan</h5>
+																				<p style='font-size:14px; color:#616161; margin-bottom:20px;'>".$penyakit['penanganan']."</p>
+																			<h5 style='font-size:16px; color:#212121;'><img style='width:25px;' src='http://localhost/MedStory/assets/icon/obat.png'> Obat</h5>
+																				<p style='font-size:14px; color:#616161; margin-bottom:20px;'>".$penyakit['obat']."</p>
+																			<h5 style='font-size:16px; color:#212121;'><img style='width:25px;' src='http://localhost/MedStory/assets/icon/pencegahan.png'> Pencegahan</h5>
+																				<p style='font-size:14px; color:#616161; margin-bottom:20px;'>".$penyakit['pencegahan']."</p>
+																			<h5 style='font-size:16px; color:#212121;'><img style='width:25px;' src='http://localhost/MedStory/assets/icon/gejala.png'> Gejala lainnya</h5>";
+																			foreach($dataRelasi as $relasi2){
+																				if($relasi2['id_penyakit'] == $penyakit['id_penyakit']){
+																					foreach($dataGejala as $gejala2){
+																						if($gejala2['id_gejala'] == $relasi2['id_gejala']){
+																							echo"<a style='font-size:14px; color:#616161;'>".$gejala2['nama_gejala'].", </a>";
+																						}
+																					}
+																				}
+																			}																			
+																		echo"</div>";
+																		$state = ' ';
+																	}
+																}
+															}
+														}
+													}
+												}
+											?>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+
 					</div>
 				</div>
 			</div>
@@ -289,6 +491,78 @@
 				}
 			}
         </script>
+
+		<script>
+			function autocomplete(inp, arr) {
+				var currentFocus;
+
+				inp.addEventListener("input", function(e) {
+					var a, b, i, val = this.value;
+					closeAllLists();
+					if (!val) { return false;}
+					currentFocus = -1;
+					a = document.createElement("DIV");
+					a.setAttribute("id", this.id + "autocomplete-list");
+					a.setAttribute("class", "autocomplete-items");
+					this.parentNode.appendChild(a);
+					for (i = 0; i < arr.length; i++) {
+						if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+							b = document.createElement("DIV");
+							b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+							b.innerHTML += arr[i].substr(val.length);
+							b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+							b.addEventListener("click", function(e) {
+								inp.value = this.getElementsByTagName("input")[0].value;
+								closeAllLists();
+							});
+							a.appendChild(b);
+						}
+					}
+				});
+				inp.addEventListener("keydown", function(e) {
+					var x = document.getElementById(this.id + "autocomplete-list");
+					if (x) x = x.getElementsByTagName("div");
+					if (e.keyCode == 40) {
+						currentFocus++;
+						addActive(x);
+					} else if (e.keyCode == 38) { 
+						currentFocus--;
+						addActive(x);
+					} else if (e.keyCode == 13) {
+						e.preventDefault();
+						if (currentFocus > -1) {
+							if (x) x[currentFocus].click();
+						}
+					}
+				});
+				function addActive(x) {
+					if (!x) return false;
+					removeActive(x);
+					if (currentFocus >= x.length) currentFocus = 0;
+					if (currentFocus < 0) currentFocus = (x.length - 1);
+					x[currentFocus].classList.add("autocomplete-active");
+				}
+				function removeActive(x) {
+					for (var i = 0; i < x.length; i++) {
+					x[i].classList.remove("autocomplete-active");
+					}
+				}
+				function closeAllLists(elmnt) {
+					var x = document.getElementsByClassName("autocomplete-items");
+					for (var i = 0; i < x.length; i++) {
+					if (elmnt != x[i] && elmnt != inp) {
+						x[i].parentNode.removeChild(x[i]);
+					}
+					}
+				}
+				document.addEventListener("click", function (e) {
+					closeAllLists(e.target);
+				});
+			}
+
+			var gejala = [<?php foreach($dataGejala as $gejala){echo "'"; echo $gejala['nama_gejala']; echo "',";} ?>];		
+			autocomplete(document.getElementById("myInput"), gejala);
+		</script>
 
 		<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

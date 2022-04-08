@@ -221,11 +221,11 @@
 															<div class='row'>
 																<div class='col-md-6'>
 																	<img src='http://localhost/MedStory/assets/faskesImage/faskes".$data['id_faskes'].".jpeg' width='350px' height='170px' style='border-radius:6px;' alt=''><hr>
-																	<h5 class='font-weight-bold'>Fasilitas</h5>                        
+																	<h5 class='font-weight-bold'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/fasilitas.png'> Fasilitas</h5>                        
 																	<p>".$data['fasilitas']."</p>
 																</div>
 																<div class='col-md-6'>
-																	<h5 class='font-weight-bold'>Poliklinik</h5>
+																	<h5 class='font-weight-bold'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/poliklinik.png'> Poliklinik</h5>
 																	<p>".$data['poliklinik']."</p>
 
 																</div>";
@@ -239,7 +239,7 @@
 																if ($jml > 0){ 
 																	echo"<!--List dokter.-->
 																	<div class='col-md'>
-																		<h5 class='font-weight-bold'>Dokter</h5>
+																		<h5 class='font-weight-bold' style='text-align:center;'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Doctor.png'> Dokter</h5>
 																		<div id='myCarousel".$i."' class='carousel slide' data-ride='carousel' data-interval='0'>
 																		<!-- Carousel indicators -->
 																		<ol class='carousel-indicators'>";
@@ -271,7 +271,7 @@
 																						echo"<div class='item carousel-item".$state."' >
 																						<div class='row' style='margin:20px;'>";
 																					}
-																				echo"<div class='col-sm'>
+																				echo"<div class='col-sm' style='max-width:280px;'>
 																						<div class='thumb-wrapper'>
 																							<h6>".$dataDokter2['spesialis']."</h6>
 																							<div class='img-box'>
