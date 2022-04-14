@@ -75,7 +75,8 @@
 				'isi' => $this->input->post('inputIsi'),
 				'id_diskusi' => $this->input->post('inputIdB'),
 				'imageURL' => $imageURL,
-				'datetime' => date("Y/m/d h:i:sa")
+				'datetime' => date("Y/m/d h:i:sa"),
+				'status' => 'null'
 			);
 
 			if($this->input->post('imageSwitchR') == 'on'){
@@ -89,6 +90,14 @@
 			} else {
 				$this->historyModel->insertReply($data, 'balasan');
 			} 
+		}
+
+		//Verified jawaban.
+		public function checkReply(){
+			$this->db->set('status', 'verified');
+			$this->db->where('id_balasan', $this->input->post('id_balasan'));
+			$this->db->update('balasan');
+			redirect('history');
 		}
 	}
 ?>

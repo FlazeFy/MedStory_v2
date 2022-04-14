@@ -49,7 +49,8 @@
 				"password" => $this->input->post('password')
 			);
 			if (!$this->upload->do_upload('uploadImage')) {
-				$error = array('error' => $this->upload->display_errors());
+				$error_message = "Format foto profil tidak sesuai atau terlalu besar!"; 
+				$this->session->set_flashdata('error_gambar', $error_message);
 				redirect('landing');
 			} else {
 				$this->landingModel->buat($data, 'pengguna');
@@ -66,6 +67,10 @@
 			$data['message_Masukan'] = "Kritik dan saran Anda sangat kami hargai";
 			$this->index();
 			$this->load->view('LandingPage', $data);
+		}
+		public function logout(){
+			$this->session->sess_destroy();
+			redirect('http://localhost/MedStory/');
 		}
 	}
 ?>

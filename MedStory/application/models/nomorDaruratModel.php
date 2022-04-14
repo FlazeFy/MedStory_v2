@@ -11,5 +11,10 @@
 			$data = $this->db->get('dokterpraktik');
 			return $data->result_array();
 		}
+		public function get_data_covid()
+		{
+			$data = $this->db->get('covid');
+			return $data->result_array();
+		}
 	}
 ?>

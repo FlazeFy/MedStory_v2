@@ -10,6 +10,7 @@
 			$data = [];
 			$data['dataFaskes']= $this->nomorDaruratModel->get_data_faskes();
 			$data['dataPraktik']= $this->nomorDaruratModel->get_data_dokter();
+			$data['dataCovid']= $this->nomorDaruratModel->get_data_covid();
 			$this->load->view('nomorDaruratPage', $data);
 		}
 	}

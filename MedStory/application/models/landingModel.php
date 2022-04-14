@@ -19,9 +19,9 @@
 				$this->session->set_userdata('lastLogin', date("Y/m/d h:i:sa"));
 				redirect('history');
 			}else{
-				$data['error_message'] = "Username atau Password Anda salah!";
-				$this->load->view('LandingPage', $data); //testing
-				//redirect('landing');
+				$error_message = "Username atau Password Anda salah!"; 
+				$this->session->set_flashdata('error_login', $error_message);
+				redirect('landing');
 			}
 		}	
 		function buat($data)
@@ -40,9 +40,9 @@
 				$this->session->set_userdata('userTrack',$username);	
 				redirect('history');
 			}else{
-				$data['error_message'] = "Buat akun gagal. Periksa kembali data Anda";
-				$this->load->view('CreateAccPage', $data);
-				//redirect('createAcc');
+				$error_message = "Daftar akun gagal. Periksa kembali data Anda!"; 
+				$this->session->set_flashdata('error_create', $error_message);
+				redirect('landing');
 			}
 		}
 		function masukan($data)

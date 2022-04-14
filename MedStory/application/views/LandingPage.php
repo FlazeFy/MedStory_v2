@@ -28,6 +28,18 @@
 			li a {
 				margin-top:10px;
 			}
+			#myBtn {
+				display: none;
+				position: fixed;
+				bottom: 20px;
+				right: 30px;
+				z-index: 99;
+				font-size: 18px;
+				border: none;
+				background-color: #22A7F0;
+				padding: 15px;
+				border-radius: 6px;
+			}
 			.nav-pills-custom .nav-link {
     color: #212121;
     background: #fff;
@@ -167,6 +179,7 @@
 			}		
 			.carousel-indicators {
 				bottom: -20px;
+				z-index: 1;
 			}
 			.carousel-indicators li, .carousel-indicators li.active {
 				width: 10px;
@@ -192,7 +205,10 @@
                 <li><a href="" class="nav-link scrollto">Forum</a></li>
                 <li><a href="" class="nav-link scrollto">Dataku</a></li>
 				<li><a href="" class="nav-link scrollto">Darurat</a></li>
-                <li style="float:right"><a id="Profil" href="" class="nav-link scrollto" style="font-size:14px" data-toggle="collapse" data-target="#multiCollapseExample3"><img id="MyData" src="http://localhost/MedStory/assets/MyData.png"> Masuk</a></li>
+                <li style="float:right; margin:5px;"><a href="" class="nav-link scrollto" style="font-size:14px; background:#00a34d; border-radius:5px;" 
+					data-toggle="collapse" data-target="#multiCollapseExample3">Masuk <i class="fa fa-sign-in mr-2"></i>
+					</a>
+				</li>
                 <div id="ddParent">
                     <button id="dropbutton"><img id="set" src="http://localhost/MedStory/assets/Setting.png"></button>
                         <!--DropDown menu navigation-->
@@ -204,24 +220,26 @@
                 </div>
             </ul>
         </div>
-        <main>
 
 		<!--Back to top.-->
 		<button onclick="topFunction()" id="myBtn" title="Kembali ke atas">
 			<img src='http://localhost/MedStory/assets/Back.png' width='35px' height='35px' style="transform: rotate(90deg);">
 		</button>
 		
+		<br><br><br>
 		<section class="align-items-center">
 			<div class="container" id="myGroup">
-				<div class="row" style='margin-top:15px;'>
+				<div class="row">
 					<div class="col-lg-6 d-flex flex-column justify-content-center">
 						<h1>Selamat datang di MedStory</h1>
 						<h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Interdum velit laoreet id donec ultrices tincidunt arcu non. Mus mauris vitae ultricies.</h4>
 						<div class='container'>
 							<div class="text-center text-lg-start">
-								<button class='btn btn-primary' data-toggle="collapse" data-target="#multiCollapseExample2">Gabung sekarang</button>
+								<button class='btn btn-primary' data-toggle="collapse" data-target="#multiCollapseExample2">Gabung sekarang <i class="fa fa-arrow-right mr-2"></i></button>
 							</div>
 						</div>
+						<!--Error Message-->
+						<h5 style='color:red; font-size:14px; margin-top:10px; text-align:center;'><?= $this->session->flashdata('error_create')?> <?= $this->session->flashdata('error_gambar')?></h5>						
 					</div>
 					<div class="collapse show" id="multiCollapseExample1" >
 						<div class='container-fluid'>
@@ -240,19 +258,19 @@
 									<!-- Tabs nav -->
 									<div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 									<a class="nav-link mb-3 p-3 shadow active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
-										<i class="fa fa-user-circle-o mr-2"></i>
+										<i class="fa fa-book mr-2"></i>
 										<span class="font-weight-bold small text-uppercase">Privasi dan Kebijakan</span></a>
 
 									<a class="nav-link mb-3 p-3 shadow" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">
-										<i class="fa fa-calendar-minus-o mr-2"></i>
+										<i class="fa fa-photo mr-2"></i>
 										<span class="font-weight-bold small text-uppercase">Foto Profil</span></a>
 
 									<a class="nav-link mb-3 p-3 shadow" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">
-										<i class="fa fa-star mr-2"></i>
+										<i class="fa fa-id-card mr-2"></i>
 										<span class="font-weight-bold small text-uppercase">Data Diri</span></a>
 
 									<a class="nav-link mb-3 p-3 shadow" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">
-										<i class="fa fa-check mr-2"></i>
+										<i class="fa fa-user mr-2"></i>
 										<span class="font-weight-bold small text-uppercase">Data Akun</span></a>
 									</div>
 								</div>
@@ -263,7 +281,12 @@
 									<div class="tab-content" id="v-pills-tabContent">
 										<div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
 											<h5 style='font-size:16px; color:#4183D7; margin-bottom:20px;'>Privasi dan Kebijakan</h5>
-											<p class="font-italic text-muted mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+											<p class="font-italic text-muted" style='font-size:15px;'> 
+												<input required type="checkbox" id="" name="agree" value="yes" style='width:30px;'>
+												Saya menyetujui <a class="btn btn-link" style='text-decoration: underline; padding:0px;' data-toggle="modal" data-target="#kebijakanModal">kebijakan, privasi</a>, 
+												dan <a class="btn btn-link" style='text-decoration: underline; padding:0px;' data-toggle="modal" data-target="#ketentuanModal"> ketentuan </a> 
+												yang sudah ditetapkan oleh PT. MedStory selaku pemilik dan pengembang dari Aplikasi ini. Saya sudah membaca persyaratan dan akan menggunakan aplikasi sesuai dengan peraturan yang berlaku
+											</p>
 										</div>
 										
 										
@@ -282,11 +305,8 @@
 													<label class="custom-file-label text-left" for="uploadImage">max 1 mb</label>
 												</div>
 											</div>
-											<!--Error Message-->
-											<?php if(isset($error_message)) { echo"
-												<h6 style='color:red; font-size:14px;'>".$error_message."<h6>";
-											} ?>
 										</div>
+										
 											
 										<div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
 											<h5 style='font-size:16px; color:#4183D7; margin-bottom:20px;'>Data Diri</h5>
@@ -380,7 +400,7 @@
 													<!--Button.-->
 													<div class="form-group mb-3">
 														<button class="btn btn-success" type="submit" onclick="cekAkun()" style='width:100%; box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 10px;'
-															>Submit</button>
+															>Submit <i class="fa fa-send-o mr-2"></i></button>
 													</div>
 												</div>	
 											</div>									
@@ -411,10 +431,9 @@
 										border-bottom: 3.5px solid #4183D7; color:#212121;">
 								</div>   
 						
-							<!--Error message.-->
-							<?php if(isset($error_message)) { echo"
-								<h6 style='color:red; font-size:14px;'>".$error_message."<h6>";
-							} ?>
+							<!--Error Message-->
+							<h5 style='color:red; font-size:14px;'><?= $this->session->flashdata('error_login'); ?></h5>
+
 							<div class="form-group mb-3">
 								<button class="form-control btn btn-success" type="submit" style='box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 10px;' name="save">Submit</button>
 							</div>
@@ -440,7 +459,7 @@
 		</div>
 
 		</section>
-		<hr>
+		<hr><br>
 		<section id="values" class="values">
 			<div class="container" data-aos="fade-up">
 				<header class="section-header">
@@ -499,7 +518,7 @@
 						<p style='color:white; margin-bottom:5px;'>Kritik & Saran</p>
 						<input required type="text" class="form-control" name="sarankritik" style="background:white; color:#212121; margin-bottom:10px; margin-left-right:10px;"
 							placeholder='masukkan kritik dan saran Anda'>
-						<button class='btn btn-success'>Kirim</button>
+						<button class='btn btn-success'>Kirim <i class="fa fa-send-o mr-2"></i></button>
 					</div>
 					</form>
 				</div>
@@ -507,7 +526,7 @@
 			</div>
 
 		</section>
-		<hr>
+		<hr><br>
 
 		<section id="faq" class="faq">
 			<div class="container" data-aos="fade-up">
@@ -606,7 +625,7 @@
 				</div>
 			</div>
 		</section>
-		<hr>
+		<hr><br>
 
 		<section id="review" class="faq">
 			<div class="container" data-aos="fade-up">
@@ -627,6 +646,7 @@
 									if($item == 0 && $page == 0){
 										echo"<li data-target='#myCarousel' data-slide-to='0' class='active'></li>";
 										$item++;
+										$page++;
 									} else if ($item % 3 == 0){
 										echo"<li data-target='#myCarousel' data-slide-to='".$page."'></li>";
 										$item++;
@@ -774,6 +794,62 @@
 		</div>";}	
 		?>
 
+		<!-- Kebijakan Modal -->
+		<div class="modal fade" id="kebijakanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="kebijakanModalLabel">Kebijakan & Privasi</h5>
+				<img class='closebtn' src='http://localhost/MedStory/assets/Error.png' style='width:35px;'
+					type='button' data-dismiss='modal' aria-label='Close' onClick=''>
+			</div>
+			<div class="modal-body" style='max-height: calc(98vh - 160px); overflow-y: auto;'>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quam vulputate dignissim suspendisse in est ante in nibh mauris. Tellus at urna condimentum mattis pellentesque. Eget nunc scelerisque viverra mauris in. Quis hendrerit dolor magna eget. Vitae tortor condimentum lacinia quis. Aliquam ut porttitor leo a diam sollicitudin. Fermentum odio eu feugiat pretium. Leo duis ut diam quam. Nunc vel risus commodo viverra maecenas. Dui faucibus in ornare quam viverra orci sagittis eu.
+				A diam sollicitudin tempor id eu nisl. Elementum tempus egestas sed sed risus pretium quam vulputate dignissim. Tortor condimentum lacinia quis vel eros donec. Elit pellentesque habitant morbi tristique senectus et netus. Risus ultricies tristique nulla aliquet enim tortor at auctor urna. Mattis enim ut tellus elementum. Pharetra convallis posuere morbi leo urna molestie at elementum eu. Augue mauris augue neque gravida in fermentum et sollicitudin ac. Turpis egestas pretium aenean pharetra. Volutpat diam ut venenatis tellus in metus vulputate eu. Erat velit scelerisque in dictum non consectetur a erat nam. Tristique nulla aliquet enim tortor at.
+				Nisl nunc mi ipsum faucibus vitae aliquet nec ullamcorper sit. Non quam lacus suspendisse faucibus. Sed lectus vestibulum mattis ullamcorper velit sed ullamcorper. Velit egestas dui id ornare arcu odio ut sem. Rhoncus aenean vel elit scelerisque mauris pellentesque. Urna neque viverra justo nec. Tempor commodo ullamcorper a lacus vestibulum sed arcu non. In massa tempor nec feugiat. Nibh tellus molestie nunc non blandit. Imperdiet sed euismod nisi porta lorem mollis aliquam ut porttitor. Aenean pharetra magna ac placerat vestibulum lectus mauris ultrices eros. Risus ultricies tristique nulla aliquet enim tortor at auctor. Lectus proin nibh nisl condimentum id venenatis. Natoque penatibus et magnis dis parturient montes nascetur ridiculus mus. Placerat vestibulum lectus mauris ultrices eros in. Viverra aliquet eget sit amet. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam nulla. Erat nam at lectus urna duis convallis convallis tellus. Ipsum faucibus vitae aliquet nec ullamcorper sit amet risus nullam. Habitant morbi tristique senectus et netus et malesuada.
+			</div>
+			</div>
+		</div>
+		</div>
+
+		<!-- Ketentuan Modal -->
+		<div class="modal fade" id="ketentuanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Ketentuan</h5>
+				<img class='closebtn' src='http://localhost/MedStory/assets/Error.png' style='width:35px;'
+					type='button' data-dismiss='modal' aria-label='Close' onClick=''>
+			</div>
+			<div class="modal-body" style='max-height: calc(98vh - 160px); overflow-y: auto;'>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quam vulputate dignissim suspendisse in est ante in nibh mauris. Tellus at urna condimentum mattis pellentesque. Eget nunc scelerisque viverra mauris in. Quis hendrerit dolor magna eget. Vitae tortor condimentum lacinia quis. Aliquam ut porttitor leo a diam sollicitudin. Fermentum odio eu feugiat pretium. Leo duis ut diam quam. Nunc vel risus commodo viverra maecenas. Dui faucibus in ornare quam viverra orci sagittis eu.
+				A diam sollicitudin tempor id eu nisl. Elementum tempus egestas sed sed risus pretium quam vulputate dignissim. Tortor condimentum lacinia quis vel eros donec. Elit pellentesque habitant morbi tristique senectus et netus. Risus ultricies tristique nulla aliquet enim tortor at auctor urna. Mattis enim ut tellus elementum. Pharetra convallis posuere morbi leo urna molestie at elementum eu. Augue mauris augue neque gravida in fermentum et sollicitudin ac. Turpis egestas pretium aenean pharetra. Volutpat diam ut venenatis tellus in metus vulputate eu. Erat velit scelerisque in dictum non consectetur a erat nam. Tristique nulla aliquet enim tortor at.
+				Nisl nunc mi ipsum faucibus vitae aliquet nec ullamcorper sit. Non quam lacus suspendisse faucibus. Sed lectus vestibulum mattis ullamcorper velit sed ullamcorper. Velit egestas dui id ornare arcu odio ut sem. Rhoncus aenean vel elit scelerisque mauris pellentesque. Urna neque viverra justo nec. Tempor commodo ullamcorper a lacus vestibulum sed arcu non. In massa tempor nec feugiat. Nibh tellus molestie nunc non blandit. Imperdiet sed euismod nisi porta lorem mollis aliquam ut porttitor. Aenean pharetra magna ac placerat vestibulum lectus mauris ultrices eros. Risus ultricies tristique nulla aliquet enim tortor at auctor. Lectus proin nibh nisl condimentum id venenatis. Natoque penatibus et magnis dis parturient montes nascetur ridiculus mus. Placerat vestibulum lectus mauris ultrices eros in. Viverra aliquet eget sit amet. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam nulla. Erat nam at lectus urna duis convallis convallis tellus. Ipsum faucibus vitae aliquet nec ullamcorper sit amet risus nullam. Habitant morbi tristique senectus et netus et malesuada.
+			</div>
+			</div>
+		</div>
+		</div>
+
+		<!--Javascript signout-->
+		<script type="text/javascript">
+			//Back to the top js.
+			var mybutton = document.getElementById("myBtn");
+			window.onscroll = function() {scrollFunction()};
+
+			function scrollFunction() {
+			if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+				mybutton.style.display = "block";
+			} else {
+				mybutton.style.display = "none";
+				}
+			}
+
+			function topFunction() {
+				document.body.scrollTop = 0;
+				document.documentElement.scrollTop = 0;
+			}
+        </script>
+		
 		<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 		<!--Ajax for json-->

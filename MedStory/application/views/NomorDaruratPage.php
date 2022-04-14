@@ -152,6 +152,41 @@
 				background: rgb(40, 207, 54);
 			}
 
+			.col-md-6 .row .col-sm .card:hover {
+  height : 210px;  
+  background-color : #4183D7;
+  color:white;
+}
+.col-md-6 .row .col-sm .card {
+  position: relative;
+  height : 150px;  
+  border-radius: 6px; 
+  text-align: center;
+  display : flex;
+  flex-direction : column;
+  box-shadow : 0 5px 20px rgba(0,0,0,0.5);
+  transition : 0.3s ease-in-out;
+  padding:10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.col-md-6 .row .col-sm .card #content2 {
+  position : relative;
+  padding : 5px;
+  color : whitesmoke;
+  text-align : center;
+  visibility : hidden;
+  opacity : 0;
+  transition : 0.3s ease-in-out;
+    
+}
+
+.col-md-6 .row .col-sm .card:hover #content2 {
+   margin-top : 2px;
+   visibility : visible;
+   opacity : 1;
+   transition-delay: 0.2s;
+}
 		</style>
     </head>
     <body>
@@ -163,7 +198,7 @@
 					<li><a href="history">Forum</a></li>
 					<li><a href="diskusi">Dataku</a></li>
 					<li id="active"><a href="nomorDarurat">Darurat</a></li>
-						<li style="float:right"><a type="button" id="signOut" onclick="signOut()">Ganti Akun</a></li>
+						<li style="float:right"><form action='landing/logout' method='post'><button type="submit" class='btn btn-danger' style='height:40px; margin:13px 10px 0px 10px;'><i class='fa fa-sign-out'></i> Ganti Akun</button></form></li>
 						<li style="float:right"><a id="Profil" href="account" style="font-size:14px"><img id="MyData" src="http://localhost/MedStory/assets/MyData.png"> <?= $data = $this->session->userdata('userTrack'); ?></a></li>
 						<div id="ddParent">
 						<button id="dropbutton"><img id="set" src="http://localhost/MedStory/assets/Setting.png"></button>
@@ -227,7 +262,42 @@
 																<div class='col-md-6'>
 																	<h5 class='font-weight-bold'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/poliklinik.png'> Poliklinik</h5>
 																	<p>".$data['poliklinik']."</p>
-
+																	<h5 class='font-weight-bold'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Covid.png'> Penanganan Covid</h5>
+																	<div class='row' style='margin-top:5px; margin-bottom:20px;'>";
+																		$c = 0;
+																		foreach ($dataCovid as $covid){
+																			if($covid['id_faskes'] == $data['id_faskes']){										
+																				echo"<div class='col-sm'  style='max-width:180px;'>
+																					<div class='card'>";
+																						if($covid['jenis'] == 'Vaksinasi'){	
+																						echo"<img src='http://localhost/MedStory/assets/icon/Vaccine.gif' alt='Card image cap' class='rounded-circle img-fluid' style='width:100px; height:100px;
+																							margin-left:10%;'>";
+																						} else if(($covid['jenis'] == 'Antigen & PCR') || ($covid['jenis'] == 'PCR') || ($covid['jenis'] == 'Antigen')){	
+																						echo"<img src='http://localhost/MedStory/assets/icon/Test.gif' alt='Card image cap' class='rounded-circle img-fluid' style='width:100px; height:100px;
+																							margin-left:10%;'>";
+																						} else if($covid['jenis'] == 'Karantina'){	
+																						echo"<img src='http://localhost/MedStory/assets/icon/Quarantine.gif' alt='Card image cap' class='rounded-circle img-fluid' style='width:100px; height:100px;
+																							margin-left:10%;'>";
+																						}
+																						echo"<a style='font-size: 14px;'>".$covid['jenis']."</a>
+																						<div id = 'content2'>
+																							<p style='margin:-5px; font-size:14px; font-weight:bold;'>".$covid['hariPraktik']." </p>
+																							<a style='font-style:italic; font-size:12px;'>".$covid['jamMulai']." - ".$covid['jamSelesai']."</a>
+																						</div>
+																					</div>								
+																				</div>";
+																				$c++;
+																			}
+																		}
+																		if($c == 0){
+																			echo "<div class='container' style='margin-top:1%; margin-bottom:2%;'>
+																				<p style='font-style:italic; text-align:center; color:grey;'>Maaf, tidak ada fasilitas penanganan covid di faskes ini</p>
+																				<img src='http://localhost/MedStory/assets/icon/Empty.gif' alt='Not Found.png' style='display: block;
+																					margin-left: auto; margin-right: auto; width: 200px; height: 200px;'>
+																				<p style='font-style:italic; text-align:center; font-size:18px; color:#7289da;'>Jangan khawatir, ini hanya masalah waktu</p>
+																			</div>";
+																		}
+																	echo"</div>
 																</div>";
 
 																$jml = 0;
@@ -250,6 +320,7 @@
 																				if($item == 0 && $page == 0){
 																					echo"<li data-target='#myCarousel".$i."' data-slide-to='0' class='active'></li>";
 																					$item++;
+																					$page++;
 																				} else if ($item % 3 == 0){
 																					echo"<li data-target='#myCarousel".$i."' data-slide-to='".$page."'></li>";
 																					$item++;
@@ -271,7 +342,7 @@
 																						echo"<div class='item carousel-item".$state."' >
 																						<div class='row' style='margin:20px;'>";
 																					}
-																				echo"<div class='col-sm' style='max-width:280px;'>
+																					echo"<div class='col-sm' style='max-width:280px;'>
 																						<div class='thumb-wrapper'>
 																							<h6>".$dataDokter2['spesialis']."</h6>
 																							<div class='img-box'>
@@ -419,18 +490,6 @@
 
 		<!--Javascript signout-->
 		<script type="text/javascript">
-			function signOut(){
-				//Verifikasi SignOut
-				var pop = window.confirm("Apakah Anda yakin?");
-
-				//Kondisi.
-				if(pop){
-						window.location.href = "http://localhost/MedStory";
-						alert("Berhasil keluar");
-				} else {
-						alert("Sign-Out dibatalkan");
-				}
-			}
 			//Back to the top js.
 			var mybutton = document.getElementById("myBtn");
 			window.onscroll = function() {scrollFunction()};

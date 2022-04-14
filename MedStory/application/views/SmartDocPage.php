@@ -13,7 +13,8 @@
         <!--CDN Bootstrap CSS-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-				<link rel="icon" type="image/png" href="http://localhost/MedStory/assets/icon/Logo.png"/>
+		<link rel="icon" type="image/png" href="http://localhost/MedStory/assets/icon/Logo.png"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <!--Source file.-->
         <link rel="stylesheet" type="text/css" href="http://localhost/MedStory/assets/css/Main.css" />
@@ -139,7 +140,7 @@
 					<li><a href="history">Forum</a></li>
 					<li><a href="diskusi">Dataku</a></li>
 					<li><a href="nomorDarurat">Darurat</a></li>
-						<li style="float:right"><a type="button" id="signOut" onclick="signOut()">Ganti Akun</a></li>
+						<li style="float:right"><form action='landing/logout' method='post'><button type="submit" class='btn btn-danger' style='height:40px; margin:13px 10px 0px 10px;'><i class='fa fa-sign-out'></i> Ganti Akun</button></form></li>
 						<li style="float:right"><a id="Profil" href="account" style="font-size:14px"><img id="MyData" src="http://localhost/MedStory/assets/MyData.png"> <?= $data = $this->session->userdata('userTrack'); ?></a></li>
 						<div id="ddParent">
 						<button id="dropbutton"><img id="set" src="http://localhost/MedStory/assets/Setting.png"></button>
@@ -430,18 +431,6 @@
 
 		<!--Javascript signout-->
 		<script type="text/javascript">
-			function signOut(){
-				//Verifikasi SignOut
-				var pop = window.confirm("Apakah Anda yakin?");
-
-				//Kondisi.
-				if(pop){
-						window.location.href = "http://localhost/MedStory";
-						alert("Berhasil keluar");
-				} else {
-						alert("Sign-Out dibatalkan");
-				}
-			}
 			//Back to the top js.
 			var mybutton = document.getElementById("myBtn");
 			window.onscroll = function() {scrollFunction()};

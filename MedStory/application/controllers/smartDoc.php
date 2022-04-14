@@ -27,10 +27,7 @@
 				$this->session->set_userdata('gejala',$gejala);	
 				redirect('SmartDoc');
 			}else{
-				$data['error_message'] = "Maaf, penyakit tidak ditemukan";
-				$this->index();
-				$this->load->view('SmartDocPage', $data); //testing
-				//redirect('landing');
+				redirect('SmartDoc');
 			}
 		}
 	}
