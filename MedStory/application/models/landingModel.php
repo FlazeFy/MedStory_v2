@@ -57,5 +57,11 @@
 			$data = $this->db->get('pengguna');
 			return $data->result_array();
 		}
+		public function get_data_pengumuman(){
+			$this->db->select('*');
+			$this->db->from('announcement');
+			$this->db->order_by('tanggal', 'DESC');
+			return $data = $this->db->get()->result_array();
+		}
 	}
 ?>

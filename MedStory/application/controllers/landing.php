@@ -11,6 +11,7 @@
 			$data = [];
 			$data['dataReview']= $this->landingModel->get_data_review();
 			$data['dataPengguna']= $this->landingModel->get_data_pengguna();
+			$data['dataUpdate']= $this->landingModel->get_data_pengumuman();
 			$this->load->view('LandingPage', $data);
 		}
 		/*Insert*/

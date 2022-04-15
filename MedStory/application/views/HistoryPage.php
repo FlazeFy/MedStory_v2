@@ -188,8 +188,8 @@
                 <li  id="active"><a href="">Forum</a></li>
                 <li><a href="diskusi">Dataku</a></li>
 				<li><a href="nomorDarurat">Darurat</a></li>
-                <li style="float:right"><form action='landing/logout' method='post'><button type="submit" class='btn btn-danger' style='height:40px; margin:13px 10px 0px 10px;'><i class='fa fa-sign-out'></i> Ganti Akun</button></form></li></li>
-                <li style="float:right"><a id="Profil" href="account" style="font-size:14px"><img id="MyData" src="http://localhost/MedStory/assets/MyData.png"> <?= $data = $this->session->userdata('userTrack'); ?></a></li>
+                <li style="float:right"><form action='landing/logout' method='post'><button type="submit" class='btn btn-danger' style='height:40px; margin:13px 10px 0px 10px;'><i class='fa fa-sign-out'></i> Ganti Akun</button></form></li>
+                <li style="float:right"><button onclick="window.location.href='account'" class='btn btn-primary' style='height:40px; background:#212121; margin:13px 0px 0px 10px;'><i class='fa fa-user-circle'></i> <?= $data = $this->session->userdata('userTrack'); ?></button></li>
                 <div id="ddParent">
                     <button id="dropbutton"><img id="set" src="http://localhost/MedStory/assets/Setting.png"></button>
                         <!--DropDown menu navigation-->
@@ -367,10 +367,18 @@
 												<div class='card-body'>";
 												foreach ($dataBalasan as $reply){
 													if ($data['id_diskusi'] == $reply['id_diskusi']){
-													echo"<div class='container'>
-														<img src='http://localhost/MedStory/assets/uploads/user_".$reply['pengirim'].".jpg' alt='Card image cap' class='rounded-circle img-fluid' style='width:45px; height:45px; 
-														float:left; margin-right:1%;'>
-														<h5 style='font-size:20px; margin-left:15px; color:#22A7F0;'>".$reply['pengirim']."</h5>";
+														if($reply['status'] == 'verified'){echo"<div class='container' style='background:#f4f4f4; border-left: 8px solid rgb(40, 207, 54); padding:5px; border-radius:4px; margin-bottom:5px;'>
+															<i class='fa fa-check-circle' style='float:right; margin-top:20px; color:rgb(40, 207, 54);'></i>";}
+															else {echo"<div class='container'>";} 
+														echo"<img src='http://localhost/MedStory/assets/uploads/user_".$reply['pengirim'].".jpg' alt='Card image cap' class='rounded-circle img-fluid' style='width:45px; height:45px; 
+														float:left; margin-right:1%;'>";
+														if(($reply['pengirim'] != $this->session->userdata('userTrack')) && ($reply['status'] == 'null')&& ($data['namaPengguna'] == $this->session->userdata('userTrack'))){
+															echo"<form action='history/checkReply' method='post'>
+															<input type='text' class='form-control' name='id_balasan' value='".$reply['id_balasan']."' hidden>
+															<button class='btn btn-success' style='float:right;'><i class='fa fa-check-circle-o'></i></button>
+															</form>";
+														}
+														echo"<h5 style='font-size:20px; margin-left:15px; color:#22A7F0;'>".$reply['pengirim']."</h5>";
 														if ($reply['imageURL'] != 'null'){
 															echo"<div class='row' style='margin-bottom:1%;'>
 															<div class='col-md-4 border-right'>
@@ -535,12 +543,12 @@
 													<div class='card-body'>";
 													foreach ($dataBalasan as $reply){
 														if ($data['id_diskusi'] == $reply['id_diskusi']){
-															if($reply['status'] == 'verified'){echo"<div class='container' style='background:#f4f4f4; border-left: 8px solid rgb(40, 207, 54); padding:5px; border-radius:4px;'>
+															if($reply['status'] == 'verified'){echo"<div class='container' style='background:#f4f4f4; border-left: 8px solid rgb(40, 207, 54); padding:5px; border-radius:4px; margin-bottom:5px;'>
 																<i class='fa fa-check-circle' style='float:right; margin-top:20px; color:rgb(40, 207, 54);'></i>";}
 																else {echo"<div class='container'>";} 
 															echo"<img src='http://localhost/MedStory/assets/uploads/user_".$reply['pengirim'].".jpg' alt='Card image cap' class='rounded-circle img-fluid' style='width:45px; height:45px; 
 															float:left; margin-right:1%;'>";
-															if(($reply['pengirim'] != $this->session->userdata('userTrack')) && ($reply['status']) == 'null'){
+															if(($reply['pengirim'] != $this->session->userdata('userTrack')) && ($reply['status'] == 'null')){
 																echo"<form action='history/checkReply' method='post'>
 																<input type='text' class='form-control' name='id_balasan' value='".$reply['id_balasan']."' hidden>
 																<button class='btn btn-success' style='float:right;'><i class='fa fa-check-circle-o'></i></button>

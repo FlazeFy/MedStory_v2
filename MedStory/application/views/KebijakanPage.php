@@ -29,7 +29,7 @@
                 <li><a href="diskusi">Dataku</a></li>
 								<li><a href="nomorDarurat">Darurat</a></li>
                 <li style="float:right"><form action='landing/logout' method='post'><button type="submit" class='btn btn-danger' style='height:40px; margin:13px 10px 0px 10px;'><i class='fa fa-sign-out'></i> Ganti Akun</button></form></li>
-                <li style="float:right"><a id="Profil" href="account" style="font-size:14px"><img id="MyData" src="assets/MyData.png"> <?= $data = $this->session->userdata('userTrack'); ?></a></li>
+                <li style="float:right"><button onclick="window.location.href='account'" class='btn btn-primary' style='height:40px; background:#212121; margin:13px 0px 0px 10px;'><i class='fa fa-user-circle'></i> <?= $data = $this->session->userdata('userTrack'); ?></button></li>
                 <div id="ddParent">
 									<button id="dropbutton"><img id="set" src="assets/Setting.png"></button>
 										<!--DropDown menu navigation-->

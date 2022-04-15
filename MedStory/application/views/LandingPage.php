@@ -717,6 +717,20 @@
 				</div>
 			</div>
 		</section>
+		<br><hr>
+
+		<section id="announcement" class="faq">
+			<div class="container" data-aos="fade-up">
+				<header class="section-header">
+					<h1>Pemberitahuan</h1>
+				</header>
+				<div class="container-fluid" style='margin-top:20px;'>
+					<?php foreach($dataUpdate as $data){
+						echo "<p style='font-size:14px; text-align:center;'>".$data['tanggal']." (".$data['jam'].") || ".$data['deskripsi']."</p>";
+					} ?>
+				</div>
+			</div>
+		</section>
 		<br>
 
         <!-- Footer -->

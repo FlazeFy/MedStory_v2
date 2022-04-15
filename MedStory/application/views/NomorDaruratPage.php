@@ -187,6 +187,14 @@
    opacity : 1;
    transition-delay: 0.2s;
 }
+
+.row .col-sm .thumb-wrapper:hover {
+  background-color : #4183D7;
+  color:white;
+}
+.row .col-sm .thumb-wrapper:hover h6 {
+  color:white;
+}
 		</style>
     </head>
     <body>
@@ -199,7 +207,7 @@
 					<li><a href="diskusi">Dataku</a></li>
 					<li id="active"><a href="nomorDarurat">Darurat</a></li>
 						<li style="float:right"><form action='landing/logout' method='post'><button type="submit" class='btn btn-danger' style='height:40px; margin:13px 10px 0px 10px;'><i class='fa fa-sign-out'></i> Ganti Akun</button></form></li>
-						<li style="float:right"><a id="Profil" href="account" style="font-size:14px"><img id="MyData" src="http://localhost/MedStory/assets/MyData.png"> <?= $data = $this->session->userdata('userTrack'); ?></a></li>
+						<li style="float:right"><button onclick="window.location.href='account'" class='btn btn-primary' style='height:40px; background:#212121; margin:13px 0px 0px 10px;'><i class='fa fa-user-circle'></i> <?= $data = $this->session->userdata('userTrack'); ?></button></li>
 						<div id="ddParent">
 						<button id="dropbutton"><img id="set" src="http://localhost/MedStory/assets/Setting.png"></button>
 						<!--DropDown menu navigation-->
