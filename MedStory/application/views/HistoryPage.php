@@ -177,13 +177,111 @@
 				border-radius: 5px;
 				background-color: rgb(40, 207, 54);
 			}
+			.row .col-sm .thumb-wrapper:hover {
+				background-color : #22A7F0;
+				color:white;
+			}
+			.row .col-sm .thumb-wrapper:hover h5 {
+				color:white;
+			}
+			.row .col-sm .thumb-wrapper h5 {
+				color:#212121;
+			}
+
+			.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  background-color: #4183D7;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  box-shadow: #212121 0px 8px 30px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  font-size: 25px;
+  color: white;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: -10px;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-left .5s;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 16px;}
+}
 		</style>
     </head>
     <body>
+		<div id="mySidebar" class="sidebar">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+			<div class="d-flex flex-column align-items-center text-center">
+				<img src="http://localhost/MedStory/assets/uploads/user_<?php foreach ($dataUser as $data){echo $data['namaPengguna'];} ?>.jpg" alt="Admin" 
+					class="rounded-circle img-fluid" style="width:100px; height:100px;">
+
+				<div class="mt-2" style='width:90%;'>
+					<p style="color: whitesmoke;"><?php foreach ($dataUser as $data){echo $data['namaLengkap'];}?> - thn</p>
+					<hr style='background:white;'>
+				</div>
+				<h4 style="color: whitesmoke;">Kebutuhan Kalori</h4>
+				<div class='row'>
+					<div class='col-md-6'>
+						<p style="color: whitesmoke; font-size:14px;">Kemarin</p>
+						<!--Diagram-->
+					</div>
+					<div class='col-md-6'>
+						<p style="color: whitesmoke; font-size:14px;">Hari ini</p>
+						<!--Diagram-->
+					</div>
+				</div>
+				<div class='container-fluid bg-white' style='height:370px;'>
+					
+				</div>
+				<div class='container-fluid'>
+					<button onclick="window.location.href='account'" class='btn btn-primary' style='height:40px; background:#212121; margin:10px 0px 0px 0px; float:left;'><i class='fa fa-user-circle'></i> <?= $data = $this->session->userdata('userTrack'); ?></button>
+					<form action='landing/logout' method='post'><button type="submit" class='btn btn-danger' style='height:40px; margin:10px 0px 0px 0px; float:right;'><i class='fa fa-sign-out'></i> Ganti Akun</button></form>
+				</div>
+			</div>
+		</div>
+		<div id='main'> <!--if design not flex and go wrong. delete this-->
         <!--Main Navigation menu.-->
         <div id="Navigation">
             <ul>
-                <img id="logo" src="http://localhost/MedStory/assets/logoWhite.png">
+                <img id="logo" src="http://localhost/MedStory/assets/logoWhite.png" onclick="openNav()">
                 <li><a href="smartDoc">SmartDoc</a></li>
                 <li  id="active"><a href="">Forum</a></li>
                 <li><a href="diskusi">Dataku</a></li>
@@ -192,12 +290,12 @@
                 <li style="float:right"><button onclick="window.location.href='account'" class='btn btn-primary' style='height:40px; background:#212121; margin:13px 0px 0px 10px;'><i class='fa fa-user-circle'></i> <?= $data = $this->session->userdata('userTrack'); ?></button></li>
                 <div id="ddParent">
                     <button id="dropbutton"><img id="set" src="http://localhost/MedStory/assets/Setting.png"></button>
-                        <!--DropDown menu navigation-->
-                        <div id="dropdown-content">
-                            <a href="pusatBantuan">Pusat Bantuan</a>
-                            <a href="tentang">Tentang</a>
-                            <a href="kebijakan">Kebijakan & Privasi</a>
-						</div>
+					<!--DropDown menu navigation-->
+					<div id="dropdown-content">
+						<a href="pusatBantuan">Pusat Bantuan</a>
+						<a href="tentang">Tentang</a>
+						<a href="kebijakan">Kebijakan & Privasi</a>
+					</div>
                 </div>
             </ul>
         </div>
@@ -237,45 +335,63 @@
 				</ol>   
 
 				<!-- Wrapper for carousel items -->
-				<div class='carousel-inner'>
-				<?php
-					$k = 1;
-					$state = ' active';
-					foreach ($dataBerita as $berita){
-						if($k % 4 == 0  || $k == 1){
-							echo"<div class='item carousel-item".$state."' >
-							<div class='row' style='margin:20px;'>";
-						}
-						echo"<div class='col-sm'>
-								<div class='thumb-wrapper'>
-									<div class='img-box'>
-										<img src='http://localhost/MedStory/assets/newsImage/Main".$berita['idBerita'].".jpeg' alt='Card image cap' 
-											style='width:270px; height:120px; border-radius:10px;'>								
+				
+					<div class='carousel-inner'>
+					<?php
+						$k = 1;
+						$state = ' active';
+						foreach ($dataBerita as $berita){
+							if($k % 4 == 0  || $k == 1){
+								echo"<div class='item carousel-item".$state."' >
+								<div class='row' style='margin:20px;'>";
+							}
+							echo"<div class='col-sm' type='button' data-toggle='collapse' data-target='#newsContent".$k."' aria-expanded='false' aria-controls='multiCollapseExampleNews'
+								style='margin-bottom:10px;' title='Tekan untuk melihat isi'>
+									<div class='thumb-wrapper'>
+										<div class='img-box'>
+											<img src='http://localhost/MedStory/assets/newsImage/Main".$berita['idBerita'].".jpeg' alt='Card image cap' 
+												style='width:270px; height:120px; border-radius:10px;'>								
+										</div>
+										<div class='thumb-content'>
+											<h5 style='font-size:16px;'>".$berita['title']."</h5>									
+											<p class='item-price'>".$berita['tanggal']."</p>
+										</div>						
 									</div>
-									<div class='thumb-content'>
-										<h5 style='color:#212121; font-size:16px;'>".$berita['title']."</h5>									
-										<p class='item-price'>".$berita['tanggal']."</p>
-									</div>						
-								</div>
-							</div>";
-							
-							$k++;
-							$state = ' ';
-						if($k % 4 == 0){
-							echo"</div>
-							</div>";
+								</div>";
+								$k++;
+								$state = ' ';
+							if($k % 4 == 0){
+								echo"</div>
+								</div>";
+							}
 						}
-					}
-				?>
+					?>
+					</div>
+					</div></div></div>
+					<!-- Carousel controls -->
+					<a class='carousel-control-prev' href='#myCarouselNews' data-slide='prev'>
+						<i class='fa fa-angle-left'></i>
+					</a>
+					<a class='carousel-control-next' href='#myCarouselNews' data-slide='next'>
+						<i class='fa fa-angle-right'></i>
+					</a>
 				</div>
-				</div></div></div>
-				<!-- Carousel controls -->
-				<a class='carousel-control-prev' href='#myCarouselNews' data-slide='prev'>
-					<i class='fa fa-angle-left'></i>
-				</a>
-				<a class='carousel-control-next' href='#myCarouselNews' data-slide='next'>
-					<i class='fa fa-angle-right'></i>
-				</a>
+				<div id="accordionNews">
+				<div class='container-fluid' style="max-height: calc(60vh - 100px); max-width:auto; overflow-x: auto;">
+				<?php
+				$k = 1;
+				foreach ($dataBerita as $berita){
+					echo"<div class='collapse' id='newsContent".$k."' data-parent='#accordionNews'>
+						<h5 style='font-size:18px;'>".$berita['title']."</h5>
+						<p style='font-size:12px; color:grey; font-style:italic;'>Diunggah pada tanggal ".$berita['tanggal']."</p>
+						<p>";
+						echo nl2br($berita['isi']);
+						echo"</p>
+					</div>";
+					$k++;
+				}
+				?>
+				</div>	
 			</div>
 		</div>
 
@@ -780,6 +896,7 @@
 
         <div class="text-center p-4" style="background-color: #333333; color: whitesmoke;">1302194041 - Leonardho R Sitanggang</div>
         </footer>
+		</div> <!--main-->
 
 		<!-- Zoom discussion image Modal -->
 		<?php foreach($dataDiskusi as $data){
@@ -869,6 +986,16 @@
 				document.documentElement.scrollTop = 0;
 			}
 
+			//Side nav
+			function openNav() {
+				document.getElementById("mySidebar").style.width = "350px";
+				document.getElementById("main").style.marginLeft = "350px";
+			}
+
+			function closeNav() {
+				document.getElementById("mySidebar").style.width = "0";
+				document.getElementById("main").style.marginLeft= "0";
+			}
 			//Discussion line chart
 			var Jan = <?php $i = 0; $check = ''; foreach($dataDiskusi as $data){$check = $data['datetime']; $month = explode("-", $check); 
 				if($month[1] == '01'){$i++;}}echo $i;?>;

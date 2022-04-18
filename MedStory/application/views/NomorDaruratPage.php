@@ -350,7 +350,7 @@
 																						echo"<div class='item carousel-item".$state."' >
 																						<div class='row' style='margin:20px;'>";
 																					}
-																					echo"<div class='col-sm' style='max-width:280px;'>
+																					echo"<div class='col-sm' style='max-width:280px; margin-bottom:10px;'>
 																						<div class='thumb-wrapper'>
 																							<h6>".$dataDokter2['spesialis']."</h6>
 																							<div class='img-box'>

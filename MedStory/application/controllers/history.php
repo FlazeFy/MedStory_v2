@@ -5,6 +5,7 @@
 		function __construct(){
 			parent::__construct();
 			$this->load->model('historyModel');
+			$this->load->model('accountModel');
 		}
 		public function index(){
 			$data = [];
@@ -12,6 +13,7 @@
 			$data['dataDiskusi']= $this->historyModel->get_all_diskusi();
 			$data['dataPertanyaan']= $this->historyModel->get_all_pertanyaan();
 			$data['dataBalasan']= $this->historyModel->get_all_balasan();
+			$data['dataUser']= $this->accountModel->get_data_user();
 			$this->load->view('HistoryPage', $data);
 		}
 		//Buat diskusi.
