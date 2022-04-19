@@ -154,7 +154,7 @@
 
 			.col-md-6 .row .col-sm .card:hover {
   height : 210px;  
-  background-color : #4183D7;
+  background-color : #22A7F0;
   color:white;
 }
 .col-md-6 .row .col-sm .card {
@@ -189,7 +189,7 @@
 }
 
 .row .col-sm .thumb-wrapper:hover {
-  background-color : #4183D7;
+  background-color : #22A7F0;
   color:white;
 }
 .row .col-sm .thumb-wrapper:hover h6 {

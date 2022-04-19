@@ -39,5 +39,21 @@
 			$this->db->order_by('datetime','DESC');
 			return $data = $this->db->get()->result_array();
 		}
+		public function get_data_asupan(){
+			$data = $this->db->get('asupan');
+			return $data->result_array();
+		}
+		public function get_data_kebutuhan(){
+			$data = $this->db->get('kebutuhankalori');
+			return $data->result_array();
+		}
+		public function get_data_jadwal(){
+			$data = $this->db->get('jadwalkalori');
+			return $data->result_array();
+		}
+		public function insertJadwal($data){
+			$this->db->insert('jadwalkalori',$data);	
+			redirect('history');
+		}
 	}
 ?>

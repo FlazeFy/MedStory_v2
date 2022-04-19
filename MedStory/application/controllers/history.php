@@ -11,6 +11,9 @@
 			$data = [];
 			$data['dataBerita']= $this->historyModel->get_data_berita();
 			$data['dataDiskusi']= $this->historyModel->get_all_diskusi();
+			$data['dataAsupan']= $this->historyModel->get_data_asupan();
+			$data['dataKebutuhan']= $this->historyModel->get_data_kebutuhan();
+			$data['dataJadwal']= $this->historyModel->get_data_jadwal();
 			$data['dataPertanyaan']= $this->historyModel->get_all_pertanyaan();
 			$data['dataBalasan']= $this->historyModel->get_all_balasan();
 			$data['dataUser']= $this->accountModel->get_data_user();
@@ -100,6 +103,22 @@
 			$this->db->where('id_balasan', $this->input->post('id_balasan'));
 			$this->db->update('balasan');
 			redirect('history');
+		}
+
+		public function tambahJadwalCal(){
+			$data = array(
+				'id_jadwal' => 'NULL',
+				'id_user' => $this->input->post('id_user'),
+				'id_asupan' => $this->input->post('id_asupan'),
+				'date' => date("Y/m/d"),
+				'waktu' =>  $this->input->post('waktu')
+			);	
+			// if (!$this->upload->do_upload('uploadImageD')) {
+				$this->historyModel->insertJadwal($data, 'jadwalkalori');
+			// } else {
+			// 	$this->historyModel->posting($data, 'diskusi');
+			// }
+			
 		}
 	}
 ?>
