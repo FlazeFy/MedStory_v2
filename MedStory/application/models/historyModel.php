@@ -55,5 +55,13 @@
 			$this->db->insert('jadwalkalori',$data);	
 			redirect('history');
 		}
+		public function get_data_userKebutuhan(){
+			$this->db->select('*');
+			$this->db->from('kebutuhankalori');
+			$this->db->join('pengguna','kebutuhankalori.id_user = pengguna.id_user');
+			$condition = array('date' => date("Y/m/d"));
+			$this->db->where($condition);
+			return $data = $this->db->get()->result_array();
+		}
 	}
 ?>

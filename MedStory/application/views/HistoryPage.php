@@ -476,91 +476,126 @@
 					<hr style='background:white; margin-top:-7px;'>
 				</div>
 				<h4 style="color: whitesmoke;">Kebutuhan Kalori</h4>
-				<div class='row'>
-					<div class='col-md-6'>
-						<a style="color: whitesmoke; font-size:14px;">Selumnya</a>
-						<!--Diagram-->
-						<div class="circular">
-							<div class="inner"></div>
-								<div class="number2"></div>
-								<div class="circle">
-								<div class="bar left">
-									<div class="progress"></div>
-								</div>
-								<div class="bar right">
-									<div class="progress"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class='col-md-6'>
-						<a style="color: whitesmoke; font-size:14px;">Hari ini</a>
-						<!--Diagram-->
-						<div class="circular">
-							<div class="inner"></div>
-								<div class="number"></div>
-								<div class="circle">
-								<div class="bar left">
-									<div class="progress"></div>
-								</div>
-								<div class="bar right">
-									<div class="progress"></div>
+				<?php
+					$cek = 'null';
+					foreach($checkKebutuhan as $cek){$cek = 'available';}
+					
+					if($cek != 'null'){
+					echo"<div class='row'>
+						<div class='col-md-6'>
+							<a style='color: whitesmoke; font-size:14px;'>Sebelumnya</a>
+							<!--Diagram-->
+							<div class='circular'>
+								<div class='inner'></div>
+									<div class='number2'></div>
+									<div class='circle'>
+									<div class='bar left'>
+										<div class='progress'></div>
+									</div>
+									<div class='bar right'>
+										<div class='progress'></div>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-				<div class='container-fluid bg-white' style='height:380px; padding:5px;'>
+						<div class='col-md-6'>
+							<a style='color: whitesmoke; font-size:14px;'>Hari ini</a>
+							<!--Diagram-->
+							<div class='circular'>
+								<div class='inner'></div>
+									<div class='number'></div>
+									<div class='circle'>
+									<div class='bar left'>
+										<div class='progress'></div>
+									</div>
+									<div class='bar right'>
+										<div class='progress'></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>";
+					} else {
+						echo "<div class='container' style='padding:10px;'>
+							<p style='font-style:italic; text-align:center; color:white; font-size:14px;'>Tidak ada data hari ini</p>
+							<button class='btn btn-success' onclick=window.location.href='smartDoc' title='SmartDoc'><i class='fa fa-calculator'></i> Hitung Kalori</button>
+						</div>";
+					}	
+				?>
+				<div class='container-fluid bg-white' style='height:<?php 
+					$cek = 'null';
+					foreach($checkKebutuhan as $cek){$cek = 'available';}if($cek != 'null'){echo"380px";}else{echo"420px";}
+					?>; padding:5px;'>
 					<!--Control section-->
-					<button class='btn btn-success' style='float:right;' title='Reset'><i class='fa fa-refresh'></i></button>
-					<button class='btn btn-info' style='background:#22A7F0;' href='#myCarouseCal' data-slide='prev' title='Kemarin'>
-						<i class='fa fa-angle-left'></i>
-					</button>
-					<button class='btn btn-info' style='background:#22A7F0;' href='#myCarouselCal' data-slide='next' title='Besok'>
-						<i class='fa fa-angle-right'></i>
-					</button>
-					<button class='btn btn-primary' data-toggle="modal" data-target="#asupanModal" style='float:left; border-color:#22A7F0; 
-						color:#22A7F0; background:white; border-width:2px;'><i class='fa fa-plus'></i> Tambah asupan</button>
+					<?php
+						$cek = 'null';
+						foreach($checkKebutuhan as $cek){$cek = 'available';}
+						
+						if($cek != 'null'){
+							echo"<button class='btn btn-success' style='float:right;' title='Reset'><i class='fa fa-refresh'></i></button>
+							<button class='btn btn-info' style='background:#22A7F0;' href='#myCarouseCal' data-slide='prev' title='Kemarin'>
+								<i class='fa fa-angle-left'></i>
+							</button>
+							<button class='btn btn-info' style='background:#22A7F0;' href='#myCarouselCal' data-slide='next' title='Besok'>
+								<i class='fa fa-angle-right'></i>
+							</button>
+							<button class='btn btn-primary' data-toggle='modal' data-target='#asupanModal' style='float:left; border-color:#22A7F0; 
+								color:#22A7F0; background:white; border-width:2px;'><i class='fa fa-plus'></i> Tambah asupan</button>";
+						}
+					?>
 					<div class='row' style='width:100%; height:20px; margin-top:5px;'>
 						<div class='col border-right'>
 							<a style="font-size:13px;">Total : 
 							<?php
-								foreach($dataUser as $user){
-									if($user['namaPengguna'] == $this->session->userdata('userTrack')){	
-										foreach($dataKebutuhan as $kebutuhan){
-											if(($kebutuhan['id_user'] == $user['id_user'])&&($kebutuhan['date'] == date("Y-m-d"))){
-												echo $kebutuhan['kalori'];
+								$cek = 'null';
+								foreach($checkKebutuhan as $cek){$cek = 'available';}
+								
+								if($cek != 'null'){
+									foreach($dataUser as $user){
+										if($user['namaPengguna'] == $this->session->userdata('userTrack')){	
+											foreach($dataKebutuhan as $kebutuhan){
+												if(($kebutuhan['id_user'] == $user['id_user'])&&($kebutuhan['date'] == date("Y-m-d"))){
+													echo $kebutuhan['kalori'];
+												}
 											}
 										}
 									}
-								}
-							echo" cal</a>
+								} else {
+									echo " - ";
+								}	
+							echo" </a>
 						</div>
 						<div class='col'>
 							<a style='font-size:13px;'>Sisa :";
 								$total = 0;
 								$cal = 0;
-								foreach($dataUser as $user){
-									if($user['namaPengguna'] == $this->session->userdata('userTrack')){
-										foreach($dataJadwal as $cal){
-											if(($cal['id_user'] == $user['id_user'])&&($cal['date'] == date("Y-m-d"))){
-												foreach($dataAsupan as $asupan){
-													if($cal['id_asupan'] == $asupan['id_asupan']){
-														$total += $asupan['kalori'];
+								$cek2 = 'null';
+								foreach($checkKebutuhan as $cek){$cek2 = 'available';}
+								
+								if($cek2 != 'null'){
+									foreach($dataUser as $user){
+										if($user['namaPengguna'] == $this->session->userdata('userTrack')){
+											foreach($dataJadwal as $cal){
+												if(($cal['id_user'] == $user['id_user'])&&($cal['date'] == date("Y-m-d"))){
+													foreach($dataAsupan as $asupan){
+														if($cal['id_asupan'] == $asupan['id_asupan']){
+															$total += $asupan['kalori'];
+														}
 													}
 												}
 											}
 										}
+									} 
+									foreach($dataKebutuhan as $kebutuhan){
+										if(($kebutuhan['id_user'] == $user['id_user'])&&($kebutuhan['date'] == date("Y-m-d"))){
+											$cal = $kebutuhan['kalori'];
+										}
 									}
-								} 
-								foreach($dataKebutuhan as $kebutuhan){
-									if(($kebutuhan['id_user'] == $user['id_user'])&&($kebutuhan['date'] == date("Y-m-d"))){
-										$cal = $kebutuhan['kalori'];
-									}
-								}
-								echo $cal-$total;
-								
-							?> cal</a>
+									echo $cal-$total," cal";
+								} else {
+									echo " - ";
+								}								
+							?> </a>
 						</div>
 					</div>
 					<hr style="margin-top:7px;">
@@ -568,93 +603,104 @@
 					<a style='font-size:15px; margin-top:-10px;'>Hari ini</a>
 					<div class='container-fluid' style='width:100%; max-height: calc(60vh - 160px); overflow-x: auto;'>
 					<?php
-						foreach($dataUser as $user){
-							if($user['namaPengguna'] == $this->session->userdata('userTrack')){
-								echo"<a style='font-size:13px; color:#808080; text-align:left;'>Pagi</a>";
-								foreach($dataJadwal as $cal){
-									if(($cal['id_user'] == $user['id_user'])&&($cal['date'] == date("Y-m-d"))&&($cal['waktu'] == 'pagi')){
-										foreach($dataAsupan as $asupan){
-											if($cal['id_asupan'] == $asupan['id_asupan']){
-												echo"<!--Item-->
-												<div class='card' style='border-radius:6px; border:none; height:75px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
-													margin-bottom:5px;'>
-													<div class='row' style='width:100%;'>
-														<div class='col'>
-															<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
-																style='width:75px; height:60px; border-radius:4px; margin-left:-5px; margin-top:3px;'>
+						$cek = 'null';
+						foreach($checkKebutuhan as $cek){$cek = 'available';}
+						
+						if($cek != 'null'){
+							foreach($dataUser as $user){
+								if($user['namaPengguna'] == $this->session->userdata('userTrack')){
+									echo"<a style='font-size:13px; color:#808080; text-align:left;'>Pagi</a>";
+									foreach($dataJadwal as $cal){
+										if(($cal['id_user'] == $user['id_user'])&&($cal['date'] == date("Y-m-d"))&&($cal['waktu'] == 'pagi')){
+											foreach($dataAsupan as $asupan){
+												if($cal['id_asupan'] == $asupan['id_asupan']){
+													echo"<!--Item-->
+													<div class='card' style='border-radius:6px; border:none; height:75px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
+														margin-bottom:5px;'>
+														<div class='row' style='width:100%;'>
+															<div class='col'>
+																<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
+																	style='width:75px; height:60px; border-radius:4px; margin-left:-5px; margin-top:3px;'>
+															</div>
+															<div class='col' style='left:-35px; margin-left:5px;'>
+																<a style='font-size:13px; color:#22A7F0; text-align:left; position:absolute;'>".$asupan['nama']."</a>
+																<a style='font-size:12px; color:#808080; text-align:left; position:absolute; top:20px;'>".$asupan['kategori']."</a>
+																<a style='font-size:13px; text-align:left; position:absolute; top:40px;'>".$asupan['kalori']." cal</a>
+															</div>
+															<div class='row' style='left:30px; height:40px; margin-top:10px;'>
+																<button class='btn btn-primary' style='margin:3px;' title='Edit'><i class='fa fa-edit'></i></button>
+																<button class='btn btn-danger' style='margin:3px;' title='Hapus'><i class='fa fa-trash'></i></button>
+															</div>
 														</div>
-														<div class='col' style='left:-35px; margin-left:5px;'>
-															<a style='font-size:13px; color:#22A7F0; text-align:left; position:absolute;'>".$asupan['nama']."</a>
-															<a style='font-size:12px; color:#808080; text-align:left; position:absolute; top:20px;'>".$asupan['kategori']."</a>
-															<a style='font-size:13px; text-align:left; position:absolute; top:40px;'>".$asupan['kalori']." cal</a>
-														</div>
-														<div class='row' style='left:30px; height:40px; margin-top:10px;'>
-															<button class='btn btn-primary' style='margin:3px;' title='Edit'><i class='fa fa-edit'></i></button>
-															<button class='btn btn-danger' style='margin:3px;' title='Hapus'><i class='fa fa-trash'></i></button>
-														</div>
-													</div>
-												</div>";
+													</div>";
+												}
 											}
 										}
 									}
-								}
-								echo"<a style='font-size:13px; color:#808080; text-align:left;'>Siang</a>";
-								foreach($dataJadwal as $cal2){
-									if(($cal2['id_user'] == $user['id_user'])&&($cal2['date'] == date("Y-m-d"))&&($cal2['waktu'] == 'siang')){
-										foreach($dataAsupan as $asupan){
-											if($cal2['id_asupan'] == $asupan['id_asupan']){
-												echo"<!--Item-->
-												<div class='card' style='border-radius:6px; border:none; height:75px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
-													margin-bottom:5px;'>
-													<div class='row' style='width:100%;'>
-														<div class='col'>
-															<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
-																style='width:75px; height:60px; border-radius:4px; margin-left:-5px; margin-top:3px;'>
+									echo"<a style='font-size:13px; color:#808080; text-align:left;'>Siang</a>";
+									foreach($dataJadwal as $cal2){
+										if(($cal2['id_user'] == $user['id_user'])&&($cal2['date'] == date("Y-m-d"))&&($cal2['waktu'] == 'siang')){
+											foreach($dataAsupan as $asupan){
+												if($cal2['id_asupan'] == $asupan['id_asupan']){
+													echo"<!--Item-->
+													<div class='card' style='border-radius:6px; border:none; height:75px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
+														margin-bottom:5px;'>
+														<div class='row' style='width:100%;'>
+															<div class='col'>
+																<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
+																	style='width:75px; height:60px; border-radius:4px; margin-left:-5px; margin-top:3px;'>
+															</div>
+															<div class='col' style='left:-35px; margin-left:5px;'>
+																<a style='font-size:13px; color:#22A7F0; text-align:left; position:absolute;'>".$asupan['nama']."</a>
+																<a style='font-size:12px; color:#808080; text-align:left; position:absolute; top:20px;'>".$asupan['kategori']."</a>
+																<a style='font-size:13px; text-align:left; position:absolute; top:40px;'>".$asupan['kalori']." cal</a>
+															</div>
+															<div class='row' style='left:30px; height:40px; margin-top:10px;'>
+																<button class='btn btn-primary' style='margin:3px;' title='Edit'><i class='fa fa-edit'></i></button>
+																<button class='btn btn-danger' style='margin:3px;' title='Hapus'><i class='fa fa-trash'></i></button>
+															</div>
 														</div>
-														<div class='col' style='left:-35px; margin-left:5px;'>
-															<a style='font-size:13px; color:#22A7F0; text-align:left; position:absolute;'>".$asupan['nama']."</a>
-															<a style='font-size:12px; color:#808080; text-align:left; position:absolute; top:20px;'>".$asupan['kategori']."</a>
-															<a style='font-size:13px; text-align:left; position:absolute; top:40px;'>".$asupan['kalori']." cal</a>
-														</div>
-														<div class='row' style='left:30px; height:40px; margin-top:10px;'>
-															<button class='btn btn-primary' style='margin:3px;' title='Edit'><i class='fa fa-edit'></i></button>
-															<button class='btn btn-danger' style='margin:3px;' title='Hapus'><i class='fa fa-trash'></i></button>
-														</div>
-													</div>
-												</div>";
+													</div>";
+												}
 											}
 										}
 									}
-								}
-								echo"<a style='font-size:13px; color:#808080; text-align:left;'>Malam</a>";
-								foreach($dataJadwal as $cal3){
-									if(($cal3['id_user'] == $user['id_user'])&&($cal3['date'] == date("Y-m-d"))&&($cal3['waktu'] == 'malam')){
-										foreach($dataAsupan as $asupan){
-											if($cal3['id_asupan'] == $asupan['id_asupan']){
-												echo"<!--Item-->
-												<div class='card' style='border-radius:6px; border:none; height:75px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
-													margin-bottom:5px;'>
-													<div class='row' style='width:100%;'>
-														<div class='col'>
-															<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
-																style='width:75px; height:60px; border-radius:4px; margin-left:-5px; margin-top:3px;'>
+									echo"<a style='font-size:13px; color:#808080; text-align:left;'>Malam</a>";
+									foreach($dataJadwal as $cal3){
+										if(($cal3['id_user'] == $user['id_user'])&&($cal3['date'] == date("Y-m-d"))&&($cal3['waktu'] == 'malam')){
+											foreach($dataAsupan as $asupan){
+												if($cal3['id_asupan'] == $asupan['id_asupan']){
+													echo"<!--Item-->
+													<div class='card' style='border-radius:6px; border:none; height:75px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
+														margin-bottom:5px;'>
+														<div class='row' style='width:100%;'>
+															<div class='col'>
+																<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
+																	style='width:75px; height:60px; border-radius:4px; margin-left:-5px; margin-top:3px;'>
+															</div>
+															<div class='col' style='left:-35px; margin-left:5px;'>
+																<a style='font-size:13px; color:#22A7F0; text-align:left; position:absolute;'>".$asupan['nama']."</a>
+																<a style='font-size:12px; color:#808080; text-align:left; position:absolute; top:20px;'>".$asupan['kategori']."</a>
+																<a style='font-size:13px; text-align:left; position:absolute; top:40px;'>".$asupan['kalori']." cal</a>
+															</div>
+															<div class='row' style='left:30px; height:40px; margin-top:10px;'>
+																<button class='btn btn-primary' style='margin:3px;' title='Edit'><i class='fa fa-edit'></i></button>
+																<button class='btn btn-danger' style='margin:3px;' title='Hapus'><i class='fa fa-trash'></i></button>
+															</div>
 														</div>
-														<div class='col' style='left:-35px; margin-left:5px;'>
-															<a style='font-size:13px; color:#22A7F0; text-align:left; position:absolute;'>".$asupan['nama']."</a>
-															<a style='font-size:12px; color:#808080; text-align:left; position:absolute; top:20px;'>".$asupan['kategori']."</a>
-															<a style='font-size:13px; text-align:left; position:absolute; top:40px;'>".$asupan['kalori']." cal</a>
-														</div>
-														<div class='row' style='left:30px; height:40px; margin-top:10px;'>
-															<button class='btn btn-primary' style='margin:3px;' title='Edit'><i class='fa fa-edit'></i></button>
-															<button class='btn btn-danger' style='margin:3px;' title='Hapus'><i class='fa fa-trash'></i></button>
-														</div>
-													</div>
-												</div>";
+													</div>";
+												}
 											}
 										}
 									}
 								}
 							}
+						} else {
+							echo "<div class='container'>
+								<p style='font-style:italic; text-align:center; color:grey; font-size:14px;'>Anda belum membuat kebutuhan kalori hari ini</p>
+								<img src='http://localhost/MedStory/assets/icon/Empty.gif' alt='Sorry.png' style='display: block;
+									margin-left: auto; margin-right: auto; width: 200px; height: 200px; margin-top:-20px;'>
+							</div>";
 						}
 					?>
 					</div>

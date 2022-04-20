@@ -16,6 +16,7 @@
 			$data['dataJadwal']= $this->historyModel->get_data_jadwal();
 			$data['dataPertanyaan']= $this->historyModel->get_all_pertanyaan();
 			$data['dataBalasan']= $this->historyModel->get_all_balasan();
+			$data['checkKebutuhan']= $this->historyModel->get_data_userKebutuhan();
 			$data['dataUser']= $this->accountModel->get_data_user();
 			$this->load->view('HistoryPage', $data);
 		}
