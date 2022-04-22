@@ -257,6 +257,12 @@
   right: 25px;
   margin-left: 50px;
 }
+.sidebar .bookbtn {
+  position: absolute;
+  top: 5px;
+  left: 25px;
+  margin-right: 50px;
+}
 
 #main {
   transition: margin-left .5s;
@@ -465,14 +471,30 @@
 	?>deg);
   }
 }
+@media screen and (max-width: 800px) {
+    .button-text {
+        display: none;
+    }
+}
 		</style>
     </head>
     <body>
 		<div id="mySidebar" class="sidebar">
+			<a type='button' class="bookbtn" style='font-size:20px; text-decoration: underline;'><i class='fa fa-book'></i> Bantuan</a>
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class='fa fa-arrow-left'></i></a>
 			<div class="d-flex flex-column align-items-center text-center">
 				<div class="mt-2" style='width:90%;'>
-					<p style="color: whitesmoke;"><?php foreach ($dataUser as $data){echo $data['namaLengkap'];}?> - thn</p>
+					<p style="color: whitesmoke;"><?php 
+						foreach ($dataUser as $data){
+							echo $data['namaLengkap'];
+							$birthDate = $data['tanggalLahir'];
+						}
+						$birthDate = explode("-", $birthDate);
+						$age = (date("md", date("U", mktime(0, 0, 0, $birthDate[1], $birthDate[2], $birthDate[0]))) > date("md")
+							? ((date("Y") - $birthDate[0]) - 1)
+							: (date("Y") - $birthDate[0]));
+						echo " - ".$age;
+					?> thn</p>
 					<hr style='background:white; margin-top:-7px;'>
 				</div>
 				<h4 style="color: whitesmoke;">Kebutuhan Kalori</h4>
@@ -481,25 +503,16 @@
 					foreach($checkKebutuhan as $cek){$cek = 'available';}
 					
 					if($cek != 'null'){
-					echo"<div class='row'>
+					echo"<div class='row' style='width:100%;'>
 						<div class='col-md-6'>
-							<a style='color: whitesmoke; font-size:14px;'>Sebelumnya</a>
-							<!--Diagram-->
-							<div class='circular'>
-								<div class='inner'></div>
-									<div class='number2'></div>
-									<div class='circle'>
-									<div class='bar left'>
-										<div class='progress'></div>
-									</div>
-									<div class='bar right'>
-										<div class='progress'></div>
-									</div>
-								</div>
-							</div>
+							<a style='color: whitesmoke; font-size:14px; margin-bottom:5px;'>Detail</a>
+							<a style='color: whitesmoke; font-size:13px;'>Tinggi Badan: </a>
+							<a style='color: whitesmoke; font-size:14px; font-weight:bold;'>"; foreach($dataUser as $user){echo $user['tinggiBadan']; } echo" Cm</a>
+							<a style='color: whitesmoke; font-size:13px;'>Berat Badan: </a>
+							<a style='color: whitesmoke; font-size:14px; font-weight:bold;'>"; foreach($dataUser as $user){echo $user['beratBadan']; } echo" Kg</a>
 						</div>
 						<div class='col-md-6'>
-							<a style='color: whitesmoke; font-size:14px;'>Hari ini</a>
+							<a style='color: whitesmoke; font-size:14px; margin-bottom:5px; margin-left:-50px;'>Hari ini</a>
 							<!--Diagram-->
 							<div class='circular'>
 								<div class='inner'></div>
@@ -532,7 +545,7 @@
 						foreach($checkKebutuhan as $cek){$cek = 'available';}
 						
 						if($cek != 'null'){
-							echo"<button class='btn btn-success' style='float:right;' title='Reset'><i class='fa fa-refresh'></i></button>
+							echo"<button class='btn btn-success' style='float:right;' title='Reset' data-toggle='modal' data-target='#hapusSemuaAsupan'><i class='fa fa-refresh'></i></button>
 							<button class='btn btn-info' style='background:#22A7F0;' href='#myCarouseCal' data-slide='prev' title='Kemarin'>
 								<i class='fa fa-angle-left'></i>
 							</button>
@@ -568,7 +581,7 @@
 						<div class='col'>
 							<a style='font-size:13px;'>Sisa :";
 								$total = 0;
-								$cal = 0;
+								$calorie = 0;
 								$cek2 = 'null';
 								foreach($checkKebutuhan as $cek){$cek2 = 'available';}
 								
@@ -588,10 +601,10 @@
 									} 
 									foreach($dataKebutuhan as $kebutuhan){
 										if(($kebutuhan['id_user'] == $user['id_user'])&&($kebutuhan['date'] == date("Y-m-d"))){
-											$cal = $kebutuhan['kalori'];
+											$calorie = $kebutuhan['kalori'];
 										}
 									}
-									echo $cal-$total," cal";
+									echo $calorie-$total," cal";
 								} else {
 									echo " - ";
 								}								
@@ -623,13 +636,12 @@
 																	style='width:75px; height:60px; border-radius:4px; margin-left:-5px; margin-top:3px;'>
 															</div>
 															<div class='col' style='left:-35px; margin-left:5px;'>
-																<a style='font-size:13px; color:#22A7F0; text-align:left; position:absolute;'>".$asupan['nama']."</a>
+																<a style='font-size:13px; color:#22A7F0; text-align:left; position:absolute; white-space: nowrap;'>".$asupan['nama']."</a>
 																<a style='font-size:12px; color:#808080; text-align:left; position:absolute; top:20px;'>".$asupan['kategori']."</a>
 																<a style='font-size:13px; text-align:left; position:absolute; top:40px;'>".$asupan['kalori']." cal</a>
 															</div>
 															<div class='row' style='left:30px; height:40px; margin-top:10px;'>
-																<button class='btn btn-primary' style='margin:3px;' title='Edit'><i class='fa fa-edit'></i></button>
-																<button class='btn btn-danger' style='margin:3px;' title='Hapus'><i class='fa fa-trash'></i></button>
+																<button class='btn btn-danger' style='margin:3px;' title='Hapus' data-toggle='modal' data-target='#hapusAsupan".$cal['id_jadwal']."'><i class='fa fa-trash'></i></button>
 															</div>
 														</div>
 													</div>";
@@ -651,13 +663,12 @@
 																	style='width:75px; height:60px; border-radius:4px; margin-left:-5px; margin-top:3px;'>
 															</div>
 															<div class='col' style='left:-35px; margin-left:5px;'>
-																<a style='font-size:13px; color:#22A7F0; text-align:left; position:absolute;'>".$asupan['nama']."</a>
+																<a style='font-size:13px; color:#22A7F0; text-align:left; position:absolute; white-space: nowrap;'>".$asupan['nama']."</a>
 																<a style='font-size:12px; color:#808080; text-align:left; position:absolute; top:20px;'>".$asupan['kategori']."</a>
 																<a style='font-size:13px; text-align:left; position:absolute; top:40px;'>".$asupan['kalori']." cal</a>
 															</div>
 															<div class='row' style='left:30px; height:40px; margin-top:10px;'>
-																<button class='btn btn-primary' style='margin:3px;' title='Edit'><i class='fa fa-edit'></i></button>
-																<button class='btn btn-danger' style='margin:3px;' title='Hapus'><i class='fa fa-trash'></i></button>
+																<button class='btn btn-danger' style='margin:3px;' title='Hapus' data-toggle='modal' data-target='#hapusAsupan".$cal2['id_jadwal']."'><i class='fa fa-trash'></i></button>
 															</div>
 														</div>
 													</div>";
@@ -679,13 +690,12 @@
 																	style='width:75px; height:60px; border-radius:4px; margin-left:-5px; margin-top:3px;'>
 															</div>
 															<div class='col' style='left:-35px; margin-left:5px;'>
-																<a style='font-size:13px; color:#22A7F0; text-align:left; position:absolute;'>".$asupan['nama']."</a>
+																<a style='font-size:13px; color:#22A7F0; text-align:left; position:absolute; white-space: nowrap;'>".$asupan['nama']."</a>
 																<a style='font-size:12px; color:#808080; text-align:left; position:absolute; top:20px;'>".$asupan['kategori']."</a>
 																<a style='font-size:13px; text-align:left; position:absolute; top:40px;'>".$asupan['kalori']." cal</a>
 															</div>
 															<div class='row' style='left:30px; height:40px; margin-top:10px;'>
-																<button class='btn btn-primary' style='margin:3px;' title='Edit'><i class='fa fa-edit'></i></button>
-																<button class='btn btn-danger' style='margin:3px;' title='Hapus'><i class='fa fa-trash'></i></button>
+																<button class='btn btn-danger' style='margin:3px;' title='Hapus' data-toggle='modal' data-target='#hapusAsupan".$cal3['id_jadwal']."'><i class='fa fa-trash'></i></button>
 															</div>
 														</div>
 													</div>";
@@ -838,9 +848,9 @@
 			<button class="btn btn-primary" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2"
 				style='box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 10px;'><i class="fa fa-user-o mr-2"></i>Pertanyaan Saya</button>
 			<button class="btn btn-info" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample2"
-				style='box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 10px;'><i class="fa fa-bar-chart mr-2"></i>Statistik</button>
+				style='box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 10px;'><i class="fa fa-bar-chart mr-2"></i><span class="button-text">Statistik</span></button>
 			<button class="btn btn-success" style="float:right; box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 10px;" data-toggle="modal" data-target="#tambahDiskusiModal" 
-				aria-expanded="false" aria-controls="multiCollapseExample2"><i class="fa fa-plus mr-2"></i>Buat Pertanyaan</button>
+				aria-expanded="false" aria-controls="multiCollapseExample2"><i class="fa fa-plus mr-2"></i><span class="button-text">Buat Pertanyaan</span></button>
 			</p><hr>
 			<div class="row">
 			<div class="col-md-12">
@@ -1018,7 +1028,7 @@
 			</div>
 			<div class="col-md-12">
 				<div class="collapse" id="multiCollapseExample2" data-parent="#accordion">
-					<div class="container">
+					<div class="container-fluid" style='margin-top:-25px;'>
 						<h5 style="text-align: left; color:#696969;">Pertanyaan saya</h5>
 						<div id='myCarouselDiskusiSaya' class='carousel slide' data-ride='carousel' data-interval='0'>
 							<!-- Carousel indicators -->
@@ -1372,6 +1382,99 @@
 		</div>";	
 		}}?>
 
+		<?php
+		foreach($dataUser as $user){
+			foreach($dataJadwal as $jadwal){
+				if($user['id_user'] == $jadwal['id_user']){
+					foreach($dataAsupan as $asupan){
+						if($jadwal['id_asupan'] == $asupan['id_asupan']){
+							echo"<!-- Hapus Asupan Modal -->
+							<div class='modal fade' id='hapusAsupan".$jadwal['id_jadwal']."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+							<div class='modal-dialog' role='document'>
+								<div class='modal-content'>
+								<div class='modal-header'>
+									<p class='modal-title' id='exampleModalLabel'>Apakah Anda ingin menghapus asupan dengan detail :</p>
+								</div>
+								<div class='modal-body'>
+									<div class='card' style='border-radius:6px; border:none; height:75px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
+										margin-bottom:5px;'>
+										<div class='row' style='width:100%;'>
+											<div class='col-sm-3'>
+												<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
+													style='width:95px; height:60px; border-radius:4px; margin-top:3px;'>
+											</div>
+											<div class='col-sm-7' >
+												<p style='font-size:15px; color:#22A7F0; text-align:left;'>".$asupan['nama']."</p>
+												<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal / ".$asupan['ukuran']."</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class='modal-footer'>
+									<button type='button' class='btn btn-danger' data-dismiss='modal'>Batalkan</button>
+									<form method='POST' action='history/hapusAsupan'>
+										<input type='text' class='form-control' name='id_jadwal' value='".$jadwal['id_jadwal']."' hidden>
+										<button type='submit' class='btn btn-success'>Ya, Saya yakin</button>
+									</form>
+								</div>
+								</div>
+							</div>
+							</div>";
+						}
+					}
+				}
+			}
+		}	
+		?>
+
+		<!-- Hapus Semua Asupan Modal -->
+		<div class='modal fade' id='hapusSemuaAsupan' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+		<div class='modal-dialog' role='document'>
+			<div class='modal-content'>
+			<div class='modal-header'>
+				<p class='modal-title' id='exampleModalLabel'>Apakah Anda ingin menghapus semua asupan pada hari ini :</p>
+			</div>
+			<div class='modal-body' style='max-height: calc(60vh - 100px); max-width:auto; height:400px; overflow-x: auto;'>
+			<?php
+				foreach($dataUser as $user){
+					if($user['namaPengguna'] == $this->session->userdata('userTrack')){
+						foreach($dataJadwal as $cal){
+							if(($cal['id_user'] == $user['id_user'])&&($cal['date'] == date("Y-m-d"))){
+								foreach($dataAsupan as $asupan){
+									if($cal['id_asupan'] == $asupan['id_asupan']){
+										echo"<!--Item-->
+										<div class='card' style='border-radius:6px; border:none; height:75px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
+										margin-bottom:5px;'>
+										<div class='row' style='width:100%;'>
+											<div class='col-sm-3'>
+												<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
+													style='width:95px; height:60px; border-radius:4px; margin-top:3px;'>
+											</div>
+											<div class='col-sm-7' >
+												<p style='font-size:15px; color:#22A7F0; text-align:left;'>".$asupan['nama']."</p>
+												<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal / ".$asupan['ukuran']."</p>
+											</div>
+										</div>
+										</div>";
+									}
+								}
+							}
+						}
+					}
+				}
+			?>
+			</div>
+			<div class='modal-footer'>
+				<button type='button' class='btn btn-danger' data-dismiss='modal'>Batalkan</button>
+				<form method='POST' action='history/hapusSemuaAsupan'>
+					<?php foreach($dataUser as $user){echo"<input type='text' class='form-control' name='id_user' value='".$user['id_user']."' hidden>";}?>
+					<button type='submit' class='btn btn-success'>Ya, Saya yakin</button>
+				</form>
+			</div>
+			</div>
+		</div>
+		</div>
+
 		<!-- Tambah asupan -->
 		<div class="modal fade" id="asupanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
@@ -1430,7 +1533,8 @@
 									}
 								?>
 								<div class="tab-content" id="v-pills-tabContent">
-									<div class="tab-pane fade shadow rounded bg-white show active p-3" id="v-pills-sayuran" role="tabpanel" aria-labelledby="v-pills-home-tab">
+									<div class="tab-pane fade shadow rounded bg-white show active p-3" id="v-pills-sayuran" role="tabpanel" aria-labelledby="v-pills-home-tab"
+										style='max-height: calc(60vh - 100px); max-width:auto; height:310px; overflow-x: auto;'>
 										<h5 style='font-size:16px; color:#4183D7; margin-bottom:20px;'>Sayuran</h5>
 										<?php
 										foreach($dataAsupan as $asupan){
@@ -1445,7 +1549,7 @@
 														</div>
 														<div class='col-sm-7' >
 															<p style='font-size:15px; color:#22A7F0; text-align:left;'>".$asupan['nama']."</p>
-															<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal</p>
+															<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal / ".$asupan['ukuran']."</p>
 														</div>
 														<div class='col-sm-2' style='margin-top:15px;'>
 															<label class='container' id='checkCont'><input type='checkbox' id='' name='id_asupan' value='".$asupan['id_asupan']."' style='height:50px;'>
@@ -1458,7 +1562,8 @@
 										?>
 									</div>
 									
-									<div class="tab-pane fade shadow rounded bg-white p-3" id="v-pills-buah" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+									<div class="tab-pane fade shadow rounded bg-white p-3" id="v-pills-buah" role="tabpanel" aria-labelledby="v-pills-profile-tab"
+										style='max-height: calc(60vh - 100px); max-width:auto; height:310px; overflow-x: auto;'>
 										<h5 style='font-size:16px; color:#4183D7; margin-bottom:20px;'>Buah-Buahan</h5>
 										<?php
 										foreach($dataAsupan as $asupan){
@@ -1473,8 +1578,7 @@
 														</div>
 														<div class='col-sm-7' >
 															<p style='font-size:15px; color:#22A7F0; text-align:left;'>".$asupan['nama']."</p>
-															<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal</p>
-														</div>
+															<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal / ".$asupan['ukuran']."</p>														</div>
 														<div class='col-sm-2' style='margin-top:15px;'>
 															<label class='container' id='checkCont'><input type='checkbox' id='' name='id_asupan' value='".$asupan['id_asupan']."' style='height:50px;'>
 															<span class='checkmark'></span></label>
@@ -1486,7 +1590,8 @@
 										?>
 									</div>								
 										
-									<div class="tab-pane fade shadow rounded bg-white p-3" id="v-pills-daging" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+									<div class="tab-pane fade shadow rounded bg-white p-3" id="v-pills-daging" role="tabpanel" aria-labelledby="v-pills-messages-tab"
+										style='max-height: calc(60vh - 100px); max-width:auto; height:310px; overflow-x: auto;'>
 										<h5 style='font-size:16px; color:#4183D7; margin-bottom:20px;'>Daging</h5>
 										<?php
 										foreach($dataAsupan as $asupan){
@@ -1501,8 +1606,7 @@
 														</div>
 														<div class='col-sm-7' >
 															<p style='font-size:15px; color:#22A7F0; text-align:left;'>".$asupan['nama']."</p>
-															<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal</p>
-														</div>
+															<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal / ".$asupan['ukuran']."</p>														</div>
 														<div class='col-sm-2' style='margin-top:15px;'>
 															<label class='container' id='checkCont'><input type='checkbox' id='' name='id_asupan' value='".$asupan['id_asupan']."' style='height:50px;'>
 															<span class='checkmark'></span></label>
@@ -1514,7 +1618,8 @@
 										?>
 									</div>
 
-									<div class="tab-pane fade shadow rounded bg-white p-3" id="v-pills-seafood" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+									<div class="tab-pane fade shadow rounded bg-white p-3" id="v-pills-seafood" role="tabpanel" aria-labelledby="v-pills-settings-tab"
+										style='max-height: calc(60vh - 100px); max-width:auto; height:310px; overflow-x: auto;'>
 										<h5 style='font-size:16px; color:#4183D7; margin-bottom:20px;'>Seafood</h5>
 										<?php
 										foreach($dataAsupan as $asupan){
@@ -1529,8 +1634,7 @@
 														</div>
 														<div class='col-sm-7' >
 															<p style='font-size:15px; color:#22A7F0; text-align:left;'>".$asupan['nama']."</p>
-															<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal</p>
-														</div>
+															<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal / ".$asupan['ukuran']."</p>														</div>
 														<div class='col-sm-2' style='margin-top:15px;'>
 															<label class='container' id='checkCont'><input type='checkbox' id='' name='id_asupan' value='".$asupan['id_asupan']."' style='height:50px;'>
 															<span class='checkmark'></span></label>
@@ -1542,7 +1646,8 @@
 										?>							
 									</div>
 
-									<div class="tab-pane fade shadow rounded bg-white p-3" id="v-pills-lain" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+									<div class="tab-pane fade shadow rounded bg-white p-3" id="v-pills-lain" role="tabpanel" aria-labelledby="v-pills-settings-tab"
+										style='max-height: calc(60vh - 100px); max-width:auto; height:310px; overflow-x: auto;'>
 										<h5 style='font-size:16px; color:#4183D7; margin-bottom:20px;'>Lainnya</h5>
 										<?php
 										foreach($dataAsupan as $asupan){
@@ -1557,8 +1662,7 @@
 														</div>
 														<div class='col-sm-7' >
 															<p style='font-size:15px; color:#22A7F0; text-align:left;'>".$asupan['nama']."</p>
-															<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal</p>
-														</div>
+															<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal / ".$asupan['ukuran']."</p>														</div>
 														<div class='col-sm-2' style='margin-top:15px;'>
 															<label class='container' id='checkCont'><input type='checkbox' id='' name='id_asupan' value='".$asupan['id_asupan']."' style='height:50px;'>
 															<span class='checkmark'></span></label>

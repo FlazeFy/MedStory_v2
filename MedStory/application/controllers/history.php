@@ -114,12 +114,21 @@
 				'date' => date("Y/m/d"),
 				'waktu' =>  $this->input->post('waktu')
 			);	
-			// if (!$this->upload->do_upload('uploadImageD')) {
-				$this->historyModel->insertJadwal($data, 'jadwalkalori');
-			// } else {
-			// 	$this->historyModel->posting($data, 'diskusi');
-			// }
+			$this->historyModel->insertJadwal($data, 'jadwalkalori');
 			
+			//error. list only insert 1 item
+		}
+
+		public function hapusAsupan(){
+			$this->db->where('id_jadwal',  $this->input->post('id_jadwal'));
+			$this->db->delete('jadwalkalori');
+			redirect('history');
+		}
+		public function hapusSemuaAsupan(){
+			$condition = array('date' => date("Y/m/d"), 'id_user' => $this->input->post('id_user'));
+			$this->db->where($condition);
+			$this->db->delete('jadwalkalori');
+			redirect('history');
 		}
 	}
 ?>
