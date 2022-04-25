@@ -291,7 +291,17 @@
 																			<h5 style='font-size:16px; color:#212121;'><img style='width:25px;' src='http://localhost/MedStory/assets/icon/penanganan.png'> Penanganan</h5>
 																				<p style='font-size:14px; color:#616161; margin-bottom:20px;'>".$penyakit['penanganan']."</p>
 																			<h5 style='font-size:16px; color:#212121;'><img style='width:25px;' src='http://localhost/MedStory/assets/icon/obat.png'> Obat</h5>
-																				<p style='font-size:14px; color:#616161; margin-bottom:20px;'>".$penyakit['obat']."</p>
+																				<p style='font-size:14px; color:#616161; margin-bottom:20px;'>"; 
+																				foreach($dataRelasiObat as $relObat){
+																					if($relObat['id_penyakit'] == $penyakit['id_penyakit']){
+																						foreach($dataObat as $obat){
+																							if($relObat['id_obat'] == $obat['id_obat']){
+																								echo "<a type='button' style='color:#22A7F0; text-decoration:underline;' data-toggle='modal' data-target='#modalObat".$obat['id_obat']."' title='".$obat['namaObat']."'>".$obat['namaObat'].",</a>";
+																							}
+																						}
+																					}
+																				}
+																				echo"</p>
 																			<h5 style='font-size:16px; color:#212121;'><img style='width:25px;' src='http://localhost/MedStory/assets/icon/pencegahan.png'> Pencegahan</h5>
 																				<p style='font-size:14px; color:#616161; margin-bottom:20px;'>".$penyakit['pencegahan']."</p>
 																			<h5 style='font-size:16px; color:#212121;'><img style='width:25px;' src='http://localhost/MedStory/assets/icon/gejala.png'> Gejala lainnya</h5>";
@@ -329,30 +339,31 @@
 						<div class='row'>
 							<div class='col-md-6'>
 								<h5 class='font-weight-bold'>Apa itu Kalkulator kalori?</h5>                        
-								<p>Dengan alat ini Anda mengetahui berapa asupan kalori yang dibutuhkan. Hasil perhitungannya dapat Anda gunakan sebagai salah satu acuan untuk mengontrol asupan kalori per hari.</p>
+								<p>Dengan alat ini Anda mengetahui berapa asupan kalori yang dibutuhkan. Hasil perhitungannya dapat Anda gunakan sebagai salah satu acuan untuk mengontrol asupan kalori per hari.</p>								
+								<h5 class='font-weight-bold' id='hasilCal'></h5>
 							</div>
 							<div class='col-md-6'>
 								<div class="row">
 									<div class="col-sm">
 										<h5 class='font-weight-100' style='font-size: 16px;'>Tinggi Badan (Cm)</h5>
-										<input type="number" class="form-control" id="tinggi" style="background:#f4f4f4; border-width: 0 0 3px; 
+										<input type="number" class="form-control" id="tinggiCal" style="background:#f4f4f4; border-width: 0 0 3px; 
 											border-bottom: 3.5px solid #4183D7; color:#212121;">
 									</div>
 									<div class="col-sm">
 										<h5 class='font-weight-100' style='font-size: 16px;'>Berat Badan (Kg)</h5>
-										<input type="number" class="form-control" id="berat" style="background:#f4f4f4; border-width: 0 0 3px; 
+										<input type="number" class="form-control" id="beratCal" style="background:#f4f4f4; border-width: 0 0 3px; 
 											border-bottom: 3.5px solid #4183D7; color:#212121;">
 									</div>
 									<div class="col-sm">
 										<h5 class='font-weight-100' style='font-size: 16px;'>Umur (Thn)</h5>
-										<input type="number" class="form-control" id="umur" style="background:#f4f4f4; border-width: 0 0 3px; 
+										<input type="number" class="form-control" id="umurCal" style="background:#f4f4f4; border-width: 0 0 3px; 
 											border-bottom: 3.5px solid #4183D7; color:#212121;">
 									</div>
 								</div>	
-								<div class="row">
+								<div class="row" style='margin-top:5px;'>
 									<div class="col-sm">
 										<h5 class='font-weight-100' style='font-size: 16px;'>Aktivitas</h5>
-										<select class="form-control" id="aktivitas" style="background:#f4f4f4; border-width: 0 0 3px; 
+										<select class="form-control" id="aktivitasCal" style="background:#f4f4f4; border-width: 0 0 3px; 
 											border-bottom: 3.5px solid #4183D7; color:#212121;">
 											<option value="1">Tidak pernah berolahraga dalam seminggu</option>
 											<option value="2">1-3 kali dalam seminggu</option>
@@ -361,10 +372,18 @@
 											<option value="5">Setiap hari / Pekerjaan fisik</option>
 										</select>
 									</div>
+									<div class="col-sm-3">
+										<h5 class='font-weight-100' style='font-size: 16px;'>Jenis Kelamin</h5>
+										<select class="form-control" id="jKelaminCal" style="background:#f4f4f4; border-width: 0 0 3px; 
+											border-bottom: 3.5px solid #4183D7; color:#212121;">
+											<option value="1">Pria</option>
+											<option value="2">Wanita</option>
+										</select>
+									</div>
 								</div>	
 								<div class="row">
 									<div class="col-sm">
-										<button class='btn btn-success' style='margin-top:10px;'>Hitung</button>
+										<button class='btn btn-success' style='margin-top:10px;' id='hitungCal'>Hitung</button>
 									</div>
 								</div>
 							</div>
@@ -429,6 +448,56 @@
         <div class="text-center p-4" style="background-color: #333333; color: whitesmoke;">1302194041-Leonardho R Sitanggang</div>
         </footer>
 
+		<?php
+		foreach($dataRelasiObat as $relObat){
+			foreach($dataObat as $obat){
+				if($relObat['id_obat'] == $obat['id_obat']){
+					echo"<!-- Deskripsi Obat Modal -->
+					<div class='modal fade' id='modalObat".$obat['id_obat']."' tabindex='-1' role='dialog' aria-labelledby='exampleModalObat".$obat['id_obat']."' aria-hidden='true'>
+					<div class='modal-dialog modal-lg' role='document'>
+						<div class='modal-content'>
+						<div class='modal-header'>
+							<h5 class='modal-title'>".$obat['namaObat']."</h5>
+							<button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+							<span aria-hidden='true'>&times;</span>
+							</button>
+						</div>
+						<div class='modal-body'>
+							<div class='container'>
+								<div class='row'>
+									<div class='col-md-6'>
+										<h5 style='font-size:16px;'>Deskripsi</h5>
+										<p>".$obat['deskripsi']."</p>
+										<h5 style='font-size:16px;'>Aturan Pakai</h5>
+										<p>".$obat['deskripsi']."</p>
+									</div>
+									<div class='col-md-6'>
+										<h5 style='font-size:16px;'>Efek Samping</h5>
+										<p>".$obat['deskripsi']."</p>
+										<h5 style='font-size:16px;'>Penyakit Terkait</h5>";
+										foreach($dataRelasiObat as $relObat2){
+											if($obat['id_obat'] == $relObat2['id_obat']){
+												foreach($dataPenyakit as $penyakit2){
+													if($penyakit2['id_penyakit'] == $relObat2['id_penyakit']){
+														echo"<a>".$penyakit2['nama_penyakit']."</a>";
+													}
+												}
+												
+											}
+										}
+									echo"</div>
+								</div>
+								<a style='font-style:italic; font-size:12px; color:grey;'><i class='fa fa-info-circle'></i> Terakhir diperbarui ".$obat['lastUpdate']."</a>
+							</div>
+						</div>
+						</div>
+					</div>
+					</div>";
+				}
+			}
+		}
+		?>
+
 		<!--Javascript signout-->
 		<script type="text/javascript">
 			//Back to the top js.
@@ -454,6 +523,11 @@
 			
 				// Function for calculating BMI
 				button.addEventListener("click", calculateBMI);
+
+				let button2 = document.querySelector("#hitungCal");
+			
+				// Function for calculating daily calorie
+				button2.addEventListener("click", calculateCal);
 			};
 			
 			function calculateBMI() {
@@ -477,6 +551,35 @@
 					} else { 
 						result.innerHTML = `Obesitas : <span>${bmi}</span>`;
 					}
+				}
+			}
+			function calculateCal() {
+				let tinggi2 = parseInt(document.querySelector("#tinggiCal").value);
+				let berat2 = parseInt(document.querySelector("#beratCal").value);
+				let usia = parseInt(document.querySelector("#umurCal").value);
+				let aktivitas = parseInt(document.querySelector("#aktivitasCal").value);
+				let jKelamin = parseInt(document.querySelector("#jKelaminCal").value);
+
+				let result2 = document.querySelector("#hasilCal");
+				if(aktivitas=="1"){
+					aktivitas = 1.2;
+				} else if(aktivitas=="2"){
+					aktivitas = 1.4;
+				} else if(aktivitas=="3"){
+					aktivitas = 1.6;
+				} else if(aktivitas=="4"){
+					aktivitas = 1.8;
+				} else {
+					aktivitas = 2;
+				}
+
+				
+				if(jKelamin == '1'){
+					let total = (((88.4 + 13.4 * berat2) + (4.8 * tinggi2) - (5.68 * usia)) * aktivitas).toFixed(0);
+					result2.innerHTML = `<span>${total} Cal</span>`;
+				} else if(jKelamin == '2'){
+					let total = (((447.6 + 9.25 * berat2) + (3.10 * tinggi2) - (4.33 * usia)) * aktivitas).toFixed(0);
+					result2.innerHTML = `<span>${total} Cal</span>`;
 				}
 			}
         </script>

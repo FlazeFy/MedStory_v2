@@ -44,7 +44,7 @@
 
 		<!--Announcement-->
 		<br><br><br>
-		<h2 style="margin-left: 16%;">Pengaturan >> Pusat Bantuan</h2>
+		<h2 style="margin-left: 16%; font-size:20px;">Pengaturan >> Pusat Bantuan</h2>
 		<div class="container-fluid bg-white" id="card-car" style="margin-bottom: 1%; width: 70%; border-radius: 10px;"><br>
 			<h1 style="text-align: left;">Pengumuman Terbaru</h1>
 			<?php foreach($dataUpdate as $data){

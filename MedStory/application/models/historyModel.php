@@ -59,9 +59,22 @@
 			$this->db->select('*');
 			$this->db->from('kebutuhankalori');
 			$this->db->join('pengguna','kebutuhankalori.id_user = pengguna.id_user');
-			$condition = array('date' => date("Y/m/d"));
+			$condition = array('date' => date("Y/m/d"), 'namaPengguna' =>  $this->session->userdata('userTrack'));
 			$this->db->where($condition);
 			return $data = $this->db->get()->result_array();
 		}
+		public function insertCal($data){
+			$this->db->insert('kebutuhankalori',$data);	
+			redirect('history');
+		}
+		public function get_total_kebutuhan(){
+			$this->db->select('kalori, waktu');
+			$this->db->from('pengguna');
+			$this->db->join('jadwalkalori','jadwalkalori.id_user = pengguna.id_user');
+			$this->db->join('asupan','asupan.id_asupan = jadwalkalori.id_asupan');
+			$condition = array('date' => date("Y/m/d"), 'namaPengguna' =>  $this->session->userdata('userTrack'));
+			$this->db->where($condition);
+			return $data = $this->db->get()->result_array();
+		}	
 	}
 ?>

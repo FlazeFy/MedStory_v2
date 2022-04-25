@@ -11,6 +11,8 @@
 			$data['dataPenyakit']= $this->SmartDocModel->get_data_penyakit();
 			$data['dataGejala']= $this->SmartDocModel->get_data_gejala();
 			$data['dataRelasi']= $this->SmartDocModel->get_data_relasi();
+			$data['dataObat']= $this->SmartDocModel->get_data_obat();
+			$data['dataRelasiObat']= $this->SmartDocModel->get_data_relasiObat();
 			$this->load->view('smartDocPage', $data);
 		}
 		public function searchGejala()
@@ -30,5 +32,6 @@
 				redirect('SmartDoc');
 			}
 		}
+		
 	}
 ?>

@@ -328,22 +328,22 @@
 			}
 		}
 	}
-	if(($cal <= 1100) && ($user['jKelamin'] == 'Wanita')){
+	if(($cal <= 1200) && ($user['jKelamin'] == 'Wanita')){
 		echo"#22A7F0";
-	} else if(($cal > 1100) && ($cal < 1500) && ($user['jKelamin'] == 'Wanita')){
+	} else if(($cal > 1200) && ($cal < 1700) && ($user['jKelamin'] == 'Wanita')){
 		echo"#29bd04";
-	} else if(($cal >= 1500)  && ($cal < 1800) && ($user['jKelamin'] == 'Wanita')){
+	} else if(($cal >= 1700)  && ($cal < 2300) && ($user['jKelamin'] == 'Wanita')){
 		echo"#de6000";
-	} else if(($cal >= 1800) && ($user['jKelamin'] == 'Wanita')){
+	} else if(($cal >= 2300) && ($user['jKelamin'] == 'Wanita')){
 		echo"#df4759";
 
-	} else if(($cal <= 1300) && ($user['jKelamin'] == 'Pria')){
+	} else if(($cal <= 1400) && ($user['jKelamin'] == 'Pria')){
 		echo"#22A7F0";
-	} else if(($cal > 1300) && ($cal < 1700) && ($user['jKelamin'] == 'Pria')){
+	} else if(($cal > 1400) && ($cal < 1900) && ($user['jKelamin'] == 'Pria')){
 		echo"#29bd04";
-	} else if(($cal >= 1700)  && ($cal < 2200) && ($user['jKelamin'] == 'Pria')){
+	} else if(($cal >= 1900)  && ($cal < 2500) && ($user['jKelamin'] == 'Pria')){
 		echo"#de6000";
-	} else if(($cal >= 2200) && ($user['jKelamin'] == 'Pria')){
+	} else if(($cal >= 2500) && ($user['jKelamin'] == 'Pria')){
 		echo"#df4759";
 	}
   ?>;
@@ -480,7 +480,7 @@
     </head>
     <body>
 		<div id="mySidebar" class="sidebar">
-			<a type='button' class="bookbtn" style='font-size:20px; text-decoration: underline;'><i class='fa fa-book'></i> Bantuan</a>
+			<a type='button' class="bookbtn" style='font-size:20px;'><i class='fa fa-book'></i> Bantuan</a>
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class='fa fa-arrow-left'></i></a>
 			<div class="d-flex flex-column align-items-center text-center">
 				<div class="mt-2" style='width:90%;'>
@@ -531,13 +531,26 @@
 					} else {
 						echo "<div class='container' style='padding:10px;'>
 							<p style='font-style:italic; text-align:center; color:white; font-size:14px;'>Tidak ada data hari ini</p>
-							<button class='btn btn-success' onclick=window.location.href='smartDoc' title='SmartDoc'><i class='fa fa-calculator'></i> Hitung Kalori</button>
+							<form action='history/calHarian' method='post'>
+							<div class='row' style='margin-bottom:10px;'>
+								<div class='col-md-8'>
+								<input class='form-control' name='calTotal' type='number'></input>";
+								foreach($dataUser as $userr){
+									echo"<input class='form-control' name='id_user' value='".$userr['id_user']."' hidden></input>";
+								}
+								echo"</div>
+								<div class='col-md' style='position:absolute; left:100px;'>
+								<button class='btn btn-success' type='submit'><i class='fa fa-plus'></i> Tambah</button>
+								</div>
+							</div>
+							<button class='btn btn-info' onclick=window.location.href='smartDoc' title='SmartDoc'><i class='fa fa-calculator'></i> Hitung Kalori</button>
+							</form>
 						</div>";
 					}	
 				?>
 				<div class='container-fluid bg-white' style='height:<?php 
 					$cek = 'null';
-					foreach($checkKebutuhan as $cek){$cek = 'available';}if($cek != 'null'){echo"380px";}else{echo"420px";}
+					foreach($checkKebutuhan as $cek){$cek = 'available';}if($cek != 'null'){echo"380px";}else{echo"370px";}
 					?>; padding:5px;'>
 					<!--Control section-->
 					<?php
@@ -552,8 +565,24 @@
 							<button class='btn btn-info' style='background:#22A7F0;' href='#myCarouselCal' data-slide='next' title='Besok'>
 								<i class='fa fa-angle-right'></i>
 							</button>
-							<button class='btn btn-primary' data-toggle='modal' data-target='#asupanModal' style='float:left; border-color:#22A7F0; 
-								color:#22A7F0; background:white; border-width:2px;'><i class='fa fa-plus'></i> Tambah asupan</button>";
+							<button class='btn btn-primary' data-toggle='modal' data-target='#asupanModal' style='float:left;";  
+							//Memeriksa jika kalori telah cukup. Akan menampilkan button berbeda.
+							$totalCalW = 0; $calorie = 0; $ket = 0;
+							foreach($totalUserKebutuhan as $calWaktu){
+								$totalCalW += $calWaktu['kalori'];
+							}
+							foreach($dataKebutuhan as $kebutuhan){
+								if(($kebutuhan['id_user'] == $user['id_user'])&&($kebutuhan['date'] == date("Y-m-d"))){
+									$calorie = $kebutuhan['kalori'];
+								}
+							}
+							$ket = $calorie-$totalCalW;
+							if($ket <= 0){
+								echo"color:white; background:#d9534f; border:none;";
+							} else {
+								echo"border-color:#22A7F0; color:#22A7F0; background:white;";
+							}
+							echo"border-width:2px;'><i class='fa fa-plus'></i> Tambah asupan</button>";
 						}
 					?>
 					<div class='row' style='width:100%; height:20px; margin-top:5px;'>
@@ -561,50 +590,32 @@
 							<a style="font-size:13px;">Total : 
 							<?php
 								$cek = 'null';
+								$totalCalW=0;
 								foreach($checkKebutuhan as $cek){$cek = 'available';}
 								
 								if($cek != 'null'){
-									foreach($dataUser as $user){
-										if($user['namaPengguna'] == $this->session->userdata('userTrack')){	
-											foreach($dataKebutuhan as $kebutuhan){
-												if(($kebutuhan['id_user'] == $user['id_user'])&&($kebutuhan['date'] == date("Y-m-d"))){
-													echo $kebutuhan['kalori'];
-												}
-											}
-										}
-									}
+									foreach($totalUserKebutuhan as $calWaktu){
+										$totalCalW += $calWaktu['kalori'];}
+									echo $totalCalW;
 								} else {
 									echo " - ";
 								}	
 							echo" </a>
 						</div>
 						<div class='col'>
-							<a style='font-size:13px;'>Sisa :";
+							<a style='font-size:13px;'>Sisa : ";
 								$total = 0;
 								$calorie = 0;
 								$cek2 = 'null';
 								foreach($checkKebutuhan as $cek){$cek2 = 'available';}
 								
 								if($cek2 != 'null'){
-									foreach($dataUser as $user){
-										if($user['namaPengguna'] == $this->session->userdata('userTrack')){
-											foreach($dataJadwal as $cal){
-												if(($cal['id_user'] == $user['id_user'])&&($cal['date'] == date("Y-m-d"))){
-													foreach($dataAsupan as $asupan){
-														if($cal['id_asupan'] == $asupan['id_asupan']){
-															$total += $asupan['kalori'];
-														}
-													}
-												}
-											}
-										}
-									} 
 									foreach($dataKebutuhan as $kebutuhan){
 										if(($kebutuhan['id_user'] == $user['id_user'])&&($kebutuhan['date'] == date("Y-m-d"))){
 											$calorie = $kebutuhan['kalori'];
 										}
 									}
-									echo $calorie-$total," cal";
+									echo $calorie-$totalCalW," cal";
 								} else {
 									echo " - ";
 								}								
@@ -622,7 +633,8 @@
 						if($cek != 'null'){
 							foreach($dataUser as $user){
 								if($user['namaPengguna'] == $this->session->userdata('userTrack')){
-									echo"<a style='font-size:13px; color:#808080; text-align:left;'>Pagi</a>";
+									echo"<a style='font-size:13px; color:#808080; text-align:left;'>Pagi ~ "; $totalCalW=0; foreach($totalUserKebutuhan as $calWaktu){if($calWaktu['waktu'] == 'pagi'){
+										$totalCalW += $calWaktu['kalori'];}} echo $totalCalW." cal </a>";
 									foreach($dataJadwal as $cal){
 										if(($cal['id_user'] == $user['id_user'])&&($cal['date'] == date("Y-m-d"))&&($cal['waktu'] == 'pagi')){
 											foreach($dataAsupan as $asupan){
@@ -649,7 +661,8 @@
 											}
 										}
 									}
-									echo"<a style='font-size:13px; color:#808080; text-align:left;'>Siang</a>";
+									echo"<a style='font-size:13px; color:#808080; text-align:left;'>Siang ~ "; $totalCalW=0; foreach($totalUserKebutuhan as $calWaktu){if($calWaktu['waktu'] == 'siang'){
+										$totalCalW += $calWaktu['kalori'];}} echo $totalCalW." cal </a>";
 									foreach($dataJadwal as $cal2){
 										if(($cal2['id_user'] == $user['id_user'])&&($cal2['date'] == date("Y-m-d"))&&($cal2['waktu'] == 'siang')){
 											foreach($dataAsupan as $asupan){
@@ -676,7 +689,8 @@
 											}
 										}
 									}
-									echo"<a style='font-size:13px; color:#808080; text-align:left;'>Malam</a>";
+									echo"<a style='font-size:13px; color:#808080; text-align:left;'>Malam ~ "; $totalCalW=0; foreach($totalUserKebutuhan as $calWaktu){if($calWaktu['waktu'] == 'malam'){
+										$totalCalW += $calWaktu['kalori'];}} echo $totalCalW." cal </a>";
 									foreach($dataJadwal as $cal3){
 										if(($cal3['id_user'] == $user['id_user'])&&($cal3['date'] == date("Y-m-d"))&&($cal3['waktu'] == 'malam')){
 											foreach($dataAsupan as $asupan){
@@ -1681,6 +1695,22 @@
 				</section>
 			</div>
 			<div class="modal-footer">
+				<?php
+					$totalCalW = 0; $calorie = 0; $ket = 0;
+					foreach($totalUserKebutuhan as $calWaktu){
+						$totalCalW += $calWaktu['kalori'];
+					}
+					foreach($dataKebutuhan as $kebutuhan){
+						if(($kebutuhan['id_user'] == $user['id_user'])&&($kebutuhan['date'] == date("Y-m-d"))){
+							$calorie = $kebutuhan['kalori'];
+						}
+					}
+					$ket = $calorie-$totalCalW;
+					if($ket <= 0){
+						echo"<p style='color:red; font-size:14px; margin-top:5px; float:left; text-align:left;'>
+						<i class='fa fa-exclamation-triangle'></i> Kebutuhan kalori Anda sudah terpenuhi</p>";
+					} 
+				?>
 				<button type="submit" class="btn btn-primary">Tambah</button>
 			</div>
 			</form>

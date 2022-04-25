@@ -43,7 +43,7 @@
 		<!--Contents of page.-->
 		<main><br><br>
 		<div class="container" id="card-car" style="margin-bottom: 2%; padding-top: 1%;">
-			<h2>Profil >> <?php foreach ($dataUser as $data){echo $data['namaPengguna'];} ?></h2>
+			<h2 style='font-size:20px;'>Profil >> <?php foreach ($dataUser as $data){echo $data['namaPengguna'];} ?></h2>
 
 		<!--Left section.-->
 		<div class="row">
@@ -71,7 +71,7 @@
 									<label class="custom-file-label text-left" for="uploadImage">max 1 mb</label>
 								</div>
 							</div>
-							<button class="btn btn-primary" type ="submit" style='box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 10px;'>Ganti Foto</button></form>
+							<button class="btn btn-primary" type ="submit" style='box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 10px;'><i class="fa fa-photo mr-2"></i> Ganti Foto</button></form>
 						</div><hr>
 
 						<!--Statistik.-->

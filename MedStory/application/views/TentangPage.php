@@ -44,7 +44,7 @@
 
 		<!--Tentang kami-->
 		<br><br><br>
-		<h2 style="margin-left: 16%;">Pengaturan >> Tentang</h2>
+		<h2 style="margin-left: 16%; font-size:20px;">Pengaturan >> Tentang</h2>
 		<div class="container-fluid bg-white" id="card-car" style="margin-bottom: 1%; width: 70%; border-radius: 10px;"><br>
 			<h1 style="text-align: center;">MedStory</h1>
 			<p style="text-align: center;">

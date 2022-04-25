@@ -18,6 +18,7 @@
 			$data['dataBalasan']= $this->historyModel->get_all_balasan();
 			$data['checkKebutuhan']= $this->historyModel->get_data_userKebutuhan();
 			$data['dataUser']= $this->accountModel->get_data_user();
+			$data['totalUserKebutuhan']= $this->historyModel->get_total_kebutuhan();
 			$this->load->view('HistoryPage', $data);
 		}
 		//Buat diskusi.
@@ -129,6 +130,15 @@
 			$this->db->where($condition);
 			$this->db->delete('jadwalkalori');
 			redirect('history');
+		}
+		public function calHarian(){
+			$data = array(
+				'id_kebutuhan' => 'NULL',
+				'id_user' => $this->input->post('id_user'),
+				'kalori' => $this->input->post('calTotal'),
+				'date' => date("Y/m/d"),
+			);	
+			$this->historyModel->insertCal($data, 'kebutuhankalori');
 		}
 	}
 ?>
