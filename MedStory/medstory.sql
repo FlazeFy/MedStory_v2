@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Jan 2022 pada 05.23
+-- Waktu pembuatan: 27 Apr 2022 pada 11.00
 -- Versi server: 10.4.19-MariaDB
 -- Versi PHP: 8.0.7
 
@@ -46,6 +46,92 @@ INSERT INTO `announcement` (`id_announcement`, `deskripsi`, `tanggal`, `jam`) VA
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `asupan`
+--
+
+CREATE TABLE `asupan` (
+  `id_asupan` int(10) NOT NULL,
+  `nama` varchar(25) NOT NULL,
+  `kategori` varchar(25) NOT NULL,
+  `kalori` int(4) NOT NULL,
+  `ukuran` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `asupan`
+--
+
+INSERT INTO `asupan` (`id_asupan`, `nama`, `kategori`, `kalori`, `ukuran`) VALUES
+(1, 'Rendang sapi', 'Daging', 200, '1 Potong'),
+(2, 'Capcay', 'Sayuran', 250, '1 Porsi'),
+(3, 'Nasi', 'Lainnya', 130, '100 gram'),
+(4, 'Ayam Goreng (Dada)', 'Daging', 280, '1 Potong'),
+(5, 'Ayam Goreng (Sayap)', 'Daging', 50, '1 Potong'),
+(6, 'Ayam Goreng (Paha Atas)', 'Daging', 210, '1 Potong'),
+(7, 'Ayam Goreng (Paha Bawah)', 'Daging', 80, '1 Potong'),
+(8, 'Pisang', 'Buah', 90, '1 Buah'),
+(9, 'Apel Merah', 'Buah', 100, '1 Buah'),
+(10, 'Udang', 'Seafood', 100, '100 gram'),
+(11, 'Ikan Tuna', 'Seafood', 135, '100 gram'),
+(12, 'Bihun', 'Lainnya', 100, '100 gram'),
+(13, 'Kurma', 'Buah', 125, '3 butir');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `balasan`
+--
+
+CREATE TABLE `balasan` (
+  `id_balasan` int(10) NOT NULL,
+  `pengirim` varchar(30) NOT NULL,
+  `isi` varchar(200) NOT NULL,
+  `id_diskusi` int(8) NOT NULL,
+  `datetime` datetime NOT NULL,
+  `imageURL` varchar(80) NOT NULL,
+  `status` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `balasan`
+--
+
+INSERT INTO `balasan` (`id_balasan`, `pengirim`, `isi`, `id_diskusi`, `datetime`, `imageURL`, `status`) VALUES
+(1, 'vasilykash', 'setau saya sih tidak', 4, '2022-03-08 14:49:30', 'null', 'null'),
+(13, 'rosemonde', 'boleh yg penting sdh konsultasi ke dokter. Dan kalau tidak salah HbA1c harus dibawah 7,5%', 1, '2022-04-11 05:15:39', 'null', 'verified'),
+(14, 'flazefy', 'sinovac, moderna, aztra zeneca', 3, '2022-04-12 04:19:05', 'null', 'verified'),
+(19, 'teresevyy', 'awdadwad', 13, '2022-04-21 03:50:59', 'null', 'null');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `covid`
+--
+
+CREATE TABLE `covid` (
+  `id_tes` int(6) NOT NULL,
+  `id_faskes` int(8) NOT NULL,
+  `jenis` varchar(30) NOT NULL,
+  `jamMulai` time NOT NULL,
+  `jamSelesai` time NOT NULL,
+  `hariPraktik` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `covid`
+--
+
+INSERT INTO `covid` (`id_tes`, `id_faskes`, `jenis`, `jamMulai`, `jamSelesai`, `hariPraktik`) VALUES
+(1, 1, 'Antigen & PCR', '10:00:00', '19:30:00', 'Mo, Tu, We, Thu, Fr, St'),
+(2, 1, 'Vaksinasi', '06:30:00', '15:30:00', 'St'),
+(3, 1, 'Karantina', '00:00:00', '00:00:00', 'All day'),
+(4, 2, 'Antigen', '06:00:00', '16:00:00', 'Mo, Tu, We, Thu, St, Su'),
+(5, 3, 'Antigen & PCR', '05:00:00', '21:00:00', 'All day'),
+(6, 3, 'Vaksinasi', '06:00:00', '17:00:00', 'Mo');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `diskusi`
 --
 
@@ -54,22 +140,22 @@ CREATE TABLE `diskusi` (
   `namaPengguna` varchar(30) NOT NULL,
   `pertanyaan` varchar(500) NOT NULL,
   `kategori` varchar(30) NOT NULL,
-  `tanggal` date NOT NULL,
   `view` int(6) NOT NULL,
   `up` int(6) NOT NULL,
-  `comment` int(6) NOT NULL,
-  `jam` time NOT NULL
+  `imageURL` varchar(80) NOT NULL,
+  `datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `diskusi`
 --
 
-INSERT INTO `diskusi` (`id_diskusi`, `namaPengguna`, `pertanyaan`, `kategori`, `tanggal`, `view`, `up`, `comment`, `jam`) VALUES
-(1, 'flazefy', 'Mau nanya, apakah orang dengan riwayat penyakit\r\ndiabetes boleh vaksin? ', 'Vaksin & Imunisasi', '2022-01-05', 64, 34, 2, '23:57:00'),
-(2, 'flazefy', 'Halo, ingin bertanya. Apakah anak berumur 14 thn sudah bisa vaksin? Mksh.', 'Vaksin & Imunisasi', '2022-01-07', 0, 0, 0, '01:17:11'),
-(3, 'vasilyKash', 'Vaksin yang ada di Indonesia apa saja ya?', 'Vaksin & Imunisasi', '2021-12-30', 140, 50, 3, '21:10:00'),
-(4, 'richardKyle', 'Apakah cacar air bisa menular ke orang yang pernah terkena sebelumnya? thx.', 'Penyakit Menular', '2021-12-28', 176, 56, 4, '13:10:21');
+INSERT INTO `diskusi` (`id_diskusi`, `namaPengguna`, `pertanyaan`, `kategori`, `view`, `up`, `imageURL`, `datetime`) VALUES
+(1, 'flazefy', 'Mau nanya, apakah orang dengan riwayat penyakit\r\ndiabetes boleh vaksin? ', 'Vaksin & Imunisasi', 0, 0, 'null', '2022-03-01 09:01:10'),
+(2, 'flazefy', 'Halo, ingin bertanya. Apakah anak berumur 14 thn sudah bisa vaksin? Mksh.', 'Vaksin & Imunisasi', 0, 0, 'null', '2022-03-04 06:31:58'),
+(3, 'vasilykash', 'Vaksin yang ada di Indonesia apa saja ya?', 'Vaksin & Imunisasi', 0, 0, 'null', '2022-03-08 20:04:20'),
+(4, 'richardkyle', 'Apakah cacar air bisa menular ke orang yang pernah terkena sebelumnya? thx.', 'Penyakit Menular', 0, 0, 'null', '2022-03-06 11:41:23'),
+(13, 'teresevyy', 'waedadwa', 'Kulit & Kelamin', 0, 0, 'null', '2022-04-21 03:50:46');
 
 -- --------------------------------------------------------
 
@@ -92,12 +178,12 @@ CREATE TABLE `dokterpraktik` (
 --
 
 INSERT INTO `dokterpraktik` (`id_dokter`, `namaDokter`, `spesialis`, `jamMulai`, `jamSelesai`, `hariPraktik`, `lokasi`) VALUES
-(1, 'Dr. Usman Yousaf, Sp.M', 'Mata', '17:00:00', '20:00:00', 'Su,Mo,Tu,We,Th', 'Apotik Kimia Farma'),
-(2, 'Drg. Beatrix Beargen', 'Gigi', '15:00:00', '22:00:00', 'Mo,Tu,We,Fr', 'Apotik Kimia Farma'),
-(4, 'dr. Adams', 'Dokter Umum', '15:00:00', '20:00:00', 'Mo,Tu,We,Thu,Fr', 'Apotik K24'),
-(5, 'drg. Robert SP.A', 'Anak', '16:00:00', '23:00:00', 'We, Thu, Fr, St, Su', 'Apotik K24 Waena'),
-(6, 'dr. Roland Mitch', 'Umum', '16:30:00', '24:00:00', 'Mo, Tu, We, Thu, Fr', 'RS Dian Harapan'),
-(7, 'dr. Austin SP.A', 'Anak', '16:00:00', '22:00:00', 'Mo, Tu, We, Thu, Fr, Su', 'RS Dian Harapan');
+(1, 'Dr. Usman Yousaf, Sp.M', 'Mata', '17:00:00', '20:00:00', 'Su,Mo,Tu,We,Th', 'RS. Dian Harapan'),
+(2, 'Drg. Beatrix Beargen', 'Gigi', '15:00:00', '22:00:00', 'Mo,Tu,We,Fr', 'RS. Dian Harapan'),
+(4, 'dr. Adams', 'Umum', '15:00:00', '20:00:00', 'Mo,Tu,We,Thu,Fr', 'RSUD. Abepura'),
+(5, 'drg. Robert SP.A', 'Anak', '16:00:00', '23:00:00', 'We, Thu, Fr, St, Su', 'RSUD. Abepura'),
+(6, 'dr. Roland Mitch', 'Umum', '16:30:00', '24:00:00', 'Mo, Tu, We, Thu, Fr', 'RS. Dian Harapan'),
+(7, 'dr. Austin SP.A', 'Anak', '16:00:00', '22:00:00', 'Mo, Tu, We, Thu, Fr, Su', 'RS. Dian Harapan');
 
 -- --------------------------------------------------------
 
@@ -127,29 +213,118 @@ INSERT INTO `faskes` (`id_faskes`, `namaFaskes`, `rating`, `alamat`, `kontak`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `konsultasi`
+-- Struktur dari tabel `gejala`
 --
 
-CREATE TABLE `konsultasi` (
-  `id_konsultasi` int(6) NOT NULL,
-  `kodeBooking` varchar(6) NOT NULL,
-  `namaPengguna` varchar(35) NOT NULL,
-  `spesialis` varchar(30) NOT NULL,
-  `namaDokter` varchar(35) NOT NULL,
-  `lokasi` varchar(40) NOT NULL,
-  `jam` time NOT NULL,
-  `tanggal` date NOT NULL
+CREATE TABLE `gejala` (
+  `id_gejala` int(8) NOT NULL,
+  `nama_gejala` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `konsultasi`
+-- Dumping data untuk tabel `gejala`
 --
 
-INSERT INTO `konsultasi` (`id_konsultasi`, `kodeBooking`, `namaPengguna`, `spesialis`, `namaDokter`, `lokasi`, `jam`, `tanggal`) VALUES
-(2, 'GAFF01', 'flazefy', 'Gigi', 'Drg. Albert Flick', 'Apotik Kimia Farma', '17:00:00', '2022-01-20'),
-(3, 'MUYF01', 'flazefy', 'Mata', 'Dr. Usman Yousaf', 'Apotik Kimia Farma', '14:30:00', '2022-01-14'),
-(8, 'R01PCK', 'vasilyKash', 'Umum', 'dr. Roland Mitch', 'RS Dian Harapan', '15:30:00', '2022-01-11'),
-(9, 'BC6Y98', 'richardKyle', 'Gigi', 'Drg. Beatrix Beargen', 'Apotik Kimia Farma', '17:00:00', '2022-01-20');
+INSERT INTO `gejala` (`id_gejala`, `nama_gejala`) VALUES
+(1, 'Sakit perut bagian atas'),
+(2, 'Mual'),
+(3, 'Muntah'),
+(4, 'Pusing'),
+(5, 'Flu'),
+(6, 'Tenggorokan gatal'),
+(7, 'Kulit melepuh'),
+(8, 'Bisul'),
+(9, 'Demam'),
+(10, 'Kelelahan'),
+(11, 'Kehilangan nafsu makan'),
+(12, 'Gatal');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `jadwalkalori`
+--
+
+CREATE TABLE `jadwalkalori` (
+  `id_jadwal` int(10) NOT NULL,
+  `id_user` int(10) NOT NULL,
+  `id_asupan` int(10) NOT NULL,
+  `date` date NOT NULL,
+  `waktu` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `jadwalkalori`
+--
+
+INSERT INTO `jadwalkalori` (`id_jadwal`, `id_user`, `id_asupan`, `date`, `waktu`) VALUES
+(3, 2, 2, '2022-04-19', 'pagi'),
+(11, 1, 4, '2022-04-23', 'pagi'),
+(14, 1, 12, '2022-04-23', 'malam'),
+(16, 1, 1, '2022-04-22', 'pagi'),
+(17, 1, 11, '2022-04-22', 'siang'),
+(18, 1, 3, '2022-04-22', 'siang'),
+(19, 1, 4, '2022-04-22', 'malam'),
+(20, 1, 7, '2022-04-22', 'pagi'),
+(21, 1, 4, '2022-04-25', 'pagi'),
+(22, 1, 8, '2022-04-25', 'siang'),
+(23, 1, 3, '2022-04-25', 'pagi'),
+(24, 1, 2, '2022-04-25', 'siang'),
+(25, 1, 12, '2022-04-25', 'siang'),
+(26, 1, 10, '2022-04-25', 'siang'),
+(27, 1, 11, '2022-04-25', 'malam'),
+(29, 1, 3, '2022-04-25', 'malam'),
+(30, 1, 1, '2022-04-25', 'malam'),
+(31, 1, 2, '2022-04-27', 'pagi'),
+(32, 1, 1, '2022-04-27', 'pagi'),
+(33, 1, 4, '2022-04-27', 'siang'),
+(34, 1, 3, '2022-04-27', 'siang'),
+(35, 1, 7, '2022-04-27', 'malam'),
+(36, 1, 12, '2022-04-27', 'malam');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `kebutuhankalori`
+--
+
+CREATE TABLE `kebutuhankalori` (
+  `id_kebutuhan` int(10) NOT NULL,
+  `id_user` int(10) NOT NULL,
+  `kalori` int(11) NOT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `kebutuhankalori`
+--
+
+INSERT INTO `kebutuhankalori` (`id_kebutuhan`, `id_user`, `kalori`, `date`) VALUES
+(1, 1, 1778, '2022-04-22'),
+(2, 2, 1833, '2022-04-19'),
+(3, 1, 1720, '2022-04-21'),
+(5, 1, 2192, '2022-04-25'),
+(7, 1, 2200, '2022-04-27');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `masukan`
+--
+
+CREATE TABLE `masukan` (
+  `id_masukan` int(8) NOT NULL,
+  `text` varchar(200) NOT NULL,
+  `nama` varchar(35) NOT NULL,
+  `datetime` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `masukan`
+--
+
+INSERT INTO `masukan` (`id_masukan`, `text`, `nama`, `datetime`) VALUES
+(1, 'Leonardho R. Sitanggang', 'Kedepannya web dapat mendukung dark', '2022-04-10 06:41:25');
 
 -- --------------------------------------------------------
 
@@ -160,6 +335,7 @@ INSERT INTO `konsultasi` (`id_konsultasi`, `kodeBooking`, `namaPengguna`, `spesi
 CREATE TABLE `newsfeed` (
   `idBerita` int(6) NOT NULL,
   `title` varchar(100) NOT NULL,
+  `isi` longtext NOT NULL,
   `tanggal` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -167,70 +343,41 @@ CREATE TABLE `newsfeed` (
 -- Dumping data untuk tabel `newsfeed`
 --
 
-INSERT INTO `newsfeed` (`idBerita`, `title`, `tanggal`) VALUES
-(1, 'Resmi! Kasus Aktif Covid-19 di Indonesia Kalahkan India', '2021-05-10'),
-(2, 'Menkes: Vaksin Moderna untuk Nakes karena Stok Terbatas', '2021-05-12'),
-(3, 'Susul Moderna, Vaksin Pfizer Sebentar Lagi Dapat Izin di RI', '2021-05-13'),
-(4, 'Vaksinasi Tahap 3 Dimulai, Sasar Anak Usia 12-17 Tahun', '2021-05-17'),
-(5, 'Cara menghindari diabetes sejak dini', '2021-05-19'),
-(6, 'Cara mengatasi penyakit maag agar tidak kambuh lagi', '2021-05-22');
+INSERT INTO `newsfeed` (`idBerita`, `title`, `isi`, `tanggal`) VALUES
+(1, 'Resmi! Kasus Aktif Covid-19 di Indonesia Kalahkan India', 'Tsunami Covid-19 yang terjadi dalam beberapa pekan terakhir membuat kasus aktif di Indonesia menembus 443.473 pasien pada Rabu (14/7/2021).\r\nKasus aktif ini bertambah 35.764 kasus dibandingkan kemarin, dan merupakan pertambahan tercepat sejak pandemi melanda Indonesia.\r\n\r\nAlhasil, Indonesia naik ke peringkat 5 dunia dalam kasus aktif terbanyak. Indonesia mengalahkan India yang tercatat memiliki 439.814 kasus aktif. Padahal, India merupakan salah satu episentrum Covid-19 dunia dengan varian delta yang menjadi sumber ketakutan dunia pada saat ini.\r\n\r\nKasus aktif di Indonesia juga semakin mendekati kasus aktif di Rusia yang tercatat 454.241 pasien. Padahal, India merupakan salah satu episentrum Covid-19 dunia dengan varian delta yang menjadi sumber ketakutan dunia pada saat ini.\r\n\r\nKenaikan kasus aktif di Indonesia disebabkan oleh pertambahan kasus baru Covid-19 di Indonesia yang mencapai 54.517 pasien dalam sehari. Dengan jumlah tersebut, Indonesia kembali memimpin pertambahan kasus baru di seluruh dunia, mengalahkan Inggris yang tercatat 42.302 kasus dan India 36.390 kasus. Alhasil, hingga hari ini total konfirmasi positif di Indonesia menembus 2,67 juta.\r\n\r\nSementara itu, kasus kematian bertambah 991 orang sehingga total menjadi 69.210 orang. Ini merupakan kasus kematian Covid-19 yang cukup tinggi di Indonesia dalam sehari. Kabar baiknya, kasus kesembuhan bertambah 17.762 orang dalam sehari. Totalnya ada 2,157 juta pasien yang sembuh dari Covid-19.\r\n\r\nEpidemiolog Griffith University Dicky Budiman sebenarnya telah mengingatkan bahwa Indonesia berpeluang menjadi episentrum Covid-19 dunia. Pasalnya, ketika sejak awal pandemi terjadi, ada tiga negara yang berpotensi menjadi episentrum corona dunia karena memiliki penduduk yang padat yakni India, Brasil, dan Indonesia,\r\n\r\n\"Saat ini dua dari tiga negara itu masih menjadi episentrum dan kasus kematian yang menjadi masalah. Indonesia bukan berarti sudah bebas, tapi malah bisa semakin besar kasusnya karena sinergitas pemerintah dan masyarakat. Dalam situasi harus menghadapi bersama-sama, tidak ada yang lebih dominan,\" kata Dicky, belum lama ini.\r\n\r\nDia menegaskan prgram pemerintah tidak akan berhasil jika tidak ada peran dari masyarakat, baik untuk 3T dan menerapkan protokol kesehatan. Selain itu, Dicky mengungkapkan anjuran protokol kesehatan harus disertai regulasi yang mendukung.\r\n\r\n\"Misalnya anjuran membatasi pergerakan masyarakat, tapi malah dipermudah pergerakan jadi kan kontraproduktif. Indonesia kasusnya tidak mirip kaya India memang tidak, hanya sedikit kemungkinannya, tapi kalau tidak ditangani serius bisa saja,\" ujarnya.', '2021-05-10'),
+(2, 'Menkes: Vaksin Moderna untuk Nakes karena Stok Terbatas', 'Menteri Kesehatan Budi Gunadi Sadikin menekankan dosis vaksin covid-19 Moderna akan difokuskan untuk pemberian booster dosis ketiga kepada tenaga kesehatan.\r\n\"Ini (Moderna) masuknya terbatas. Jadi saya mohon support-nya, ini kita berikan prioritasnya ke nakes,\" kata Budi dalam Rapat Kerja bersama Komisi IX DPR, Rabu (14/7).\r\n\r\nBudi menjelaskan Moderna merupakan vaksin RNA yang memiliki efikasi tinggi. Dari seluruh vaksin yang digunakan di Indonesia, ia mengatakan Moderna memiliki efikasi paling tinggi.\r\nBerdasarkan data WHO, vaksin Moderna memiliki efikasi 94,1 persen.\r\n\r\nBudi mengklaim mencampur vaksin Moderna dengan Sinovac--yang digunakan pada dosis pertama dan kedua tenaga kesahatan--dapat memperkuat daya tahan tubuh terhadap varian corona.\r\n\r\n\"Saya bisa kirim studinya, ini sudah disetujui BPOM dan ITAGI. Mencampur atau combining dua jenis itu (vaksin) membuat lebih tahan kombinasi varian yang ada,\" tutur Budi.\r\n\r\nMenkes menduga akan banyak orang yang menginginkan dosis vaksin Moderna. Namun ia menegaskan agar seluruh pihak memfokuskan vaksin tersebut untuk nakes.\r\n\r\n\"Karena semua powerful people will ask for this. Yuk kita beri ke nakes dulu, karena bisa kita lindungi lebih cepat. Rencananya saya mau minggu ini sudah mulai,\" kata dia.\r\n\r\nSelain Moderna, Pfizer juga merupakan salah satu vaksin dengan efikasi tinggi yang digunakan di Indonesia. Budi mengatakan vaksin ini digunakan untuk vaksin program pemerintah.\r\n\r\nVaksin Pfizer memiliki efikasi 95 persen setelah mendapat dua suntikan. Kementerian Kesehatan pada Juni mengatakan 50 juta dosis vaksin asal perusahaan farmasi Amerika Serikat itu baru masuk bertahap Agustus 2021.\r\n\r\nBudi menegaskan vaksin Moderna maupun Pfizer tidak digunakan dalam program vaksin Gotong Royong (GR) perusahaan maupun individu. Kedua program tersebut menggunakan vaksin Sinopharm dan Cansino.\r\n\r\nIa mengatakan vaksin yang dipakai dalam vaksin GR tidak jauh lebih baik dibanding vaksin pemerintah. Sinopharm memiliki efikasi 78,02 persen, sementara Cansino memiliki efikasi 65,7 persen.\r\n\r\nSelain Moderna dan Pfizer, vaksin program pemerintah juga menggunakan Sinovac, AstraZeneca dan Novavax.Menurut Badan Pengawas Obat dan Makanan (BPOM), efikasi vaksin Sinovac mencapai 65,3 persen. Sementara efikasi vaksin AstraZeneca 62,1 persen.\r\n\r\nSementara vaksin Novavax diklaim 93 persen efektif melawan corona. Budi mengatakan vaksin ini kemungkinan baru masuk ke Indonesia pada September 2021.\r\n\r\n\"Ada satu vaksin program lagi yang juga bagus di kalangan microbiologist, mereka senang, Novavax namanya. Tapi ini belum keluar EUA-nya dari Amerika,\" katanya.\r\n\r\nSaat ini vaksinasi masih berjalan di penjuru daerah dengan laju yang berbeda-beda. Pada beberapa daerah di Jawa, vaksinasi sudah mencapai tahap ketiga atau pada kelompok masyarakat umum di atas 18 tahun dan anak di atas 12 tahun.\r\n\r\nSatuan Tugas Penanganan Covid-19 mencatat saat ini sudah 36.914.607 orang sudah mendapat vaksin dosis pertama dan 15.190.998 orang mendapat vaksin dosis kedua. Total target vaksinasi untuk mencapai herd immunity adalah 208.265.720 orang.', '2021-05-12'),
+(3, 'Susul Moderna, Vaksin Pfizer Sebentar Lagi Dapat Izin di RI', 'BPOM menyebutkan sejumlah vaksin sedang dalam proses mendapatkan izin penggunaan darurat atau Emergency Use Authorization (EUA). Salah satunya Pfizer yang masih berproses untuk finalisasi mendapatkan izin EUA.\r\n\r\nKepala Badan POM, Penny Lukito mengatakan proses ini cukup lama dibandingkan Moderna yang telah mendapatkan EUA beberapa waktu lalu. Pfizer memiliki beberapa fasilitas produksi tapi yang memiliki baru 2 fasilitas yang datanya sudah lengkap dan siap mendapatkan EUA dalam waktu dekat.\r\n\r\n\"Dari 5 fasilitas 2 yang sudah lengkap data, Pfizer akan mendapatkan EUA dalam waktu dekat,\" kata Penny dalam Rapat Kerja Komisi IX DPR RI, Selasa (13/7/2021).\r\n\r\nSeperti Pfizer, Penny juga mengatakan vaksin Sputnik juga sedang dalam proses finalisasi mendapatkan EUA. Harus melakukan inspeksi untuk fasilitas produksinya serta dia mengakui belum ada pengalaman vaksin dari Rusia.\r\n\r\nMenurutnya, Sputnik harus melakukan cakupan inspeksi lebih luas lagi. \"Sedang dalam proses akhir beberapa data cakupan inspeksi. Mudah-mudahan Sputnik mendapatkan EUA,\" kata Penny. Sementara itu untuk Novavax sedang dalam sudah rolling subsmission dan membutuhkan uji komparabilitas, diharapkan bulan September mendatang.\r\n\r\nAda juga Cansino dan sudah mendapatkan data khasiat, keamanan dan mutu. Namun masih membutuhkan sejumlah data lagi dan dikatakan belum tahu kapan akan mendapatkan ijin penggunaan daruratnya. Terakhir Covaxin dari Bharat Biotech India yang juga telah melakukan rolling submission. Namun seperti Cansino masih membutuhkan data lagi.\r\n\r\n\"Covaxin produksi Bharat biotech India dengan Amarox sudah rolling submission masih dibutuhkan data,\" kata ungkapnya.\r\n\r\nSejauh ini sudah ada sejumlah vaksin yang mengantongi izin penggunaan dari BPOM, yakni ada Sinovac CoronaVac, AstraZeneca, Bio Farma, Sinopharm dan Moderna.', '2021-05-13'),
+(4, 'Vaksinasi Tahap 3 Dimulai, Sasar Anak Usia 12-17 Tahun', 'Kementrian Kesehatan melalui Direktorat Jenderal Pencegahan dan Pengendalian Penyakit mengeluarkan Surat Edaran percepatan vakinasi covid-19 bagi Kepala dinas kesehatan provinsi dan kabupaten/kota, yang tertuang dalam Surat Edaran nomor HK.02.02/I/1727/2021 tentang Vaksinasi Tahap 3 bagi Masyarakat Rentan, Masyarakat Umum Lainnya, dan Anak Usia 12-17 tahun.\r\n\r\nDikeluarkannya Surat Edaran tersebut berdasarkan beberapa pertimbangan, mulai dari peningkatan kasus terkonfirmasi covid-19 pada usia anak anak, dimana sampai dengan tanggal 29 Juni 2021 pukul 18.00 WIB tercatat lebih dari 2 juta orang terkonfirmasi covid-19, dimana 10,6% di antaranya yaitu lebih dari 200 ribuan merupakan kasus aktif. Dilaporkan, sejumlah hampir 260 ribu kasus terkonfirmasi merupakan anak usia 0-18 tahun, dimana lebih dari 108 ribu kasus berada pada rentang usia 12-17 tahun.\r\n\r\nDari sejumlah tersebut, tercatat lebih dari 600 anak usia 0-18 tahun meninggal, sejumlah 197 anak di antaranya berumur 12-17 tahun dengan angka Case Fatality Rate pada kelompok usia tersebut adalah 0,18%.\r\n\r\nPertimbangan selanjutnya adanya rekomendasi dari Komite Penasihat Ahli Imunisasi Nasional atau Indonesian Technical Advisory Group on Immunization (ITAGI) dan persetujuan penggunaan Vaksin covid-19 produksi PT. Biofarma (Sinovac) untuk kelompok usia > 12 tahun dari BPOM tertanggal 27 Juni 2021, maka vaksinasi dapat diberikan bagi anak usia 12-17 tahun.\r\n\r\nSehubungan dengan hal tersebut, maka seluruh Kepala Dinas Kesehatan Provinsi, Kabupaten dan Kota diminta untuk menyampaikan kepada direktur rumah sakit dan seluruh pimpinan fasilitas pelayanan kesehatan yang menyelenggarakan pelayanan vaksinasi covid-19 agar melaksanakan upaya percepatan vaksinasi covid-19 tahap 3 bagi seluruh masyarakat rentan, dan masyarakat umum lainnya berusia 18 tahun ke atas mulai 1 Juli 2021.\r\n\r\nVaksinasi bagi anak usia 12-17 tahun dapat dilakukan di fasilitas pelayanan kesehatan atau di sekolah/madrasah/pesantren berkoordinasi dengan Dinas Pendidikan dan Kanwil/Kantor Kemenag setempat untuk mempermudah pendataan dan monitoring pelaksanaan.\r\n\r\nMekanisme skrining, pelaksanaan dan observasi sama seperti vaksinasi pada usia >18 tahun. Peserta vaksinasi harus membawa kartu keluarga atau dokumen lain yang mencantumkan NIK anak. Pencatatan dalam aplikasi PCare vaksinasi dimasukkan dalam kelompok remaja.\r\n\r\nKemudian vaksin yang digunakan untuk anak usia 12-17 ini adalah vaksin Sinovac dengan dosis 0,5 ml sebanyak dua kali pemberian dengan jarak atau interval minimal 28 hari.\r\n\r\nPemerintah daerah juga diminta melakukan identifikasi dan percepatan vaksinasi bagi sasaran tahap 1 dan 2 yang belum mendapatkan 2 dosis vaksinasi. Surat Edaran ini mulai berlaku sejak 1 Juli 2021. Apalagi sebanyak 14 juta dosis vaksin Sinovac tiba di Indonesia dalam bentuk bahan baku (bulk).\r\n\r\nTotal bahan baku vaksin dari Sinovac yang sudah ada di Indonesia adalah sejumlah 105 juta dosis vaksin dalam bentuk bahan baku. Artinya perlu proses sekitar 1 bulan di Biofarma untuk diproses menjadi vaksin jadi yang siap dipakai.\r\n\r\n“Dari 105 juta ini nanti akan jadi 85 juta vaksin jadi yang bisa kita pakai dan itu akan siap 1 bulan setelah sekarang. Jadi mungkin di awal Agustus akan ada 85 juta vaksin Sinovac yang siap kita gunakan,” kata Menteri Kesehatan RI Budi Gunadi Sadikin.\r\n\r\nDengan kedatangan 14 juta vaksin Sinovac ini menggambarkan bahwa jumlah vaksin yang sudah ada di Indonesia semakin lama semakin banyak. Belum lagi ditambah donasi vaksin gratis dari Covax GAVI yang pada bulan ini akan masuk dari AstraZeneca, dan bulan Agustus akan masuk vaksin dari Pfizer. Sehingga target 181,5 juta rakyat Indonesia yang divaksin bisa tercapai.\r\n\r\n“Kita harus ingat bahwa vaksin ini tidak membuat kita 100 persen kebal terhadap virus covid-19. Vaksin ini akan membuat daya tahan tubuh kita semakin baik.Jika virus masuk ke tubuh, kita bisa lebih cepat merespons dan melawan virus tersebut,” tutur Budi.\r\n\r\nOrang yang sudah divaksinasi covid-19, masih bisa terinfeksi virus covid-19, namun mengurangi tingkat keparahan dan kematian akibat penyakit ini. “Sehingga kalau kita terpapar virus covid-19 yang harusnya sakit berat menjadi sakit ringan, dan yang seharusnya sakit ringan menjadi tanpa gejala,” sebut Budi.\r\n\r\nBudi mengimbau kepada masyarakat untuk selalu disiplin protokol kesehatan dengan memakai masker, menjaga jarak, dan mencuci tangan pakai sabun. Kondisinya saat ini kasus konfirmasi positif covid-19 di Indonesia melonjak, yakni 20 ribu lebih pada Selasa (29/6).\r\n\r\nPemerintah sudah mengantisipasi melonjaknya kasus tersebut sejak sebelum lebaran Idul Fitri dengan mempersiapkan rumah sakit, mempersiapkan obat-obatan, memvaksinasi tenaga kesehatan, dan melengkapi oksigen di rumah sakit.\r\n\r\n“Sekarang tolong bantu kami dengan cara kalau tidak ada kegiatan yang perlu, tinggal lah di rumah, supaya kita bisa mengurangi laju penularan,” pungkas Budi. (OL-2)\r\n', '2021-05-17'),
+(5, 'Cara menghindari diabetes sejak dini', 'Diabetes tipe 2 adalah penyakit kronis yang menyerang jutaan orang di seluruh dunia. Kasus yang tidak terkontrol dapat menyebabkan kebutaan, gagal ginjal, penyakit jantung, dan kondisi serius lainnya. Sebelum diabetes didiagnosis, ada masa di mana kadar gula darah tinggi tetapi tidak cukup tinggi untuk didiagnosis sebagai diabetes. Ini dikenal sebagai pradiabetes.\r\n\r\nDiperkirakan bahwa hingga 70% orang dengan pradiabetes terus mengembangkan diabetes tipe 2. Perkembangan dari prediabetes menjadi diabetes tidak bisa dihindari. Meskipun ada faktor tertentu yang tidak dapat Anda ubah seperti gen, usia, atau perilaku masa lalu ada banyak tindakan yang dapat Anda lakukan untuk mengurangi risiko dan cara mencegah diabetes.\r\n\r\nJika Anda menderita diabetes, itu artinya kadar gula darah di dalam tubuh Anda terlalu tinggi. Pada diabetes tipe 2, hal ini terjadi karena tubuh tidak menghasilkan cukup insulin atau tidak menggunakan insulin dengan baik (ini disebut resistensi insulin). Cara mencegah diabetes umumnya dapat dilakukan dengan perilaku makan sehat, lebih aktif secara fisik dan menurunkan berat badan beberapa kilogram.\r\n\r\nTidak ada kata terlambat untuk memulai. Membuat beberapa perubahan sederhana dalam gaya hidup sekarang dapat membantu Anda menghindari komplikasi kesehatan serius dari diabetes di masa mendatang, seperti kerusakan saraf, ginjal, dan jantung. Berikut ini adalah beberapa cara mencegah diabetes yang dikutip dari American Diabetes Association dan hardvard.edu.\r\n\r\n1. Perbanyak Lakukan Aktivitas Fisik\r\n\r\nMelakukan aktivitas fisik secara teratur adalah cara mencegah diabetes yang pertama. Olahraga dapat meningkatkan sensitivitas insulin sel Anda. Saat berolahraga, lebih sedikit insulin yang dibutuhkan untuk menjaga kadar gula darah Anda terkendali.\r\n\r\nSatu studi pada orang dengan pradiabetes menemukan bahwa olahraga berintensitas sedang meningkatkan sensitivitas insulin sebesar 51% dan olahraga intensitas tinggi meningkatkannya hingga 85%. Namun, efek ini hanya terjadi pada hari-hari saat berolahraga.\r\n\r\nBanyak jenis aktivitas fisik telah terbukti mengurangi resistensi insulin dan gula darah pada orang dewasa yang kelebihan berat badan, obesitas, dan prediabetik. Ini termasuk latihan aerobik, latihan interval intensitas tinggi dan latihan kekuatan.\r\n\r\nBerolahraga lebih sering tampaknya mengarah pada peningkatan respons dan fungsi insulin. Oleh karena itu, yang terbaik adalah memilih aktivitas fisik yang paling Anda sukai, dapat dilakukan secara teratur, dan dapat Anda lakukan dalam jangka panjang.\r\n\r\n2. Perbanyak Konsumsi Makanan Berserat Tinggi\r\n\r\nMemperbanyak konsumsi makanan berserat tinggi adalah cara mencegah diabetes yang kedua. Mengonsumsi banyak serat bermanfaat untuk meningkatkan kesehatan usus dan pengelolaan berat badan. Studi pada individu obesitas, lansia dan prediabetik telah menunjukkan bahwa hal ini dapat membantu menjaga kadar gula darah dan insulin tetap rendah.\r\n\r\nSerat dapat dibagi menjadi dua kategori besar yakni serat larut dan tidak larut. Serat larut menyerap air, sedangkan serat tidak larut tidak. Di saluran pencernaan, serat larut dan air membentuk gel yang memperlambat laju penyerapan makanan.\r\n\r\nMakanan berserat membantu memperbaiki kontrol gula darah. Sebagian besar makanan nabati yang belum diolah mengandung serat. Makanan berserat tinggi antara lain buah-buahan, sayuran, kacang-kacangan, biji-bijian dan kacang-kacangan.\r\n\r\n3. Kurangi Konsumsi Alkohol\r\n\r\nMengurangi konsumsi atau asupan alkohol adalah cara mencegah diabetes yang ketiga. Bukti secara konsisten mengaitkan konsumsi alkohol dalam jumlah sedang dengan penurunan risiko penyakit jantung. Hal yang sama juga berlaku untuk diabetes tipe 2. Alkohol dalam jumlah sedang — sebanyak satu gelas sehari untuk wanita, hingga dua gelas sehari untuk pria — meningkatkan efisiensi insulin dalam memasukkan glukosa ke dalam sel.\r\n\r\nDan beberapa penelitian menunjukkan bahwa konsumsi alkohol dalam jumlah sedang menurunkan risiko diabetes tipe 2. Tetapi asupan alkohol yang berlebihan justru meningkatkan risikonya. Jika Anda sudah terbiasa dengan minum alkohol, kuncinya adalah menjaga konsumsinya agar tetap berada dalam kisaran sedang, karena jumlah alkohol yang tinggi dapat meningkatkan risiko diabetes.\r\n\r\n4. Kontrol Berat Badan\r\n\r\nMengontrol berat badan adalah cara mencegah diabetes yang ke empat. Berat badan yang berlebihan adalah penyebab utama diabetes tipe 2. Kelebihan berat badan meningkatkan kemungkinan terkena diabetes tipe 2 tujuh kali lipat. Memiliki tubuh gemuk membuat Anda 20 sampai 40 kali lebih mungkin terkena diabetes daripada seseorang dengan berat badan yang sehat.\r\n\r\nMenurunkan berat badan dapat membantu mencegah diabetes jika berat badan Anda berada di atas kisaran berat badan yang sehat. Kehilangan 7-10% dari berat badan saat ini dapat mengurangi kemungkinan Anda terkena diabetes tipe 2 hingga 50%.\r\n\r\n5. Berhenti Merokok\r\n\r\nBerhenti merokok adalah cara mencegah diabetes yang kelima. Merokok telah terbukti menyebabkan atau berkontribusi pada banyak kondisi kesehatan yang serius, termasuk penyakit jantung, emfisema, dan kanker paru-paru, payudara, prostat, dan saluran pencernaan. Ada juga penelitian yang menghubungkan merokok dan perokok pasif dengan diabetes tipe 2.\r\n\r\nDalam analisis dari beberapa penelitian yang melibatkan lebih dari satu juta orang, merokok ditemukan meningkatkan risiko diabetes sebesar 44% pada rata-rata perokok dan 61% pada orang yang merokok lebih dari 20 batang setiap hari. Para peneliti menyatakan bahwa meskipun banyak pria bertambah berat badannya setelah berhenti merokok, setelah beberapa tahun bebas rokok, risiko diabetes mereka lebih rendah daripada jika mereka terus merokok.\r\n\r\n6. Perbanyak Minum Air Putih\r\n\r\nMinum lebih banyak air putih adalah cara mencegah diabetes yang ke enam. Air putih merupakan minuman paling alami yang dapat Anda minum. Terlebih lagi, mengonsumsi air putih di sebagian besar waktu dapat membantu Anda menghindari minuman yang tinggi gula, pengawet, dan bahan-bahan lain yang membahayakan. Minuman manis seperti soda dan punch telah dikaitkan dengan peningkatan risiko diabetes tipe 2 dan diabetes autoimun laten orang dewasa (LADA).\r\n\r\nLADA adalah salah satu bentuk diabetes tipe 1 yang terjadi pada orang yang berusia di atas 18 tahun. Berbeda dengan gejala akut yang terlihat pada diabetes tipe 1 di masa kanak-kanak, LADA berkembang perlahan, membutuhkan lebih banyak pengobatan seiring perkembangan penyakit.\r\n\r\n7. Konsumsi Makanan Sehat\r\n\r\nMemiliki rencana makan yang sehat adalah cara mencegah diabetes yang selanjutnya. Penting bagi Anda untuk mengurangi jumlah kalori yang dimakan dan diminum setiap hari, sehingga Anda dapat menurunkan berat badan dan mempertahankannya. Untuk melakukan itu, diet Anda harus memasukkan porsi yang lebih kecil dan lebih sedikit lemak dan gula.\r\n\r\nAnda juga harus makan berbagai makanan dari setiap kelompok makanan, termasuk banyak biji-bijian, buah-buahan, dan sayuran. Sebaiknya batasi juga daging merah, dan hindari daging olahan.\r\n\r\n8. Mengoptimalkan Asupan Vitamin D\r\n\r\nVitamin D penting untuk mengontrol gula darah dan cara mencegah diabetes. Penelitian telah menemukan bahwa orang yang tidak mendapatkan cukup vitamin D, atau yang kadar darahnya terlalu rendah, memiliki risiko lebih besar terhadap semua jenis diabetes. Sebagian besar organisasi kesehatan merekomendasikan untuk menjaga tingkat vitamin D dalam darah setidaknya 30 ng/ml (75 nmol/l).\r\n\r\nSatu studi menemukan bahwa orang dengan kadar vitamin D tertinggi dalam darah, sebesar 43%,lebih kecil kemungkinannya untuk mengembangkan diabetes tipe 2 dibandingkan orang dengan kadar darah terendah. Sumber makanan yang baik untuk vitamin D termasuk ikan berlemak dan minyak ikan cod. Selain itu, paparan sinar matahari dapat meningkatkan kadar vitamin D dalam darah.', '2021-05-19'),
+(6, 'Cara mengatasi penyakit maag agar tidak kambuh lagi', 'Kalau kamu pernah mengalami maag, pasti tahu seperti apa rasa sakitnya. Saat maag menyerang, sakit yang biasa muncul umumnya terarasa melilit dan perih pada perut. Penyebab maag cukup banyak, mulai dari infeksi bakteri Helicobacter pylori, efek samping penggunaan obat antiinflamasi nonsteroid (OAINS), luka terbuka yang muncul di lapisan dalam lambung (tukak lambung), hingga stres berkepanjangan.\r\n\r\nMaag sering diatasi dengan obat antasida. Padahal, mengonsumsi obat mengandung antasida saja sebenarnya tidak cukup. Pasalnya, obat maag tidak dapat menyembuhkan penyakit secara total. Memulai pola makan sehat dengan menu yang tidak sembarangan adalah cara yang efektif untuk meredakannya. Kalau kamu tidak ingin penyakit ini kambuh, berikut pola makan yang perlu diterapkan.\r\n\r\n1. Makan Porsi Kecil Tapi Sering\r\n\r\nMelansir dari Verywell Health, kamu perlu menghindari makan dalam porsi besar sekaligus kalau tidak ingin maag kembali kambuh. Cobalah untuk makan dengan porsi kecil namun sering, yakni setidaknya 5-6 kali setiap hari.\r\n\r\nAsam lambung akan diproduksi setiap kali kamu makan. Ketika kamu makan dengan porsi besar, otomatis tubuh menghasilkan asam lambung lebih banyak untuk membantu proses pencernaan. Nah, jumlah asam lambung yang terlalu banyak ini rentan menyebabkan iritasi.\r\n\r\n2. Jangan Makan Sebelum Tidur\r\n\r\nTidur setelah makan sering menjadi penyebab utama naiknya asam lambung. Oleh karenanya, pastikan makan setidaknya tiga jam sebelum tidur. Selain itu, usahakan untuk tetap tegak selama beberapa jam setelah makan agar perut bisa mencerna makanan dengan baik dan mencegah terjadinya refluks asam.\r\n\r\n3. Ubah Cara Masak\r\n\r\nJika kamu sering mengalami maag, maka kamu mungkin perlu mengubah cara memasak. Pasalnya, makanan yang digoreng cenderung memicu refluks asam. Makanan yang digoreng lebih sulit untuk dicerna sepenuhnya, sehingga makanan ini dapat tinggal lebih lama di dalam lambung. Untuk mengurangi risiko refluks asam, coba resep makanan yang dikukus, direbus, atau dipanggang.\r\n\r\n4. Konsumsi Makanan Sehat\r\n\r\nMemilih makanan yang dikonsumsi adalah kunci utama pencegahan maag. Dikutip dari Verywell Health, berikut jenis makanan yang aman untuk lambung:\r\n\r\n- Sayuran. Brokoli, asparagus, kacang hijau, dan seledri adalah jenis sayuran rendah asam yang tentunya aman untuk perut kamu.\r\n\r\n- Sayuran akar. Sayuran akar, seperti kentang, bit dan wortel tidak mengandung gas, sehingga aman untuk lambung.\r\n\r\n- Oatmeal. Selain bisa dijadikan pengganti nasi, oatmeal rendah gula dan tinggi serat, sehingga tidak menyebabkan refluks asam lambung.\r\n\r\n- Roti. Roti yang terbuat dari gandum whole wheat atau whole grain yang belum diproses dipenuhi oleh serat, dan vitamin yang aman untuk lambung.\r\n\r\n- Nasi. Memang sulit makan tanpa nasi, namun jika memungkinkan, gunakan beras merah sebagai alternatifnya.\r\n\r\n- Daging dan unggas, atau ikan dan seafood non-lemak. Maag bukan berarti tidak boleh makan daging. Kamu bisa menikmati lezatnya daging-dagingan dengan memilih potongan yang rendah lemak.\r\n\r\n- Putih telur. Penuh protein dan rendah lemak. Hindari kuning telur karena memicu refluks asam.  \r\n\r\n- Buah. Semua buah baik untuk kesehatan, namun pengidap maag sebaiknya mengurangi buah-buahan tinggi asam seperti lemon, jeruk, atau tomat.\r\n\r\n5. Hindari Makanan yang Mengiritasi Lambung\r\n\r\nAdapun makanan dan minuman yang perlu dihindari karena memicu refluks asam, yaitu:\r\n\r\n- Alkohol. Sudah menjadi rahasia umum kalau alkohol dapat mengiritasi lambung.\r\n\r\n- Kafein. Kurangi atau hentikan kebiasaan minum kopi, teh, dan soda berkafein. Kafein adalah zat yang meningkatkan produksi asam lambung.\r\n\r\n- Susu. Meskipun mengandung nutrisi baik, ternyata susu termasuk minuman yang meningkatkan asam lambung. Jadi, alangkah lebih baik untuk menguranginya.\r\n\r\n- Daging tertentu. Hindari daging olahan dan daging yang berlemak tinggi karena dapat memicu refluks asam.\r\n\r\n- Makanan berlemak tinggi. Usahakan untuk menghindari makanan yang mengandung lemak tambahan yang dapat meningkatkan asam lambung dan memicu refluks.\r\n\r\n- Makanan pedas. Makanan pedas yang dibuat atau dicampur dengan cabai, merica, dan lada hitam bisa meningkatkan produksi asam dan memicu refluks.\r\n\r\n- Makanan asin. Makanan asin meningkatkan pertumbuhan H. Pylori, yakni bakteri yang dapat menyebabkan maag.\r\n\r\n- Cokelat. Cokelat meningkatkan produksi asam lambung dan memicu gejala refluks.\r\n\r\n6. Rutin Minum Air Putih\r\n\r\nSatu lagi, kamu juga perlu untuk mencukupi kebutuhan air putih bagi tubuh untuk membantu organ-organ tubuh bekerja dengan optimal. Usahakan untuk minum 1-3 gelas air putih saat bangun tidur, sebelum makan serta sebelum tidur.', '2021-05-22');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pemeriksaan_darah`
+-- Struktur dari tabel `obat`
 --
 
-CREATE TABLE `pemeriksaan_darah` (
-  `id_pemeriksaanD` int(6) NOT NULL,
-  `namaPengguna` varchar(35) NOT NULL,
-  `namaDokter` varchar(40) NOT NULL,
-  `tanggal` date NOT NULL,
-  `jam` time NOT NULL,
-  `lokasi` varchar(30) NOT NULL,
-  `j_Leukosit` varchar(16) NOT NULL,
-  `j_Eritrosit` varchar(16) NOT NULL,
-  `j_Trombosit` varchar(16) NOT NULL,
-  `j_Hemoglobin` varchar(16) NOT NULL,
-  `j_Hematrokit` varchar(16) NOT NULL,
-  `j_Glukosa` varchar(16) NOT NULL
+CREATE TABLE `obat` (
+  `id_obat` int(10) NOT NULL,
+  `namaObat` varchar(25) NOT NULL,
+  `deskripsi` varchar(500) NOT NULL,
+  `aturan` varchar(500) NOT NULL,
+  `efek` varchar(250) NOT NULL,
+  `lastUpdate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pemeriksaan_darah`
+-- Dumping data untuk tabel `obat`
 --
 
-INSERT INTO `pemeriksaan_darah` (`id_pemeriksaanD`, `namaPengguna`, `namaDokter`, `tanggal`, `jam`, `lokasi`, `j_Leukosit`, `j_Eritrosit`, `j_Trombosit`, `j_Hemoglobin`, `j_Hematrokit`, `j_Glukosa`) VALUES
-(1, 'flazefy', 'Dr. Josef Mengele', '2021-12-01', '18:25:00', 'Apotik Medika', '11,0 / 5,0-10,0', '4,4 / 4,5-5,5', '- / -', '- / -', '- / -', '130 / <140'),
-(2, 'vasilyKash', 'dr. Roland Mitch', '2021-12-20', '13:30:00', 'Apotik Sakura Abepura', '13,0 / 5,0-10,0', '6,4 / 4,5-5,5', '- / -', '- / -', '- / -', '150 / <140'),
-(3, 'richardKyle', 'dr. Austin SP.A', '2022-01-25', '17:20:00', 'RS Dian Harapan', '11,0 / 5,0-10,0', '4,4 / 4,5-5,5', '180K / 450K', '- / -', '- / -', '- / -'),
-(4, 'vasilyKash', 'drg. Robert SP.A', '2022-01-09', '17:10:00', 'Apotik Sakura Abepura', '11,0 / 5,0-10,0', '4,4 / 4,5-5,5', '- / -', '- / -', '- / -', '145 / <140');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `pemeriksaan_penyakit`
---
-
-CREATE TABLE `pemeriksaan_penyakit` (
-  `id_pemeriksaanP` int(6) NOT NULL,
-  `namaPengguna` varchar(35) NOT NULL,
-  `namaDokter` varchar(40) NOT NULL,
-  `jenis` varchar(20) NOT NULL,
-  `hasil` varchar(20) NOT NULL,
-  `tanggal` date NOT NULL,
-  `jam` time NOT NULL,
-  `lokasi` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `pemeriksaan_penyakit`
---
-
-INSERT INTO `pemeriksaan_penyakit` (`id_pemeriksaanP`, `namaPengguna`, `namaDokter`, `jenis`, `hasil`, `tanggal`, `jam`, `lokasi`) VALUES
-(1, 'flazefy', 'Dr. Josef Mengele', 'Covid (PCR)', 'negatif', '2021-12-18', '09:30:00', 'RS Provita Jayapura'),
-(2, 'vasilyKash', 'Dr. Josef Mengele', 'Malaria', 'negatif', '2021-11-10', '11:10:00', 'RS Dian Harapan'),
-(3, 'richardKyle', 'Dr. Josef Mengele', 'E-Bola', 'positif', '2021-05-01', '16:30:00', 'RSUD Dok II Jayapura');
+INSERT INTO `obat` (`id_obat`, `namaObat`, `deskripsi`, `aturan`, `efek`, `lastUpdate`) VALUES
+(1, 'Antisida', '', '', '', '2022-04-25'),
+(2, 'Antibiotik', '', '', '', '2022-04-25'),
+(3, 'Omeprazole', '', '', '', '2022-04-25'),
+(4, 'Mylanta', '', '', '', '2022-04-25'),
+(5, 'Promag', '', '', '', '2022-04-25'),
+(6, 'Analgesik', '', '', '', '2022-04-26'),
+(7, 'Antihistamin', '', '', '', '2022-04-26');
 
 -- --------------------------------------------------------
 
@@ -239,11 +386,11 @@ INSERT INTO `pemeriksaan_penyakit` (`id_pemeriksaanP`, `namaPengguna`, `namaDokt
 --
 
 CREATE TABLE `pengguna` (
-  `id_user` int(7) NOT NULL,
+  `id_user` int(8) NOT NULL,
   `nik` varchar(16) NOT NULL,
   `tempatLahir` varchar(25) NOT NULL,
   `tanggalLahir` date NOT NULL,
-  `alamat` varchar(30) NOT NULL,
+  `alamat` varchar(40) NOT NULL,
   `pekerjaan` varchar(25) NOT NULL,
   `tinggiBadan` int(3) NOT NULL,
   `beratBadan` int(3) NOT NULL,
@@ -252,210 +399,119 @@ CREATE TABLE `pengguna` (
   `namaPengguna` varchar(20) NOT NULL,
   `email` varchar(35) NOT NULL,
   `nomorPonsel` varchar(14) NOT NULL,
-  `password` varchar(25) NOT NULL,
-  `diskusi` int(6) NOT NULL,
-  `balasan` int(6) NOT NULL,
-  `jawaban` int(6) NOT NULL,
-  `golDarah` varchar(3) NOT NULL
+  `password` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `pengguna`
 --
 
-INSERT INTO `pengguna` (`id_user`, `nik`, `tempatLahir`, `tanggalLahir`, `alamat`, `pekerjaan`, `tinggiBadan`, `beratBadan`, `jKelamin`, `namaLengkap`, `namaPengguna`, `email`, `nomorPonsel`, `password`, `diskusi`, `balasan`, `jawaban`, `golDarah`) VALUES
-(1, '1234567891234567', 'Berlin', '1996-08-09', 'Jl. Telekomunikasi No.12', 'Mahasiswa', 184, 68, 'Pria', 'Leonardho R Sitanggang', 'FlazeFy', 'flazen.edu@gmail.com', '08114882001', 'tester123', 8, 21, 14, 'B-'),
-(2, '1231231231231235', 'Montreal', '1997-11-07', '3551 Willison Street', 'Wiraswasta', 185, 73, 'Pria', 'Kyle Richard', 'richardKyle', 'kylerich8181@gmail.com', '081248857133', 'kyle123', 5, 9, 16, 'B+'),
-(5, '1231231231231240', 'Moscow', '1980-04-20', 'Pochtovaya, bld. 28, appt. 11', 'Teknisi Nuklir', 170, 86, 'Pria', 'Vasili Kashimir', 'vasilyKash', 'vasiliKashimir15@gmail.com', '0811488901', 'icyman', 11, 23, 17, 'AB-');
+INSERT INTO `pengguna` (`id_user`, `nik`, `tempatLahir`, `tanggalLahir`, `alamat`, `pekerjaan`, `tinggiBadan`, `beratBadan`, `jKelamin`, `namaLengkap`, `namaPengguna`, `email`, `nomorPonsel`, `password`) VALUES
+(1, '1234567891234567', 'Berlin', '2001-08-08', 'Jl. Telekomunikasi No.12', 'Mahasiswa', 184, 68, 'Pria', 'Leonardho R Sitanggang', 'flazefy', 'flazen.edu@gmail.com', '08114882001', 'tester123'),
+(2, '1231231231231235', 'Montreal', '1997-11-07', '3551 Willison Street', 'Wiraswasta', 185, 73, 'Pria', 'Kyle Richard', 'richardkyle', 'kylerich8181@gmail.com', '081248857133', 'kyle123'),
+(5, '1231231231231240', 'Moscow', '1980-04-20', 'Pochtovaya, bld. 28, appt. 11', 'Teknisi Nuklir', 170, 86, 'Pria', 'Vasili Kashimir', 'vasilykash', 'vasiliKashimir15@gmail.com', '0811488901', 'icyman'),
+(6, '1234563218906471', 'Denpasar', '1994-11-09', 'Jl. Rengasdengklok', 'Desainer', 170, 61, 'Wanita', 'Rose Monde', 'rosemonde', 'rosemondea@gmail.com', '081248857133', 'fisheye123'),
+(35, '1234567893456781', 'Bandung', '1994-06-16', 'Jl. Rengasdengklok', 'Mahasiswa', 165, 58, 'Wanita', 'Terese Evy', 'teresevyy', 'teresevy@gmail.com', '082348857312', 'nopassword');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `riwayatkesehatan`
+-- Struktur dari tabel `relasiobatpenyakit`
 --
 
-CREATE TABLE `riwayatkesehatan` (
-  `idRiwayat` int(6) NOT NULL,
-  `namaPengguna` varchar(30) NOT NULL,
-  `namaDokter` varchar(30) NOT NULL,
-  `spesialis` varchar(20) NOT NULL,
-  `sejak` varchar(15) NOT NULL,
-  `keluhan` varchar(200) NOT NULL,
-  `diagnosa` varchar(200) NOT NULL,
-  `solusi` varchar(200) NOT NULL,
-  `tanggal` date NOT NULL,
-  `lokasi` varchar(20) NOT NULL,
-  `penyakit` varchar(20) NOT NULL,
-  `kontak` varchar(14) NOT NULL,
-  `alamat` varchar(50) NOT NULL
+CREATE TABLE `relasiobatpenyakit` (
+  `id_relasi` int(10) NOT NULL,
+  `id_penyakit` int(10) NOT NULL,
+  `id_obat` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `riwayatkesehatan`
+-- Dumping data untuk tabel `relasiobatpenyakit`
 --
 
-INSERT INTO `riwayatkesehatan` (`idRiwayat`, `namaPengguna`, `namaDokter`, `spesialis`, `sejak`, `keluhan`, `diagnosa`, `solusi`, `tanggal`, `lokasi`, `penyakit`, `kontak`, `alamat`) VALUES
-(1, 'flazefy', 'Dr. Braidy Rose', 'Penyakit Dalam', '1 Minggu', 'Dada sakit setelah makan, Terkadang mual & muntah, Terkadang berak darah, Perut melilit jika lapar, Sering bersendawa', 'Tekanan darah 100/70, BB 63 Kg & Asam lambung tinggi', 'Obat Promaag 2 kali/sehari, Metrodinazole 1 kali/sehari, Istirahat yang cukup, Kurangi kafein, makanan pedas, dan asam', '2008-07-04', 'RS Dian Harapan', 'Maag Kronis', '967572123', 'Jl. Teruna Bakti Yabansai Waena,  Yabansai, Heram'),
-(2, 'flazefy', 'Drg. Albert Flick', 'Gigi', '2 Minggu', 'Gigi sebelah kanan bawah ngilu', 'Gigi geraham impaksi', 'Obat Ibuprofen 2 kali/sehari, Dexamethasone 2 kali/sehari, Asam mefenamat 1 kali/sehari, Istirahat yang cukup, hindari makanan/minuman panas dan pedas untuk 1 minggu, jangan berkumur terlalu kencang', '2009-04-07', 'Apotik Kimia Farma', 'Cabut Gigi', '1240074314', 'Jl. Raya Waena Sentani, Waena,  Heram'),
-(3, 'flazefy', 'Dr. Usman Yousaf, Sp.M', 'Mata', '10 tahun', 'Penglihatan kabur dan mudah pusing', 'Rabun Jauh -5 dan -6', 'Operasi lasik', '2021-08-09', 'Apotik Kimia Farma', 'Rabun Jauh', '1240074314', 'Jl. Raya Waena Sentani, Waena,  Heram'),
-(4, 'vasilyKash', 'dr. Adams', 'Umum', '2 hari', 'Pusing, mual & muntah, badan panas, tulang keram', 'Tekanan darah 80/60, Trombosit tinggi', 'Obat Makrolida 2 kali/sehari, Oralit ', '2018-05-28', 'RS Dian Harapan', 'Keracunan Makanan', '1240074314', 'Jl. Teruna Bakti Yabansai Waena,  Yabansai, Heram'),
-(5, 'richardKyle', 'Drg. Beatrix Beargen', 'Gigi', '1 bulan', 'Gigi depan ngilu', '2 Gigi depan berlubang', 'Obat Ibuprofen 2 kali/sehari saat ngilu saja', '2019-11-09', 'Apotik Sakura Abepur', 'Tambal Gigi', '0912884121', 'Jl. Ayapo, Kota Baru, Abepura');
+INSERT INTO `relasiobatpenyakit` (`id_relasi`, `id_penyakit`, `id_obat`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 1, 4),
+(5, 1, 5),
+(6, 2, 6),
+(7, 2, 7);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `riwayat_alergi`
+-- Struktur dari tabel `relasipenyakitgejala`
 --
 
-CREATE TABLE `riwayat_alergi` (
-  `id` int(6) NOT NULL,
-  `namaPengguna` varchar(30) NOT NULL,
-  `alergi` varchar(30) NOT NULL
+CREATE TABLE `relasipenyakitgejala` (
+  `id_relasi` int(12) NOT NULL,
+  `id_penyakit` int(8) NOT NULL,
+  `id_gejala` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `riwayat_alergi`
+-- Dumping data untuk tabel `relasipenyakitgejala`
 --
 
-INSERT INTO `riwayat_alergi` (`id`, `namaPengguna`, `alergi`) VALUES
-(1, 'flazefy', 'Durian'),
-(2, 'flazefy', 'Cuaca Dingin'),
-(3, 'vasilyKash', 'Cuaca Panas'),
-(4, 'richardKyle', 'Makanan Laut'),
-(5, 'vasilyKash', 'Coklat');
+INSERT INTO `relasipenyakitgejala` (`id_relasi`, `id_penyakit`, `id_gejala`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(5, 2, 7),
+(6, 2, 8),
+(7, 2, 9),
+(8, 2, 10),
+(9, 2, 11),
+(10, 2, 12),
+(11, 1, 11);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `riwayat_penyakit`
+-- Struktur dari tabel `review`
 --
 
-CREATE TABLE `riwayat_penyakit` (
-  `id_penyakit` int(6) NOT NULL,
-  `namaPengguna` varchar(30) NOT NULL,
-  `penyakit` varchar(40) NOT NULL,
-  `tahun` varchar(4) NOT NULL
+CREATE TABLE `review` (
+  `id_review` int(10) NOT NULL,
+  `id_user` int(8) NOT NULL,
+  `text` varchar(300) NOT NULL,
+  `star` int(2) NOT NULL,
+  `datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `riwayat_penyakit`
+-- Dumping data untuk tabel `review`
 --
 
-INSERT INTO `riwayat_penyakit` (`id_penyakit`, `namaPengguna`, `penyakit`, `tahun`) VALUES
-(1, 'flazefy', 'Muntaber', '2004'),
-(2, 'flazefy', 'Cacar Air', '2008'),
-(3, 'flazefy', 'Rabun Jauh -4,5 & -5,0', '2009'),
-(4, 'flazefy', 'DBD', '2015'),
-(5, 'flazefy', 'Malaria', '2017'),
-(6, 'vasilyKash', 'Covid-19', '2020'),
-(7, 'vasilyKash', 'Thyfus', '2004'),
-(8, 'richardKyle', 'Malaria', '2003'),
-(9, 'richardKyle', 'Maag Kronis', '2020'),
-(10, 'richardKyle', 'Cacar Air', '2009'),
-(11, 'vasilyKash', 'Hipotermia', '2004');
+INSERT INTO `review` (`id_review`, `id_user`, `text`, `star`, `datetime`) VALUES
+(1, 2, 'Dengan Medstory saya dapat memantau kesehatan, berdiskusi mengenai kesehatan, dan mendapat informasi terbaru. Aplikasinya mudah digunakan dan gratis', 5, '2022-04-10 18:36:15'),
+(2, 5, 'Dengan Medstory saya dapat memantau kesehatan, berdiskusi mengenai kesehatan, dan mendapat informasi terbaru. Aplikasinya mudah digunakan dan gratis', 5, '2022-04-10 18:36:15'),
+(3, 1, 'Dengan Medstory saya dapat memantau kesehatan, berdiskusi mengenai kesehatan, dan mendapat informasi terbaru. Aplikasinya mudah digunakan dan gratis', 5, '2022-04-10 18:36:15'),
+(7, 6, 'Dengan Medstory saya dapat memantau kesehatan, berdiskusi mengenai kesehatan, dan mendapat informasi terbaru. Aplikasinya mudah digunakan dan gratis', 4, '2022-04-10 18:36:15');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `riwayat_vaksinasi`
+-- Struktur dari tabel `smartdoc`
 --
 
-CREATE TABLE `riwayat_vaksinasi` (
-  `id` int(6) NOT NULL,
-  `namaPengguna` varchar(30) NOT NULL,
-  `jenis` varchar(30) NOT NULL,
-  `tahun` int(4) NOT NULL
+CREATE TABLE `smartdoc` (
+  `id_penyakit` int(8) NOT NULL,
+  `nama_penyakit` varchar(100) NOT NULL,
+  `penanganan` varchar(400) NOT NULL,
+  `rasio` varchar(100) NOT NULL,
+  `level` int(2) NOT NULL,
+  `pencegahan` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `riwayat_vaksinasi`
+-- Dumping data untuk tabel `smartdoc`
 --
 
-INSERT INTO `riwayat_vaksinasi` (`id`, `namaPengguna`, `jenis`, `tahun`) VALUES
-(1, 'flazefy', 'Imunisasi Polio', 2004),
-(2, 'flazefy', 'Vaksinasi Campak', 2007),
-(3, 'flazefy', 'Vaksinasi Corona Virus', 2020),
-(4, 'vasilyKash', 'Vaksinasi Corona Virus', 2020),
-(5, 'richardKyle', 'Vaksinasi Corona Virus', 2021),
-(6, 'richardKyle', 'Vaksinasi Malaria', 2021),
-(7, 'vasilyKash', 'Vaksinasi Cacar Air', 1999);
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `sertifikatvaksin`
---
-
-CREATE TABLE `sertifikatvaksin` (
-  `id_sertif` int(6) NOT NULL,
-  `namaPengguna` varchar(30) NOT NULL,
-  `nik` varchar(16) NOT NULL,
-  `urlSertif` varchar(30) NOT NULL,
-  `tanggal` date NOT NULL,
-  `jam` time NOT NULL,
-  `lokasi` varchar(40) NOT NULL,
-  `dosis` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `sertifikatvaksin`
---
-
-INSERT INTO `sertifikatvaksin` (`id_sertif`, `namaPengguna`, `nik`, `urlSertif`, `tanggal`, `jam`, `lokasi`, `dosis`) VALUES
-(1, 'flazefy', '1234567891234567', 'sertif_flazefy1', '2021-08-30', '10:20:00', 'RS. Dian Harapan', 1),
-(2, 'flazefy', '1234567891234567', 'sertif_flazefy2', '2021-09-28', '09:40:00', 'RS. Dian Harapan', 2),
-(3, 'richardKyle', '1231231231231235', 'sertif_richardKyle1', '2021-12-10', '11:15:00', 'RSUD. Dok 2 Jayapura', 1),
-(4, 'vasilyKash', '1231231231231240', 'sertif_vasilyKash1', '2021-12-02', '14:50:00', 'RSUD. Yowari', 1);
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `tescovid`
---
-
-CREATE TABLE `tescovid` (
-  `id_tes` int(6) NOT NULL,
-  `namaTempat` varchar(40) NOT NULL,
-  `lokasi` varchar(40) NOT NULL,
-  `kontak` varchar(16) NOT NULL,
-  `jenis` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `tescovid`
---
-
-INSERT INTO `tescovid` (`id_tes`, `namaTempat`, `lokasi`, `kontak`, `jenis`) VALUES
-(1, 'RS. Dian Harapan', 'Jl. Teruna Bakti Yabansai Waena, Yabansa', '0967572123', 'Antigen & PCR'),
-(2, 'RSUD. Abepura', 'Jl. Kesehatan No.1, Yobe, Abepura', '0967581064', 'Antigen'),
-(3, 'Denkesyah 17.04.02/ Waena', 'JL Sentani, Waena, Heram', '0967572285', 'Antigen'),
-(4, 'RS. Bhayangkara Kotaraja', 'Jl. Jeruk Nipis, Wahno, Abepura', '0967587787', 'Antigen & PCR'),
-(5, 'RS. Angkatan Laut Dr. Soedibjo Sardadi', 'Jl. Amphibi No.1, Hamadi', '+62967532146', 'Antigen'),
-(6, 'RSUD. Dok II', 'Jl. Kesehatan No.1, Bayangkara', '0967533616', 'PCR'),
-(7, 'RS. Provita Jayapura', 'Jl. Dr. Sam Ratulangi, Bayangkara', '096751628880', 'PCR & Antigen');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `vaksinasi`
---
-
-CREATE TABLE `vaksinasi` (
-  `id_vaksinasi` int(6) NOT NULL,
-  `namaTempat` varchar(30) NOT NULL,
-  `lokasi` varchar(40) NOT NULL,
-  `kontak` varchar(16) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `vaksinasi`
---
-
-INSERT INTO `vaksinasi` (`id_vaksinasi`, `namaTempat`, `lokasi`, `kontak`) VALUES
-(1, 'RS. Dian Harapan', 'Jl. Teruna Bakti Yabansai Waena, Yabansa', '0967572123'),
-(2, 'RSUD. Abepura', 'Jl. Kesehatan No.1, Yobe, Abepura', '0967581064'),
-(3, 'RS. Angkatan Laut Dr. Soedibjo', 'Jl. Amphibi No.1, Hamadi', '0967532146'),
-(4, 'RSUD. Dok II', 'Jl. Kesehatan No.1, Bayangkara', '0967533616');
+INSERT INTO `smartdoc` (`id_penyakit`, `nama_penyakit`, `penanganan`, `rasio`, `level`, `pencegahan`) VALUES
+(1, 'Maag / Radang lambung', 'Memerlukan diagnosis medis, perlu tes pencitraan (USG), ', '150 ribu kasus pertahun', 1, 'Kurangi kafein dan coklat, Mengunyah makanan secara perlahan, Jangan berolahraga setelah makan, Beri jeda 2 jam jika ingin tidur setelah makan, Kurangi obat antiflamasi, Memperhatikan berat badan ideal'),
+(2, 'Cacar air', 'Biasanya dapat diobati sendiri, tidak perlu tes laboratorium, dan penyakit yang dapat menyebar', '150 ribu kasus pertahun', 2, 'Dapat dicegah dengan vaksinasi, Mandi oatmeal, dan gunakan pelembab');
 
 --
 -- Indexes for dumped tables
@@ -466,6 +522,24 @@ INSERT INTO `vaksinasi` (`id_vaksinasi`, `namaTempat`, `lokasi`, `kontak`) VALUE
 --
 ALTER TABLE `announcement`
   ADD PRIMARY KEY (`id_announcement`);
+
+--
+-- Indeks untuk tabel `asupan`
+--
+ALTER TABLE `asupan`
+  ADD PRIMARY KEY (`id_asupan`);
+
+--
+-- Indeks untuk tabel `balasan`
+--
+ALTER TABLE `balasan`
+  ADD PRIMARY KEY (`id_balasan`);
+
+--
+-- Indeks untuk tabel `covid`
+--
+ALTER TABLE `covid`
+  ADD PRIMARY KEY (`id_tes`);
 
 --
 -- Indeks untuk tabel `diskusi`
@@ -486,10 +560,28 @@ ALTER TABLE `faskes`
   ADD PRIMARY KEY (`id_faskes`);
 
 --
--- Indeks untuk tabel `konsultasi`
+-- Indeks untuk tabel `gejala`
 --
-ALTER TABLE `konsultasi`
-  ADD PRIMARY KEY (`id_konsultasi`);
+ALTER TABLE `gejala`
+  ADD PRIMARY KEY (`id_gejala`);
+
+--
+-- Indeks untuk tabel `jadwalkalori`
+--
+ALTER TABLE `jadwalkalori`
+  ADD PRIMARY KEY (`id_jadwal`);
+
+--
+-- Indeks untuk tabel `kebutuhankalori`
+--
+ALTER TABLE `kebutuhankalori`
+  ADD PRIMARY KEY (`id_kebutuhan`);
+
+--
+-- Indeks untuk tabel `masukan`
+--
+ALTER TABLE `masukan`
+  ADD PRIMARY KEY (`id_masukan`);
 
 --
 -- Indeks untuk tabel `newsfeed`
@@ -498,16 +590,10 @@ ALTER TABLE `newsfeed`
   ADD PRIMARY KEY (`idBerita`);
 
 --
--- Indeks untuk tabel `pemeriksaan_darah`
+-- Indeks untuk tabel `obat`
 --
-ALTER TABLE `pemeriksaan_darah`
-  ADD PRIMARY KEY (`id_pemeriksaanD`);
-
---
--- Indeks untuk tabel `pemeriksaan_penyakit`
---
-ALTER TABLE `pemeriksaan_penyakit`
-  ADD PRIMARY KEY (`id_pemeriksaanP`);
+ALTER TABLE `obat`
+  ADD PRIMARY KEY (`id_obat`);
 
 --
 -- Indeks untuk tabel `pengguna`
@@ -516,46 +602,28 @@ ALTER TABLE `pengguna`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- Indeks untuk tabel `riwayatkesehatan`
+-- Indeks untuk tabel `relasiobatpenyakit`
 --
-ALTER TABLE `riwayatkesehatan`
-  ADD PRIMARY KEY (`idRiwayat`);
+ALTER TABLE `relasiobatpenyakit`
+  ADD PRIMARY KEY (`id_relasi`);
 
 --
--- Indeks untuk tabel `riwayat_alergi`
+-- Indeks untuk tabel `relasipenyakitgejala`
 --
-ALTER TABLE `riwayat_alergi`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `relasipenyakitgejala`
+  ADD PRIMARY KEY (`id_relasi`);
 
 --
--- Indeks untuk tabel `riwayat_penyakit`
+-- Indeks untuk tabel `review`
 --
-ALTER TABLE `riwayat_penyakit`
+ALTER TABLE `review`
+  ADD PRIMARY KEY (`id_review`);
+
+--
+-- Indeks untuk tabel `smartdoc`
+--
+ALTER TABLE `smartdoc`
   ADD PRIMARY KEY (`id_penyakit`);
-
---
--- Indeks untuk tabel `riwayat_vaksinasi`
---
-ALTER TABLE `riwayat_vaksinasi`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indeks untuk tabel `sertifikatvaksin`
---
-ALTER TABLE `sertifikatvaksin`
-  ADD PRIMARY KEY (`id_sertif`);
-
---
--- Indeks untuk tabel `tescovid`
---
-ALTER TABLE `tescovid`
-  ADD PRIMARY KEY (`id_tes`);
-
---
--- Indeks untuk tabel `vaksinasi`
---
-ALTER TABLE `vaksinasi`
-  ADD PRIMARY KEY (`id_vaksinasi`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
@@ -568,10 +636,28 @@ ALTER TABLE `announcement`
   MODIFY `id_announcement` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT untuk tabel `asupan`
+--
+ALTER TABLE `asupan`
+  MODIFY `id_asupan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT untuk tabel `balasan`
+--
+ALTER TABLE `balasan`
+  MODIFY `id_balasan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT untuk tabel `covid`
+--
+ALTER TABLE `covid`
+  MODIFY `id_tes` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT untuk tabel `diskusi`
 --
 ALTER TABLE `diskusi`
-  MODIFY `id_diskusi` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_diskusi` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `dokterpraktik`
@@ -586,10 +672,28 @@ ALTER TABLE `faskes`
   MODIFY `id_faskes` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `konsultasi`
+-- AUTO_INCREMENT untuk tabel `gejala`
 --
-ALTER TABLE `konsultasi`
-  MODIFY `id_konsultasi` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+ALTER TABLE `gejala`
+  MODIFY `id_gejala` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT untuk tabel `jadwalkalori`
+--
+ALTER TABLE `jadwalkalori`
+  MODIFY `id_jadwal` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
+--
+-- AUTO_INCREMENT untuk tabel `kebutuhankalori`
+--
+ALTER TABLE `kebutuhankalori`
+  MODIFY `id_kebutuhan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT untuk tabel `masukan`
+--
+ALTER TABLE `masukan`
+  MODIFY `id_masukan` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `newsfeed`
@@ -598,64 +702,40 @@ ALTER TABLE `newsfeed`
   MODIFY `idBerita` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `pemeriksaan_darah`
+-- AUTO_INCREMENT untuk tabel `obat`
 --
-ALTER TABLE `pemeriksaan_darah`
-  MODIFY `id_pemeriksaanD` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT untuk tabel `pemeriksaan_penyakit`
---
-ALTER TABLE `pemeriksaan_penyakit`
-  MODIFY `id_pemeriksaanP` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `obat`
+  MODIFY `id_obat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id_user` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id_user` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
--- AUTO_INCREMENT untuk tabel `riwayatkesehatan`
+-- AUTO_INCREMENT untuk tabel `relasiobatpenyakit`
 --
-ALTER TABLE `riwayatkesehatan`
-  MODIFY `idRiwayat` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `relasiobatpenyakit`
+  MODIFY `id_relasi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `riwayat_alergi`
+-- AUTO_INCREMENT untuk tabel `relasipenyakitgejala`
 --
-ALTER TABLE `riwayat_alergi`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `relasipenyakitgejala`
+  MODIFY `id_relasi` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `riwayat_penyakit`
+-- AUTO_INCREMENT untuk tabel `review`
 --
-ALTER TABLE `riwayat_penyakit`
-  MODIFY `id_penyakit` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+ALTER TABLE `review`
+  MODIFY `id_review` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `riwayat_vaksinasi`
+-- AUTO_INCREMENT untuk tabel `smartdoc`
 --
-ALTER TABLE `riwayat_vaksinasi`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT untuk tabel `sertifikatvaksin`
---
-ALTER TABLE `sertifikatvaksin`
-  MODIFY `id_sertif` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT untuk tabel `tescovid`
---
-ALTER TABLE `tescovid`
-  MODIFY `id_tes` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT untuk tabel `vaksinasi`
---
-ALTER TABLE `vaksinasi`
-  MODIFY `id_vaksinasi` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `smartdoc`
+  MODIFY `id_penyakit` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

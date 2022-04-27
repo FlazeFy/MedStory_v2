@@ -15,6 +15,7 @@
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 		<link rel="icon" type="image/png" href="http://localhost/MedStory/assets/icon/Logo.png"/>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script src="https://kit.fontawesome.com/12801238e9.js" crossorigin="anonymous"></script>
 
         <!--Source file.-->
         <link rel="stylesheet" type="text/css" href="http://localhost/MedStory/assets/css/Main.css" />
@@ -136,9 +137,9 @@
 			<div id="Navigation">
 				<ul>
 					<img id="logo" src="http://localhost/MedStory/assets/logoWhite.png">
-					<li id="active"><a href="myData">SmartDoc</a></li>
+					<li id="active"><a href="smartDoc">SmartDoc</a></li>
 					<li><a href="history">Forum</a></li>
-					<li><a href="diskusi">Dataku</a></li>
+					<li><a href="dataKu">Dataku</a></li>
 					<li><a href="nomorDarurat">Darurat</a></li>
 						<li style="float:right"><form action='landing/logout' method='post'><button type="submit" class='btn btn-danger' style='height:40px; margin:13px 10px 0px 10px;'><i class='fa fa-sign-out'></i> Ganti Akun</button></form></li>
 						<li style="float:right"><button onclick="window.location.href='account'" class='btn btn-primary' style='height:40px; background:#212121; margin:13px 0px 0px 10px;'><i class='fa fa-user-circle'></i> <?= $data = $this->session->userdata('userTrack'); ?></button></li>

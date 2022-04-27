@@ -7,14 +7,15 @@
   	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<!--CDN Bootstrap CSS.-->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-		<link rel="icon" type="image/png" href="http://localhost/MedStory/assets/icon/Logo.png"/>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!--CDN Bootstrap CSS.-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<link rel="icon" type="image/png" href="http://localhost/MedStory/assets/icon/Logo.png"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://kit.fontawesome.com/12801238e9.js" crossorigin="anonymous"></script>
 
-		<!--Source file.-->
-		<link rel="stylesheet" type="text/css" href="http://localhost/MedStory/assets/css/Main.css" />
+	<!--Source file.-->
+	<link rel="stylesheet" type="text/css" href="http://localhost/MedStory/assets/css/Main.css" />
 	</head>
 
 	<body>
@@ -24,18 +25,18 @@
                 <img id="logo" src="http://localhost/MedStory/assets/logoWhite.png">
                 <li><a href="smartDoc">SmartDoc</a></li>
                 <li><a href="history">Forum</a></li>
-                <li><a href="diskusi">Dataku</a></li>
+                <li><a href="dataKu">Dataku</a></li>
 				<li><a href="nomorDarurat">Darurat</a></li>
                 <li style="float:right"><form action='landing/logout' method='post'><button type="submit" class='btn btn-danger' style='height:40px; margin:13px 10px 0px 10px;'><i class='fa fa-sign-out'></i> Ganti Akun</button></form></li>
-                <li style="float:right"><a id="Profil" href="account" style="font-size:14px"><img id="MyData" src="http://localhost/MedStory/assets/MyData.png"> <?= $data = $this->session->userdata('userTrack'); ?></a></li>
+                <li style="float:right"><button onclick="window.location.href='account'" class='btn btn-primary' style='height:40px; background:#212121; margin:13px 0px 0px 10px;'><i class='fa fa-user-circle'></i> <?= $data = $this->session->userdata('userTrack'); ?></button></li>
                 <div id="ddParent">
-                    <button id="dropbutton"><img id="set" src="http://localhost/MedStory/assets/Setting.png"></button>
-                        <!--DropDown menu navigation-->
-                        <div id="dropdown-content">
-                            <a href="pusatBantuan">Pusat Bantuan</a>
-                            <a href="tentang">Tentang</a>
-                            <a href="kebijakan">Kebijakan & Privasi</a>
-						</div>
+					<button id="dropbutton"><img id="set" src="http://localhost/MedStory/assets/Setting.png"></button>
+					<!--DropDown menu navigation-->
+					<div id="dropdown-content">
+						<a href="pusatBantuan">Pusat Bantuan</a>
+						<a href="tentang">Tentang</a>
+						<a href="kebijakan">Kebijakan & Privasi</a>
+					</div>
                 </div>
             </ul>
 		</div>
@@ -76,14 +77,14 @@
 
 						<!--Statistik.-->
 						<h4 style="color: white;">Statistik</h4>
-						<div class="card-deck" style="margin: 10px;">
-							<div class="card" style="background-color: #333333; border: none;">
-								<img src="http://localhost/MedStory/assets/icon/Add Discussion.png" style="width:55px;">
+						<div class="card-deck">
+							<div class="card" style="background-color: #333333; border: none; padding:10px;">
+								<i class="fa-solid fa-comment-dots fa-xl" style='color:white; margin:20px;'></i>
 								<p style="color: white; font-size: 12px;"><?php $count = 0; 
 									foreach ($statsDiskusi as $data){$count++;} echo $count;?> diskusi</p>
 							</div>
-							<div class="card" style="background-color: #333333; border: none;">
-								<img src="http://localhost/MedStory/assets/icon/Discussion.png" style="width:45px;">
+							<div class="card" style="background-color: #333333; border: none; padding:10px;">
+								<i class="fa-solid fa-reply fa-xl" style='color:white; margin:20px;'></i>
 								<p style="color: white; font-size: 12px;"><?php $count = 0; 
 									foreach ($statsBalasan as $data){$count++;} echo $count;?> balasan</p>
 							</div>
@@ -174,9 +175,8 @@
 
 				<div class="row">
 					<div class="col-sm-12">
-						<img src="http://localhost/MedStory/assets/Info.png" style="width:20px; float: left;">
-						<p style="float: left; color: #4183D7; font-size: 13px;">Password harus memiliki min 8 karakter, 1 huruf kapital, dan 1 angka.</p>
-						<button class='btn btn-success' style='float:right; box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 10px;' type="submit">Simpan Perubahan</button>
+						<p style="float: left; color: #4183D7; font-size: 13px;"><i class='fa fa-info-circle'></i> Password harus memiliki min 8 karakter, 1 huruf kapital, dan 1 angka.</p>
+						<button class='btn btn-success' style='float:right; box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 10px;' type="submit"><i class="fa-solid fa-floppy-disk"></i> Simpan Perubahan</button>
 					</div>
 				</div>
 			</div>

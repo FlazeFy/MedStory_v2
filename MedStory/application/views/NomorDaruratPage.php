@@ -18,6 +18,7 @@
 		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+		<script src="https://kit.fontawesome.com/12801238e9.js" crossorigin="anonymous"></script>
 
         <!--Source file.-->
         <link rel="stylesheet" type="text/css" href="http://localhost/MedStory/assets/css/Main.css" />
@@ -204,7 +205,7 @@
 					<img id="logo" src="http://localhost/MedStory/assets/logoWhite.png">
 					<li><a href="smartDoc">SmartDoc</a></li>
 					<li><a href="history">Forum</a></li>
-					<li><a href="diskusi">Dataku</a></li>
+					<li><a href="dataKu">Dataku</a></li>
 					<li id="active"><a href="nomorDarurat">Darurat</a></li>
 						<li style="float:right"><form action='landing/logout' method='post'><button type="submit" class='btn btn-danger' style='height:40px; margin:13px 10px 0px 10px;'><i class='fa fa-sign-out'></i> Ganti Akun</button></form></li>
 						<li style="float:right"><button onclick="window.location.href='account'" class='btn btn-primary' style='height:40px; background:#212121; margin:13px 0px 0px 10px;'><i class='fa fa-user-circle'></i> <?= $data = $this->session->userdata('userTrack'); ?></button></li>
@@ -229,9 +230,9 @@
 			<div class="container bg-white" id="card-car" style="margin-bottom: 1%; margin-top: 1%; padding-top: 0.5%; border-radius: 10px;">
 				<div id="accordion">
 					<button class="btn btn-primary" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample2"
-						style='box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 10px;'>Fasilitas Kesehatan</button>
+						style='box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 10px;'><i class="fa-solid fa-hospital"></i> Fasilitas Kesehatan</button>
 					<button class="btn btn-primary" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2"
-						style='box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 10px;'>Praktek Dokter</button>
+						style='box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 10px;'><i class="fa-solid fa-stethoscope"></i> Praktek Dokter</button>
 					<hr>
 					<div class="row">
 						<div class="col-md-12">

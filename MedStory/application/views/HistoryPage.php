@@ -214,6 +214,10 @@
 				border-radius: 5px;
 				background-color: rgb(40, 207, 54);
 			}
+			/*News feed*/
+			.row .col-sm .thumb-wrapper{
+				height:240px;
+			}
 			.row .col-sm .thumb-wrapper:hover {
 				background-color : #22A7F0;
 				color:white;
@@ -743,7 +747,7 @@
 				<li style="float:left; margin-left:15px;" onclick="openNav()"><a><i class='fa fa-calendar-check-o fa-xl'></i></a></li>
                 <li><a href="smartDoc">SmartDoc</a></li>
                 <li  id="active"><a href="">Forum</a></li>
-                <li><a href="diskusi">Dataku</a></li>
+                <li><a href="dataKu">Dataku</a></li>
 				<li><a href="nomorDarurat">Darurat</a></li>
                 <li style="float:right"><form action='landing/logout' method='post'><button type="submit" class='btn btn-danger' style='height:40px; margin:13px 10px 0px 10px;'><i class='fa fa-sign-out'></i> Ganti Akun</button></form></li>
                 <li style="float:right"><button onclick="window.location.href='account'" class='btn btn-primary' style='height:40px; background:#212121; margin:13px 0px 0px 10px;'><i class='fa fa-user-circle'></i> <?= $data = $this->session->userdata('userTrack'); ?></button></li>

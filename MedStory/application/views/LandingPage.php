@@ -394,8 +394,7 @@
 														style="background:white; border-width: 0 0 3px; border-bottom: 3.5px solid #4183D7; color:#212121; margin-bottom:10px;">
 												</div><br>
 												<div class="col-md-12">
-													<img src="assets/Info.png" style="width:20px; float: left;">
-													<p style="color: #4183D7; font-size: 14px;">Password harus memiliki min 8 karakter, 1 huruf
+													<p style="color: #4183D7; font-size: 14px;"><i class='fa fa-info-circle'></i> Password harus memiliki min 8 karakter, 1 huruf
 													kapital, dan 1 angka.</p><br>
 													<!--Button.-->
 													<div class="form-group mb-3">
