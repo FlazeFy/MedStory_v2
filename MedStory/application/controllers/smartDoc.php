@@ -5,6 +5,7 @@
 		function __construct(){
 			parent::__construct();
 			$this->load->model('SmartDocModel');
+			$this->load->model('accountModel');
 		}
 		public function index(){
 			$data = [];
@@ -13,6 +14,8 @@
 			$data['dataRelasi']= $this->SmartDocModel->get_data_relasi();
 			$data['dataObat']= $this->SmartDocModel->get_data_obat();
 			$data['dataRelasiObat']= $this->SmartDocModel->get_data_relasiObat();
+			$data['dataKMS']= $this->SmartDocModel->get_data_kms();
+			$data['dataUser']= $this->accountModel->get_data_user();
 			$this->load->view('smartDocPage', $data);
 		}
 		public function searchGejala()
@@ -32,6 +35,18 @@
 				redirect('SmartDoc');
 			}
 		}
-		
+		public function hitungKMS(){
+			$data = array(
+				'id_kms' => 'NULL',
+				'id_user' => $this->input->post('id_user'),
+				'namaAnak' => $this->input->post('namaAnak'),
+				'jenisKelamin' => $this->input->post('jKelaminAnak'),
+				'berat' => $this->input->post('beratAnak'),
+				'tinggi' => $this->input->post('tinggiAnak'),
+				'tanggalLahirA' => $this->input->post('tglLahirAnak'),
+				'datecreated' => date("Y/m/d"),
+			);	
+			$this->SmartDocModel->insertKms($data, 'kms');
+		}
 	}
 ?>

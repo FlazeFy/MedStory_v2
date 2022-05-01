@@ -36,6 +36,70 @@
 			* {
 			box-sizing: border-box;
 			}
+			.carousel {
+				margin: 5px auto;
+				padding: 0 30px;
+			}
+			.carousel .item {
+				color: #808080;
+				min-height: 325px;
+				text-align: center;
+				overflow: hidden;
+				background: white;
+			}
+			.carousel .item h4 {
+				font-size: 18px;
+			}
+			.carousel .item h4, .carousel .item p, .carousel .item ul {
+				margin-bottom: 5px;
+			}
+			.carousel-control-prev, .carousel-control-next {
+				height: 44px;
+				width: 40px;
+				background: #4183D7;	
+				margin: auto 0;
+				border-radius: 4px;
+				opacity: 0.8;
+			}
+			.carousel-control-prev:hover, .carousel-control-next:hover {
+				background: #4183D7;
+				opacity: 1;
+			}
+			.carousel-control-prev i, .carousel-control-next i {
+				font-size: 36px;
+				position: absolute;
+				top: 50%;
+				display: inline-block;
+				margin: -19px 0 0 0;
+				z-index: 5;
+				left: 0;
+				right: 0;
+				color: #fff;
+				text-shadow: none;
+				font-weight: bold;
+			}
+			.carousel-control-prev i {
+				margin-left: -2px;
+			}
+			.carousel-control-next i {
+				margin-right: -4px;
+			}		
+			.carousel-indicators {
+				bottom: -20px;
+			}
+			.carousel-indicators li, .carousel-indicators li.active {
+				width: 10px;
+				height: 10px;
+				margin: 4px;
+				border-radius: 50%;
+				border: none;
+			}
+			.carousel-indicators li {	
+				background: rgba(0, 0, 0, 0.2);
+			}
+			.carousel-indicators li.active {	
+				background: rgb(40, 207, 54);
+			}
 
 			/*the container must be positioned relative:*/
 			.autocomplete {
@@ -392,6 +456,150 @@
 					</div>
 				</div>
 			</div>
+			<div class="container bg-white" id="card-car" style="margin-bottom: 1%; margin-top: 1%; padding-top: 0.5%; border-radius: 10px;">
+				<h5 style="text-align: left; color:#696969;">Kartu Menuju Sehat</h5>	
+				<div class='card-body'>
+					<div class='container'>
+						<div class='row'>
+							<div class='col-md-6'>
+								<h5 class='font-weight-bold'>Apa itu KMS?</h5>                        
+								<p>Kartu Menuju Sehat adalah suatu patokan yang digunakan untuk mencatat grafik perkembangan setiap anak dengan mengacu pada berat badan, umur, serta jenis kelamin. Alat ini juga digunakan untuk melihat perkembangan balita tersebut dan menjadi acuan agar menjaga bayi tetap sehat dan mendapatkan gizi yang tepat.</p>
+								<h5 class='font-weight-bold' data-toggle="collapse" href="#collapseriwayatKMS" role='button' style='color:#4183D7;'><i class="fa fa-history"></i> Riwayat<i class="fa fa-angle-down" style='float:right;'></i></h5><hr>  
+								<div id="collapseriwayatKMS" class='card-body collapse show' style='width:100%;'>
+									<?php
+									$i = 0;
+									$jml = 0;
+									foreach($dataKMS as $kms){
+										$jml++;
+									}
+									if ($jml > 0){ 
+										echo"<div id='carouselKMS' class='carousel slide' data-ride='carousel' data-interval='0' style='top:-30px;'>
+										<!-- Carousel indicators -->
+										<ol class='carousel-indicators'>";
+										$item = 0;
+										$page = 0;
+										foreach($dataKMS as $kms){
+											if($item == 0 && $page == 0){
+												echo"<li data-target='#carouselKMS' data-slide-to='0' class='active'></li>";
+												$item++;
+												$page++;
+											} else if ($item % 3 == 0){
+												echo"<li data-target='#carouselKMS' data-slide-to='".$page."'></li>";
+												$item++;
+												$page++;
+											} else if ($item % 3 != 0){
+												$item++;
+											}
+										}
+										echo"</ol>   
+										<!-- Wrapper for carousel items -->
+										<div class='carousel-inner'>";
+										$k = 1;
+										$state = ' active';
+										foreach($dataKMS as $kms){
+											if($k % 4 == 0  || $k == 1){
+												echo"<div class='item carousel-item".$state."' >
+												<div class='row' style='margin:20px;'>";
+											}
+											echo"<div class='card' style='border-radius:6px; border:none; height:100px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
+												margin-bottom:5px;'>
+												<div class='row' style='width:100%;'>
+													<div class='col-sm-1' style='background:#4183D7; left:10px; top:-5px; height:100px; border-top-left-radius: 6px; border-bottom-left-radius: 6px;'>
+														<h4 style='margin-top:25px; margin-left:-5px; color:white;'>"; 
+														if($kms['jenisKelamin'] == 'Wanita'){
+															echo"<i class='fa fa-venus fa-md'></i>"; 
+														} else {
+															echo"<i class='fa fa-mars fa-md'></i>"; 
+														}
+														
+														echo"</h4>
+													</div>
+													<div class='col-sm' >
+														<p style='font-size:14px; color:#22A7F0; text-align:left; margin-top:10px;'><i class='fa-solid fa-baby'></i> ".$kms['namaAnak']."</p>
+														<p style='font-size:14px; color:grey; text-align:left;'><i class='fa-solid fa-weight-scale'></i> ".$kms['berat']." kg / ".$kms['tinggi']." cm</p>
+														<p style='font-size:14px; color:grey; text-align:left;'><i class='fa-solid fa-calendar'></i> ".$kms['tanggalLahirA']."</p>
+													</div>
+													<div class='col-sm' >
+														<p style='font-size:12px; color:grey; float:right; margin-right:-30px; white-space: nowrap; font-style:italic;'>dibuat pada ".$kms['datecreated']."</p>
+														<button class='btn btn-info' style='float:right; margin-right:-25px; margin-top:20px;' data-toggle='modal' data-target='#detailKMS".$kms['id_kms']."'>Detail</button>
+													</div>
+												</div>
+											</div>";
+											$i++;
+											$k++;
+											$state = ' ';
+											if($k % 4 == 0){
+												echo"</div>
+											</div>";
+											}
+										}
+										echo"</div>
+										</div></div>
+										<!-- Carousel controls -->
+										<a class='carousel-control-prev' href='#carouselKMS' data-slide='prev'>
+											<i class='fa fa-angle-left'></i>
+										</a>
+										<a class='carousel-control-next' href='#carouselKMS' data-slide='next'>
+											<i class='fa fa-angle-right'></i>
+										</a>
+										</div>";
+									} else {
+										echo "<div class='container'>
+											<p style='font-style:italic; text-align:center; color:grey; font-size:14px;'>Anda belum pernah menghitung KMS</p>
+											<img src='http://localhost/MedStory/assets/icon/Empty.gif' alt='Sorry.png' style='display: block;
+												margin-left: auto; margin-right: auto; width: 200px; height: 200px; margin-top:-20px;'>
+										</div>";
+									}
+									?> 
+								</div>    								
+							</div>
+							<div class='col-md-6'>
+								<form method='POST' action='smartDoc/hitungKMS'>
+								<div class="row" >
+									<input class='form-control' type='text' name='id_user' 
+										value='<?php foreach ($dataUser as $data){echo $data['id_user'];}?>' hidden></input>
+									<div class="col-sm">
+										<h5 class='font-weight-100' style='font-size: 16px;'>Nama Anak</h5>
+										<input type="name" class="form-control" name="namaAnak" style="background:#f4f4f4; border-width: 0 0 3px; 
+											border-bottom: 3.5px solid #4183D7; color:#212121;">
+									</div>
+									<div class="col-sm-3">
+										<h5 class='font-weight-100' style='font-size: 16px;'>Jenis Kelamin</h5>
+										<select class="form-control" name="jKelaminAnak" style="background:#f4f4f4; border-width: 0 0 3px; 
+											border-bottom: 3.5px solid #4183D7; color:#212121;">
+											<option value="Pria">Pria</option>
+											<option value="Wanita">Wanita</option>
+										</select>
+									</div>
+								</div>	
+								<div class="row" style='margin-top:5px;'>
+									<div class="col-sm">
+										<h5 class='font-weight-100' style='font-size: 16px;'>Tinggi Badan (Cm)</h5>
+										<input type="number" class="form-control" name="tinggiAnak" style="background:#f4f4f4; border-width: 0 0 3px; 
+											border-bottom: 3.5px solid #4183D7; color:#212121;">
+									</div>
+									<div class="col-sm">
+										<h5 class='font-weight-100' style='font-size: 16px;'>Berat Badan (Kg)</h5>
+										<input type="number" class="form-control" name="beratAnak" style="background:#f4f4f4; border-width: 0 0 3px; 
+											border-bottom: 3.5px solid #4183D7; color:#212121;">
+									</div>
+									<div class="col-sm">
+										<h5 class='font-weight-100' style='font-size: 16px;'>Tanggal Lahir</h5>
+										<input type="date" class="form-control" name="tglLahirAnak" style="background:#f4f4f4; border-width: 0 0 3px; 
+											border-bottom: 3.5px solid #4183D7; color:#212121;">
+									</div>	
+								</div>	
+								<div class="row">
+									<div class="col-sm">
+										<button class='btn btn-success' style='margin-top:10px;' type='submit'>Hitung</button>
+									</div>
+								</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		
         <!-- Footer -->
@@ -497,6 +705,68 @@
 				}
 			}
 		}
+		?>
+
+		<?php
+			foreach($dataKMS as $kms){
+				echo"<!-- Modal -->
+				<div class='modal fade' id='detailKMS".$kms['id_kms']."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLongTitle' aria-hidden='true'>
+				<div class='modal-dialog modal-lg' role='document'>
+					<div class='modal-content'>
+					<div class='modal-header'>
+						<h5 class='modal-title' id='exampleModalLongTitle'>Kartu Menuju Sehat</h5>
+						<button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+						<span aria-hidden='true'>&times;</span>
+						</button>
+					</div>
+					<div class='modal-body'>
+						<div class='container'>
+							<div class='row'>
+								<table class='table table-striped'>
+									<thead>
+									<tr>
+										<th scope='col-sm' class='w-25'>Nama Anak</th>
+										<th scope='col-md'>".$kms['namaAnak']."</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr>
+										<th scope='row'>Jenis Kelamin</th>
+										<td>".$kms['jenisKelamin']."</td>
+									</tr>
+									<tr>
+										<th scope='row'>Umur</th>
+										<td> thn</td>
+									</tr>
+									<tr>
+										<th scope='row'>Tinggi</th>
+										<td>".$kms['tinggi']."</td>
+									</tr>
+									<tr>
+										<th scope='row'>Berat</th>
+										<td>".$kms['berat']."</td>
+									</tr>
+									</tbody>
+								</table>
+
+								<div class='col-md'>
+									<p style='font-weight:bold;'>Berat badan menurut umur ".$kms['jenisKelamin']."</p>
+									<!--Diagram-->
+								</div>
+								<div class='col-md'>
+									<p style='font-weight:bold;'>Tinggi badan menurut umur ".$kms['jenisKelamin']."</p>
+									<!--Diagram-->
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class='modal-footer'>
+						<p style='float: left; font-size: 13px; color:grey;'><i class='fa fa-info-circle'></i> Umur 16 hari keatas akan dibulatkan menjadi 1 bulan.</p>
+					</div>
+					</div>
+				</div>
+				</div>";
+			}
 		?>
 
 		<!--Javascript signout-->

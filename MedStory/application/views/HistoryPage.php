@@ -547,8 +547,8 @@
 								<button class='btn btn-success' type='submit'><i class='fa fa-plus'></i> Tambah</button>
 								</div>
 							</div>
-							<button class='btn btn-info' onclick=window.location.href='smartDoc' title='SmartDoc'><i class='fa fa-calculator'></i> Hitung Kalori</button>
 							</form>
+							<button class='btn btn-info' onclick=window.location.href='smartDoc' title='SmartDoc'><i class='fa fa-calculator'></i> Hitung Kalori</button>
 						</div>";
 					}	
 				?>

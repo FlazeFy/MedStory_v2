@@ -408,32 +408,676 @@
 							<div class="collapse" id="multiCollapseExample2" data-parent="#accordion">
 								<div class="container">
 									<h5 style="text-align: left; color:#696969; margin-top:10px;">Praktek Dokter</h5>
-									<?php 
-										$j = 1; 
-										$status = ' show';
-										foreach($dataPraktik as $data){		
-											echo"
-											<div id='accordion3'>
-												<div class='card' style='border-radius:6px; margin:15px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; border:0;'>
-													<div class='card-header' style='border-width:1px; border-radius:6px; background:white;'>
-														<img src='http://localhost/MedStory/assets/uploads/dokter/".$data['namaDokter'].".jpg' alt='Card image cap' class='rounded-circle img-fluid' style='width:50px; height:50px; float:left; margin-right:10px;'>
-														<h3 style='font-size:18px;'>".$data['namaDokter']." - ".$data['spesialis']."</h3>
-														<h5 style='font-size:16px; float:right;'>".$data['lokasi']."</h5>
-														<h5 style='font-size:14px; float:left; text-decoration:underline; color:#4183D7;' type='button' id='headingOne' data-toggle='collapse' data-target='#collapseB".$j."' 
-														style='border-width:1px;' aria-expanded='true' aria-controls='collapseOne'>Detail
-															<img src='http://localhost/MedStory/assets/icon/Drop Down.png' style='width:25px; height:20px; float:left; padding-left:3px;'></h5>				
-													</div>
-													<div id='collapseB".$j."' class='collapse".$status."' aria-labelledby='headingOne' data-parent='#accordion3'>
-														<div class='card-body'>
-															<h5 style='font-size:14px; color:#404040;'>".$data['jamMulai']."-".$data['jamSelesai']."</h5>
-															<h5 style='font-size:14px; color:#404040;'>".$data['hariPraktik']."</h5>
-														</div>
-													</div>
-												</div>
-											</div>";
-										$j++;
-										$status = ' ';}
-									?>
+									<div id="accordionDoctor">
+									<!--Collapse control dokter-->
+										<button class='btn btn-primary' data-toggle='collapse' data-target='#collapseDUmum' aria-expanded='false' 
+										aria-controls='multiCollapseExample2' style='background-color: white; border:none; margin-bottom:1%; max-width:120px; max-height:120px;'>
+											<img src='http://localhost/MedStory/assets/icon/Doctor.png' alt='Card image cap' class='rounded-circle img-fluid' 
+												style='width:60px; height:60px; border: 2.5px solid #4183D7;'>
+											<h5 style='font-size:14px; color:#4183D7; white-space: nowrap;'>Umum</h5>
+										</button>
+										<button class='btn btn-primary' data-toggle='collapse' data-target='#collapseDAnak' aria-expanded='false' 
+										aria-controls='multiCollapseExample2' style='background-color: white; border:none; margin-bottom:1%; max-width:120px; max-height:120px;'>
+											<img src='http://localhost/MedStory/assets/icon/DAnak.png' alt='Card image cap' class='rounded-circle img-fluid' 
+												style='width:60px; height:60px; border: 2.5px solid #4183D7;'>
+											<h5 style='font-size:14px; color:#4183D7; white-space: nowrap;'>Anak</h5>
+										</button>
+										<button class='btn btn-primary' data-toggle='collapse' data-target='#collapseDGigi' aria-expanded='false' 
+										aria-controls='multiCollapseExample2' style='background-color: white; border:none; margin-bottom:1%; max-width:120px; max-height:120px;'>
+											<img src='http://localhost/MedStory/assets/icon/DGigi.png' alt='Card image cap' class='rounded-circle img-fluid' 
+												style='width:60px; height:60px; border: 2.5px solid #4183D7;'>
+											<h5 style='font-size:14px; color:#4183D7; white-space: nowrap;'>Gigi</h5>
+										</button>
+										<button class='btn btn-primary' data-toggle='collapse' data-target='#collapseDMata' aria-expanded='false' 
+										aria-controls='multiCollapseExample2' style='background-color: white; border:none; margin-bottom:1%; max-width:120px; max-height:120px;'>
+											<img src='http://localhost/MedStory/assets/icon/DMata.png' alt='Card image cap' class='rounded-circle img-fluid' 
+												style='width:60px; height:60px; border: 2.5px solid #4183D7;'>
+											<h5 style='font-size:14px; color:#4183D7; white-space: nowrap;'>Mata</h5>
+										</button>
+										<button class='btn btn-primary' data-toggle='collapse' data-target='#collapseDKulit' aria-expanded='false' 
+										aria-controls='multiCollapseExample2' style='background-color: white; border:none; margin-bottom:1%; max-width:120px; max-height:120px;'>
+											<img src='http://localhost/MedStory/assets/icon/DKulit.png' alt='Card image cap' class='rounded-circle img-fluid' 
+												style='width:60px; height:60px; border: 2.5px solid #4183D7;'>
+											<h5 style='font-size:14px; color:#4183D7; white-space: nowrap;'>Kulit & Kelamin</h5>
+										</button>
+										<button class='btn btn-primary' data-toggle='collapse' data-target='#collapseDOrtopedi' aria-expanded='false' 
+										aria-controls='multiCollapseExample2' style='background-color: white; border:none; margin-bottom:1%; max-width:120px; max-height:120px;'>
+											<img src='http://localhost/MedStory/assets/icon/DOrtopedi.png' alt='Card image cap' class='rounded-circle img-fluid' 
+												style='width:60px; height:60px; border: 2.5px solid #4183D7;'>
+											<h5 style='font-size:14px; color:#4183D7; white-space: nowrap;'>Ortopedi</h5>
+										</button>
+										<button class='btn btn-primary' data-toggle='collapse' data-target='#collapseDTHT' aria-expanded='false' 
+										aria-controls='multiCollapseExample2' style='background-color: white; border:none; margin-bottom:1%; max-width:120px; max-height:120px;'>
+											<img src='http://localhost/MedStory/assets/icon/DTHT.png' alt='Card image cap' class='rounded-circle img-fluid' 
+												style='width:60px; height:60px; border: 2.5px solid #4183D7;'>
+											<h5 style='font-size:14px; color:#4183D7;'>THT</h5>
+										</button>
+									<!--Dokter collapse item-->
+									<div class='collapse show' id='collapseDUmum' data-parent='#accordionDoctor'>
+										<div class='container'>	
+										<?php 
+											echo"<h5 class='font-weight-bold'>Kapankah saya harus berobat ke dokter umum?</h5>                        
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+											"; 
+											$jml = 0;
+											foreach ($dataPraktik as $dataDokter){
+												if ($dataDokter['spesialis'] == 'Umum'){
+													$jml++;
+												} 
+											}
+											if ($jml > 0){ 
+												echo"<!--List dokter.-->
+												<div class='col-md'>
+													<h5 class='font-weight-bold' style='text-align:center;'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Doctor.png'> Dokter Umum</h5>
+													<div id='carouselUmum' class='carousel slide' data-ride='carousel' data-interval='0'>
+													<!-- Carousel indicators -->
+													<ol class='carousel-indicators'>";
+													$item = 0;
+													$page = 0;
+													foreach ($dataPraktik as $dataDokter){
+														if ($dataDokter['spesialis'] == 'Umum'){
+															if($item == 0 && $page == 0){
+																echo"<li data-target='#carouselUmum' data-slide-to='0' class='active'></li>";
+																$item++;
+																$page++;
+															} else if ($item % 3 == 0){
+																echo"<li data-target='#carouselUmum' data-slide-to='".$page."'></li>";
+																$item++;
+																$page++;
+															} else if ($item % 3 != 0){
+																$item++;
+															}
+														}
+													}
+													echo"</ol>   
+
+													<!-- Wrapper for carousel items -->
+													<div class='carousel-inner'>";
+														$k = 1;
+														$state = ' active';
+														foreach ($dataPraktik as $dataDokter2){
+															if ($dataDokter2['spesialis'] == 'Umum'){
+																if($k % 4 == 0  || $k == 1){
+																	echo"<div class='item carousel-item".$state."' >
+																	<div class='row' style='margin:20px;'>";
+																}
+																echo"<div class='col-sm' style='max-width:280px; margin-bottom:10px;'>
+																	<div class='thumb-wrapper'>
+																		<div class='img-box'>
+																			<img src='http://localhost/MedStory/assets/uploads/dokter/".$dataDokter2['namaDokter'].".jpg' alt='Card image cap' class='rounded-circle img-fluid' style='width:100px; height:100px;'>								
+																		</div>
+																		<div class='thumb-content'>
+																			<h5 style='color:#212121; font-size:16px;'>".$dataDokter2['namaDokter']."</h5>									
+																			<p class='item-price'>".$dataDokter2['hariPraktik']."</p>
+																			<p class='item-price'>".$dataDokter2['jamMulai']." - ".$dataDokter2['jamSelesai']."</p>
+																		</div>						
+																	</div>
+																</div>";
+																
+																$k++;
+																$state = ' ';
+																if($k % 4 == 0){
+																	echo"</div>
+																</div>";
+																}
+															}
+														}
+													echo"</div>
+													</div></div></div>
+													<!-- Carousel controls -->
+													<a class='carousel-control-prev' href='#carouselUmum' data-slide='prev'>
+														<i class='fa fa-angle-left'></i>
+													</a>
+													<a class='carousel-control-next' href='#carouselUmum' data-slide='next'>
+														<i class='fa fa-angle-right'></i>
+													</a>
+												</div>";
+											} else {
+												echo "<div class='container' style='margin-top:1%; margin-bottom:2%;'>
+													<p style='font-style:italic; text-align:center; color:grey;'>Maaf, kami tidak menemukan dokter disekitar sini</p>
+													<img src='http://localhost/MedStory/assets/icon/NoDoctor.gif' alt='Not Found.png' style='display: block;
+														margin-left: auto; margin-right: auto; width: 200px; height: 200px;'>
+												</div>";
+											}
+										?>
+										</div>
+									</div>
+									<div class='collapse' id='collapseDAnak' data-parent='#accordionDoctor'>
+										<div class='container'>	
+											<?php 
+												echo"<h5 class='font-weight-bold'>Kapankah saya harus berobat ke dokter anak?</h5>                        
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+												"; 
+												$jml = 0;
+												foreach ($dataPraktik as $dataDokter){
+													if ($dataDokter['spesialis'] == 'Anak'){
+														$jml++;
+													} 
+												}
+												if ($jml > 0){ 
+													echo"<!--List dokter.-->
+													<div class='col-md'>
+														<h5 class='font-weight-bold' style='text-align:center;'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Doctor.png'> Dokter Anak</h5>
+														<div id='carouselAnak' class='carousel slide' data-ride='carousel' data-interval='0'>
+														<!-- Carousel indicators -->
+														<ol class='carousel-indicators'>";
+														$item = 0;
+														$page = 0;
+														foreach ($dataPraktik as $dataDokter){
+															if ($dataDokter['spesialis'] == 'Anak'){
+																if($item == 0 && $page == 0){
+																	echo"<li data-target='#carouselAnak' data-slide-to='0' class='active'></li>";
+																	$item++;
+																	$page++;
+																} else if ($item % 3 == 0){
+																	echo"<li data-target='#carouselAnak' data-slide-to='".$page."'></li>";
+																	$item++;
+																	$page++;
+																} else if ($item % 3 != 0){
+																	$item++;
+																}
+															}
+														}
+														echo"</ol>   
+
+														<!-- Wrapper for carousel items -->
+														<div class='carousel-inner'>";
+															$k = 1;
+															$state = ' active';
+															foreach ($dataPraktik as $dataDokter2){
+																if ($dataDokter2['spesialis'] == 'Anak'){
+																	if($k % 4 == 0  || $k == 1){
+																		echo"<div class='item carousel-item".$state."' >
+																		<div class='row' style='margin:20px;'>";
+																	}
+																	echo"<div class='col-sm' style='max-width:280px; margin-bottom:10px;'>
+																		<div class='thumb-wrapper'>
+																			<div class='img-box'>
+																				<img src='http://localhost/MedStory/assets/uploads/dokter/".$dataDokter2['namaDokter'].".jpg' alt='Card image cap' class='rounded-circle img-fluid' style='width:100px; height:100px;'>								
+																			</div>
+																			<div class='thumb-content'>
+																				<h5 style='color:#212121; font-size:16px;'>".$dataDokter2['namaDokter']."</h5>									
+																				<p class='item-price'>".$dataDokter2['hariPraktik']."</p>
+																				<p class='item-price'>".$dataDokter2['jamMulai']." - ".$dataDokter2['jamSelesai']."</p>
+																			</div>						
+																		</div>
+																	</div>";
+																	
+																	$k++;
+																	$state = ' ';
+																	if($k % 4 == 0){
+																		echo"</div>
+																	</div>";
+																	}
+																}
+															}
+														echo"</div>
+														</div></div></div>
+														<!-- Carousel controls -->
+														<a class='carousel-control-prev' href='#carouselAnak' data-slide='prev'>
+															<i class='fa fa-angle-left'></i>
+														</a>
+														<a class='carousel-control-next' href='#carouselAnak' data-slide='next'>
+															<i class='fa fa-angle-right'></i>
+														</a>
+													</div>";
+												} else {
+													echo "<div class='container' style='margin-top:1%; margin-bottom:2%;'>
+														<p style='font-style:italic; text-align:center; color:grey;'>Maaf, kami tidak menemukan dokter disekitar sini</p>
+														<img src='http://localhost/MedStory/assets/icon/NoDoctor.gif' alt='Not Found.png' style='display: block;
+															margin-left: auto; margin-right: auto; width: 200px; height: 200px;'>
+													</div>";
+												}
+											?>
+										</div>
+									</div>
+									<div class='collapse' id='collapseDGigi' data-parent='#accordionDoctor'>
+										<div class='container'>	
+										<?php
+											echo"<h5 class='font-weight-bold'>Kapankah saya harus berobat ke dokter gigi?</h5>                        
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+											"; 
+											$jml = 0;
+											foreach ($dataPraktik as $dataDokter){
+												if ($dataDokter['spesialis'] == 'Gigi'){
+													$jml++;
+												} 
+											}
+											if ($jml > 0){ 
+												echo"<!--List dokter.-->
+												<div class='col-md'>
+													<h5 class='font-weight-bold' style='text-align:center;'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Doctor.png'> Dokter Gigi</h5>
+													<div id='carouselGigi' class='carousel slide' data-ride='carousel' data-interval='0'>
+													<!-- Carousel indicators -->
+													<ol class='carousel-indicators'>";
+													$item = 0;
+													$page = 0;
+													foreach ($dataPraktik as $dataDokter){
+														if ($dataDokter['spesialis'] == 'Gigi'){
+															if($item == 0 && $page == 0){
+																echo"<li data-target='#carouselGigi' data-slide-to='0' class='active'></li>";
+																$item++;
+																$page++;
+															} else if ($item % 3 == 0){
+																echo"<li data-target='#carouselGigi' data-slide-to='".$page."'></li>";
+																$item++;
+																$page++;
+															} else if ($item % 3 != 0){
+																$item++;
+															}
+														}
+													}
+													echo"</ol>   
+
+													<!-- Wrapper for carousel items -->
+													<div class='carousel-inner'>";
+														$k = 1;
+														$state = ' active';
+														foreach ($dataPraktik as $dataDokter2){
+															if ($dataDokter2['spesialis'] == 'Gigi'){
+																if($k % 4 == 0  || $k == 1){
+																	echo"<div class='item carousel-item".$state."' >
+																	<div class='row' style='margin:20px;'>";
+																}
+																echo"<div class='col-sm' style='max-width:280px; margin-bottom:10px;'>
+																	<div class='thumb-wrapper'>
+																		<div class='img-box'>
+																			<img src='http://localhost/MedStory/assets/uploads/dokter/".$dataDokter2['namaDokter'].".jpg' alt='Card image cap' class='rounded-circle img-fluid' style='width:100px; height:100px;'>								
+																		</div>
+																		<div class='thumb-content'>
+																			<h5 style='color:#212121; font-size:16px;'>".$dataDokter2['namaDokter']."</h5>									
+																			<p class='item-price'>".$dataDokter2['hariPraktik']."</p>
+																			<p class='item-price'>".$dataDokter2['jamMulai']." - ".$dataDokter2['jamSelesai']."</p>
+																		</div>						
+																	</div>
+																</div>";
+																
+																$k++;
+																$state = ' ';
+																if($k % 4 == 0){
+																	echo"</div>
+																</div>";
+																}
+															}
+														}
+													echo"</div>
+													</div></div></div>
+													<!-- Carousel controls -->
+													<a class='carousel-control-prev' href='#carouselGigi' data-slide='prev'>
+														<i class='fa fa-angle-left'></i>
+													</a>
+													<a class='carousel-control-next' href='#carouselGigi' data-slide='next'>
+														<i class='fa fa-angle-right'></i>
+													</a>
+												</div>";
+											} else {
+												echo "<div class='container' style='margin-top:1%; margin-bottom:2%;'>
+													<p style='font-style:italic; text-align:center; color:grey;'>Maaf, kami tidak menemukan dokter disekitar sini</p>
+													<img src='http://localhost/MedStory/assets/icon/NoDoctor.gif' alt='Not Found.png' style='display: block;
+														margin-left: auto; margin-right: auto; width: 200px; height: 200px;'>
+												</div>";
+											}
+										?>
+										</div>
+									</div>
+									<div class='collapse' id='collapseDMata' data-parent='#accordionDoctor'>
+										<div class='container'>	
+										<?php 
+											echo"<h5 class='font-weight-bold'>Kapankah saya harus berobat ke dokter mata?</h5>                        
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+											"; 
+											$jml = 0;
+											foreach ($dataPraktik as $dataDokter){
+												if ($dataDokter['spesialis'] == 'Mata'){
+													$jml++;
+												} 
+											}
+											if ($jml > 0){ 
+												echo"<!--List dokter.-->
+												<div class='col-md'>
+													<h5 class='font-weight-bold' style='text-align:center;'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Doctor.png'> Dokter Mata</h5>
+													<div id='carouselMata' class='carousel slide' data-ride='carousel' data-interval='0'>
+													<!-- Carousel indicators -->
+													<ol class='carousel-indicators'>";
+													$item = 0;
+													$page = 0;
+													foreach ($dataPraktik as $dataDokter){
+														if ($dataDokter['spesialis'] == 'Mata'){
+															if($item == 0 && $page == 0){
+																echo"<li data-target='#carouselMata' data-slide-to='0' class='active'></li>";
+																$item++;
+																$page++;
+															} else if ($item % 3 == 0){
+																echo"<li data-target='#carouselMata' data-slide-to='".$page."'></li>";
+																$item++;
+																$page++;
+															} else if ($item % 3 != 0){
+																$item++;
+															}
+														}
+													}
+													echo"</ol>   
+
+													<!-- Wrapper for carousel items -->
+													<div class='carousel-inner'>";
+														$k = 1;
+														$state = ' active';
+														foreach ($dataPraktik as $dataDokter2){
+															if ($dataDokter2['spesialis'] == 'Mata'){
+																if($k % 4 == 0  || $k == 1){
+																	echo"<div class='item carousel-item".$state."' >
+																	<div class='row' style='margin:20px;'>";
+																}
+																echo"<div class='col-sm' style='max-width:280px; margin-bottom:10px;'>
+																	<div class='thumb-wrapper'>
+																		<div class='img-box'>
+																			<img src='http://localhost/MedStory/assets/uploads/dokter/".$dataDokter2['namaDokter'].".jpg' alt='Card image cap' class='rounded-circle img-fluid' style='width:100px; height:100px;'>								
+																		</div>
+																		<div class='thumb-content'>
+																			<h5 style='color:#212121; font-size:16px;'>".$dataDokter2['namaDokter']."</h5>									
+																			<p class='item-price'>".$dataDokter2['hariPraktik']."</p>
+																			<p class='item-price'>".$dataDokter2['jamMulai']." - ".$dataDokter2['jamSelesai']."</p>
+																		</div>						
+																	</div>
+																</div>";
+																
+																$k++;
+																$state = ' ';
+																if($k % 4 == 0){
+																	echo"</div>
+																</div>";
+																}
+															}
+														}
+													echo"</div>
+													</div></div></div>
+													<!-- Carousel controls -->
+													<a class='carousel-control-prev' href='#carouselMata' data-slide='prev'>
+														<i class='fa fa-angle-left'></i>
+													</a>
+													<a class='carousel-control-next' href='#carouselMata' data-slide='next'>
+														<i class='fa fa-angle-right'></i>
+													</a>
+												</div>";
+											} else {
+												echo "<div class='container' style='margin-top:1%; margin-bottom:2%;'>
+													<p style='font-style:italic; text-align:center; color:grey;'>Maaf, kami tidak menemukan dokter disekitar sini</p>
+													<img src='http://localhost/MedStory/assets/icon/NoDoctor.gif' alt='Not Found.png' style='display: block;
+														margin-left: auto; margin-right: auto; width: 200px; height: 200px;'>
+												</div>";
+											}
+										?>
+										</div>
+									</div>
+									<div class='collapse' id='collapseDKulit' data-parent='#accordionDoctor'>
+										<div class='container'>	
+										<?php 
+											echo"<h5 class='font-weight-bold'>Kapankah saya harus berobat ke dokter kulit & kelamin?</h5>                        
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+											"; 
+											$jml = 0;
+											foreach ($dataPraktik as $dataDokter){
+												if ($dataDokter['spesialis'] == 'Kulit'){
+													$jml++;
+												} 
+											}
+											if ($jml > 0){ 
+												echo"<!--List dokter.-->
+												<div class='col-md'>
+													<h5 class='font-weight-bold' style='text-align:center;'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Doctor.png'> Dokter Kulit & Kelamin</h5>
+													<div id='carouselKulit' class='carousel slide' data-ride='carousel' data-interval='0'>
+													<!-- Carousel indicators -->
+													<ol class='carousel-indicators'>";
+													$item = 0;
+													$page = 0;
+													foreach ($dataPraktik as $dataDokter){
+														if ($dataDokter['spesialis'] == 'Kulit'){
+															if($item == 0 && $page == 0){
+																echo"<li data-target='#carouselKulit' data-slide-to='0' class='active'></li>";
+																$item++;
+																$page++;
+															} else if ($item % 3 == 0){
+																echo"<li data-target='#carouselKulit' data-slide-to='".$page."'></li>";
+																$item++;
+																$page++;
+															} else if ($item % 3 != 0){
+																$item++;
+															}
+														}
+													}
+													echo"</ol>   
+
+													<!-- Wrapper for carousel items -->
+													<div class='carousel-inner'>";
+														$k = 1;
+														$state = ' active';
+														foreach ($dataPraktik as $dataDokter2){
+															if ($dataDokter2['spesialis'] == 'Kulit'){
+																if($k % 4 == 0  || $k == 1){
+																	echo"<div class='item carousel-item".$state."' >
+																	<div class='row' style='margin:20px;'>";
+																}
+																echo"<div class='col-sm' style='max-width:280px; margin-bottom:10px;'>
+																	<div class='thumb-wrapper'>
+																		<div class='img-box'>
+																			<img src='http://localhost/MedStory/assets/uploads/dokter/".$dataDokter2['namaDokter'].".jpg' alt='Card image cap' class='rounded-circle img-fluid' style='width:100px; height:100px;'>								
+																		</div>
+																		<div class='thumb-content'>
+																			<h5 style='color:#212121; font-size:16px;'>".$dataDokter2['namaDokter']."</h5>									
+																			<p class='item-price'>".$dataDokter2['hariPraktik']."</p>
+																			<p class='item-price'>".$dataDokter2['jamMulai']." - ".$dataDokter2['jamSelesai']."</p>
+																		</div>						
+																	</div>
+																</div>";
+																
+																$k++;
+																$state = ' ';
+																if($k % 4 == 0){
+																	echo"</div>
+																</div>";
+																}
+															}
+														}
+													echo"</div>
+													</div></div></div>
+													<!-- Carousel controls -->
+													<a class='carousel-control-prev' href='#carouselKulit' data-slide='prev'>
+														<i class='fa fa-angle-left'></i>
+													</a>
+													<a class='carousel-control-next' href='#carouselKulit' data-slide='next'>
+														<i class='fa fa-angle-right'></i>
+													</a>
+												</div>";
+											} else {
+												echo "<div class='container' style='margin-top:1%; margin-bottom:2%;'>
+													<p style='font-style:italic; text-align:center; color:grey;'>Maaf, kami tidak menemukan dokter disekitar sini</p>
+													<img src='http://localhost/MedStory/assets/icon/NoDoctor.gif' alt='Not Found.png' style='display: block;
+														margin-left: auto; margin-right: auto; width: 200px; height: 200px;'>
+												</div>";
+											}
+										?>
+										</div>
+									</div>
+									<div class='collapse' id='collapseDTHT' data-parent='#accordionDoctor'>
+										<div class='container'>	
+										<?php 
+											echo"<h5 class='font-weight-bold'>Kapankah saya harus berobat ke dokter THT?</h5>                        
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+											"; 
+											$jml = 0;
+											foreach ($dataPraktik as $dataDokter){
+												if ($dataDokter['spesialis'] == 'THT'){
+													$jml++;
+												} 
+											}
+											if ($jml > 0){ 
+												echo"<!--List dokter.-->
+												<div class='col-md'>
+													<h5 class='font-weight-bold' style='text-align:center;'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Doctor.png'> Dokter THT & Kelamin</h5>
+													<div id='carouselTHT' class='carousel slide' data-ride='carousel' data-interval='0'>
+													<!-- Carousel indicators -->
+													<ol class='carousel-indicators'>";
+													$item = 0;
+													$page = 0;
+													foreach ($dataPraktik as $dataDokter){
+														if ($dataDokter['spesialis'] == 'THT'){
+															if($item == 0 && $page == 0){
+																echo"<li data-target='#carouselTHT' data-slide-to='0' class='active'></li>";
+																$item++;
+																$page++;
+															} else if ($item % 3 == 0){
+																echo"<li data-target='#carouselTHT' data-slide-to='".$page."'></li>";
+																$item++;
+																$page++;
+															} else if ($item % 3 != 0){
+																$item++;
+															}
+														}
+													}
+													echo"</ol>   
+
+													<!-- Wrapper for carousel items -->
+													<div class='carousel-inner'>";
+														$k = 1;
+														$state = ' active';
+														foreach ($dataPraktik as $dataDokter2){
+															if ($dataDokter2['spesialis'] == 'THT'){
+																if($k % 4 == 0  || $k == 1){
+																	echo"<div class='item carousel-item".$state."' >
+																	<div class='row' style='margin:20px;'>";
+																}
+																echo"<div class='col-sm' style='max-width:280px; margin-bottom:10px;'>
+																	<div class='thumb-wrapper'>
+																		<div class='img-box'>
+																			<img src='http://localhost/MedStory/assets/uploads/dokter/".$dataDokter2['namaDokter'].".jpg' alt='Card image cap' class='rounded-circle img-fluid' style='width:100px; height:100px;'>								
+																		</div>
+																		<div class='thumb-content'>
+																			<h5 style='color:#212121; font-size:16px;'>".$dataDokter2['namaDokter']."</h5>									
+																			<p class='item-price'>".$dataDokter2['hariPraktik']."</p>
+																			<p class='item-price'>".$dataDokter2['jamMulai']." - ".$dataDokter2['jamSelesai']."</p>
+																		</div>						
+																	</div>
+																</div>";
+																
+																$k++;
+																$state = ' ';
+																if($k % 4 == 0){
+																	echo"</div>
+																</div>";
+																}
+															}
+														}
+													echo"</div>
+													</div></div></div>
+													<!-- Carousel controls -->
+													<a class='carousel-control-prev' href='#carouselTHT' data-slide='prev'>
+														<i class='fa fa-angle-left'></i>
+													</a>
+													<a class='carousel-control-next' href='#carouselTHT' data-slide='next'>
+														<i class='fa fa-angle-right'></i>
+													</a>
+												</div>";
+											} else {
+												echo "<div class='container' style='margin-top:1%; margin-bottom:2%;'>
+													<p style='font-style:italic; text-align:center; color:grey;'>Maaf, kami tidak menemukan dokter disekitar sini</p>
+													<img src='http://localhost/MedStory/assets/icon/NoDoctor.gif' alt='Not Found.png' style='display: block;
+														margin-left: auto; margin-right: auto; width: 200px; height: 200px;'>
+												</div>";
+											}
+										?>
+										</div>
+									</div>
+									<div class='collapse' id='collapseDOrtopedi' data-parent='#accordionDoctor'>
+										<div class='container'>	
+										<?php 
+											echo"<h5 class='font-weight-bold'>Kapankah saya harus berobat ke dokter ortopedi?</h5>                        
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+											"; 
+											$jml = 0;
+											foreach ($dataPraktik as $dataDokter){
+												if ($dataDokter['spesialis'] == 'Ortopedi'){
+													$jml++;
+												} 
+											}
+											if ($jml > 0){ 
+												echo"<!--List dokter.-->
+												<div class='col-md'>
+													<h5 class='font-weight-bold' style='text-align:center;'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Doctor.png'> Dokter Ortopedi & Kelamin</h5>
+													<div id='carouselOrtopedi' class='carousel slide' data-ride='carousel' data-interval='0'>
+													<!-- Carousel indicators -->
+													<ol class='carousel-indicators'>";
+													$item = 0;
+													$page = 0;
+													foreach ($dataPraktik as $dataDokter){
+														if ($dataDokter['spesialis'] == 'Ortopedi'){
+															if($item == 0 && $page == 0){
+																echo"<li data-target='#carouselOrtopedi' data-slide-to='0' class='active'></li>";
+																$item++;
+																$page++;
+															} else if ($item % 3 == 0){
+																echo"<li data-target='#carouselOrtopedi' data-slide-to='".$page."'></li>";
+																$item++;
+																$page++;
+															} else if ($item % 3 != 0){
+																$item++;
+															}
+														}
+													}
+													echo"</ol>   
+
+													<!-- Wrapper for carousel items -->
+													<div class='carousel-inner'>";
+														$k = 1;
+														$state = ' active';
+														foreach ($dataPraktik as $dataDokter2){
+															if ($dataDokter2['spesialis'] == 'Ortopedi'){
+																if($k % 4 == 0  || $k == 1){
+																	echo"<div class='item carousel-item".$state."' >
+																	<div class='row' style='margin:20px;'>";
+																}
+																echo"<div class='col-sm' style='max-width:280px; margin-bottom:10px;'>
+																	<div class='thumb-wrapper'>
+																		<div class='img-box'>
+																			<img src='http://localhost/MedStory/assets/uploads/dokter/".$dataDokter2['namaDokter'].".jpg' alt='Card image cap' class='rounded-circle img-fluid' style='width:100px; height:100px;'>								
+																		</div>
+																		<div class='thumb-content'>
+																			<h5 style='color:#212121; font-size:16px;'>".$dataDokter2['namaDokter']."</h5>									
+																			<p class='item-price'>".$dataDokter2['hariPraktik']."</p>
+																			<p class='item-price'>".$dataDokter2['jamMulai']." - ".$dataDokter2['jamSelesai']."</p>
+																		</div>						
+																	</div>
+																</div>";
+																
+																$k++;
+																$state = ' ';
+																if($k % 4 == 0){
+																	echo"</div>
+																</div>";
+																}
+															}
+														}
+													echo"</div>
+													</div></div></div>
+													<!-- Carousel controls -->
+													<a class='carousel-control-prev' href='#carouselOrtopedi' data-slide='prev'>
+														<i class='fa fa-angle-left'></i>
+													</a>
+													<a class='carousel-control-next' href='#carouselOrtopedi' data-slide='next'>
+														<i class='fa fa-angle-right'></i>
+													</a>
+												</div>";
+											} else {
+												echo "<div class='container' style='margin-top:1%; margin-bottom:2%;'>
+													<p style='font-style:italic; text-align:center; color:grey;'>Maaf, kami tidak menemukan dokter disekitar sini</p>
+													<img src='http://localhost/MedStory/assets/icon/NoDoctor.gif' alt='Not Found.png' style='display: block;
+														margin-left: auto; margin-right: auto; width: 200px; height: 200px;'>
+												</div>";
+											}
+										?>
+										</div>
+									</div>
+								</div><!--End of doctor's accordion-->
+
 								</div>
 							</div>
 						</div>

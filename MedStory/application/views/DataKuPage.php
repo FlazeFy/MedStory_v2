@@ -116,12 +116,14 @@
 									$asupan = 0;
 									$hari = 0;
 									$i = 0;
+									$j = 0;
 									foreach($dataUser as $user){
 										foreach($dataKebutuhan as $kebutuhan){
 											if(($user['namaPengguna'] == $this->session->userdata('userTrack')) && ($kebutuhan['id_user'] == $user['id_user'])){
 												foreach($totalUserKebutuhan as $cal){
 													if(($cal['date'] == $kebutuhan['date'])){
 														$asupan += $cal['kalori'];
+														$j++;
 													}
 												}
 												$hari += $asupan;
@@ -133,8 +135,13 @@
 											echo $hari/$i;
 											$hari = 0;
 										} else {
-											echo "- ";
+											echo "-";
 										}									
+									}
+									if($j == 0){
+										echo "<br><div class='container' style='margin-top:1%; margin-bottom:2%;'>
+											<p style='font-style:italic; text-align:center; color:grey;'>Maaf, Anda belum menambahkan asupan apapun</p>
+										</div>";
 									}
 								?> cal</h5> 							
 							</div>

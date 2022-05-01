@@ -22,5 +22,18 @@
 			$data = $this->db->get('relasiobatpenyakit');
 			return $data->result_array();
 		}
+		public function get_data_kms(){
+			$this->db->select('*');
+			$this->db->from('kms');
+			$this->db->join('pengguna','kms.id_user = pengguna.id_user');
+			$condition = array('namaPengguna' =>  $this->session->userdata('userTrack'));
+			$this->db->where($condition);
+			$this->db->order_by('datecreated','DESC');
+			return $data = $this->db->get()->result_array();
+		}
+		public function insertKms($data){
+			$this->db->insert('kms',$data);	
+			redirect('smartDoc');
+		}
 	}
 ?>
