@@ -29,9 +29,10 @@
 				z-index: 99;
 				font-size: 18px;
 				border: none;
-				background-color: #22A7F0;
 				padding: 15px;
-				border-radius: 6px;
+				border-radius:100%; 
+				background:#22A7F0; 
+				box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 			}
 			* {
 			box-sizing: border-box;
@@ -226,12 +227,12 @@
 
 			<br><br><br>
 			<div class="container bg-white" id="card-car" style="margin-bottom: 1%; margin-top: 1%; padding-top: 0.5%; border-radius: 10px;">
-				<h5 style="text-align: left; color:#696969;">Kalkulator BMI</h5>	
+				<h5 style="text-align: left; font-weight:w600;">Kalkulator BMI</h5>	
 				<div class='card-body'>
 					<div class='container'>
 						<div class='row'>
 							<div class='col-md-6'>
-								<h5 class='font-weight-bold'>Apa itu BMI?</h5>                        
+								<h6 style='color:black;'>Apa itu BMI?</h6>                        
 								<p>Body Mass Index (BMI) atau Indeks Massa Tubuh (IMT) adalah angka yang menjadi penilaian standar untuk menentukan apakah berat badan Anda tergolong normal, kurang, berlebih, atau obesitas.</p>
 							</div>
 							<div class='col-md-6'>
@@ -257,12 +258,12 @@
 				</div>
 			</div>
 			<div class="container bg-white" id="card-car" style="margin-bottom: 1%; margin-top: 1%; padding-top: 0.5%; border-radius: 10px;">
-				<h5 style="text-align: left; color:#696969;">RoboDoc</h5>	
+				<h5 style="text-align: left; font-weight:w600;">RoboDoc</h5>	
 				<div class='card-body'>
 					<div class='container'>
 						<div class='row'>
 							<div class='col-md-6'>
-								<h5 class='font-weight-bold'>Apa itu RoboDoc?</h5>                        
+								<h6 style='color:black;'>Apa itu RoboDoc?</h6>                        
 								<p>RoboDoc adalah fitur yang dapat mendukung Anda untuk mengetahui penyakit yang Anda derita dengan cepat dan tanpa perlu diagnosa lansung dengan dokter. Anda cukup memberitahukan gejala yang Anda derita kepada RoboDoc. Dan kami akan menampilkan daftar kemungkinan penyakit yang Anda derita.</p>
 							</div>
 							<div class='col-md-6'>
@@ -398,12 +399,12 @@
 				</div>
 			</div>
 			<div class="container bg-white" id="card-car" style="margin-bottom: 1%; margin-top: 1%; padding-top: 0.5%; border-radius: 10px;">
-				<h5 style="text-align: left; color:#696969;">Kalkulator Kalori</h5>	
+				<h5 style="text-align: left; font-weight:w600;">Kalkulator Kalori</h5>	
 				<div class='card-body'>
 					<div class='container'>
 						<div class='row'>
 							<div class='col-md-6'>
-								<h5 class='font-weight-bold'>Apa itu Kalkulator kalori?</h5>                        
+								<h6 style='color:black;'>Apa itu Kalkulator kalori?</h6>                        
 								<p>Dengan alat ini Anda mengetahui berapa asupan kalori yang dibutuhkan. Hasil perhitungannya dapat Anda gunakan sebagai salah satu acuan untuk mengontrol asupan kalori per hari.</p>								
 								<h5 class='font-weight-bold' id='hasilCal'></h5>
 							</div>
@@ -457,101 +458,13 @@
 				</div>
 			</div>
 			<div class="container bg-white" id="card-car" style="margin-bottom: 1%; margin-top: 1%; padding-top: 0.5%; border-radius: 10px;">
-				<h5 style="text-align: left; color:#696969;">Kartu Menuju Sehat</h5>	
+				<h5 style="text-align: left; font-weight:w600;">Kartu Menuju Sehat</h5>	
 				<div class='card-body'>
 					<div class='container'>
 						<div class='row'>
 							<div class='col-md-6'>
-								<h5 class='font-weight-bold'>Apa itu KMS?</h5>                        
-								<p>Kartu Menuju Sehat adalah suatu patokan yang digunakan untuk mencatat grafik perkembangan setiap anak dengan mengacu pada berat badan, umur, serta jenis kelamin. Alat ini juga digunakan untuk melihat perkembangan balita tersebut dan menjadi acuan agar menjaga bayi tetap sehat dan mendapatkan gizi yang tepat.</p>
-								<h5 class='font-weight-bold' data-toggle="collapse" href="#collapseriwayatKMS" role='button' style='color:#4183D7;'><i class="fa fa-history"></i> Riwayat<i class="fa fa-angle-down" style='float:right;'></i></h5><hr>  
-								<div id="collapseriwayatKMS" class='card-body collapse show' style='width:100%;'>
-									<?php
-									$i = 0;
-									$jml = 0;
-									foreach($dataKMS as $kms){
-										$jml++;
-									}
-									if ($jml > 0){ 
-										echo"<div id='carouselKMS' class='carousel slide' data-ride='carousel' data-interval='0' style='top:-30px;'>
-										<!-- Carousel indicators -->
-										<ol class='carousel-indicators'>";
-										$item = 0;
-										$page = 0;
-										foreach($dataKMS as $kms){
-											if($item == 0 && $page == 0){
-												echo"<li data-target='#carouselKMS' data-slide-to='0' class='active'></li>";
-												$item++;
-												$page++;
-											} else if ($item % 3 == 0){
-												echo"<li data-target='#carouselKMS' data-slide-to='".$page."'></li>";
-												$item++;
-												$page++;
-											} else if ($item % 3 != 0){
-												$item++;
-											}
-										}
-										echo"</ol>   
-										<!-- Wrapper for carousel items -->
-										<div class='carousel-inner'>";
-										$k = 1;
-										$state = ' active';
-										foreach($dataKMS as $kms){
-											if($k % 4 == 0  || $k == 1){
-												echo"<div class='item carousel-item".$state."' >
-												<div class='row' style='margin:20px;'>";
-											}
-											echo"<div class='card' style='border-radius:6px; border:none; height:100px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
-												margin-bottom:5px;'>
-												<div class='row' style='width:100%;'>
-													<div class='col-sm-1' style='background:#4183D7; left:10px; top:-5px; height:100px; border-top-left-radius: 6px; border-bottom-left-radius: 6px;'>
-														<h4 style='margin-top:25px; margin-left:-5px; color:white;'>"; 
-														if($kms['jenisKelamin'] == 'Wanita'){
-															echo"<i class='fa fa-venus fa-md'></i>"; 
-														} else {
-															echo"<i class='fa fa-mars fa-md'></i>"; 
-														}
-														
-														echo"</h4>
-													</div>
-													<div class='col-sm' >
-														<p style='font-size:14px; color:#22A7F0; text-align:left; margin-top:10px;'><i class='fa-solid fa-baby'></i> ".$kms['namaAnak']."</p>
-														<p style='font-size:14px; color:grey; text-align:left;'><i class='fa-solid fa-weight-scale'></i> ".$kms['berat']." kg / ".$kms['tinggi']." cm</p>
-														<p style='font-size:14px; color:grey; text-align:left;'><i class='fa-solid fa-calendar'></i> ".$kms['tanggalLahirA']."</p>
-													</div>
-													<div class='col-sm' >
-														<p style='font-size:12px; color:grey; float:right; margin-right:-30px; white-space: nowrap; font-style:italic;'>dibuat pada ".$kms['datecreated']."</p>
-														<button class='btn btn-info' style='float:right; margin-right:-25px; margin-top:20px;' data-toggle='modal' data-target='#detailKMS".$kms['id_kms']."'>Detail</button>
-													</div>
-												</div>
-											</div>";
-											$i++;
-											$k++;
-											$state = ' ';
-											if($k % 4 == 0){
-												echo"</div>
-											</div>";
-											}
-										}
-										echo"</div>
-										</div></div>
-										<!-- Carousel controls -->
-										<a class='carousel-control-prev' href='#carouselKMS' data-slide='prev'>
-											<i class='fa fa-angle-left'></i>
-										</a>
-										<a class='carousel-control-next' href='#carouselKMS' data-slide='next'>
-											<i class='fa fa-angle-right'></i>
-										</a>
-										</div>";
-									} else {
-										echo "<div class='container'>
-											<p style='font-style:italic; text-align:center; color:grey; font-size:14px;'>Anda belum pernah menghitung KMS</p>
-											<img src='http://localhost/MedStory/assets/icon/Empty.gif' alt='Sorry.png' style='display: block;
-												margin-left: auto; margin-right: auto; width: 200px; height: 200px; margin-top:-20px;'>
-										</div>";
-									}
-									?> 
-								</div>    								
+								<h6 style='color:black;'>Apa itu KMS?</h6>                        
+								<p>Kartu Menuju Sehat adalah suatu patokan yang digunakan untuk mencatat grafik perkembangan setiap anak dengan mengacu pada berat badan, umur, serta jenis kelamin. Alat ini juga digunakan untuk melihat perkembangan balita tersebut dan menjadi acuan agar menjaga bayi tetap sehat dan mendapatkan gizi yang tepat.</p>							
 							</div>
 							<div class='col-md-6'>
 								<form method='POST' action='smartDoc/hitungKMS'>
@@ -595,6 +508,102 @@
 									</div>
 								</div>
 								</form>
+							</div>
+						</div>
+						<br>
+						<div class='row'>
+							<div class='col-md-7'>
+							<h5 class='font-weight-bold' data-toggle="collapse" href="#collapseriwayatKMS" role='button' style='color:#4183D7;'><i class="fa fa-history"></i> Riwayat<i class="fa fa-angle-down" style='float:right;'></i></h5><hr>  
+								<div id="collapseriwayatKMS" class='card-body collapse show' style='width:100%;'>
+									<?php
+									$i = 0;
+									$jml = 0;
+									foreach($dataKMS as $kms){
+										$jml++;
+									}
+									if ($jml > 0){ 
+										echo"<div id='carouselKMS' class='carousel slide' data-ride='carousel' data-interval='0' style='top:-30px;'>
+										<!-- Carousel indicators -->
+										<ol class='carousel-indicators'>";
+										$item = 0;
+										$page = 0;
+										foreach($dataKMS as $kms){
+											if($item == 0 && $page == 0){
+												echo"<li data-target='#carouselKMS' data-slide-to='0' class='active'></li>";
+												$item++;
+												$page++;
+											} else if ($item % 3 == 0){
+												echo"<li data-target='#carouselKMS' data-slide-to='".$page."'></li>";
+												$item++;
+												$page++;
+											} else if ($item % 3 != 0){
+												$item++;
+											}
+										}
+										echo"</ol>   
+										<!-- Wrapper for carousel items -->
+										<div class='carousel-inner'>";
+										$k = 1;
+										$state = ' active';
+										foreach($dataKMS as $kms){
+											if($k % 4 == 0  || $k == 1){
+												echo"<div class='item carousel-item".$state."' >
+												<div class='row' style='margin:20px;'>";
+											}
+											echo"<div class='card' style='border-radius:6px; border:none; height:100px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
+												margin-bottom:5px; width:100%;'>
+												<div class='row' style=''>
+													<div class='col-sm-1' style='background:#4183D7; left:10px; top:-5px; height:100px; border-top-left-radius: 6px; border-bottom-left-radius: 6px;'>
+														<h4 style='margin-top:35px; margin-left:-5px; color:white;'>"; 
+														if($kms['jenisKelamin'] == 'Wanita'){
+															echo"<i class='fa fa-venus fa-md'></i>"; 
+														} else {
+															echo"<i class='fa fa-mars fa-md'></i>"; 
+														}
+														
+														echo"</h4>
+													</div>
+													<div class='col-sm' >
+														<p style='font-size:14px; color:#22A7F0; text-align:left; margin-top:10px;'><i class='fa-solid fa-baby'></i> ".$kms['namaAnak']."</p>
+														<p style='font-size:14px; color:grey; text-align:left;'><i class='fa-solid fa-weight-scale'></i> ".$kms['berat']." kg / ".$kms['tinggi']." cm</p>
+														<p style='font-size:14px; color:grey; text-align:left;'><i class='fa-solid fa-calendar'></i> ".$kms['tanggalLahirA']."</p>
+													</div>
+													<div class='col-sm' >
+														<p style='font-size:12px; color:grey; float:right; white-space: nowrap; font-style:italic;'>dibuat pada ".$kms['datecreated']."</p>
+														<button class='btn btn-info' style='float:right; margin-top:25px;' data-toggle='modal' data-target='#detailKMS".$kms['id_kms']."'>Detail</button>
+													</div>
+												</div>
+											</div>";
+											$i++;
+											$k++;
+											$state = ' ';
+											if($k % 4 == 0){
+												echo"</div>
+											</div>";
+											}
+										}
+										echo"</div>
+										</div></div>
+										<!-- Carousel controls -->
+										<a class='carousel-control-prev' href='#carouselKMS' data-slide='prev'>
+											<i class='fa fa-angle-left'></i>
+										</a>
+										<a class='carousel-control-next' href='#carouselKMS' data-slide='next'>
+											<i class='fa fa-angle-right'></i>
+										</a>
+										</div>";
+									} else {
+										echo "<div class='container'>
+											<p style='font-style:italic; text-align:center; color:grey; font-size:14px;'>Anda belum pernah menghitung KMS</p>
+											<img src='http://localhost/MedStory/assets/icon/Empty.gif' alt='Sorry.png' style='display: block;
+												margin-left: auto; margin-right: auto; width: 200px; height: 200px; margin-top:-20px;'>
+										</div>";
+									}
+									?> 
+								</div>    	
+							</div>
+							<div class='col-md-4'>
+								<h6 style='color:black;'>Hasil hitung :</h6>   
 							</div>
 						</div>
 					</div>

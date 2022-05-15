@@ -138,7 +138,21 @@
 				'kalori' => $this->input->post('calTotal'),
 				'date' => date("Y/m/d"),
 			);	
-			$this->historyModel->insertCal($data, 'kebutuhankalori');
+			if($data['kalori'] >= 600){
+				$this->historyModel->insertCal($data, 'kebutuhankalori');
+			} else {
+				$data['error_tambahCalHarian'] = "Masukkan kalori yang valid!"; 
+				$this->index();
+				$this->load->view('HistoryPage', $data);
+			}
+		}
+		public function searchDiskusiByKat()
+		{
+			if($this->input->post('kategori') != null){
+				$kategori = $this->input->post('kategori');
+			} 
+			$this->session->set_userdata('set_kategori',$kategori);	
+			redirect('history');	
 		}
 	}
 ?>
