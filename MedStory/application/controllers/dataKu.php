@@ -6,10 +6,12 @@
 			parent::__construct();
 			$this->load->model('DataKuModel');
 			$this->load->model('accountModel');
+			$this->load->library('calendar');
 		}
 		public function index(){
 			$data = [];
-			$data['totalUserKebutuhan']= $this->DataKuModel->get_total_kebutuhan();
+			$data['totalUserKebutuhan']= $this->DataKuModel->get_total_kebutuhan(); //For chart
+			$data['totalUserKebutuhan2']= $this->DataKuModel->get_total_kebutuhan2(); //For modal add cal day
 			$data['topAsupan']= $this->DataKuModel->get_total_asupan();
 			$data['dataAsupan']= $this->DataKuModel->get_data_asupan();
 			$data['dataKebutuhan']= $this->DataKuModel->get_data_kebutuhan();

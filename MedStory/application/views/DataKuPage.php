@@ -15,8 +15,12 @@
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 		<link rel="icon" type="image/png" href="http://localhost/MedStory/assets/icon/Logo.png"/>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://kit.fontawesome.com/12801238e9.js" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
 
         <!--Source file.-->
         <link rel="stylesheet" type="text/css" href="http://localhost/MedStory/assets/css/Main.css" />
@@ -38,6 +42,189 @@
 			* {
 			box-sizing: border-box;
 			}
+			#calendar {
+			margin: 0 auto; }
+			#calendar .fc-view-container {
+				padding: 30px;
+				background-color: #fff;
+				-webkit-box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.2);
+				box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.2); }
+				.fc-event {
+				position: relative;
+				/* for resize handle and other inner positioning */
+				display: block;
+				/* make the <a> tag block */
+				font-size: 12px;
+				line-height: 1.3;
+				letter-spacing: 0.02em;
+				border-radius: 3px;
+				font-weight: 500;
+				border: 1px solid #ddd;
+				-webkit-box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.05);
+				-moz-box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.05);
+				box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.05);
+				/* default BORDER color */ }
+
+.fc-event,
+.fc-event-dot {
+  background-color: #ffffff;
+  color: #212121;
+  position: relative;
+  /* default BACKGROUND color */ }
+.fc-event:hover {
+  color: #212121;
+  /* default TEXT color */
+  text-decoration: none;
+  /* if <a> has an href */ }
+  .fc-event{
+	  cursor:pointer;
+	  padding:3px;
+	  margin:4px;
+	  box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 6px;
+  }
+  	.fc-unthemed td.fc-today {
+  		background: #22A7F0;
+		opacity: 70%;		   
+	}
+	.fc-unthemed td.fc-today:hover{
+  		background: #22A7F0;
+		opacity: 70%;		   
+	}
+	.fc-day.fc-widget-content:hover {
+		background:#f4f4f4;
+	}
+	thead.fc-head{
+		background:#4183D7;
+		color:whitesmoke;
+	}
+	.fc-month-button.fc-button.fc-state-default.fc-corner-left.fc-corner-right.fc-state-active{
+		z-index:0;
+	}
+	.fc-header.fc-widget-header{
+		background:#4183D7;
+	}
+	.fc-unthemed .fc-popover {
+		border-radius: 6px;
+	}
+	.fc-unthemed .fc-popover .fc-header{
+		background:#4183D7;
+		color:whitesmoke;
+	}
+
+	.fc-unthemed .fc-popover .fc-header .fc-close {
+		color:whitesmoke;
+	}
+	.fc-more{
+		color:#212121;
+		font-style:italic;
+	}
+	span .fc-content.fc-title{
+		font-size:14px;
+		color:red;
+	}
+	.fc-popover.fc-more-popover .fc-event{
+		margin-bottom:6px;
+		height:25px;
+		padding:5px;
+  	}
+	.fc-popover.fc-more-popover .fc-event .fc-title{
+		font-size:13px;
+		margin-top:10px;
+  	}
+	.fc-body.fc-widget-content{
+		width:100%; 
+		max-height: calc(60vh - 200px); 
+		overflow-x: auto;
+	}
+	.fc-next-button.fc-button.fc-state-default.fc-corner-right{
+		z-index:0;
+	}
+	.fc-prev-button.fc-button.fc-state-default.fc-corner-left{
+		z-index:0;
+	}
+	.fc-today-button.fc-button.fc-state-default.fc-corner-left.fc-corner-right{
+		z-index:0;
+	}
+
+	#checkCont {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+#checkCont input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 35px;
+  width: 35px;
+  background-color: #eee;
+  border-radius:6px;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+  border-radius:6px;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 13px;
+  top: 8px;
+  width: 8px;
+  height: 15px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.nav-pills-custom .nav-link {
+    color: #212121;
+    background: #fff;
+    position: relative;
+}
+
+.nav-pills-custom .nav-link:hover {
+    color: white;
+    background: #22A7F0;
+    position: relative;
+}
+
+.nav-pills-custom .nav-link.active {
+    color: white;
+    background: #4183D7;
+}
+  
 		</style>
     </head>
     <body>
@@ -108,7 +295,8 @@
 										}
 									}
 									if($i != 0){
-										echo $hari/$i;
+										$round = $hari/$i;
+										echo number_format($round, 2);
 									} else {
 										echo "- ";
 									}	
@@ -133,7 +321,8 @@
 											}
 										}
 										if($i != 0){
-											echo $hari/$i;
+											$round = $hari/$i;
+											echo number_format($round, 2);
 											$hari = 0;
 										} else {
 											echo "-";
@@ -197,6 +386,12 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="container bg-white" id="card-car" style="margin-bottom: 1%; margin-top: 1%; padding-top: 0.5%; border-radius: 10px;">
+			<h5 style="text-align: left; color:#696969;">Kalender Asupan</h5>
+			<div id="calendar"></div>
+			<br>
+		</div>
 		
         <!-- Footer -->
         <footer class="text-center text-lg-start bg-light text-muted">
@@ -252,6 +447,294 @@
 
         <div class="text-center p-4" style="background-color: #333333; color: whitesmoke;">1302194041-Leonardho R Sitanggang</div>
         </footer>
+
+		<!--Day modal-->
+		<div id="calendarModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+					<h4 id="modalTitle" class="modal-title"></h4>
+				</div>
+				<div id="modalBody" class="modal-body"> </div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+		</div>
+
+		<!-- Tambah asupan -->
+		<div class="modal fade" id="asupanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+			<form method="POST" action="">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Asupan Hari ini</h5>
+				<div class="col-sm">
+					<select class="form-control" name="waktu" style="background:#f4f4f4; border-width: 0 0 3px; 
+						border-bottom: 3.5px solid #4183D7; color:#212121; width:200px;">
+						<option value="pagi">Pagi</option>
+						<option value="siang">Siang</option>
+						<option value="malam">Malam</option>
+					</select>
+				</div>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<section class="py-1 header">
+					<!-- Daftar kalori hari ini -->
+					<h5 class='font-weight-bold' data-toggle="collapse" href="#collapseDaftar" role='button' style='color:#4183D7; font-size:16px;'><i class="fa-solid fa-circle-check"></i> Asupan Terpenuhi<i class="fa fa-angle-down" style='float:right;'></i></h5>
+
+					</hr>
+					<h5 class='font-weight-bold' data-toggle="collapse" href="#collapseTambah" role='button' style='color:#4183D7; font-size:16px;'><i class="fa fa-add"></i> Tambah Asupan<i class="fa fa-angle-down" style='float:right;'></i></h5>
+					<div id="collapseTambah" class='card-body collapse' style='width:100%;'>
+						<div class="row">
+							<div class="col-md-3">
+								<!-- Tabs nav -->
+								<div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+								<a class="nav-link mb-2 p-3 shadow active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-sayuran" role="tab" aria-controls="v-pills-home" aria-selected="true">
+									<i class="fa-solid fa-carrot"></i>
+									<span class="font-weight-bold small text-uppercase">Sayuran</span></a>
+
+								<a class="nav-link mb-2 p-3 shadow" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-buah" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+									<i class="fa-solid fa-apple-whole"></i>
+									<span class="font-weight-bold small text-uppercase">Buah-Buahan</span></a>
+
+								<a class="nav-link mb-2 p-3 shadow" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-daging" role="tab" aria-controls="v-pills-settings" aria-selected="false">
+									<i class="fa-solid fa-drumstick-bite"></i>
+									<span class="font-weight-bold small text-uppercase">Daging</span></a>
+
+								<a class="nav-link mb-2 p-3 shadow" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-seafood" role="tab" aria-controls="v-pills-settings" aria-selected="false">
+									<i class="fa-solid fa-shrimp"></i>
+									<span class="font-weight-bold small text-uppercase">Seafood</span></a>
+
+								<a class="nav-link mb-2 p-3 shadow" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-lain" role="tab" aria-controls="v-pills-settings" aria-selected="false">
+									<i class="fa-solid fa-bowl-rice"></i>
+									<span class="font-weight-bold small text-uppercase">Lainnya</span></a>
+								</div>
+							</div>
+
+							<div class="col-md-9">
+								<!-- Tabs content -->
+								<?php 
+									foreach($dataUser as $user){
+										if($user['namaPengguna'] == $this->session->userdata('userTrack')){
+											echo"<input type='text' class='form-control' name='id_user' value='".$user['id_user']."' hidden>";
+										}
+									}
+								?>
+								<div class="tab-content" id="v-pills-tabContent">
+									<div class="tab-pane fade shadow rounded bg-white show active p-3" id="v-pills-sayuran" role="tabpanel" aria-labelledby="v-pills-home-tab"
+										style='max-height: calc(60vh - 100px); max-width:auto; height:310px; overflow-x: auto;'>
+										<h5 style='font-size:16px; color:#4183D7; margin-bottom:20px;'>Sayuran</h5>
+										<?php
+										foreach($dataAsupan as $asupan){
+											if($asupan['kategori'] == 'Sayuran'){
+												echo"<!--Item-->
+												<div class='card' style='border-radius:6px; border:none; height:75px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
+													margin-bottom:5px;";if($asupan['kalori'] < 100){echo "border-left: 4px solid #29bd04";}
+														else if(($asupan['kalori'] >= 100)&&($asupan['kalori'] < 200)){echo "border-left: 4px solid #de6000";}
+														else if($asupan['kalori'] >= 200){echo "border-left: 4px solid #df4759";} echo"'>
+													<div class='row' style='width:100%;'>
+														<div class='col-sm-3'>
+															<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
+																style='width:95px; height:60px; border-radius:4px; margin-top:3px;'>
+														</div>
+														<div class='col-sm-7' >
+															<p style='font-size:15px; color:#22A7F0; text-align:left;'>".$asupan['nama']."</p>
+															<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal / ".$asupan['ukuran']."</p>
+														</div>
+														<div class='col-sm-2' style='margin-top:15px;'>
+															<label class='container' id='checkCont'><input type='checkbox' id='' name='id_asupan' value='".$asupan['id_asupan']."' style='height:50px;'>
+															<span class='checkmark'></span></label>
+														</div>
+													</div>
+												</div>";
+											}
+										}
+										?>
+									</div>
+									
+									<div class="tab-pane fade shadow rounded bg-white p-3" id="v-pills-buah" role="tabpanel" aria-labelledby="v-pills-profile-tab"
+										style='max-height: calc(60vh - 100px); max-width:auto; height:310px; overflow-x: auto;'>
+										<h5 style='font-size:16px; color:#4183D7; margin-bottom:20px;'>Buah-Buahan</h5>
+										<?php
+										foreach($dataAsupan as $asupan){
+											if($asupan['kategori'] == 'Buah'){
+												echo"<!--Item-->
+												<div class='card' style='border-radius:6px; border:none; height:75px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
+													margin-bottom:5px;";if($asupan['kalori'] < 100){echo "border-left: 4px solid #29bd04";}
+													else if(($asupan['kalori'] >= 100)&&($asupan['kalori'] < 200)){echo "border-left: 4px solid #de6000";}
+													else if($asupan['kalori'] >= 200){echo "border-left: 4px solid #df4759";} echo"'>
+													<div class='row' style='width:100%;'>
+														<div class='col-sm-3'>
+															<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
+																style='width:95px; height:60px; border-radius:4px; margin-top:3px;'>
+														</div>
+														<div class='col-sm-7' >
+															<p style='font-size:15px; color:#22A7F0; text-align:left;'>".$asupan['nama']."</p>
+															<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal / ".$asupan['ukuran']."</p>														</div>
+														<div class='col-sm-2' style='margin-top:15px;'>
+															<label class='container' id='checkCont'><input type='checkbox' id='' name='id_asupan' value='".$asupan['id_asupan']."' style='height:50px;'>
+															<span class='checkmark'></span></label>
+														</div>
+													</div>
+												</div>";
+											}
+										}
+										?>
+									</div>								
+										
+									<div class="tab-pane fade shadow rounded bg-white p-3" id="v-pills-daging" role="tabpanel" aria-labelledby="v-pills-messages-tab"
+										style='max-height: calc(60vh - 100px); max-width:auto; height:310px; overflow-x: auto;'>
+										<h5 style='font-size:16px; color:#4183D7; margin-bottom:20px;'>Daging</h5>
+										<?php
+										foreach($dataAsupan as $asupan){
+											if($asupan['kategori'] == 'Daging'){
+												echo"<!--Item-->
+												<div class='card' style='border-radius:6px; border:none; height:75px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
+													margin-bottom:5px;";if($asupan['kalori'] < 100){echo "border-left: 4px solid #29bd04";}
+													else if(($asupan['kalori'] >= 100)&&($asupan['kalori'] < 200)){echo "border-left: 4px solid #de6000";}
+													else if($asupan['kalori'] >= 200){echo "border-left: 4px solid #df4759";} echo"'>
+													<div class='row' style='width:100%;'>
+														<div class='col-sm-3'>
+															<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
+																style='width:95px; height:60px; border-radius:4px; margin-top:3px;'>
+														</div>
+														<div class='col-sm-7' >
+															<p style='font-size:15px; color:#22A7F0; text-align:left;'>".$asupan['nama']."</p>
+															<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal / ".$asupan['ukuran']."</p>														</div>
+														<div class='col-sm-2' style='margin-top:15px;'>
+															<label class='container' id='checkCont'><input type='checkbox' id='' name='id_asupan' value='".$asupan['id_asupan']."' style='height:50px;'>
+															<span class='checkmark'></span></label>
+														</div>
+													</div>
+												</div>";
+											}
+										}
+										?>
+									</div>
+
+									<div class="tab-pane fade shadow rounded bg-white p-3" id="v-pills-seafood" role="tabpanel" aria-labelledby="v-pills-settings-tab"
+										style='max-height: calc(60vh - 100px); max-width:auto; height:310px; overflow-x: auto;'>
+										<h5 style='font-size:16px; color:#4183D7; margin-bottom:20px;'>Seafood</h5>
+										<?php
+										foreach($dataAsupan as $asupan){
+											if($asupan['kategori'] == 'Seafood'){
+												echo"<!--Item-->
+												<div class='card' style='border-radius:6px; border:none; height:75px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
+													margin-bottom:5px;";if($asupan['kalori'] < 100){echo "border-left: 4px solid #29bd04";}
+													else if(($asupan['kalori'] >= 100)&&($asupan['kalori'] < 200)){echo "border-left: 4px solid #de6000";}
+													else if($asupan['kalori'] >= 200){echo "border-left: 4px solid #df4759";} echo"'>
+													<div class='row' style='width:100%;'>
+														<div class='col-sm-3'>
+															<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
+																style='width:95px; height:60px; border-radius:4px; margin-top:3px;'>
+														</div>
+														<div class='col-sm-7' >
+															<p style='font-size:15px; color:#22A7F0; text-align:left;'>".$asupan['nama']."</p>
+															<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal / ".$asupan['ukuran']."</p>														</div>
+														<div class='col-sm-2' style='margin-top:15px;'>
+															<label class='container' id='checkCont'><input type='checkbox' id='' name='id_asupan' value='".$asupan['id_asupan']."' style='height:50px;'>
+															<span class='checkmark'></span></label>
+														</div>
+													</div>
+												</div>";
+											}
+										}
+										?>							
+									</div>
+
+									<div class="tab-pane fade shadow rounded bg-white p-3" id="v-pills-lain" role="tabpanel" aria-labelledby="v-pills-settings-tab"
+										style='max-height: calc(60vh - 100px); max-width:auto; height:310px; overflow-x: auto;'>
+										<h5 style='font-size:16px; color:#4183D7; margin-bottom:20px;'>Lainnya</h5>
+										<?php
+										foreach($dataAsupan as $asupan){
+											if($asupan['kategori'] == 'Lainnya'){
+												echo"<!--Item-->
+												<div class='card' style='border-radius:6px; border:none; height:75px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
+													margin-bottom:5px;";if($asupan['kalori'] < 100){echo "border-left: 4px solid #29bd04";}
+													else if(($asupan['kalori'] >= 100)&&($asupan['kalori'] < 200)){echo "border-left: 4px solid #de6000";}
+													else if($asupan['kalori'] >= 200){echo "border-left: 4px solid #df4759";} echo"'>
+													<div class='row' style='width:100%;'>
+														<div class='col-sm-3'>
+															<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
+																style='width:95px; height:60px; border-radius:4px; margin-top:3px;'>
+														</div>
+														<div class='col-sm-7' >
+															<p style='font-size:15px; color:#22A7F0; text-align:left;'>".$asupan['nama']."</p>
+															<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal / ".$asupan['ukuran']."</p>														</div>
+														<div class='col-sm-2' style='margin-top:15px;'>
+															<label class='container' id='checkCont'><input type='checkbox' id='' name='id_asupan' value='".$asupan['id_asupan']."' style='height:50px;'>
+															<span class='checkmark'></span></label>
+														</div>
+													</div>
+												</div>";
+											}
+										}
+										?>								
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<div class="modal-footer">
+				<?php
+					$totalCalW = 0; $calorie = 0; $ket = 0;
+					foreach($totalUserKebutuhan2 as $calWaktu){
+						$totalCalW += $calWaktu['kalori'];
+					}
+					foreach($dataKebutuhan as $kebutuhan){
+						if(($kebutuhan['id_user'] == $user['id_user'])&&($kebutuhan['date'] == date("Y-m-d"))){
+							$calorie = $kebutuhan['kalori'];
+						}
+					}
+					$ket = $calorie-$totalCalW;
+					if($ket <= 0){
+						echo"<p style='color:red; font-size:14px; margin-top:5px; float:left; text-align:left;'>
+						<i class='fa fa-exclamation-triangle'></i> Kebutuhan kalori Anda sudah terpenuhi.</p>";
+					} 
+				?>
+				<div class='row' style='width:100%;'>
+					<div class='col-md-9'>
+						<div class='container' style='float:left; position:relative;'>
+							<div class='row' style='width:100%;'>
+								<div class='col-md-1'>
+									<div class='container' style='background:#29bd04; width: 30px; height:30px; border-radius:100%;'></div>
+								</div>
+								<div class='col-md-2'>
+									<a style='font-size:14px;'>Rendah</a>
+								</div>
+								<div class='col-md-1'>
+									<div class='container' style='background:#de6000; width: 30px; height:30px; border-radius:100%;'></div>
+								</div>
+								<div class='col-md-2'>
+									<a style='font-size:14px;'>Sedang</a>
+								</div>
+								<div class='col-md-1'>
+									<div class='container' style='background:#df4759; width: 30px; height:30px; border-radius:100%;'></div>
+								</div>
+								<div class='col-md-2'>
+									<a style='font-size:14px;'>Tinggi</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class='col-md-3'>
+						<button type="submit" style='float:right;' class="btn btn-primary">Tambah</button>
+					</div>
+				</div>
+			</div>
+			</form>
+			</div>
+		</div>
+		</div>
 
 		<!--Javascript signout-->
 		<script type="text/javascript">
@@ -327,9 +810,59 @@
 			}
 			});
         </script>
+		<script type="text/javascript">
+		
+		var events = <?php echo json_encode($data) ?>;
+		
+		var date = new Date()
+		var d    = date.getDate(),
+			m    = date.getMonth(),
+			y    = date.getFullYear()
+				
+		$('#calendar').fullCalendar({
+			header    : {
+			left  : 'prev,next today',
+			center: 'title',
+			right : 'month'
+			},
+			buttonText: {
+			today: 'today',
+			month: 'month',
+			week : 'week',
+			day  : 'day'
+			},
 
-		<script>
-			
+			eventLimit: true,
+					events: [
+				<?php 
+					foreach($dataUser as $user){
+						if($user['namaPengguna'] == $this->session->userdata('userTrack')){
+							foreach($dataJadwal as $cal){
+								if($cal['id_user'] == $user['id_user']){
+									foreach($dataAsupan as $asupan){
+										if($cal['id_asupan'] == $asupan['id_asupan']){
+											echo"{ title: '".$asupan['nama']."',
+												start: '".$cal['date']."',
+												description: '".$asupan['kalori']."'},";
+										}
+									}
+								}
+							}
+						}
+					}
+				?>
+			], 
+			eventClick:  function(event, jsEvent, view) {
+				$('#modalTitle').html(event.title);
+				$('#modalBody').html(event.description);
+				$('#eventUrl').attr('href',event.url);
+				$('#calendarModal').modal();
+        	},
+			dayClick:  function(event, jsEvent, view) {
+				$('#inputDate').html(event.date);
+				$('#asupanModal').modal();
+        	},
+		})
 		</script>
 
 		<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->

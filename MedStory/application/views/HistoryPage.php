@@ -17,7 +17,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+		<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>-->
 		
 		<!-- chartist CSS -->
 		<link href="http://localhost/MedStory/assets/css/chartist-js/dist/chartist.min.css" rel="stylesheet">
@@ -481,11 +481,26 @@
         display: none;
     }
 }
+
+/*Panduan*/
+.row .col-3 .nav.flex-column.nav-pills .nav-link{
+	color:#212121;
+}
+.row .col-3 .nav.flex-column.nav-pills .nav-link.active{
+	color:whitesmoke;
+	background:#4183D7;
+}
+.row .col-9 .tab-content .tab-pane.fade.show.active{
+	border: 3px solid #4183D7;
+	background:white;
+	border-radius:3px;
+	box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+	padding:10px;
+}
 		</style>
     </head>
     <body>
 		<div id="mySidebar" class="sidebar">
-			<a type='button' class="bookbtn" style='font-size:20px;'><i class='fa fa-book'></i> Bantuan</a>
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class='fa fa-arrow-left'></i></a>
 			<div class="d-flex flex-column align-items-center text-center">
 				<div class="mt-2" style='width:90%;'>
@@ -635,7 +650,7 @@
 						$cek = 'null';
 						foreach($checkKebutuhan as $cek){$cek = 'available';}
 						
-						if($cek != 'null'){
+						if($cek == 'available'){
 							foreach($dataUser as $user){
 								if($user['namaPengguna'] == $this->session->userdata('userTrack')){
 									echo"<a style='font-size:13px; color:#808080; text-align:left;'>Pagi ~ "; $totalCalW=0; foreach($totalUserKebutuhan as $calWaktu){if($calWaktu['waktu'] == 'pagi'){
@@ -646,7 +661,9 @@
 												if($cal['id_asupan'] == $asupan['id_asupan']){
 													echo"<!--Item-->
 													<div class='card' style='border-radius:6px; border:none; height:75px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
-														margin-bottom:5px;'>
+														margin-bottom:5px;";if($asupan['kalori'] < 100){echo "border-left: 4px solid #29bd04";}
+														else if(($asupan['kalori'] >= 100)&&($asupan['kalori'] < 200)){echo "border-left: 4px solid #de6000";}
+														else if($asupan['kalori'] >= 200){echo "border-left: 4px solid #df4759";} echo"'>
 														<div class='row' style='width:100%;'>
 															<div class='col'>
 																<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
@@ -674,7 +691,9 @@
 												if($cal2['id_asupan'] == $asupan['id_asupan']){
 													echo"<!--Item-->
 													<div class='card' style='border-radius:6px; border:none; height:75px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
-														margin-bottom:5px;'>
+														margin-bottom:5px;";if($asupan['kalori'] < 100){echo "border-left: 4px solid #29bd04";}
+														else if(($asupan['kalori'] >= 100)&&($asupan['kalori'] < 200)){echo "border-left: 4px solid #de6000";}
+														else if($asupan['kalori'] >= 200){echo "border-left: 4px solid #df4759";} echo"'>
 														<div class='row' style='width:100%;'>
 															<div class='col'>
 																<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
@@ -702,7 +721,9 @@
 												if($cal3['id_asupan'] == $asupan['id_asupan']){
 													echo"<!--Item-->
 													<div class='card' style='border-radius:6px; border:none; height:75px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
-														margin-bottom:5px;'>
+														margin-bottom:5px;";if($asupan['kalori'] < 100){echo "border-left: 4px solid #29bd04";}
+														else if(($asupan['kalori'] >= 100)&&($asupan['kalori'] < 200)){echo "border-left: 4px solid #de6000";}
+														else if($asupan['kalori'] >= 200){echo "border-left: 4px solid #df4759";} echo"'>
 														<div class='row' style='width:100%;'>
 															<div class='col'>
 																<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
@@ -745,7 +766,8 @@
         <div id="Navigation">
             <ul>
                 <img id="logo" src="http://localhost/MedStory/assets/logoWhite.png">
-				<li style="float:left; margin-left:15px;" onclick="openNav()"><a><i class='fa fa-calendar-check-o fa-xl'></i></a></li>
+				<li style="float:left; margin-left:15px;" onclick="openNav()" title='Kebutuhan kalori harian'><a><i class='fa fa-calendar-check-o fa-lg'></i></a></li>
+				<li style="float:left; margin-left:-5x;" title='Bantuan'><a type='button' class="bookbtn" data-toggle='modal' data-target='#bantuanCalModal'><i class='fa fa-book fa-lg'></i></a></li>
                 <li><a href="smartDoc">SmartDoc</a></li>
                 <li  id="active"><a href="">Forum</a></li>
                 <li><a href="dataKu">Dataku</a></li>
@@ -1126,11 +1148,11 @@
 							<!-- Wrapper for carousel items -->
 							<div class='carousel-inner'>
 							<?php 
-								$i = 1; $count = 0; $k = 1;
+								$i = 1; $count = 0; $k = 0;
 								$state = ' active';
 								foreach($dataDiskusi as $data){	
 									if($data['namaPengguna'] == $this->session->userdata('userTrack')){
-										if($k % 4 == 0  || $k == 1){
+										if($k % 4 == 0  || $k == 0){
 											echo"<div class='item carousel-item".$state."' >
 											<div class='col-md'>";
 										}	
@@ -1257,17 +1279,11 @@
 											echo"</div>
 										</div>";
 										}
-									$count = 0; $i++; 
+										$count = 0; $i++; 
 									}
 								}
-								if($k == 1){
-									echo "<div class='container' style='margin-top:1%; margin-bottom:2%;'>
-										<p style='font-style:italic; text-align:center; color:grey;'>Anda belum memposting pertanyaan</p>
-										<img src='http://localhost/MedStory/assets/icon/Empty.gif' alt='Sorry.png' style='display: block;
-											margin-left: auto; margin-right: auto; width: 250px; height: 250px;'>
-									</div>";
-								}
-								if($k > 1){ 
+								//Need to be simplify / optimized
+								if($k > 4){ 
 									echo"
 									</div></div></div>
 									<!-- Carousel controls -->
@@ -1276,12 +1292,23 @@
 									</a>
 									<a class='carousel-control-next' href='#myCarouselDiskusiSaya' data-slide='next'>
 										<i class='fa fa-angle-right'></i>
-									</a>";
-								} else {
+									</a></div>";
+								} else if($k == 4){ 
 									echo"</div></div>";
+								// } else if(($k == 2)||($k == 3)||($k == 1)){
+								} else if(($k >= 1)&&($k <= 3)){
+									echo"</div></div></div></div>";
+								} else if($k == 0){
+									echo"</div></div>";
+									echo "<div class='container'>
+										<p style='font-style:italic; text-align:center; color:grey;'>Tidak terdapat pertanyaan dengan kategori terkait</p>
+										<img src='http://localhost/MedStory/assets/icon/Empty.gif' alt='Sorry.png' style='display: block;
+											margin-left: auto; margin-right: auto; width: 250px; height: 250px;'>
+									</div>";
 								}
+								// echo $k."=k";
+								//Check this
 							?>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -1565,6 +1592,78 @@
 		</div>
 		</div>
 
+		<!-- Bantuan -->
+		<div class="modal fade" id="bantuanCalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Bantuan</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-3">
+						<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+							<a style='color:#212121; font-weight:500;'>Kalkulator Kalori</a>
+								<a class="nav-link active" id="v-pills-pengenalanKal-tab" data-toggle="pill" href="#v-pills-pengenalanKal" role="tab" aria-controls="v-pills-pengenalanKal" aria-selected="true">Pengenalan</a>
+								<a class="nav-link" id="v-pills-penggunaanKal-tab" data-toggle="pill" href="#v-pills-penggunaanKal" role="tab" aria-controls="v-pills-penggunaanKal" aria-selected="true">Cara Pengunaan</a>
+							<a style='color:#212121; font-weight:500;'>Kartu Menuju Sehat</a>
+								<a class="nav-link" id="v-pills-pengenalanKms-tab" data-toggle="pill" href="#v-pills-pengenalanKms" role="tab" aria-controls="v-pills-pengenalanKms" aria-selected="false">Pengenalan</a>
+								<a class="nav-link" id="v-pills-penggunaanKms-tab" data-toggle="pill" href="#v-pills-penggunaanKms" role="tab" aria-controls="v-pills-penggunaanKms" aria-selected="false">Cara Pengunaan</a>
+							<a style='color:#212121; font-weight:500;'>Forum Diskusi</a>
+								<a class="nav-link" id="v-pills-pengenalanDis-tab" data-toggle="pill" href="#v-pills-pengenalanDis" role="tab" aria-controls="v-pills-pengenalanDis" aria-selected="false">Pengenalan</a>
+								<a class="nav-link" id="v-pills-penggunaanDis-tab" data-toggle="pill" href="#v-pills-penggunaanDis" role="tab" aria-controls="v-pills-penggunaanDis" aria-selected="false">Cara Pengunaan</a>
+								<a class="nav-link" id="v-pills-kebijakanDis-tab" data-toggle="pill" href="#v-pills-kebijakanDis" role="tab" aria-controls="v-pills-kebijakanDis" aria-selected="false">Kebijakan</a>
+							<a style='color:#212121; font-weight:500;'>Lainnya</a>
+								<a class="nav-link" id="v-pills-smartDoc-tab" data-toggle="pill" href="#v-pills-smartDoc" role="tab" aria-controls="v-pills-smartDoc" aria-selected="false">SmartDoc</a>
+								<a class="nav-link" id="v-pills-darurat-tab" data-toggle="pill" href="#v-pills-darurat" role="tab" aria-controls="v-pills-darurat" aria-selected="false">Nomor Darurat</a>		
+								<a class="nav-link" id="v-pills-acc-tab" data-toggle="pill" href="#v-pills-acc" role="tab" aria-controls="v-pills-acc" aria-selected="false">Akun</a>				
+						</div>
+					</div>
+					<div class="col-9">
+						<div class="tab-content" id="v-pills-tabContent">
+							<div class="tab-pane fade show active" id="v-pills-pengenalanKal" role="tabpanel" aria-labelledby="v-pills-pengenalanKal-tab">
+								<h6 style='color:#212121;'>Pengenalan</h6>
+							</div>
+							<div class="tab-pane fade" id="v-pills-penggunaanKal" role="tabpanel" aria-labelledby="v-pills-penggunaanKal-tab">
+								<h6 style='color:#212121;'>Penggunaan</h6>
+							</div>
+							<div class="tab-pane fade" id="v-pills-pengenalanKms" role="tabpanel" aria-labelledby="v-pills-pengenalanKms-tab">
+								<h6 style='color:#212121;'>Pengenalan</h6>
+							</div>
+							<div class="tab-pane fade" id="v-pills-penggunaanKms" role="tabpanel" aria-labelledby="v-pills-penggunaanKms-tab">
+								<h6 style='color:#212121;'>Penggunaan</h6>
+							</div>
+
+							<div class="tab-pane fade" id="v-pills-pengenalanDis" role="tabpanel" aria-labelledby="v-pills-pengenalanDis-tab">
+								<h6 style='color:#212121;'>Pengenalan</h6>
+							</div>
+							<div class="tab-pane fade" id="v-pills-penggunaanDis" role="tabpanel" aria-labelledby="v-pills-penggunaanDis-tab">
+								<h6 style='color:#212121;'>Penggunaan</h6>
+							</div>
+							<div class="tab-pane fade" id="v-pills-kebijakanDis" role="tabpanel" aria-labelledby="v-pills-kebijakanDis-tab">
+								<h6 style='color:#212121;'>Kebijakan</h6>
+							</div>
+
+							<div class="tab-pane fade" id="v-pills-smartDoc" role="tabpanel" aria-labelledby="v-pills-smartDoc-tab">
+								<h6 style='color:#212121;'>SmartDoc</h6>
+							</div>
+							<div class="tab-pane fade" id="v-pills-darurat" role="tabpanel" aria-labelledby="v-pills-darurat-tab">
+								<h6 style='color:#212121;'>Nomor Darurat</h6>
+							</div>
+							<div class="tab-pane fade" id="v-pills-acc" role="tabpanel" aria-labelledby="v-pills-acc-tab">
+								<h6 style='color:#212121;'>Akun</h6>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		</div>
+
 		<!-- Tambah asupan -->
 		<div class="modal fade" id="asupanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
@@ -1631,7 +1730,9 @@
 											if($asupan['kategori'] == 'Sayuran'){
 												echo"<!--Item-->
 												<div class='card' style='border-radius:6px; border:none; height:75px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
-													margin-bottom:5px;'>
+													margin-bottom:5px;";if($asupan['kalori'] < 100){echo "border-left: 4px solid #29bd04";}
+														else if(($asupan['kalori'] >= 100)&&($asupan['kalori'] < 200)){echo "border-left: 4px solid #de6000";}
+														else if($asupan['kalori'] >= 200){echo "border-left: 4px solid #df4759";} echo"'>
 													<div class='row' style='width:100%;'>
 														<div class='col-sm-3'>
 															<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
@@ -1660,7 +1761,9 @@
 											if($asupan['kategori'] == 'Buah'){
 												echo"<!--Item-->
 												<div class='card' style='border-radius:6px; border:none; height:75px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
-													margin-bottom:5px;'>
+													margin-bottom:5px;";if($asupan['kalori'] < 100){echo "border-left: 4px solid #29bd04";}
+													else if(($asupan['kalori'] >= 100)&&($asupan['kalori'] < 200)){echo "border-left: 4px solid #de6000";}
+													else if($asupan['kalori'] >= 200){echo "border-left: 4px solid #df4759";} echo"'>
 													<div class='row' style='width:100%;'>
 														<div class='col-sm-3'>
 															<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
@@ -1688,7 +1791,9 @@
 											if($asupan['kategori'] == 'Daging'){
 												echo"<!--Item-->
 												<div class='card' style='border-radius:6px; border:none; height:75px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
-													margin-bottom:5px;'>
+													margin-bottom:5px;";if($asupan['kalori'] < 100){echo "border-left: 4px solid #29bd04";}
+													else if(($asupan['kalori'] >= 100)&&($asupan['kalori'] < 200)){echo "border-left: 4px solid #de6000";}
+													else if($asupan['kalori'] >= 200){echo "border-left: 4px solid #df4759";} echo"'>
 													<div class='row' style='width:100%;'>
 														<div class='col-sm-3'>
 															<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
@@ -1716,7 +1821,9 @@
 											if($asupan['kategori'] == 'Seafood'){
 												echo"<!--Item-->
 												<div class='card' style='border-radius:6px; border:none; height:75px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
-													margin-bottom:5px;'>
+													margin-bottom:5px;";if($asupan['kalori'] < 100){echo "border-left: 4px solid #29bd04";}
+													else if(($asupan['kalori'] >= 100)&&($asupan['kalori'] < 200)){echo "border-left: 4px solid #de6000";}
+													else if($asupan['kalori'] >= 200){echo "border-left: 4px solid #df4759";} echo"'>
 													<div class='row' style='width:100%;'>
 														<div class='col-sm-3'>
 															<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
@@ -1744,7 +1851,9 @@
 											if($asupan['kategori'] == 'Lainnya'){
 												echo"<!--Item-->
 												<div class='card' style='border-radius:6px; border:none; height:75px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
-													margin-bottom:5px;'>
+													margin-bottom:5px;";if($asupan['kalori'] < 100){echo "border-left: 4px solid #29bd04";}
+													else if(($asupan['kalori'] >= 100)&&($asupan['kalori'] < 200)){echo "border-left: 4px solid #de6000";}
+													else if($asupan['kalori'] >= 200){echo "border-left: 4px solid #df4759";} echo"'>
 													<div class='row' style='width:100%;'>
 														<div class='col-sm-3'>
 															<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
@@ -1787,7 +1896,35 @@
 						<i class='fa fa-exclamation-triangle'></i> Kebutuhan kalori Anda sudah terpenuhi</p>";
 					} 
 				?>
-				<button type="submit" class="btn btn-primary">Tambah</button>
+				<div class='row' style='width:100%;'>
+					<div class='col-md-9'>
+						<div class='container' style='float:left; position:relative;'>
+							<div class='row' style='width:100%;'>
+								<div class='col-md-1'>
+									<div class='container' style='background:#29bd04; width: 30px; height:30px; border-radius:100%;'></div>
+								</div>
+								<div class='col-md-2'>
+									<a style='font-size:14px;'>Rendah</a>
+								</div>
+								<div class='col-md-1'>
+									<div class='container' style='background:#de6000; width: 30px; height:30px; border-radius:100%;'></div>
+								</div>
+								<div class='col-md-2'>
+									<a style='font-size:14px;'>Sedang</a>
+								</div>
+								<div class='col-md-1'>
+									<div class='container' style='background:#df4759; width: 30px; height:30px; border-radius:100%;'></div>
+								</div>
+								<div class='col-md-2'>
+									<a style='font-size:14px;'>Tinggi</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class='col-md-3'>
+						<button type="submit" style='float:right;' class="btn btn-primary">Tambah</button>
+					</div>
+				</div>
 			</div>
 			</form>
 			</div>

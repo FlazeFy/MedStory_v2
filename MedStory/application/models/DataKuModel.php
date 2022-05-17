@@ -11,6 +11,15 @@
 			$this->db->where($condition);
 			return $data = $this->db->get()->result_array();
 		}
+		public function get_total_kebutuhan2(){
+			$this->db->select('kalori, waktu');
+			$this->db->from('pengguna');
+			$this->db->join('jadwalkalori','jadwalkalori.id_user = pengguna.id_user');
+			$this->db->join('asupan','asupan.id_asupan = jadwalkalori.id_asupan');
+			$condition = array('date' => date("Y/m/d"), 'namaPengguna' =>  $this->session->userdata('userTrack'));
+			$this->db->where($condition);
+			return $data = $this->db->get()->result_array();
+		}	
 		public function get_total_asupan(){
 			$this->db->select('asupan.id_asupan, asupan.nama, COUNT(jadwalkalori.id_asupan) as jumlah');
 			$this->db->from('pengguna');
