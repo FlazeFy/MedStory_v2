@@ -283,6 +283,7 @@
 									}
 									?>
 								<br>
+								<h5 style='font-size:16px; font-weight:bold;'>Rata-rata</h5>
 								<h5 style='font-size:14px;'>Kebutuhan harian: <?php
 									$hari = 0;
 									$i = 0;
@@ -449,17 +450,27 @@
         </footer>
 
 		<!--Day modal-->
-		<div id="calendarModal" class="modal fade">
-		<div class="modal-dialog">
+		<div class="modal fade" id="calendarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
-					<h4 id="modalTitle" class="modal-title"></h4>
+			<div class="modal-header">
+				<h5 class="modal-title" id="modalTitle"></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="" style='width:340px; height:200px; border-radius:4px; margin-top:3px;' id='imageAsupan'>
+					</div>
+					<div class="col-md-5">
+						<p> Kalori: <span id="modalBody"></span></p>
+						<p> Kategori: <span id="kalori"></span></p>
+						<p> Ukuran: <span id="ukuran"></p>
+					</div>
 				</div>
-				<div id="modalBody" class="modal-body"> </div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				</div>
+			</div>
 			</div>
 		</div>
 		</div>
@@ -479,16 +490,47 @@
 						<option value="malam">Malam</option>
 					</select>
 				</div>
+				<div class="col-sm">
+					<input required class='form-control' name='date' type='date' id='date' style="background:#f4f4f4; border-width: 0 0 3px; 
+						border-bottom: 3.5px solid #4183D7; color:#212121; width:200px; margin-left:-70px;"></input>
+				</div>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body" style='max-height: calc(90vh - 180px); overflow-y: auto;'>
 				<section class="py-1 header">
 					<!-- Daftar kalori hari ini -->
-					<h5 class='font-weight-bold' data-toggle="collapse" href="#collapseDaftar" role='button' style='color:#4183D7; font-size:16px;'><i class="fa-solid fa-circle-check"></i> Asupan Terpenuhi<i class="fa fa-angle-down" style='float:right;'></i></h5>
+					<h5 class='font-weight-bold' data-toggle="collapse" href="#collapseDaftar" role='button' style='color:#4183D7; font-size:16px;'><i class="fa-solid fa-circle-check"></i> Asupan Terpenuhi</h5>
+					<div class='container-fluid'>
+						<div class='row'>
+							<?php
+								$date = date('Y-m-d');
+								//Still cannot pass value from javascript to php.
+								foreach($dataUser as $user){
+									if($user['namaPengguna'] == $this->session->userdata('userTrack')){
+										foreach($dataJadwal as $cal){
+											if(($cal['id_user'] == $user['id_user'])&&($cal['date'] == $date)){
+												foreach($dataAsupan as $asupan){
+													if($cal['id_asupan'] == $asupan['id_asupan']){
+														echo"<div class='card' style='width: 12rem; margin:5px; border:none; box-shadow: #d4d4d4 0px 4px 12px; border-radius:6px;'>
+															<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
+																style='height:100px; border-radius:6px;'>
+															<div class='card-body' style='height:80px;'>
+																<p style='font-size:14px; font-weight:bold;'>".$asupan['nama']."</p>
+																<p style='color:grey; font-size:12px; font-weight:lighter; margin-top:-10px;'>".$asupan['ukuran']." | ".$asupan['kategori']."</p>
+															</div>
+														</div>";
+													}
+												}
+											}
+										}
+									}
+								}
+							?>
+						</div>
+					</div>
 
-					</hr>
 					<h5 class='font-weight-bold' data-toggle="collapse" href="#collapseTambah" role='button' style='color:#4183D7; font-size:16px;'><i class="fa fa-add"></i> Tambah Asupan<i class="fa fa-angle-down" style='float:right;'></i></h5>
 					<div id="collapseTambah" class='card-body collapse' style='width:100%;'>
 						<div class="row">
@@ -810,8 +852,8 @@
 			}
 			});
         </script>
+
 		<script type="text/javascript">
-		
 		var events = <?php echo json_encode($data) ?>;
 		
 		var date = new Date()
@@ -826,8 +868,8 @@
 			right : 'month'
 			},
 			buttonText: {
-			today: 'today',
-			month: 'month',
+			today: 'Hari ini',
+			month: 'Bulan',
 			week : 'week',
 			day  : 'day'
 			},
@@ -843,6 +885,9 @@
 										if($cal['id_asupan'] == $asupan['id_asupan']){
 											echo"{ title: '".$asupan['nama']."',
 												start: '".$cal['date']."',
+												category: '".$asupan['kategori']."',
+												ukuran: '".$asupan['ukuran']."',
+												image: 'http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg',
 												description: '".$asupan['kalori']."'},";
 										}
 									}
@@ -855,11 +900,13 @@
 			eventClick:  function(event, jsEvent, view) {
 				$('#modalTitle').html(event.title);
 				$('#modalBody').html(event.description);
-				$('#eventUrl').attr('href',event.url);
+				$('#kalori').html(event.category);
+				$('#ukuran').html(event.ukuran);
+				document.getElementById("imageAsupan").src = event.image;
 				$('#calendarModal').modal();
         	},
-			dayClick:  function(event, jsEvent, view) {
-				$('#inputDate').html(event.date);
+			dayClick:  function(date) {
+				document.getElementById("date").defaultValue = date.format();
 				$('#asupanModal').modal();
         	},
 		})

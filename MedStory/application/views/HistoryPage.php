@@ -1134,11 +1134,11 @@
 											echo"<li data-target='#myCarouselDiskusiSaya' data-slide-to='0' class='active'>1</li>";
 											$item++;
 											$page++;
-										} else if ($item % 3 == 0){
+										} else if ($item % 4 == 0){
 											echo"<li data-target='#myCarouselDiskusiSaya' data-slide-to='".$page."'>"; echo $page+1; echo"</li>";
 											$item++;
 											$page++;
-										} else if ($item % 3 != 0){
+										} else if ($item % 4 != 0){
 											$item++;
 										}
 									}

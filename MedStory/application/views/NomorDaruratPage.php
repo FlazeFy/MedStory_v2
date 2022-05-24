@@ -265,7 +265,10 @@
 														<div class='container'>
 															<div class='row'>
 																<div class='col-md-6'>
-																	<img src='http://localhost/MedStory/assets/faskesImage/faskes".$data['id_faskes'].".jpeg' width='350px' height='170px' style='border-radius:6px;' alt=''><hr>
+																	<button class='btn btn-success' data-toggle='modal' data-target='#loc".$data['id_faskes']."'><i class='fa-solid fa-location-dot'></i> Lihat Lokasi</button>
+																	<button class='btn btn-primary' onclick='locationCopy".$data['id_faskes']."()'><i class='fa-solid fa-copy'></i> Dapatkan Kordinat</button>
+																	<input type='text' value='".$data['kordinat']."' id='myInput".$data['id_faskes']."' hidden>
+																	<img src='http://localhost/MedStory/assets/faskesImage/faskes".$data['id_faskes'].".jpeg' width='350px' height='170px' style='border-radius:6px; margin-top:10px;' alt=''><hr>
 																	<h5 class='font-weight-bold'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/fasilitas.png'> Fasilitas</h5>                        
 																	<p>".$data['fasilitas']."</p>
 																</div>
@@ -1142,6 +1145,26 @@
         <div class="text-center p-4" style="background-color: #333333; color: whitesmoke;">1302194041-Leonardho R Sitanggang</div>
         </footer>
 
+		<!-- Zoom location modal -->
+		<?php 
+		$i = 1; 
+		foreach($dataFaskes as $data){
+		echo"<div class='modal fade' id='loc".$data['id_faskes']."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+		<div class='modal-dialog modal-xl' role='document'>
+			<div class='modal-content'>
+				<div class='modal-header'>
+					<h4>".$data['namaFaskes']."</h4>
+					<img type='button' data-dismiss='modal' aria-label='Close' src='http://localhost/MedStory/assets/Error.png'
+						width='35px' height='35px'>
+				</div>
+				<div class='modal-body'>
+					<div id='googleMap".$data['id_faskes']."' style='width:100%;height:500px; border-radius:10px;'></div>
+				</div>			
+			</div>
+		</div>
+		</div>";	
+		}?>
+
 		<!--Javascript signout-->
 		<script type="text/javascript">
 			//Back to the top js.
@@ -1161,6 +1184,40 @@
 				document.documentElement.scrollTop = 0;
 			}
         </script>
+		<script>
+			function myMap() {
+			<?php
+				foreach($dataFaskes as $data){
+					echo"
+					var mapProp".$data['id_faskes']."= {
+						center:new google.maps.LatLng(".$data['kordinat']."),
+						zoom:15,
+					};
+					var map".$data['id_faskes']." = new google.maps.Map(document.getElementById('googleMap".$data['id_faskes']."'),mapProp".$data['id_faskes'].");
+					";
+				}
+			?>
+			}
+			<?php
+				foreach($dataFaskes as $data){
+				echo"
+				function locationCopy".$data['id_faskes']."(){
+					/* Get the text field */
+					var copyText = document.getElementById('myInput".$data['id_faskes']."');
+
+					/* Select the text field */
+					copyText.select();
+					copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+					/* Copy the text inside the text field */
+					navigator.clipboard.writeText(copyText.value);
+					alert('Kordinat disalin');
+				}";
+			}
+			?>	
+		</script>
+
+			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3sYEsRMczoee26ggngEwT35FEJgymY5g&callback=myMap"></script>
 
 		<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
