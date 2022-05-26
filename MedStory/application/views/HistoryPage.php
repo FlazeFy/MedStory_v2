@@ -667,7 +667,7 @@
 														<div class='row' style='width:100%;'>
 															<div class='col'>
 																<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
-																	style='width:75px; height:60px; border-radius:4px; margin-left:-5px; margin-top:3px;'>
+																	style='width:90px; height:60px; border-radius:4px; margin-left:-10px; margin-top:3px;'>
 															</div>
 															<div class='col' style='left:-35px; margin-left:5px;'>
 																<a style='font-size:13px; color:#22A7F0; text-align:left; position:absolute; white-space: nowrap;'>".$asupan['nama']."</a>
@@ -697,7 +697,7 @@
 														<div class='row' style='width:100%;'>
 															<div class='col'>
 																<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
-																	style='width:75px; height:60px; border-radius:4px; margin-left:-5px; margin-top:3px;'>
+																	style='width:90px; height:60px; border-radius:4px; margin-left:-10px; margin-top:3px;'>
 															</div>
 															<div class='col' style='left:-35px; margin-left:5px;'>
 																<a style='font-size:13px; color:#22A7F0; text-align:left; position:absolute; white-space: nowrap;'>".$asupan['nama']."</a>
@@ -727,7 +727,7 @@
 														<div class='row' style='width:100%;'>
 															<div class='col'>
 																<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
-																	style='width:75px; height:60px; border-radius:4px; margin-left:-5px; margin-top:3px;'>
+																	style='width:90px; height:60px; border-radius:4px; margin-left:-10px; margin-top:3px;'>
 															</div>
 															<div class='col' style='left:-35px; margin-left:5px;'>
 																<a style='font-size:13px; color:#22A7F0; text-align:left; position:absolute; white-space: nowrap;'>".$asupan['nama']."</a>
@@ -757,7 +757,7 @@
 				</div>
 				<div class='container-fluid'>
 					<button onclick="window.location.href='account'" class='btn btn-primary' style='height:40px; background:#212121; margin:10px 0px 0px 0px; float:left;'><i class='fa fa-user-circle'></i> <?= $data = $this->session->userdata('userTrack'); ?></button>
-					<form action='landing/logout' method='post'><button type="submit" class='btn btn-danger' style='height:40px; margin:10px 0px 0px 0px; float:right;'><i class='fa fa-sign-out'></i> Ganti Akun</button></form>
+					<button type="submit" class='btn btn-danger' style='height:40px; margin:10px 0px 0px 0px; float:right;' data-toggle="modal" data-target="#signOutModal"><i class='fa fa-sign-out'></i> Ganti Akun</button>
 				</div>
 			</div>
 		</div>
@@ -772,7 +772,7 @@
                 <li  id="active"><a href="">Forum</a></li>
                 <li><a href="dataKu">Dataku</a></li>
 				<li><a href="nomorDarurat">Darurat</a></li>
-                <li style="float:right"><form action='landing/logout' method='post'><button type="submit" class='btn btn-danger' style='height:40px; margin:13px 10px 0px 10px;'><i class='fa fa-sign-out'></i> Ganti Akun</button></form></li>
+                <li style="float:right"><button type="submit" class='btn btn-danger' style='height:40px; margin:13px 10px 0px 10px;' data-toggle="modal" data-target="#signOutModal"><i class='fa fa-sign-out'></i> Ganti Akun</button></li>
                 <li style="float:right"><button onclick="window.location.href='account'" class='btn btn-primary' style='height:40px; background:#212121; margin:13px 0px 0px 10px;'><i class='fa fa-user-circle'></i> <?= $data = $this->session->userdata('userTrack'); ?></button></li>
                 <div id="ddParent">
                     <button id="dropbutton"><img id="set" src="http://localhost/MedStory/assets/Setting.png"></button>
@@ -1379,6 +1379,27 @@
           </div>
         </section>
 
+		<!-- Sign out Modal -->
+		<div class="modal fade" id="signOutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" style='color:black; font-size:16px;'>Apakah Anda yakin?...</h5>
+			</div>
+			<div class="modal-footer">
+				<div class='container-fluid'>
+				<form action='landing/logout' method='post'>
+					<input required name='validation' type='text' style="background:#f4f4f4; border-width: 0 0 3px; 
+						border-bottom: 3.5px solid #4183D7; color:#212121; width:200px; margin-left:-40px; border-radius:4px;" placeholder="'KONFIRMASI'"></input>
+					<button class="btn btn-danger" data-dismiss="modal">Batal</button>
+					<button type="submit" class="btn btn-success">Ya</button>
+				</form>
+				</div>
+			</div>			
+			</div>
+		</div>
+		</div>	
+
 		<!-- Buat Diskusi -->
 		<div class="modal fade" id="tambahDiskusiModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -1626,35 +1647,96 @@
 						<div class="tab-content" id="v-pills-tabContent">
 							<div class="tab-pane fade show active" id="v-pills-pengenalanKal" role="tabpanel" aria-labelledby="v-pills-pengenalanKal-tab">
 								<h6 style='color:#212121;'>Pengenalan</h6>
+								<p style='color:#212121;'>Kalkulator kalori adalah fitur yang dapat menghitung total kalori beserta kebutuhan dari asupan harian Anda. Cukup dengan menyertakan data seperti tinggi badan, berat badan, umur, jenis kelamin, dan aktivitas untuk mendapatkan total kebutuhan harian kalori Anda.</p>
+								<p style='color:#212121;'>Fitur ini berguna untuk menjaga pola makan, sehingga Anda tahu kapan harus makan dan jenis makanan yang harus dikonsumsi. Sehingga Anda memiliki cukup kalori terutama bagi mereka yang menjalani diet atau dalam masa penyembuhan</p>
 							</div>
-							<div class="tab-pane fade" id="v-pills-penggunaanKal" role="tabpanel" aria-labelledby="v-pills-penggunaanKal-tab">
-								<h6 style='color:#212121;'>Penggunaan</h6>
+							<div class="tab-pane fade" id="v-pills-penggunaanKal" role="tabpanel" aria-labelledby="v-pills-penggunaanKal-tab" style='max-height: calc(85vh - 120px); max-width:auto; overflow-x: auto;'>
+								<h6 style='color:#212121;'>Cara menambahkan kalori harian</h6>
+								<p style='color:#212121;'>1. Buka menu "SmartDoc" dan cari "Kalkulator Kalori"</p>
+								<p style='color:#212121;'>2. Isi semua data, dan tekan tombol "Hitung" untuk mendapatkan kebutuhan kalori harian</p>
+								<p style='color:#212121;'>3. Pada menu navigasi, tekan icon kalender</p>
+								<p style='color:#212121;'>4. Ketika side bar asupan telah muncul, Isi kalori harian yang telah dihitung pada kolom input</p>
+								<p style='color:#212121;'>5. Tekan tombol "Tambah". Dan Anda siap menambahkan asupan harian yang telah dikonsumsi.</p>
+								<h6 style='color:#212121;'>Cara menambahkan asupan</h6>
+								<p style='color:#212121;'>1. Pada side bar asupan, Tekan tombol "Tambah Asupan"</p>
+								<p style='color:#212121;'>2. Pilih waktu asupan pada judul pop-up asupan</p>
+								<p style='color:#212121;'>3. Pilih asupan yang tersedia berdasarkan kategori dengan cara mencentang tiap asupan</p>
+								<p style='color:#212121;'>4. Tekan tombol "Tambah" dan asupan akan segera ditambahkan sesuai tanggal hari ini</p>
 							</div>
-							<div class="tab-pane fade" id="v-pills-pengenalanKms" role="tabpanel" aria-labelledby="v-pills-pengenalanKms-tab">
+							<div class="tab-pane fade" id="v-pills-pengenalanKms" role="tabpanel" aria-labelledby="v-pills-pengenalanKms-tab" style='max-height: calc(85vh - 120px); max-width:auto; overflow-x: auto;'>
 								<h6 style='color:#212121;'>Pengenalan</h6>
+								<p style='color:#212121;'>Kartu Menuju Sehat adalah suatu patokan yang digunakan untuk mencatat grafik perkembangan setiap anak dengan mengacu pada berat badan, umur, serta jenis kelamin. Alat ini juga digunakan untuk melihat perkembangan balita tersebut dan menjadi acuan agar menjaga bayi tetap sehat dan mendapatkan gizi yang tepat.</p>
+								<p style='color:#212121;'>Dengan fitur ini, Anda tidak perlu mengisi data diri anak secara manual pada kartu. Cukup dengan mengisi data, Anda dapat melihat grafik ideal pertumbuhan anak Anda dan juga riwayat hitungnya</p>
 							</div>
-							<div class="tab-pane fade" id="v-pills-penggunaanKms" role="tabpanel" aria-labelledby="v-pills-penggunaanKms-tab">
+							<div class="tab-pane fade" id="v-pills-penggunaanKms" role="tabpanel" aria-labelledby="v-pills-penggunaanKms-tab" style='max-height: calc(85vh - 120px); max-width:auto; overflow-x: auto;'>
 								<h6 style='color:#212121;'>Penggunaan</h6>
 							</div>
 
-							<div class="tab-pane fade" id="v-pills-pengenalanDis" role="tabpanel" aria-labelledby="v-pills-pengenalanDis-tab">
+							<div class="tab-pane fade" id="v-pills-pengenalanDis" role="tabpanel" aria-labelledby="v-pills-pengenalanDis-tab" style='max-height: calc(85vh - 120px); max-width:auto; overflow-x: auto;'>
 								<h6 style='color:#212121;'>Pengenalan</h6>
+								<p style='color:#212121;'>Forum diskusi memungkinkan Anda untuk saling bertanya dan menjawab antar pengguna pada aplikasi ini. Anda bisa menanyakan seputar kesehatan beserta topiknya. Anda juga dapat melihat kategori pertanyaan yang sedang ramai dibicarakan.</p>
+								<p style='color:#212121;'>Terdapat juga informasi dan tips seputar kesehatan, sehingga Anda tidak akan ketinggalan berita terbaru seputar dunia kesehatan.</p>
 							</div>
-							<div class="tab-pane fade" id="v-pills-penggunaanDis" role="tabpanel" aria-labelledby="v-pills-penggunaanDis-tab">
-								<h6 style='color:#212121;'>Penggunaan</h6>
+							<div class="tab-pane fade" id="v-pills-penggunaanDis" role="tabpanel" aria-labelledby="v-pills-penggunaanDis-tab" style='max-height: calc(85vh - 120px); max-width:auto; overflow-x: auto;'>
+								<h6 style='color:#212121;'>Membuat pertanyaan</h6>
+								<p style='color:#212121;'>1. Buka menu "Forum". Cari "Forum Diskusi"</p>
+								<p style='color:#212121;'>2. Tekan tombol "Buat Pertanyaan"</p>
+								<p style='color:#212121;'>3. Pilih kategori dan isi pertanyaan</p>
+								<p style='color:#212121;'>4. Jika ingin menambahkan gambar. Aktifkan tombol sakelar "Image" (Opsional)</p>
+								<p style='color:#212121;'>5. Pilih gambar</p>
+								<p style='color:#212121;'>6. Tekan tombol "Kirim"</p>
+								<p style='color:#212121;'>7. Jika ingin melihat pertanyaan yang telah Anda unggah. Pada kolom "Forum Diskusi", tekan tombol "Pertanyaan Saya"</p>
 							</div>
-							<div class="tab-pane fade" id="v-pills-kebijakanDis" role="tabpanel" aria-labelledby="v-pills-kebijakanDis-tab">
+							<div class="tab-pane fade" id="v-pills-kebijakanDis" role="tabpanel" aria-labelledby="v-pills-kebijakanDis-tab" style='max-height: calc(85vh - 120px); max-width:auto; overflow-x: auto;'>
 								<h6 style='color:#212121;'>Kebijakan</h6>
+								<p style='color:#212121;'>1. Ukuran maksimal gambar yang diunggah sebesar 5 mb</p>
+								<p style='color:#212121;'>2. Unggah gambar yang tidak menggangu perasaan orang lain dan sesuai dengan topik yang dibahas</p>
+								<p style='color:#212121;'>3. Dilarang membahas topik mengenai SARA dan politik</p>
+								<p style='color:#212121;'>4. Pengguna yang terindikasi menyebarkan informasi palsu akan mendapatkan peringatan untuk diblokir</p>
+								<p style='color:#212121;'>5. Gunakan bahasa yang sopan dan mudah dimengerti</p>
+								<p style='color:#212121;'>6. Jumlah karakter yang terdapat dalam pertanyaan maupun balasan sebesar 500 karakter</p>
 							</div>
 
-							<div class="tab-pane fade" id="v-pills-smartDoc" role="tabpanel" aria-labelledby="v-pills-smartDoc-tab">
-								<h6 style='color:#212121;'>SmartDoc</h6>
+							<div class="tab-pane fade" id="v-pills-smartDoc" role="tabpanel" aria-labelledby="v-pills-smartDoc-tab" style='max-height: calc(85vh - 120px); max-width:auto; overflow-x: auto;'>
+								<h6 style='color:#212121;'>Cara menghitung berat badan ideal</h6>
+								<p style='color:#212121;'>1. Buka menu "SmartDoc"</p>
+								<p style='color:#212121;'>2. Cari kolom "Kalkulator BMI"</p>
+								<p style='color:#212121;'>3. Isi data tinggi dan berat badan. Tekan tombol "Hitung" untuk melihat hasilnya</p>
+								<h6 style='color:#212121;'>Cara mencari penyakit berdasarkan gejala</h6>
+								<p style='color:#212121;'>1. Buka menu "SmartDoc"</p>
+								<p style='color:#212121;'>2. Cari kolom "RoboDoc"</p>
+								<p style='color:#212121;'>3. Masukan gejala yang diderita. Tambahkan simbol "," jika gejala lebih dari satu</p>
+								<p style='color:#212121;'>4. Pada baris hasil pencarian. Tekan nama penyakit pada kiri baris untuk melihat detail penyakit</p>
+								<p style='color:#212121;'>5. Jika ingin melihat deskripsi obat. Tekan nama obat (Dalam bentuk link)</p>
+								<h6 style='color:#212121;'>Cara menghitung kebutuhan kalori harian</h6>
+								<p style='color:#212121;'>1. Buka menu "SmartDoc"</p>
+								<p style='color:#212121;'>2. Cari kolom "Kalkulator Kalori"</p>
+								<p style='color:#212121;'>3. Isi data tinggi badan, berat badan, umur(tahun), jenis kelamin, dan pilih aktivitas pada hari terkait. Tekan tombol "Hitung" untuk melihat hasilnya</p>
 							</div>
-							<div class="tab-pane fade" id="v-pills-darurat" role="tabpanel" aria-labelledby="v-pills-darurat-tab">
-								<h6 style='color:#212121;'>Nomor Darurat</h6>
+							<div class="tab-pane fade" id="v-pills-darurat" role="tabpanel" aria-labelledby="v-pills-darurat-tab" style='max-height: calc(85vh - 120px); max-width:auto; overflow-x: auto;'>
+								<h6 style='color:#212121;'>Cara melihat informasi fasilitas kesehatan</h6>
+								<p style='color:#212121;'>1. Buka menu "Darurat"</p>
+								<p style='color:#212121;'>2. Pilih tab "Fasilitas Kesehatan"</p>
+								<p style='color:#212121;'>3. Tekan tombol "Lihat detail" untuk melihat informasi pendukung seputar fasilitas kesehatan terkait</p>
+								<p style='color:#212121;'>4. Untuk melihat lokasi, tekan tombol "Lihat Lokasi"</p>
+								<p style='color:#212121;'>5. Untuk mendapatkan kordinat, tekan tombol "Dapatkan Kordinat"</p>
+								<p style='color:#212121;'>6. Untuk melihat jadwal layanan penanganan COVID. Arahkan kursor atau tekan salah satu item terkait</p>
+								<h6 style='color:#212121;'>Cara melihat dokter praktik</h6>
+								<p style='color:#212121;'>1. Buka menu "Praktek Dokter"</p>
+								<p style='color:#212121;'>2. Pilih dokter berdasarkan spesialisnya</p>
+								<p style='color:#212121;'>3. Anda juga dapat melihatnya berdasarkan tempat praktiknya pada menu "Darurat"</p>
 							</div>
-							<div class="tab-pane fade" id="v-pills-acc" role="tabpanel" aria-labelledby="v-pills-acc-tab">
-								<h6 style='color:#212121;'>Akun</h6>
+							<div class="tab-pane fade" id="v-pills-acc" role="tabpanel" aria-labelledby="v-pills-acc-tab" style='max-height: calc(85vh - 120px); max-width:auto; overflow-x: auto;'>
+								<h6 style='color:#212121;'>Cara mengedit data diri</h6>
+								<p style='color:#212121;'>1. Buka menu akun dengan deskripsi tombol nama pengguna Anda</p>
+								<p style='color:#212121;'>2. Pada kolom data diri, isikan data terbaru Anda. Dan tekan tombol "Simpan Perubahan" untuk menyimpan</p>
+								<h6 style='color:#212121;'>Cara menganti foto profil</h6>
+								<p style='color:#212121;'>1. Buka menu akun dengan deskripsi tombol nama pengguna Anda</p>
+								<p style='color:#212121;'>2. Tekan tombol "browse" untuk memilih foto</p>
+								<p style='color:#212121;'>3. Jika sudah, tekan tombol "Ganti Foto" untuk mengonfirmasi</p>
+								<h6 style='color:#212121;'>Cara mengganti akun</h6>
+								<p style='color:#212121;'>1. Pada menu apapun. Tekan tombol "Ganti Akun" pada tab navigasi</p>
+								<p style='color:#212121;'>2. Ketikan "konfirmasi" untuk mengonfirmasi ganti akun. Dan tekan tombol "Ya"</p>	
 							</div>
 						</div>
 					</div>
@@ -2064,6 +2146,10 @@
 			$(window).on('load', function() {
 				$('#errorCalHarian').modal('show');
 			});
+			$('#errorCalHarian').modal({
+				backdrop: 'static', 
+				keyboard: false
+			});  
 
 			//Statistic
 			$(function() {

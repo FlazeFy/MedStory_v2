@@ -108,15 +108,15 @@
                 <li><a href="history">Forum</a></li>
                 <li><a href="dataKu">Dataku</a></li>
 				<li><a href="nomorDarurat">Darurat</a></li>
-                <li style="float:right"><form action='landing/logout' method='post'><button type="submit" class='btn btn-danger' style='height:40px; margin:13px 10px 0px 10px;'><i class='fa fa-sign-out'></i> Ganti Akun</button></form></li>
+                <li style="float:right"><button type="submit" class='btn btn-danger' data-toggle="modal" data-target="#signOutModal" style='height:40px; margin:13px 10px 0px 10px;'><i class='fa fa-sign-out'></i> Ganti Akun</button></li>
                 <li style="float:right"><button onclick="window.location.href='account'" class='btn btn-primary' style='height:40px; background:#212121; margin:13px 0px 0px 10px;'><i class='fa fa-user-circle'></i> <?= $data = $this->session->userdata('userTrack'); ?></button></li>
                 <div id="ddParent">
                     <button id="dropbutton"><img id="set" src="assets/Setting.png"></button>
-						<!--DropDown menu navigation-->
-						<div id="dropdown-content">
-								<a href="pusatBantuan">Pusat Bantuan</a>
-								<a href="#">Tentang</a>
-								<a href="kebijakan">Kebijakan & Privasi</a>
+					<!--DropDown menu navigation-->
+					<div id="dropdown-content">
+					<a href="pusatBantuan">Pusat Bantuan</a>
+					<a href="#">Tentang</a>
+					<a href="kebijakan">Kebijakan & Privasi</a>
                 </div>
             </ul>
         </div>
@@ -198,12 +198,13 @@
 					<div class='container'>	
 						<form method='POST' action='landing/insertMasukkan' >					
 							<p style='color:white; margin-bottom:5px;'>Kritik & Saran</p>
-								<textarea required rows="5" cols="60" name="sarankritik" style="background:white; color:#212121; margin-bottom:10px; margin-left-right:10px; width:80%;
-									font-size:14px;"
+								<textarea required rows="5" cols="60" name="sarankritik" style="background:#f4f4f4; border-width: 0 0 3px; 
+									border-bottom: 3.5px solid #4183D7; color:#212121; margin-bottom:10px; margin-left-right:10px; width:80%; border-radius:4px; font-size:14px;"
 									>Masukkan kritik dan saran Anda...</textarea><br>
 							<div class='row'>
 								<div class='col-md-6' style='max-width:300px;'>
-									<input required disabled type="name" class="form-control" name="nama" style="color:#212121; margin-left-right:10px;"
+									<input required disabled type="name" class="form-control" name="nama" style="background:#f4f4f4; border-width: 0 0 3px; 
+									border-bottom: 3.5px solid #4183D7; color:#212121; margin-left-right:10px;"
 									placeholder='nama lengkap / nama panggilan / inisial' value='<?= $data = $this->session->userdata('userTrack'); ?>'>
 								</div>
 								<div class='col-md-6'>
@@ -247,40 +248,64 @@
 					<a class="text-reset">Muhammad Akmal Fadhlillah</a>
 				</p>
 				<p style="color: whitesmoke;">
-						<a class="text-reset">Ananda Ardian Pratama P.</a>
-					</p>
+					<a class="text-reset">Ananda Ardian Pratama P.</a>
+				</p>
 			</div>
 			<div class="col-md-3 col-lg-2 col-xl-4 mx-auto mb-4">
 				<h6 class="text-uppercase fw-bold mb-4" style="color: #212121; font-size: large;">NIM</h6>
 				<p style="color: whitesmoke;">
-						<a class="text-reset">1302194041</a>
+					<a class="text-reset">1302194041</a>
 				</p>
 				<p style="color: whitesmoke;">
-						<a class="text-reset">1302194003</a>
+					<a class="text-reset">1302194003</a>
 				</p>
 				<p style="color: whitesmoke;">
-						<a class="text-reset">1302194024</a>
+					<a class="text-reset">1302194024</a>
 				</p>
 				<p style="color: whitesmoke;">
-						<a class="text-reset">1302190103</a>
+					<a class="text-reset">1302190103</a>
 				</p>
 				<p style="color: whitesmoke;">
-						<a class="text-reset">1302194049</a>
+					<a class="text-reset">1302194049</a>
 				</p>
 			</div>
 		</section>
 
 		<div class="text-center p-4" style="background-color: #333333; color: whitesmoke;">1302190103-Muhammad Akmal Fadhlillah</div>
 		</footer>
-			<script type="text/javascript">
-				$(document).ready(function(){
+		<!-- Sign out Modal -->
+		<div class="modal fade" id="signOutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" style='color:black; font-size:16px;'>Apakah Anda yakin?...</h5>
+			</div>
+			<div class="modal-footer">
+				<div class='container-fluid'>
+				<form action='landing/logout' method='post'>
+					<input required name='validation' type='text' style="background:#f4f4f4; border-width: 0 0 3px; 
+						border-bottom: 3.5px solid #4183D7; color:#212121; width:200px; margin-left:40px; border-radius:4px;" placeholder="'KONFIRMASI'"></input>
+					<button class="btn btn-danger" data-dismiss="modal">Batal</button>
+					<button type="submit" class="btn btn-success">Ya</button>
+				</form>
+				</div>
+			</div>			
+			</div>
+		</div>
+		</div>
 
-				$("input[type='radio']").click(function(){
-				var sim = $("input[type='radio']:checked").val();
-				//alert(sim);
-				if (sim<3) { $('.myratings').css('color','red'); $(".myratings").text(sim); }else{ $('.myratings').css('color','green'); $(".myratings").text(sim); } }); });
-			</script>
-			<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-			<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+
+			$("input[type='radio']").click(function(){
+			var sim = $("input[type='radio']:checked").val();
+			//alert(sim);
+			if (sim<3) { $('.myratings').css('color','red'); $(".myratings").text(sim); }else{ $('.myratings').css('color','green'); $(".myratings").text(sim); } }); });
+		</script>
+		<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<!--Ajax for json-->
+		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>  
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     </body>
 </html>

@@ -138,7 +138,7 @@
 				'kalori' => $this->input->post('calTotal'),
 				'date' => date("Y/m/d"),
 			);	
-			if($data['kalori'] >= 600){
+			if(($data['kalori'] >= 600)&&($data['kalori'] <= 6000)){
 				$this->historyModel->insertCal($data, 'kebutuhankalori');
 			} else {
 				$data['error_tambahCalHarian'] = "Masukkan kalori yang valid!"; 

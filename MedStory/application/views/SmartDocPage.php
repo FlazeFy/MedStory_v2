@@ -206,7 +206,7 @@
 					<li><a href="history">Forum</a></li>
 					<li><a href="dataKu">Dataku</a></li>
 					<li><a href="nomorDarurat">Darurat</a></li>
-						<li style="float:right"><form action='landing/logout' method='post'><button type="submit" class='btn btn-danger' style='height:40px; margin:13px 10px 0px 10px;'><i class='fa fa-sign-out'></i> Ganti Akun</button></form></li>
+						<li style="float:right"><button type="submit" class='btn btn-danger' data-toggle="modal" data-target="#signOutModal" style='height:40px; margin:13px 10px 0px 10px;'><i class='fa fa-sign-out'></i> Ganti Akun</button></li>
 						<li style="float:right"><button onclick="window.location.href='account'" class='btn btn-primary' style='height:40px; background:#212121; margin:13px 0px 0px 10px;'><i class='fa fa-user-circle'></i> <?= $data = $this->session->userdata('userTrack'); ?></button></li>
 						<div id="ddParent">
 						<button id="dropbutton"><img id="set" src="http://localhost/MedStory/assets/Setting.png"></button>
@@ -665,6 +665,27 @@
 
         <div class="text-center p-4" style="background-color: #333333; color: whitesmoke;">1302194041-Leonardho R Sitanggang</div>
         </footer>
+
+		<!-- Sign out Modal -->
+		<div class="modal fade" id="signOutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" style='color:black; font-size:16px;'>Apakah Anda yakin?...</h5>
+			</div>
+			<div class="modal-footer">
+				<div class='container-fluid'>
+				<form action='landing/logout' method='post'>
+					<input required name='validation' type='text' style="background:#f4f4f4; border-width: 0 0 3px; 
+						border-bottom: 3.5px solid #4183D7; color:#212121; width:200px; margin-left:40px; border-radius:4px;" placeholder="'KONFIRMASI'"></input>
+					<button class="btn btn-danger" data-dismiss="modal">Batal</button>
+					<button type="submit" class="btn btn-success">Ya</button>
+				</form>
+				</div>
+			</div>			
+			</div>
+		</div>
+		</div>	
 
 		<?php
 		foreach($dataRelasiObat as $relObat){

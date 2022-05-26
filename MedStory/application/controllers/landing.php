@@ -70,8 +70,12 @@
 			$this->load->view('LandingPage', $data);
 		}
 		public function logout(){
-			$this->session->sess_destroy();
-			redirect('http://localhost/MedStory/');
+			if($this->input->post('validation') == 'KONFIRMASI'){
+				$this->session->sess_destroy();
+				redirect('http://localhost/MedStory/');
+			} else {
+				redirect('history');
+			}
 		}
 	}
 ?>

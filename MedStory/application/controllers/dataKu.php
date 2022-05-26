@@ -20,5 +20,32 @@
 			$data['dataUser']= $this->accountModel->get_data_user();
 			$this->load->view('dataKuPage', $data);
 		}
+		public function tambahJadwalCal(){
+			$data = array(
+				'id_jadwal' => 'NULL',
+				'id_user' => $this->input->post('id_user'),
+				'id_asupan' => $this->input->post('id_asupan'),
+				'date' => $this->input->post('date'),
+				'waktu' =>  $this->input->post('waktu')
+			);	
+			$this->DataKuModel->insertJadwal($data, 'jadwalkalori');
+			
+			//error. list only insert 1 item
+		}
+		public function calHarian(){
+			$data = array(
+				'id_kebutuhan' => 'NULL',
+				'id_user' => $this->input->post('id_user'),
+				'kalori' => $this->input->post('calTotal'),
+				'date' => $this->input->post('date2'),
+			);	
+			if(($data['kalori'] >= 600)&&($data['kalori'] <= 6000)){
+				$this->DataKuModel->insertCal($data, 'kebutuhankalori');
+			} else {
+				$data['error_tambahCalHarian'] = "Masukkan kalori yang valid!"; 
+				$this->index();
+				$this->load->view('DataKuPage', $data);
+			}
+		}
 	}
 ?>

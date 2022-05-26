@@ -30,9 +30,9 @@
 			$penyakitCheck = $this->db->get()->result_array();
 			if(count($penyakitCheck) >= 1){
 				$this->session->set_userdata('gejala',$gejala);	
-				redirect('SmartDoc');
+				redirect('smartDoc');
 			}else{
-				redirect('SmartDoc');
+				redirect('smartDoc');
 			}
 		}
 		public function hitungKMS(){

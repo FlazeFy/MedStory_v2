@@ -43,5 +43,16 @@
 			$data = $this->db->get('jadwalkalori');
 			return $data->result_array();
 		}	
+		public function insertJadwal($data){
+			$this->db->insert('jadwalkalori',$data);	
+			redirect('dataKu');
+		}
+		public function insertCal($data){
+			$this->db->insert('kebutuhankalori',$data);	
+			redirect('dataKu');
+		}
+		public function refresh(){
+			redirect('dataKu');
+		}
 	}
 ?>

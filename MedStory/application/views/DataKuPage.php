@@ -236,7 +236,7 @@
 					<li><a href="history">Forum</a></li>
 					<li id="active"><a href="dataKu">Dataku</a></li>
 					<li><a href="nomorDarurat">Darurat</a></li>
-						<li style="float:right"><form action='landing/logout' method='post'><button type="submit" class='btn btn-danger' style='height:40px; margin:13px 10px 0px 10px;'><i class='fa fa-sign-out'></i> Ganti Akun</button></form></li>
+						<li style="float:right"><button type="submit" class='btn btn-danger' data-toggle="modal" data-target="#signOutModal" style='height:40px; margin:13px 10px 0px 10px;'><i class='fa fa-sign-out'></i> Ganti Akun</button></li>
 						<li style="float:right"><button onclick="window.location.href='account'" class='btn btn-primary' style='height:40px; background:#212121; margin:13px 0px 0px 10px;'><i class='fa fa-user-circle'></i> <?= $data = $this->session->userdata('userTrack'); ?></button></li>
 						<div id="ddParent">
 						<button id="dropbutton"><img id="set" src="http://localhost/MedStory/assets/Setting.png"></button>
@@ -449,6 +449,27 @@
         <div class="text-center p-4" style="background-color: #333333; color: whitesmoke;">1302194041-Leonardho R Sitanggang</div>
         </footer>
 
+		<!-- Sign out Modal -->
+		<div class="modal fade" id="signOutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" style='color:black; font-size:16px;'>Apakah Anda yakin?...</h5>
+			</div>
+			<div class="modal-footer">
+				<div class='container-fluid'>
+				<form action='landing/logout' method='post'>
+					<input required name='validation' type='text' style="background:#f4f4f4; border-width: 0 0 3px; 
+						border-bottom: 3.5px solid #4183D7; color:#212121; width:200px; margin-left:40px; border-radius:4px;" placeholder="'KONFIRMASI'"></input>
+					<button class="btn btn-danger" data-dismiss="modal">Batal</button>
+					<button type="submit" class="btn btn-success">Ya</button>
+				</form>
+				</div>
+			</div>			
+			</div>
+		</div>
+		</div>	
+
 		<!--Day modal-->
 		<div class="modal fade" id="calendarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
@@ -479,9 +500,9 @@
 		<div class="modal fade" id="asupanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
-			<form method="POST" action="">
+			<form method="POST" action="dataKu/tambahJadwalCal">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Asupan Hari ini</h5>
+				<h5 class="modal-title" id="exampleModalLabel">Tambah asupan pada :</h5>
 				<div class="col-sm">
 					<select class="form-control" name="waktu" style="background:#f4f4f4; border-width: 0 0 3px; 
 						border-bottom: 3.5px solid #4183D7; color:#212121; width:200px;">
@@ -492,7 +513,7 @@
 				</div>
 				<div class="col-sm">
 					<input required class='form-control' name='date' type='date' id='date' style="background:#f4f4f4; border-width: 0 0 3px; 
-						border-bottom: 3.5px solid #4183D7; color:#212121; width:200px; margin-left:-70px;"></input>
+						border-bottom: 3.5px solid #4183D7; color:#212121; width:200px; margin-left:-40px;"></input>
 				</div>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
@@ -501,38 +522,7 @@
 			<div class="modal-body" style='max-height: calc(90vh - 180px); overflow-y: auto;'>
 				<section class="py-1 header">
 					<!-- Daftar kalori hari ini -->
-					<h5 class='font-weight-bold' data-toggle="collapse" href="#collapseDaftar" role='button' style='color:#4183D7; font-size:16px;'><i class="fa-solid fa-circle-check"></i> Asupan Terpenuhi</h5>
-					<div class='container-fluid'>
-						<div class='row'>
-							<?php
-								$date = date('Y-m-d');
-								//Still cannot pass value from javascript to php.
-								foreach($dataUser as $user){
-									if($user['namaPengguna'] == $this->session->userdata('userTrack')){
-										foreach($dataJadwal as $cal){
-											if(($cal['id_user'] == $user['id_user'])&&($cal['date'] == $date)){
-												foreach($dataAsupan as $asupan){
-													if($cal['id_asupan'] == $asupan['id_asupan']){
-														echo"<div class='card' style='width: 12rem; margin:5px; border:none; box-shadow: #d4d4d4 0px 4px 12px; border-radius:6px;'>
-															<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
-																style='height:100px; border-radius:6px;'>
-															<div class='card-body' style='height:80px;'>
-																<p style='font-size:14px; font-weight:bold;'>".$asupan['nama']."</p>
-																<p style='color:grey; font-size:12px; font-weight:lighter; margin-top:-10px;'>".$asupan['ukuran']." | ".$asupan['kategori']."</p>
-															</div>
-														</div>";
-													}
-												}
-											}
-										}
-									}
-								}
-							?>
-						</div>
-					</div>
-
-					<h5 class='font-weight-bold' data-toggle="collapse" href="#collapseTambah" role='button' style='color:#4183D7; font-size:16px;'><i class="fa fa-add"></i> Tambah Asupan<i class="fa fa-angle-down" style='float:right;'></i></h5>
-					<div id="collapseTambah" class='card-body collapse' style='width:100%;'>
+					<div class='container-fluid' style='width:100%;'>
 						<div class="row">
 							<div class="col-md-3">
 								<!-- Tabs nav -->
@@ -727,22 +717,6 @@
 				</section>
 			</div>
 			<div class="modal-footer">
-				<?php
-					$totalCalW = 0; $calorie = 0; $ket = 0;
-					foreach($totalUserKebutuhan2 as $calWaktu){
-						$totalCalW += $calWaktu['kalori'];
-					}
-					foreach($dataKebutuhan as $kebutuhan){
-						if(($kebutuhan['id_user'] == $user['id_user'])&&($kebutuhan['date'] == date("Y-m-d"))){
-							$calorie = $kebutuhan['kalori'];
-						}
-					}
-					$ket = $calorie-$totalCalW;
-					if($ket <= 0){
-						echo"<p style='color:red; font-size:14px; margin-top:5px; float:left; text-align:left;'>
-						<i class='fa fa-exclamation-triangle'></i> Kebutuhan kalori Anda sudah terpenuhi.</p>";
-					} 
-				?>
 				<div class='row' style='width:100%;'>
 					<div class='col-md-9'>
 						<div class='container' style='float:left; position:relative;'>
@@ -778,6 +752,70 @@
 		</div>
 		</div>
 
+		<!-- Tambah asupan -->
+		<div class="modal fade" id="kaloriModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+			<form method="POST" action="dataKu/calHarian">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Tambah kebutuhan kalori pada :</h5>
+				<div class="col-sm">
+					<input required class='form-control' name='date2' type='date' id='date2' style="background:#f4f4f4; border-width: 0 0 3px; 
+						border-bottom: 3.5px solid #4183D7; color:#212121; width:200px;"></input>
+				</div>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body" >
+				<?php 
+					foreach($dataUser as $user){
+						if($user['namaPengguna'] == $this->session->userdata('userTrack')){
+							echo"<input type='text' class='form-control' name='id_user' value='".$user['id_user']."' hidden>";
+						}
+					}
+				?>
+				<p style='text-align:center;'>Kebutuhan kalori: </p>
+				<div class='container' style='margin-left:30%;'>
+					<input style="background:#f4f4f4; border-width: 0 0 3px; border-bottom: 3.5px solid #4183D7; color:#212121;"
+						name='calTotal'></input>
+					<button class='btn btn-success' type='submit'>Tambah</button>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<div class='row' style='width:100%;'>
+					<div class='col-md-9'>
+						<p style='color:red; font-size:14px;'><i class="fa-solid fa-circle-info"></i> Anda belum menambahkan kebutuhan kalori pada hari ini</p>
+					</div>
+					<div class='col-md-3'>
+						<button type="submit" style='float:right;' class="btn btn-primary">Tambah</button>
+					</div>
+				</div>
+			</div>
+			</form>
+			</div>
+		</div>
+		</div>
+
+		<!-- Error Tambah Cal Modal -->
+		<?php if(isset($error_tambahCalHarian)) { echo"
+		<div class='modal fade' id='errorCalHarian' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+		<div class='modal-dialog' role='document'>
+			<div class='modal-content'>
+				<div class='modal-header'>
+					<h5 class='modal-title'>Tambah Kalori Error</h5>
+					<i class='fa-solid fa-xmark' class='closebtn' type='button' data-dismiss='modal' aria-label='Close' onClick='refreshMessage()'></i>
+				</div>
+				<div class='modal-body'>
+					<img src='http://localhost/MedStory/assets/icon/Failed.png' alt='Hello.gif' style='display: block;
+						margin-left: auto; margin-right: auto; width: 120px; height: 120px;'>
+					<p style='text-align:center; font-weight:bold;'>".$error_tambahCalHarian."</p>
+				</div>		
+			</div>
+		</div>
+		</div>";}	
+		?>
+
 		<!--Javascript signout-->
 		<script type="text/javascript">
 			//Back to the top js.
@@ -790,6 +828,9 @@
 			} else {
 				mybutton.style.display = "none";
 				}
+			}
+			function refreshMessage() {
+				window.location.href="http://localhost/MedStory/dataKu";  
 			}
 
 			function topFunction() {
@@ -906,8 +947,44 @@
 				$('#calendarModal').modal();
         	},
 			dayClick:  function(date) {
-				document.getElementById("date").defaultValue = date.format();
-				$('#asupanModal').modal();
+				var x = 0;
+				var y = 0;
+				const dates = [<?php 
+					foreach($dataUser as $user){
+						if($user['namaPengguna'] == $this->session->userdata('userTrack')){
+							foreach($dataKebutuhan as $cal){
+								if($cal['id_user'] == $user['id_user']){
+									echo "'".$cal['date']."',";
+								}
+							}
+						}
+					}
+				?>];
+				var i = <?php 
+					$i = 0;
+					foreach($dataUser as $user){
+						if($user['namaPengguna'] == $this->session->userdata('userTrack')){
+							foreach($dataKebutuhan as $cal){
+								if($cal['id_user'] == $user['id_user']){
+									$i++;
+								}
+							}
+						}
+					}
+					echo $i;	
+					?>;
+				while (x < i){
+					if(date.format() == dates[x]){
+						document.getElementById("date").defaultValue = date.format();
+						$('#asupanModal').modal();
+						y++;
+					}
+					x++;
+				}
+				if (y == 0){
+					document.getElementById("date2").defaultValue = date.format();
+					$('#kaloriModal').modal();
+				} 
         	},
 		})
 		</script>
@@ -923,6 +1000,13 @@
 			$('.collapsible').click(function(e) {
 				e.stopPropagation();
 			});
+			$(window).on('load', function() {
+				$('#errorCalHarian').modal('show');
+			});
+			$('#errorCalHarian').modal({
+				backdrop: 'static', 
+				keyboard: false
+			});  
         })
         </script>
     </body>
