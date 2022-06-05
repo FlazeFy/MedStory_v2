@@ -36,7 +36,6 @@
 									<button id="dropbutton"><img id="set" src="assets/Setting.png"></button>
 										<!--DropDown menu navigation-->
 										<div id="dropdown-content">
-												<a href="pusatBantuan">Pusat Bantuan</a>
 												<a href="tentang">Tentang</a>
 												<a href="#">Kebijakan & Privasi</a>
                 </div>

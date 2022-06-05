@@ -114,9 +114,8 @@
                     <button id="dropbutton"><img id="set" src="assets/Setting.png"></button>
 					<!--DropDown menu navigation-->
 					<div id="dropdown-content">
-					<a href="pusatBantuan">Pusat Bantuan</a>
-					<a href="#">Tentang</a>
-					<a href="kebijakan">Kebijakan & Privasi</a>
+						<a href="#">Tentang</a>
+						<a href="kebijakan">Kebijakan & Privasi</a>
                 </div>
             </ul>
         </div>
@@ -169,15 +168,16 @@
 										<input type="radio" id="star1" name="rating" value="1" />
 										<label class="full" for="star1" title="Sangat Buruk - 1 star"></label> 
 										
-										<input type="radio" class="reset-option" name="rating" value="reset" /> </fieldset>
-									
+										<input type="radio" class="reset-option" name="rating" value="reset" /> 
+									</fieldset>
 								</div>
 								<div class='img-box'>		
 									<img src="http://localhost/MedStory/assets/uploads/user_<?php foreach ($dataUser as $data){echo $data['namaPengguna'];} ?>.jpg" alt="Admin" 
 										class="rounded-circle img-fluid" style="top:4px; height:100px; width:100px;">			
 								</div>
 								<div class='thumb-content'>
-									<textarea rows="5" cols="30" name="review" style="background:white; color:#212121; font-size:14px;">Masukan review...</textarea><br>						
+									<textarea rows="5" cols="28" name="review" style="background:#f4f4f4; border-width: 0 0 3px; border-radius:4px; 
+									border-bottom: 3.5px solid #4183D7; color:#212121;">Masukan review...</textarea><br>						
 									<p style='font-size:11px; float:right;'><?php echo date("Y/m/d h:i:s"); ?></p>
 									<h5 style='font-size:13px; float:left; color:#212121;'>by : <?php foreach ($dataUser as $data){echo $data['namaPengguna'];} ?></h5>
 									<br>

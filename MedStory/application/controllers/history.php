@@ -107,17 +107,32 @@
 			redirect('history');
 		}
 
-		public function tambahJadwalCal(){
-			$data = array(
-				'id_jadwal' => 'NULL',
-				'id_user' => $this->input->post('id_user'),
-				'id_asupan' => $this->input->post('id_asupan'),
-				'date' => date("Y/m/d"),
-				'waktu' =>  $this->input->post('waktu')
-			);	
-			$this->historyModel->insertJadwal($data, 'jadwalkalori');
+		// public function tambahJadwalCal(){
+		// 	$data = array(
+		// 		'id_jadwal' => 'NULL',
+		// 		'id_user' => $this->input->post('id_user'),
+		// 		'id_asupan' => $this->input->post('id_asupan'),
+		// 		'date' => date("Y/m/d"),
+		// 		'waktu' =>  $this->input->post('waktu')
+		// 	);	
+		// 	$this->historyModel->insertJadwal($data, 'jadwalkalori');
 			
-			//error. list only insert 1 item
+		// 	//error. list only insert 1 item
+		// }
+
+		public function tambahJadwalCal(){
+			$total = $this->input->post('id_asupan[]');		
+			for($i = 0; $i < count($total); $i++){	
+				$data = array(
+					'id_jadwal' => 'NULL',
+					'id_user' => $this->input->post('id_user'),
+					'id_asupan' => $total[$i],
+					'date' => date("Y/m/d"),
+					'waktu' =>  $this->input->post('waktu')
+				);
+				$this->historyModel->insertJadwal($data, 'jadwalkalori');
+			}
+			redirect('history');
 		}
 
 		public function hapusAsupan(){

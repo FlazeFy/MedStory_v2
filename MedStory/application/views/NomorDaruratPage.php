@@ -37,6 +37,9 @@
 				background:#22A7F0; 
 				box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 			}
+			p {
+				font-size:14px;
+			}
 			.carousel {
 				margin: 5px auto;
 				padding: 0 30px;
@@ -214,7 +217,6 @@
 						<button id="dropbutton"><img id="set" src="http://localhost/MedStory/assets/Setting.png"></button>
 						<!--DropDown menu navigation-->
 						<div id="dropdown-content">
-								<a href="pusatBantuan">Pusat Bantuan</a>
 								<a href="tentang">Tentang</a>
 								<a href="kebijakan">Kebijakan & Privasi</a>
 						</div>
@@ -253,10 +255,10 @@
 															<h3 style='font-size:18px; float:right;'>".$data['rating']."</h3>
 															<img src='http://localhost/MedStory/assets/Rating.png' width='20px' height='20px' alt='rating' style='float:right;'>
 														</div>
-														<h5 style='font-size:14px; color:#212121;'>".$data['alamat']."</h5>
-														<h5 style='font-size:14px; color:#212121;'>".$data['kontak']."</h5>
+														<h5 style='font-size:14px; color:#808080; font-weight: 400;'><i class='fa-solid fa-location-dot'></i> ".$data['alamat']."</h5>
+														<h5 style='font-size:14px; color:#808080; font-weight: 400;'><i class='fa-solid fa-phone'></i> ".$data['kontak']."</h5>
 													</h5>
-													<h5 style='font-size:14px; float:left; text-decoration:underline; color:#4183D7;' type='button' data-toggle='collapse' data-target='#collapse".$i."' aria-expanded='true' aria-controls='collapseOne'>Detail
+													<h5 style='font-size:14px; float:left; color:#4183D7;' type='button' data-toggle='collapse' data-target='#collapse".$i."' aria-expanded='true' aria-controls='collapseOne'>Detail
 														<img src='http://localhost/MedStory/assets/icon/Drop Down.png' style='width:25px; height:20px; float:left; padding-left:3px;'></h5>
 												</div>
 												<!--Extend-->
@@ -265,17 +267,25 @@
 														<div class='container'>
 															<div class='row'>
 																<div class='col-md-6'>
-																	<button class='btn btn-success' data-toggle='modal' data-target='#loc".$data['id_faskes']."'><i class='fa-solid fa-location-dot'></i> Lihat Lokasi</button>
-																	<button class='btn btn-primary' onclick='locationCopy".$data['id_faskes']."()'><i class='fa-solid fa-copy'></i> Dapatkan Kordinat</button>
+																	<div class='row'>
+																		<div class='col-md-8'>
+																			<img src='http://localhost/MedStory/assets/faskesImage/faskes".$data['id_faskes'].".jpeg' width='320px' height='170px' style='border-radius:6px;' alt=''><hr>
+																		</div>
+																		<div class='col-md-4'>
+																			<button class='btn btn-success' style='margin:10px;' data-toggle='modal' data-target='#loc".$data['id_faskes']."'><i class='fa-solid fa-location-dot'></i> Lihat Lokasi</button>
+																			<form class='form-inline' action='nomorDarurat/copyCoor' method='post'>
+																				<button class='btn btn-primary' style='margin:10px;' type='submit' onclick='locationCopy".$data['id_faskes']."()'><i class='fa-solid fa-copy'></i> Dapatkan Kordinat</button>
+																			</form>
+																		</div>
+																	</div>
 																	<input type='text' value='".$data['kordinat']."' id='myInput".$data['id_faskes']."' hidden>
-																	<img src='http://localhost/MedStory/assets/faskesImage/faskes".$data['id_faskes'].".jpeg' width='350px' height='170px' style='border-radius:6px; margin-top:10px;' alt=''><hr>
-																	<h5 class='font-weight-bold'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/fasilitas.png'> Fasilitas</h5>                        
-																	<p>".$data['fasilitas']."</p>
+																	<h5 class='font-weight-w500'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/poliklinik.png'> Poliklinik</h5>                        
+																	<p>".$data['poliklinik']."</p>
 																</div>
 																<div class='col-md-6'>
-																	<h5 class='font-weight-bold'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/poliklinik.png'> Poliklinik</h5>
-																	<p>".$data['poliklinik']."</p>
-																	<h5 class='font-weight-bold'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Covid.png'> Penanganan Covid</h5>
+																	<h5 class='font-weight-w500'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/fasilitas.png'> Fasilitas</h5>
+																	<p>".$data['fasilitas']."</p>
+																	<h5 class='font-weight-w500'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Covid.png'> Penanganan Covid</h5>
 																	<div class='row' style='margin-top:5px; margin-bottom:20px;'>";
 																		$c = 0;
 																		foreach ($dataCovid as $covid){
@@ -322,7 +332,7 @@
 																if ($jml > 0){ 
 																	echo"<!--List dokter.-->
 																	<div class='col-md'>
-																		<h5 class='font-weight-bold' style='text-align:center;'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Doctor.png'> Dokter</h5>
+																		<h5 class='font-weight-w500' style='text-align:center;'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Doctor.png'> Dokter</h5>
 																		<div id='myCarousel".$i."' class='carousel slide' data-ride='carousel' data-interval='0'>
 																		<!-- Carousel indicators -->
 																		<ol class='carousel-indicators'>";
@@ -460,7 +470,7 @@
 									<div class='collapse show' id='collapseDUmum' data-parent='#accordionDoctor'>
 										<div class='container'>	
 										<?php 
-											echo"<h5 class='font-weight-bold'>Kapankah saya harus berobat ke dokter umum?</h5>                        
+											echo"<h5 class='font-weight-w500'>Kapankah saya harus berobat ke dokter umum?</h5>                        
 											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 											"; 
 											$jml = 0;
@@ -472,7 +482,7 @@
 											if ($jml > 0){ 
 												echo"<!--List dokter.-->
 												<div class='col-md'>
-													<h5 class='font-weight-bold' style='text-align:center;'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Doctor.png'> Dokter Umum</h5>
+													<h5 class='font-weight-w500' style='text-align:center;'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Doctor.png'> Dokter Umum</h5>
 													<div id='carouselUmum' class='carousel slide' data-ride='carousel' data-interval='0'>
 													<!-- Carousel indicators -->
 													<ol class='carousel-indicators'>";
@@ -549,7 +559,7 @@
 									<div class='collapse' id='collapseDAnak' data-parent='#accordionDoctor'>
 										<div class='container'>	
 											<?php 
-												echo"<h5 class='font-weight-bold'>Kapankah saya harus berobat ke dokter anak?</h5>                        
+												echo"<h5 class='font-weight-w500'>Kapankah saya harus berobat ke dokter anak?</h5>                        
 												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 												"; 
 												$jml = 0;
@@ -561,7 +571,7 @@
 												if ($jml > 0){ 
 													echo"<!--List dokter.-->
 													<div class='col-md'>
-														<h5 class='font-weight-bold' style='text-align:center;'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Doctor.png'> Dokter Anak</h5>
+														<h5 class='font-weight-w500' style='text-align:center;'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Doctor.png'> Dokter Anak</h5>
 														<div id='carouselAnak' class='carousel slide' data-ride='carousel' data-interval='0'>
 														<!-- Carousel indicators -->
 														<ol class='carousel-indicators'>";
@@ -638,7 +648,7 @@
 									<div class='collapse' id='collapseDGigi' data-parent='#accordionDoctor'>
 										<div class='container'>	
 										<?php
-											echo"<h5 class='font-weight-bold'>Kapankah saya harus berobat ke dokter gigi?</h5>                        
+											echo"<h5 class='font-weight-w500'>Kapankah saya harus berobat ke dokter gigi?</h5>                        
 											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 											"; 
 											$jml = 0;
@@ -650,7 +660,7 @@
 											if ($jml > 0){ 
 												echo"<!--List dokter.-->
 												<div class='col-md'>
-													<h5 class='font-weight-bold' style='text-align:center;'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Doctor.png'> Dokter Gigi</h5>
+													<h5 class='font-weight-w500' style='text-align:center;'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Doctor.png'> Dokter Gigi</h5>
 													<div id='carouselGigi' class='carousel slide' data-ride='carousel' data-interval='0'>
 													<!-- Carousel indicators -->
 													<ol class='carousel-indicators'>";
@@ -727,7 +737,7 @@
 									<div class='collapse' id='collapseDMata' data-parent='#accordionDoctor'>
 										<div class='container'>	
 										<?php 
-											echo"<h5 class='font-weight-bold'>Kapankah saya harus berobat ke dokter mata?</h5>                        
+											echo"<h5 class='font-weight-w500'>Kapankah saya harus berobat ke dokter mata?</h5>                        
 											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 											"; 
 											$jml = 0;
@@ -739,7 +749,7 @@
 											if ($jml > 0){ 
 												echo"<!--List dokter.-->
 												<div class='col-md'>
-													<h5 class='font-weight-bold' style='text-align:center;'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Doctor.png'> Dokter Mata</h5>
+													<h5 class='font-weight-w500' style='text-align:center;'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Doctor.png'> Dokter Mata</h5>
 													<div id='carouselMata' class='carousel slide' data-ride='carousel' data-interval='0'>
 													<!-- Carousel indicators -->
 													<ol class='carousel-indicators'>";
@@ -816,7 +826,7 @@
 									<div class='collapse' id='collapseDKulit' data-parent='#accordionDoctor'>
 										<div class='container'>	
 										<?php 
-											echo"<h5 class='font-weight-bold'>Kapankah saya harus berobat ke dokter kulit & kelamin?</h5>                        
+											echo"<h5 class='font-weight-w500'>Kapankah saya harus berobat ke dokter kulit & kelamin?</h5>                        
 											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 											"; 
 											$jml = 0;
@@ -828,7 +838,7 @@
 											if ($jml > 0){ 
 												echo"<!--List dokter.-->
 												<div class='col-md'>
-													<h5 class='font-weight-bold' style='text-align:center;'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Doctor.png'> Dokter Kulit & Kelamin</h5>
+													<h5 class='font-weight-w500' style='text-align:center;'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Doctor.png'> Dokter Kulit & Kelamin</h5>
 													<div id='carouselKulit' class='carousel slide' data-ride='carousel' data-interval='0'>
 													<!-- Carousel indicators -->
 													<ol class='carousel-indicators'>";
@@ -905,7 +915,7 @@
 									<div class='collapse' id='collapseDTHT' data-parent='#accordionDoctor'>
 										<div class='container'>	
 										<?php 
-											echo"<h5 class='font-weight-bold'>Kapankah saya harus berobat ke dokter THT?</h5>                        
+											echo"<h5 class='font-weight-w500'>Kapankah saya harus berobat ke dokter THT?</h5>                        
 											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 											"; 
 											$jml = 0;
@@ -917,7 +927,7 @@
 											if ($jml > 0){ 
 												echo"<!--List dokter.-->
 												<div class='col-md'>
-													<h5 class='font-weight-bold' style='text-align:center;'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Doctor.png'> Dokter THT & Kelamin</h5>
+													<h5 class='font-weight-w500' style='text-align:center;'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Doctor.png'> Dokter THT & Kelamin</h5>
 													<div id='carouselTHT' class='carousel slide' data-ride='carousel' data-interval='0'>
 													<!-- Carousel indicators -->
 													<ol class='carousel-indicators'>";
@@ -994,7 +1004,7 @@
 									<div class='collapse' id='collapseDOrtopedi' data-parent='#accordionDoctor'>
 										<div class='container'>	
 										<?php 
-											echo"<h5 class='font-weight-bold'>Kapankah saya harus berobat ke dokter ortopedi?</h5>                        
+											echo"<h5 class='font-weight-w500'>Kapankah saya harus berobat ke dokter ortopedi?</h5>                        
 											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 											"; 
 											$jml = 0;
@@ -1006,7 +1016,7 @@
 											if ($jml > 0){ 
 												echo"<!--List dokter.-->
 												<div class='col-md'>
-													<h5 class='font-weight-bold' style='text-align:center;'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Doctor.png'> Dokter Ortopedi & Kelamin</h5>
+													<h5 class='font-weight-w500' style='text-align:center;'><img style='width:30px;' src='http://localhost/MedStory/assets/icon/Doctor.png'> Dokter Ortopedi & Kelamin</h5>
 													<div id='carouselOrtopedi' class='carousel slide' data-ride='carousel' data-interval='0'>
 													<!-- Carousel indicators -->
 													<ol class='carousel-indicators'>";
@@ -1165,6 +1175,24 @@
 		</div>";	
 		}?>
 
+		<!-- Success copy modal -->
+		<?php if(isset($success_copy)) { echo"
+		<div class='modal fade' id='succescopy' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+		<div class='modal-dialog' role='document'>
+			<div class='modal-content'>
+			<div class='modal-header'>
+				<i class='fa-solid fa-xmark' class='closebtn' type='button' data-dismiss='modal' aria-label='Close' onClick='refreshMessage()'></i>
+			</div>
+			<div class='modal-body'>
+				<img src='http://localhost/MedStory/assets/icon/success.png' alt='success.png' style='display: block;
+					margin-left: auto; margin-right: auto; width: 120px; height: 120px;'>
+				<p style='text-align:center; font-weight:bold;'>".$success_copy."</p>
+			</div>		
+			</div>
+		</div>
+		</div>";}	
+		?>
+
 		<!-- Sign out Modal -->
 		<div class="modal fade" id="signOutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -1204,6 +1232,9 @@
 				document.body.scrollTop = 0;
 				document.documentElement.scrollTop = 0;
 			}
+			function refreshMessage() {
+				window.location.href="http://localhost/MedStory/nomorDarurat";  
+			}
         </script>
 		<script>
 			function myMap() {
@@ -1218,6 +1249,56 @@
 					";
 				}
 			?>
+				var markers = [
+			<?php
+				foreach($dataFaskes as $data){
+					$coor  = $data['kordinat'];
+					$newCoor = explode(", ", $coor);
+					echo"{
+						coords:{lat:".$newCoor[0].",lng:".$newCoor[1]."},
+						content:'<div><h4>".$data['namaFaskes']."</h4><p>".$data['kontak']."</p><hr><h6>Fasilitas</h6><p>".$data['fasilitas']."</p><h6>Poliklinik</h6><p>".$data['poliklinik']."</p></div>'
+					},";
+				}
+			?>
+				];
+
+				
+				<?php
+				foreach($dataFaskes as $data){
+					echo"
+					// Loop through markers
+					for(var i = 0;i < markers.length;i++){
+						// Add marker
+						addMarker".$data['id_faskes']."(markers[i]);
+					}
+
+					// Add Marker Function
+					function addMarker".$data['id_faskes']."(props){
+						var marker = new google.maps.Marker({
+						position:props.coords,
+						map:map".$data['id_faskes'].",
+						//icon:props.iconImage
+						});
+
+						// Check for customicon
+						if(props.iconImage){
+						// Set icon image
+						marker.setIcon(props.iconImage);
+						}
+
+						// Check content
+						if(props.content){
+						var infoWindow = new google.maps.InfoWindow({
+							content:props.content
+						});
+
+						marker.addListener('click', function(){
+							infoWindow.open(map".$data['id_faskes'].", marker);
+						});
+						}
+					}";
+				}
+				?>
 			}
 			<?php
 				foreach($dataFaskes as $data){
@@ -1232,7 +1313,6 @@
 
 					/* Copy the text inside the text field */
 					navigator.clipboard.writeText(copyText.value);
-					alert('Kordinat disalin');
 				}";
 			}
 			?>	
@@ -1255,6 +1335,13 @@
 				$('[data-toggle="popover"]').popover()
 			})
         })
+		$(window).on('load', function() {
+			$('#succescopy').modal('show');
+		});
+		$('#succescopy').modal({
+			backdrop: 'static', 
+			keyboard: false
+		});  
         </script>
     </body>
 </html>

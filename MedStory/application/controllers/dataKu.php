@@ -21,16 +21,18 @@
 			$this->load->view('dataKuPage', $data);
 		}
 		public function tambahJadwalCal(){
-			$data = array(
-				'id_jadwal' => 'NULL',
-				'id_user' => $this->input->post('id_user'),
-				'id_asupan' => $this->input->post('id_asupan'),
-				'date' => $this->input->post('date'),
-				'waktu' =>  $this->input->post('waktu')
-			);	
-			$this->DataKuModel->insertJadwal($data, 'jadwalkalori');
-			
-			//error. list only insert 1 item
+			$total = $this->input->post('id_asupan[]');		
+			for($i = 0; $i < count($total); $i++){	
+				$data = array(
+					'id_jadwal' => 'NULL',
+					'id_user' => $this->input->post('id_user'),
+					'id_asupan' => $total[$i],
+					'date' => $this->input->post('date'),
+					'waktu' =>  $this->input->post('waktu')
+				);	
+				$this->DataKuModel->insertJadwal($data, 'jadwalkalori');
+			}
+			redirect('dataKu');
 		}
 		public function calHarian(){
 			$data = array(

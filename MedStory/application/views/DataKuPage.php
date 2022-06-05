@@ -242,7 +242,6 @@
 						<button id="dropbutton"><img id="set" src="http://localhost/MedStory/assets/Setting.png"></button>
 						<!--DropDown menu navigation-->
 						<div id="dropdown-content">
-							<a href="pusatBantuan">Pusat Bantuan</a>
 							<a href="tentang">Tentang</a>
 							<a href="kebijakan">Kebijakan & Privasi</a>
 						</div>
@@ -283,7 +282,7 @@
 									}
 									?>
 								<br>
-								<h5 style='font-size:16px; font-weight:bold;'>Rata-rata</h5>
+								<h5 style='font-size:16px; font-weight:w500;'>Rata-rata</h5>
 								<h5 style='font-size:14px;'>Kebutuhan harian: <?php
 									$hari = 0;
 									$i = 0;
@@ -337,7 +336,7 @@
 								?> cal</h5> 							
 							</div>
 							<div class='col-md-6'>
-								<p style='font-size:16px; font-weight:bold;'>Asupan terfavorit: </p> 
+								<p style='font-size:16px; font-weight:500;'>Asupan terfavorit: </p> 
 								<div class='container-fluid'>
 									<?php
 									$i = 1;
@@ -401,7 +400,7 @@
         <div class="row mt-3">
           <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
             <!-- Deskripsi -->
-            <h6 class="text-uppercase fw-bold mb-4" style="color: #212121; font-size: large;">MedStory</h6>
+            <h6 class="text-uppercase fw-w500 mb-4" style="color: #212121; font-size: large;">MedStory</h6>
             <p style="color: whitesmoke;">
               MedStory merupakan sebuah aplikasi yang menyimpan data riwayat kesehatan setiap kali
               seseorang berobat. Dilengkapi dengan fitur scan QR, live chat dengan dokter, forum kesehatan,
@@ -409,7 +408,7 @@
             </p>
           </div>
           <div class="col-md-2 col-lg-2 col-xl-4 mx-auto mb-4">
-            <h6 class="text-uppercase fw-bold mb-4" style="color: #212121; font-size: large;">Kelompok 4</h6>
+            <h6 class="text-uppercase fw-w500 mb-4" style="color: #212121; font-size: large;">Kelompok 4</h6>
             <p style="color: whitesmoke;">
               <a class="text-reset">Leonardho R. Sitanggang</a>
             </p>
@@ -427,7 +426,7 @@
               </p>
           </div>
           <div class="col-md-3 col-lg-2 col-xl-4 mx-auto mb-4">
-            <h6 class="text-uppercase fw-bold mb-4" style="color: #212121; font-size: large;">NIM</h6>
+            <h6 class="text-uppercase fw-w500 mb-4" style="color: #212121; font-size: large;">NIM</h6>
             <p style="color: whitesmoke;">
                 <a class="text-reset">1302194041</a>
             </p>
@@ -529,23 +528,23 @@
 								<div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 								<a class="nav-link mb-2 p-3 shadow active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-sayuran" role="tab" aria-controls="v-pills-home" aria-selected="true">
 									<i class="fa-solid fa-carrot"></i>
-									<span class="font-weight-bold small text-uppercase">Sayuran</span></a>
+									<span class="font-weight-w500 small text-uppercase">Sayuran</span></a>
 
 								<a class="nav-link mb-2 p-3 shadow" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-buah" role="tab" aria-controls="v-pills-profile" aria-selected="false">
 									<i class="fa-solid fa-apple-whole"></i>
-									<span class="font-weight-bold small text-uppercase">Buah-Buahan</span></a>
+									<span class="font-weight-w500 small text-uppercase">Buah-Buahan</span></a>
 
 								<a class="nav-link mb-2 p-3 shadow" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-daging" role="tab" aria-controls="v-pills-settings" aria-selected="false">
 									<i class="fa-solid fa-drumstick-bite"></i>
-									<span class="font-weight-bold small text-uppercase">Daging</span></a>
+									<span class="font-weight-w500 small text-uppercase">Daging</span></a>
 
 								<a class="nav-link mb-2 p-3 shadow" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-seafood" role="tab" aria-controls="v-pills-settings" aria-selected="false">
 									<i class="fa-solid fa-shrimp"></i>
-									<span class="font-weight-bold small text-uppercase">Seafood</span></a>
+									<span class="font-weight-w500 small text-uppercase">Seafood</span></a>
 
 								<a class="nav-link mb-2 p-3 shadow" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-lain" role="tab" aria-controls="v-pills-settings" aria-selected="false">
 									<i class="fa-solid fa-bowl-rice"></i>
-									<span class="font-weight-bold small text-uppercase">Lainnya</span></a>
+									<span class="font-weight-w500 small text-uppercase">Lainnya</span></a>
 								</div>
 							</div>
 
@@ -580,7 +579,7 @@
 															<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal / ".$asupan['ukuran']."</p>
 														</div>
 														<div class='col-sm-2' style='margin-top:15px;'>
-															<label class='container' id='checkCont'><input type='checkbox' id='' name='id_asupan' value='".$asupan['id_asupan']."' style='height:50px;'>
+															<label class='container' id='checkCont'><input type='checkbox' id='checkItem' name='id_asupan[]' value='".$asupan['id_asupan']."' style='height:50px;'>
 															<span class='checkmark'></span></label>
 														</div>
 													</div>
@@ -610,7 +609,7 @@
 															<p style='font-size:15px; color:#22A7F0; text-align:left;'>".$asupan['nama']."</p>
 															<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal / ".$asupan['ukuran']."</p>														</div>
 														<div class='col-sm-2' style='margin-top:15px;'>
-															<label class='container' id='checkCont'><input type='checkbox' id='' name='id_asupan' value='".$asupan['id_asupan']."' style='height:50px;'>
+															<label class='container' id='checkCont'><input type='checkbox' id='checkItem' name='id_asupan[]' value='".$asupan['id_asupan']."' style='height:50px;'>
 															<span class='checkmark'></span></label>
 														</div>
 													</div>
@@ -640,7 +639,7 @@
 															<p style='font-size:15px; color:#22A7F0; text-align:left;'>".$asupan['nama']."</p>
 															<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal / ".$asupan['ukuran']."</p>														</div>
 														<div class='col-sm-2' style='margin-top:15px;'>
-															<label class='container' id='checkCont'><input type='checkbox' id='' name='id_asupan' value='".$asupan['id_asupan']."' style='height:50px;'>
+															<label class='container' id='checkCont'><input type='checkbox' id='checkItem' name='id_asupan[]' value='".$asupan['id_asupan']."' style='height:50px;'>
 															<span class='checkmark'></span></label>
 														</div>
 													</div>
@@ -670,7 +669,7 @@
 															<p style='font-size:15px; color:#22A7F0; text-align:left;'>".$asupan['nama']."</p>
 															<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal / ".$asupan['ukuran']."</p>														</div>
 														<div class='col-sm-2' style='margin-top:15px;'>
-															<label class='container' id='checkCont'><input type='checkbox' id='' name='id_asupan' value='".$asupan['id_asupan']."' style='height:50px;'>
+															<label class='container' id='checkCont'><input type='checkbox' id='checkItem' name='id_asupan[]' value='".$asupan['id_asupan']."' style='height:50px;'>
 															<span class='checkmark'></span></label>
 														</div>
 													</div>
@@ -700,7 +699,7 @@
 															<p style='font-size:15px; color:#22A7F0; text-align:left;'>".$asupan['nama']."</p>
 															<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal / ".$asupan['ukuran']."</p>														</div>
 														<div class='col-sm-2' style='margin-top:15px;'>
-															<label class='container' id='checkCont'><input type='checkbox' id='' name='id_asupan' value='".$asupan['id_asupan']."' style='height:50px;'>
+															<label class='container' id='checkCont'><input type='checkbox' id='checkItem' name='id_asupan[]' value='".$asupan['id_asupan']."' style='height:50px;'>
 															<span class='checkmark'></span></label>
 														</div>
 													</div>
@@ -809,7 +808,7 @@
 				<div class='modal-body'>
 					<img src='http://localhost/MedStory/assets/icon/Failed.png' alt='Hello.gif' style='display: block;
 						margin-left: auto; margin-right: auto; width: 120px; height: 120px;'>
-					<p style='text-align:center; font-weight:bold;'>".$error_tambahCalHarian."</p>
+					<p style='text-align:center; font-weight:w500;'>".$error_tambahCalHarian."</p>
 				</div>		
 			</div>
 		</div>

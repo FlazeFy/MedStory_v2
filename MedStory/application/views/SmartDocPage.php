@@ -212,7 +212,6 @@
 						<button id="dropbutton"><img id="set" src="http://localhost/MedStory/assets/Setting.png"></button>
 						<!--DropDown menu navigation-->
 						<div id="dropdown-content">
-							<a href="pusatBantuan">Pusat Bantuan</a>
 							<a href="tentang">Tentang</a>
 							<a href="kebijakan">Kebijakan & Privasi</a>
 						</div>
@@ -251,7 +250,7 @@
 										<button class='btn btn-success' style='height:100px;' id='hitung'>Hitung</button>
 									</div>
 								</div>	
-								<h5 class='font-weight-bold' id='hasil'></h5>				
+								<h5 class='font-weight-w500' id='hasil'></h5>				
 							</div>
 						</div>
 					</div>
@@ -283,13 +282,13 @@
 								</div>
 								
 
-								<h5 class='font-weight-bold' id='hasil'></h5>				
+								<h5 class='font-weight-w500' id='hasil'></h5>				
 							</div>
 						</div>
 						
 						<!-- Demo header-->
 						<section class="">
-							<h5 class='font-weight-100' style='font-size: 16px;'>Menampilkan
+							<h5 class='font-weight-100' style='font-size: 14px; color:#808080; font-style:italic;'>Menampilkan
 							<?php
 								$count = 0;
 								$namaGejala = $this->session->userdata('gejala');
@@ -406,7 +405,7 @@
 							<div class='col-md-6'>
 								<h6 style='color:black;'>Apa itu Kalkulator kalori?</h6>                        
 								<p>Dengan alat ini Anda mengetahui berapa asupan kalori yang dibutuhkan. Hasil perhitungannya dapat Anda gunakan sebagai salah satu acuan untuk mengontrol asupan kalori per hari.</p>								
-								<h5 class='font-weight-bold' id='hasilCal'></h5>
+								<h5 class='font-weight-w500' id='hasilCal'></h5>
 							</div>
 							<div class='col-md-6'>
 								<div class="row">
@@ -513,7 +512,7 @@
 						<br>
 						<div class='row'>
 							<div class='col-md-7'>
-							<h5 class='font-weight-bold' data-toggle="collapse" href="#collapseriwayatKMS" role='button' style='color:#4183D7;'><i class="fa fa-history"></i> Riwayat<i class="fa fa-angle-down" style='float:right;'></i></h5><hr>  
+							<h5 class='font-weight-w500' data-toggle="collapse" href="#collapseriwayatKMS" role='button' style='color:#4183D7;'><i class="fa fa-history"></i> Riwayat<i class="fa fa-angle-down" style='float:right;'></i></h5><hr>  
 								<div id="collapseriwayatKMS" class='card-body collapse show' style='width:100%;'>
 									<?php
 									$i = 0;
@@ -618,7 +617,7 @@
         <div class="row mt-3">
           <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
             <!-- Deskripsi -->
-            <h6 class="text-uppercase fw-bold mb-4" style="color: #212121; font-size: large;">MedStory</h6>
+            <h6 class="text-uppercase fw-w500 mb-4" style="color: #212121; font-size: large;">MedStory</h6>
             <p style="color: whitesmoke;">
               MedStory merupakan sebuah aplikasi yang menyimpan data riwayat kesehatan setiap kali
               seseorang berobat. Dilengkapi dengan fitur scan QR, live chat dengan dokter, forum kesehatan,
@@ -626,7 +625,7 @@
             </p>
           </div>
           <div class="col-md-2 col-lg-2 col-xl-4 mx-auto mb-4">
-            <h6 class="text-uppercase fw-bold mb-4" style="color: #212121; font-size: large;">Kelompok 4</h6>
+            <h6 class="text-uppercase fw-w500 mb-4" style="color: #212121; font-size: large;">Kelompok 4</h6>
             <p style="color: whitesmoke;">
               <a class="text-reset">Leonardho R. Sitanggang</a>
             </p>
@@ -644,7 +643,7 @@
               </p>
           </div>
           <div class="col-md-3 col-lg-2 col-xl-4 mx-auto mb-4">
-            <h6 class="text-uppercase fw-bold mb-4" style="color: #212121; font-size: large;">NIM</h6>
+            <h6 class="text-uppercase fw-w500 mb-4" style="color: #212121; font-size: large;">NIM</h6>
             <p style="color: whitesmoke;">
                 <a class="text-reset">1302194041</a>
             </p>
@@ -780,11 +779,11 @@
 								</table>
 
 								<div class='col-md'>
-									<p style='font-weight:bold;'>Berat badan menurut umur ".$kms['jenisKelamin']."</p>
+									<p style='font-weight:500;'>Berat badan menurut umur ".$kms['jenisKelamin']."</p>
 									<!--Diagram-->
 								</div>
 								<div class='col-md'>
-									<p style='font-weight:bold;'>Tinggi badan menurut umur ".$kms['jenisKelamin']."</p>
+									<p style='font-weight:500;'>Tinggi badan menurut umur ".$kms['jenisKelamin']."</p>
 									<!--Diagram-->
 								</div>
 							</div>

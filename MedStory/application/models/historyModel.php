@@ -53,7 +53,7 @@
 		}
 		public function insertJadwal($data){
 			$this->db->insert('jadwalkalori',$data);	
-			redirect('history');
+			// redirect('history');
 		}
 		public function get_data_userKebutuhan(){
 			$this->db->select('*');

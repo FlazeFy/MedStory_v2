@@ -45,7 +45,7 @@
 		}	
 		public function insertJadwal($data){
 			$this->db->insert('jadwalkalori',$data);	
-			redirect('dataKu');
+			//redirect('dataKu');
 		}
 		public function insertCal($data){
 			$this->db->insert('kebutuhankalori',$data);	

@@ -33,7 +33,6 @@
 					<button id="dropbutton"><img id="set" src="http://localhost/MedStory/assets/Setting.png"></button>
 					<!--DropDown menu navigation-->
 					<div id="dropdown-content">
-						<a href="pusatBantuan">Pusat Bantuan</a>
 						<a href="tentang">Tentang</a>
 						<a href="kebijakan">Kebijakan & Privasi</a>
 					</div>

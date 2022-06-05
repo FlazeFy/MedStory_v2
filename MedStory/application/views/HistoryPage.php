@@ -778,7 +778,6 @@
                     <button id="dropbutton"><img id="set" src="http://localhost/MedStory/assets/Setting.png"></button>
 					<!--DropDown menu navigation-->
 					<div id="dropdown-content">
-						<a href="pusatBantuan">Pusat Bantuan</a>
 						<a href="tentang">Tentang</a>
 						<a href="kebijakan">Kebijakan & Privasi</a>
 					</div>
@@ -968,9 +967,9 @@
 												<div class='card-header' id='headingOne' style='border-width:1px; border-radius:6px; background:white;'>
 													<img src='http://localhost/MedStory/assets/uploads/user_".$data['namaPengguna'].".jpg' alt='Card image cap' class='rounded-circle img-fluid' 
 														style='width:45px; height:45px; margin-top: -1%; float:left;' data-toggle='modal' data-target='#zoom".$data['id_diskusi']."'>
-													<h5 style='font-size:20px; padding-left:15px; float:left; color:#22A7F0;'>".$data['namaPengguna']."</h2>
-													<h5 style='font-size:11px; padding-top:10px; float:left; font-style:italic;'> pada ".$data['datetime']."</h5>
-													<h5 style='font-size:20px; float:right;'>".$data['kategori']."</h5><br><hr>";
+													<h5 style='font-size:18px; padding-left:15px; float:left; color:#22A7F0;'>".$data['namaPengguna']."</h2>
+													<h5 style='font-size:11px; font-weight:400; padding-top:5px; float:left; font-style:italic;'> ~ pada ".$data['datetime']."</h5>
+													<h5 style='font-size:18px; float:right;'>".$data['kategori']."</h5><br><hr>";
 													if($data['imageURL'] == 'null'){
 														echo"<p style='font-size:13px;'>".$data['pertanyaan']."</p>";
 													} else {
@@ -994,7 +993,7 @@
 														echo $a;
 														echo"</h6>
 														<img src='http://localhost/MedStory/assets/Comment.png' style='width:25px; height:20px; float:right; margin-top:-2px; padding-left:5px;'>
-													<h5 style='font-size:14px; float:left; text-decoration:underline; color:#4183D7;' type='button' data-toggle='collapse' data-target='#collapse".$i."' 
+													<h5 style='font-size:14px; float:left; color:#4183D7;' type='button' data-toggle='collapse' data-target='#collapse".$i."' 
 													aria-expanded='true' aria-controls='collapseOne''>Lihat komentar
 														<img src='http://localhost/MedStory/assets/icon/Drop Down.png' style='width:25px; height:20px; float:left; padding-left:3px;'></h5>
 												</div> <!--End of header-->
@@ -1014,7 +1013,7 @@
 																<button class='btn btn-success' style='float:right;'><i class='fa fa-check-circle-o'></i></button>
 																</form>";
 															}
-															echo"<h5 style='font-size:20px; margin-left:15px; color:#22A7F0;'>".$reply['pengirim']."</h5>";
+															echo"<h5 style='font-size:18px; margin-left:15px; color:#22A7F0;'>".$reply['pengirim']."</h5>";
 															if ($reply['imageURL'] != 'null'){
 																echo"<div class='row' style='margin-bottom:1%;'>
 																<div class='col-md-4 border-right'>
@@ -1162,9 +1161,9 @@
 												<div class='card-header' id='headingOne' style='border-width:1px; border-radius:6px; background:white;'>
 													<img src='http://localhost/MedStory/assets/uploads/user_".$data['namaPengguna'].".jpg' alt='Card image cap' class='rounded-circle img-fluid' 
 														style='width:45px; height:45px; margin-top: -1%; float:left;' data-toggle='modal' data-target='#zoom".$data['id_diskusi']."'>
-													<h5 style='font-size:20px; padding-left:15px; float:left; color:#22A7F0;'>Anda</h2>
-													<h5 style='font-size:11px; padding-top:10px; float:left; font-style:italic;'> pada ".$data['datetime']."</h5>
-													<h5 style='font-size:20px; float:right;'>".$data['kategori']."</h5><br><hr>";
+													<h5 style='font-size:18px; padding-left:15px; float:left; color:#22A7F0;'>Anda</h2>
+													<h5 style='font-size:11px; font-weight:400; padding-top:5px; float:left; font-style:italic;'> ~ pada ".$data['datetime']."</h5>
+													<h5 style='font-size:18px; float:right;'>".$data['kategori']."</h5><br><hr>";
 													if($data['imageURL'] == 'null'){
 														echo"<p style='font-size:13px;'>".$data['pertanyaan']."</p>";
 													} else {
@@ -1188,7 +1187,7 @@
 														echo $a;
 														echo"</h6>
 														<img src='http://localhost/MedStory/assets/Comment.png' style='width:25px; height:20px; float:right; margin-top:-2px; padding-left:5px;'>
-													<h5 style='font-size:14px; float:left; text-decoration:underline; color:#4183D7;' type='button' data-toggle='collapse' data-target='#collapse".$i."' 
+													<h5 style='font-size:14px; float:left; color:#4183D7;' type='button' data-toggle='collapse' data-target='#collapse".$i."' 
 													aria-expanded='true' aria-controls='collapseOne''>Lihat komentar
 														<img src='http://localhost/MedStory/assets/icon/Drop Down.png' style='width:25px; height:20px; float:left; padding-left:3px;'></h5>
 												</div> <!--End of header-->
@@ -1208,7 +1207,7 @@
 																<button class='btn btn-success' style='float:right;'><i class='fa fa-check-circle-o'></i></button>
 																</form>";
 															}
-															echo"<h5 style='font-size:20px; margin-left:15px; color:#22A7F0;'>".$reply['pengirim']."</h5>
+															echo"<h5 style='font-size:18px; margin-left:15px; color:#22A7F0;'>".$reply['pengirim']."</h5>
 															";
 															if ($reply['imageURL'] != 'null'){
 																echo"<div class='row' style='margin-bottom:1%;'>
@@ -1825,7 +1824,7 @@
 															<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal / ".$asupan['ukuran']."</p>
 														</div>
 														<div class='col-sm-2' style='margin-top:15px;'>
-															<label class='container' id='checkCont'><input type='checkbox' id='' name='id_asupan' value='".$asupan['id_asupan']."' style='height:50px;'>
+															<label class='container' id='checkCont'><input type='checkbox' id='checkItem' name='id_asupan[]' value='".$asupan['id_asupan']."' style='height:50px;'>
 															<span class='checkmark'></span></label>
 														</div>
 													</div>
@@ -1855,7 +1854,7 @@
 															<p style='font-size:15px; color:#22A7F0; text-align:left;'>".$asupan['nama']."</p>
 															<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal / ".$asupan['ukuran']."</p>														</div>
 														<div class='col-sm-2' style='margin-top:15px;'>
-															<label class='container' id='checkCont'><input type='checkbox' id='' name='id_asupan' value='".$asupan['id_asupan']."' style='height:50px;'>
+															<label class='container' id='checkCont'><input type='checkbox' id='checkItem' name='id_asupan[]' value='".$asupan['id_asupan']."' style='height:50px;'>
 															<span class='checkmark'></span></label>
 														</div>
 													</div>
@@ -1885,7 +1884,7 @@
 															<p style='font-size:15px; color:#22A7F0; text-align:left;'>".$asupan['nama']."</p>
 															<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal / ".$asupan['ukuran']."</p>														</div>
 														<div class='col-sm-2' style='margin-top:15px;'>
-															<label class='container' id='checkCont'><input type='checkbox' id='' name='id_asupan' value='".$asupan['id_asupan']."' style='height:50px;'>
+															<label class='container' id='checkCont'><input type='checkbox' id='checkItem' name='id_asupan[]' value='".$asupan['id_asupan']."' style='height:50px;'>
 															<span class='checkmark'></span></label>
 														</div>
 													</div>
@@ -1915,7 +1914,7 @@
 															<p style='font-size:15px; color:#22A7F0; text-align:left;'>".$asupan['nama']."</p>
 															<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal / ".$asupan['ukuran']."</p>														</div>
 														<div class='col-sm-2' style='margin-top:15px;'>
-															<label class='container' id='checkCont'><input type='checkbox' id='' name='id_asupan' value='".$asupan['id_asupan']."' style='height:50px;'>
+															<label class='container' id='checkCont'><input type='checkbox' id='checkItem' name='id_asupan[]' value='".$asupan['id_asupan']."' style='height:50px;'>
 															<span class='checkmark'></span></label>
 														</div>
 													</div>
@@ -1945,7 +1944,7 @@
 															<p style='font-size:15px; color:#22A7F0; text-align:left;'>".$asupan['nama']."</p>
 															<p style='font-size:15px; color:grey; text-align:left;'>".$asupan['kalori']." cal / ".$asupan['ukuran']."</p>														</div>
 														<div class='col-sm-2' style='margin-top:15px;'>
-															<label class='container' id='checkCont'><input type='checkbox' id='' name='id_asupan' value='".$asupan['id_asupan']."' style='height:50px;'>
+															<label class='container' id='checkCont'><input type='checkbox' id='checkItem' name='id_asupan[]' value='".$asupan['id_asupan']."' style='height:50px;'>
 															<span class='checkmark'></span></label>
 														</div>
 													</div>
