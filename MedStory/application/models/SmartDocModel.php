@@ -33,7 +33,7 @@
 		}
 		public function insertKms($data){
 			$this->db->insert('kms',$data);	
-			redirect('smartDoc');
+			// redirect('smartDoc');
 		}
 	}
 ?>

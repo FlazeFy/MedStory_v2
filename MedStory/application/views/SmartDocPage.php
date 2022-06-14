@@ -601,9 +601,6 @@
 									?> 
 								</div>    	
 							</div>
-							<div class='col-md-4'>
-								<h6 style='color:black;'>Hasil hitung :</h6>   
-							</div>
 						</div>
 					</div>
 				</div>
@@ -664,6 +661,55 @@
 
         <div class="text-center p-4" style="background-color: #333333; color: whitesmoke;">1302194041-Leonardho R Sitanggang</div>
         </footer>
+
+		<!-- Data KMS -->
+		<?php if(isset($kmsDataModal) && isset($kmsDataModal)) { echo"
+		<div class='modal fade' id='ksmModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+		<div class='modal-dialog' role='document'>
+			<div class='modal-content'>
+			<div class='modal-header'>
+				<h5 class='modal-title'>Profil KMS</h5>
+				<i class='fa-solid fa-xmark' class='closebtn' type='button' data-dismiss='modal' aria-label='Close' onClick='refreshMessage()'></i>
+			</div>
+			<div class='modal-body'>
+				<div class='row'>
+					<div class='col-md'>
+						<p style='font-size:12px;'>Nama Anak</p>
+					</div>
+					<div class='col-md'>
+						<p class='font-weight-bold' style='font-size:12px;'>".$kmsDataModal."</p>
+					</div>
+				</div>
+				<div class='row'>
+					<div class='col-md'>
+						<p style='font-size:12px;'>Jenis Kelamin</p>
+					</div>
+					<div class='col-md'>
+						<p class='font-weight-bold' style='font-size:12px;'>".$this->session->userdata('jKelaminKMSTrack')."</p>
+					</div>
+				</div>
+				<div class='row'>
+					<div class='col-md'>
+						<p style='font-size:12px;'>Umur</p>
+					</div>
+					<div class='col-md'>
+						<p class='font-weight-bold' style='font-size:12px;'>".$this->session->userdata('usiaKMSTrack')." Bulan</p>
+					</div>
+				</div>
+				<div class='row'>
+					<div class='col-md'>
+						<p style='font-size:12px;'>Berat / Tinggi</p>
+					</div>
+					<div class='col-md'>
+						<p class='font-weight-bold' style='font-size:12px;'>".$this->session->userdata('beratKMSTrack')." / ".$this->session->userdata('tinggiKMSTrack')."</p>
+					</div>
+				</div>
+			
+			</div>		
+			</div>
+		</div>
+		</div>";}	
+		?>
 
 		<!-- Sign out Modal -->
 		<div class="modal fade" id="signOutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -885,6 +931,9 @@
         </script>
 
 		<script>
+			function refreshMessage() {
+				window.location.href="http://localhost/MedStory/smartDoc";  
+			}
 			function autocomplete(inp, arr) {
 				var currentFocus;
 
@@ -971,6 +1020,13 @@
 				$('[data-toggle="popover"]').popover()
 			})
         })
+		$(window).on('load', function() {
+			$('#ksmModal').modal('show');
+		});
+		$('#ksmModal').modal({
+			backdrop: 'static', 
+			keyboard: false
+		});  
         </script>
     </body>
 </html>
