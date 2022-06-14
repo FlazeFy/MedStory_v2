@@ -14,6 +14,8 @@
 			$data['statsBalasan']= $this->accountModel->get_statistik_balasan();
 			$this->load->view('AccountPage', $data);
 		}
+
+		//Change user data.
 		public function ubah(){
 			$data = [
 				"namaLengkap" => $this->input->post('username'),
@@ -26,8 +28,12 @@
 				"beratBadan" => $this->input->post('beratBadan')
 			];
 			$this->accountModel->ubahData($data, 'pengguna');
-			redirect('account');
+			$data['successEdit'] = "Akun berhasil diperbarui"; 
+			$this->index();
+			$this->load->view('AccountPage', $data);
 		}
+
+		//Upload user profile image.
 		public function change(){
 			$condition = $this->session->userdata('userTrack');
 			$initialize = $this->upload->initialize(array(
@@ -45,6 +51,8 @@
 				redirect('account');
 			}
 		}
+
+		//Upload required document.
 		public function uploadDocument(){
 			$condition = $this->session->userdata('userTrack');
 			$initialize = $this->upload->initialize(array(

@@ -2031,9 +2031,6 @@
 
 		<!--Javascript signout-->
 		<script type="text/javascript">
-			function editEnabled(){
-					document.getElementById("Inputan").disabled = false;
-			}
 			function refreshMessage() {
 				window.location.href="http://localhost/MedStory/history";  
 			}

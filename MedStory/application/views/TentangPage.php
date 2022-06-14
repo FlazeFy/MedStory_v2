@@ -1,9 +1,5 @@
-<!--Muhammad Akmal Fadhlillah
-    1302190103  SE-43-03
--->
 <!DOCTYPE html>
 <html>
-
     <head>
         <title>MedStory | Tentang</title>
         <!--Meta tags-->
@@ -13,14 +9,14 @@
         <!--CDN Bootstrap CSS-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-				<link rel="icon" type="image/png" href="http://localhost/MedStory/assets/icon/Logo.png"/>
-				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-				<script src="https://kit.fontawesome.com/12801238e9.js" crossorigin="anonymous"></script>
+		<link rel="icon" type="image/png" href="http://localhost/MedStory/assets/icon/Logo.png"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script src="https://kit.fontawesome.com/12801238e9.js" crossorigin="anonymous"></script>
 
         <!--Source file.-->
         <link rel="stylesheet" type="text/css" href="http://localhost/MedStory/assets/css/Main.css"/>
         <style>
-				.thumb-wrapper {
+			.thumb-wrapper {
 				padding: 10px;
 				background: #fff;
 				width:250px;
@@ -43,62 +39,63 @@
 				right: 0;
 			}
 			.rating {
-    border: none;
-    margin-right: 49px
-}
+				border: none;
+				margin-right: 49px
+			}
 
-.myratings {
-    font-size: 85px;
-    color: green
-}
+			.myratings {
+				font-size: 85px;
+				color: green
+			}
 
-.rating>[id^="star"] {
-    display: none;
-}
+			.rating>[id^="star"] {
+				display: none;
+			}
 
-.rating>label:before {
-    margin-left: 20px;
-		width: 20px;
-    font-size: 25px;
-    font-family: FontAwesome;
-    display: inline-block;
-    content: "\f005"
-}
+			.rating>label:before {
+				margin-left: 20px;
+					width: 20px;
+				font-size: 25px;
+				font-family: FontAwesome;
+				display: inline-block;
+				content: "\f005"
+			}
 
-.rating>.half:before {
-    content: "\f089";
-    position: absolute
-}
+			.rating>.half:before {
+				content: "\f089";
+				position: absolute
+			}
 
-.rating>label {
-    color: #ddd;
-    float: right;
-}
+			.rating>label {
+				color: #ddd;
+				float: right;
+			}
 
-.rating>[id^="star"]:checked~label,
-.rating:not(:checked)>label:hover,
-.rating:not(:checked)>label:hover~label {
-    color: #FFD700
-}
+			.rating>[id^="star"]:checked~label,
+			.rating:not(:checked)>label:hover,
+			.rating:not(:checked)>label:hover~label {
+				color: #FFD700
+			}
 
-.rating>[id^="star"]:checked+label:hover,
-.rating>[id^="star"]:checked~label:hover,
-.rating>label:hover~[id^="star"]:checked~label,
-.rating>[id^="star"]:checked~label:hover~label {
-    color: #FFED85
-}
+			.rating>[id^="star"]:checked+label:hover,
+			.rating>[id^="star"]:checked~label:hover,
+			.rating>label:hover~[id^="star"]:checked~label,
+			.rating>[id^="star"]:checked~label:hover~label {
+				color: #FFED85
+			}
 
-.reset-option {
-    display: none
-}
+			.reset-option {
+				display: none
+			}
 
-.reset-button {
-    margin: 6px 12px;
-    background-color: rgb(255, 255, 255);
-    text-transform: uppercase
-}
-				</style>
+			.reset-button {
+				margin: 6px 12px;
+				background-color: rgb(255, 255, 255);
+				text-transform: uppercase
+			}
+		</style>
     </head>
+
     <body>
         <!--Main Navigation menu.-->
         <div id="Navigation">
@@ -114,33 +111,31 @@
                     <button id="dropbutton"><img id="set" src="assets/Setting.png"></button>
 					<!--DropDown menu navigation-->
 					<div id="dropdown-content">
-						<a href="#">Tentang</a>
+						<a href="tentang">Tentang</a>
 						<a href="kebijakan">Kebijakan & Privasi</a>
-                </div>
+                	</div>
+				</div>
             </ul>
         </div>
-        <main>
-
-		<!--Tentang kami-->
+        
+		<!--Content.-->
+		<main>
 		<br><br><br>
 		<h2 style="margin-left: 16%; font-size:20px;">Pengaturan >> Tentang</h2>
 		<div class="container-fluid bg-white" id="card-car" style="margin-bottom: 1%; width: 70%; border-radius: 10px;"><br>
 			<h1 style="text-align: center;">MedStory</h1>
 			<p style="text-align: center;">
-				MedStory merupakan sebuah aplikasi yang menyimpan data riwayat kesehatan setiap kali
-              	seseorang berobat. Pengguna dapat mendaftar menggunakan NIK pada KTP. Aplikasi akan digunakan disaat Anda ingin berobat, atau sekedar ingin melihat riwayat medisnya. 
-				Dokter cukup menginput data sesuai nik dari pasien, yang mana data nya akan tersimpan di aplikasi. Dan pengguna cukup mengakses data miliknya dari aplikasi.
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 			</p>
-			<p style="text-align: left; font-weight:bold;">Fitur yang tersedia :</p>
-			<p style="text-align: left;">- Berdiskusi dalam forum kesehatan</p>
-			<p style="text-align: left;">- Mendapatkan informasi dan tips kesehatan</p>
-			<p style="text-align: left;">- Melihat riwayat medis Anda</p>
-			<p style="text-align: left;">- Konsultasi dengan dokter dan para ahli</p>
-			<p style="text-align: left;">- Mendaftar berobat</p>
-			<p style="text-align: left;">- Mencari dokter dan fasilitas kesehatan</p>
-			<p style="text-align: left;">- Informasi seputar Covid-19</p>
-			<p style="text-align: left; font-weight:bold;">Versi :</p>
-			<p style="text-align: left;">1.0</p>
+			<p>Fitur yang tersedia :</p>
+			<p>- Berdiskusi dalam forum kesehatan</p>
+			<p>- Mendapatkan informasi dan tips kesehatan</p>
+			<p>- Menghitung kebutuhan dan pemenuhan kalori harian</p>
+			<p>- Memantau tumbuh kembang balita dengan KMS</p>
+			<p>- Menghitung berat badan ideal</p>
+			<p>- Mencari dokter dan fasilitas kesehatan</p>
+			<p>- Informasi seputar Covid-19</p>
+			<p>Versi : <span >2.0</span></p>
       	<br>
 		</div>
 
@@ -149,6 +144,7 @@
 				<div class='col-md-6 border-right'>
 					<h5 style="text-align: center; color:#696969;">Review</h5>	
 					<div class='container' style='margin-left:25%;'>	
+						<!--User review form.-->
 						<form method='POST' action='tentang/insertReview' >					
 							<div class='thumb-wrapper'>
 								<div class='row'>
@@ -196,6 +192,7 @@
 				<div class='col-md-6'>
 					<h5 style="text-align: center; color:#696969;">Masukan & Saran</h5>
 					<div class='container'>	
+						<!--User feedback form.-->
 						<form method='POST' action='landing/insertMasukkan' >					
 							<p style='color:white; margin-bottom:5px;'>Kritik & Saran</p>
 								<textarea required rows="5" cols="60" name="sarankritik" style="background:#f4f4f4; border-width: 0 0 3px; 
@@ -225,7 +222,6 @@
 		<div class="container text-center text-md-start mt-5">
 		<div class="row mt-3">
 			<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-				<!-- Deskripsi -->
 				<h6 class="text-uppercase fw-bold mb-4" style="color: #212121; font-size: large;">MedStory</h6>
 				<p style="color: whitesmoke;">
 					MedStory merupakan sebuah aplikasi yang menyimpan data riwayat kesehatan setiap kali
@@ -273,39 +269,48 @@
 
 		<div class="text-center p-4" style="background-color: #333333; color: whitesmoke;">1302190103-Muhammad Akmal Fadhlillah</div>
 		</footer>
+
 		<!-- Sign out Modal -->
 		<div class="modal fade" id="signOutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" style='color:black; font-size:16px;'>Apakah Anda yakin?...</h5>
-			</div>
-			<div class="modal-footer">
-				<div class='container-fluid'>
-				<form action='landing/logout' method='post'>
-					<input required name='validation' type='text' style="background:#f4f4f4; border-width: 0 0 3px; 
-						border-bottom: 3.5px solid #4183D7; color:#212121; width:200px; margin-left:40px; border-radius:4px;" placeholder="'KONFIRMASI'"></input>
-					<button class="btn btn-danger" data-dismiss="modal">Batal</button>
-					<button type="submit" class="btn btn-success">Ya</button>
-				</form>
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" style='color:black; font-size:16px;'>Apakah Anda yakin?...</h5>
+					</div>
+					<div class="modal-footer">
+						<div class='container-fluid'>
+						<form action='landing/logout' method='post'>
+							<input required name='validation' type='text' style="background:#f4f4f4; border-width: 0 0 3px; 
+								border-bottom: 3.5px solid #4183D7; color:#212121; width:200px; margin-left:40px; border-radius:4px;" placeholder="'KONFIRMASI'"></input>
+							<button class="btn btn-danger" data-dismiss="modal">Batal</button>
+							<button type="submit" class="btn btn-success">Ya</button>
+						</form>
+						</div>
+					</div>			
 				</div>
-			</div>			
 			</div>
-		</div>
 		</div>
 
 		<script type="text/javascript">
+			//Rating star setting.
 			$(document).ready(function(){
-
-			$("input[type='radio']").click(function(){
-			var sim = $("input[type='radio']:checked").val();
-			//alert(sim);
-			if (sim<3) { $('.myratings').css('color','red'); $(".myratings").text(sim); }else{ $('.myratings').css('color','green'); $(".myratings").text(sim); } }); });
+				$("input[type='radio']").click(function(){
+					var sim = $("input[type='radio']:checked").val();
+					if (sim<3) { 
+						$('.myratings').css('color','red'); 
+						$(".myratings").text(sim); 
+					} else { 
+						$('.myratings').css('color','green'); 
+						$(".myratings").text(sim); 
+					} 
+				}); 
+			});
 		</script>
-		<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+
+		<!--Others CDN.-->
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-		<!--Ajax for json-->
 		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>  
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     </body>
+
 </html>
