@@ -665,47 +665,58 @@
 		<!-- Data KMS -->
 		<?php if(isset($kmsDataModal) && isset($kmsDataModal)) { echo"
 		<div class='modal fade' id='ksmModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
-		<div class='modal-dialog' role='document'>
+		<div class='modal-dialog modal-lg' role='document'>
 			<div class='modal-content'>
 			<div class='modal-header'>
-				<h5 class='modal-title'>Profil KMS</h5>
-				<i class='fa-solid fa-xmark' class='closebtn' type='button' data-dismiss='modal' aria-label='Close' onClick='refreshMessage()'></i>
+				<h5 class='modal-title' id='exampleModalLongTitle'>Kartu Menuju Sehat</h5>
+				<button type='button' class='close' data-dismiss='modal' aria-label='Close' onClick='refreshMessage()'>
+				<span aria-hidden='true'>&times;</span>
+				</button>
 			</div>
 			<div class='modal-body'>
-				<div class='row'>
-					<div class='col-md'>
-						<p style='font-size:12px;'>Nama Anak</p>
-					</div>
-					<div class='col-md'>
-						<p class='font-weight-bold' style='font-size:12px;'>".$kmsDataModal."</p>
+				<div class='container'>
+					<div class='row'>
+						<table class='table table-striped'>
+							<thead>
+							<tr>
+								<td scope='col-sm' class='w-25'>Nama Anak</td>
+								<th scope='col-md'>: ".$kmsDataModal."</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td scope='row'>Jenis Kelamin</td>
+								<th>: ".$this->session->userdata('jKelaminKMSTrack')."</th>
+							</tr>
+							<tr>
+								<td scope='row'>Umur</td>
+								<th>: ".$this->session->userdata('usiaKMSTrack')." bulan</th>
+							</tr>
+							<tr>
+								<td scope='row'>Tinggi</td>
+								<th>: ".$this->session->userdata('tinggiKMSTrack')."</th>
+							</tr>
+							<tr>
+								<td scope='row'>Berat</td>
+								<th>: ".$this->session->userdata('beratKMSTrack')."</th>
+							</tr>
+							</tbody>
+						</table>
+
+						<div class='col-md'>
+							<p style='font-weight:500;'>Berat badan menurut umur ".$this->session->userdata('jKelaminKMSTrack')."</p>
+							<!--Diagram-->
+						</div>
+						<div class='col-md'>
+							<p style='font-weight:500;'>Tinggi badan menurut umur ".$this->session->userdata('jKelaminKMSTrack')."</p>
+							<!--Diagram-->
+						</div>
 					</div>
 				</div>
-				<div class='row'>
-					<div class='col-md'>
-						<p style='font-size:12px;'>Jenis Kelamin</p>
-					</div>
-					<div class='col-md'>
-						<p class='font-weight-bold' style='font-size:12px;'>".$this->session->userdata('jKelaminKMSTrack')."</p>
-					</div>
-				</div>
-				<div class='row'>
-					<div class='col-md'>
-						<p style='font-size:12px;'>Umur</p>
-					</div>
-					<div class='col-md'>
-						<p class='font-weight-bold' style='font-size:12px;'>".$this->session->userdata('usiaKMSTrack')." Bulan</p>
-					</div>
-				</div>
-				<div class='row'>
-					<div class='col-md'>
-						<p style='font-size:12px;'>Berat / Tinggi</p>
-					</div>
-					<div class='col-md'>
-						<p class='font-weight-bold' style='font-size:12px;'>".$this->session->userdata('beratKMSTrack')." / ".$this->session->userdata('tinggiKMSTrack')."</p>
-					</div>
-				</div>
-			
-			</div>		
+			</div>
+			<div class='modal-footer'>
+				<p style='float: left; font-size: 13px; color:grey;'><i class='fa fa-info-circle'></i> Umur 16 hari keatas akan dibulatkan menjadi 1 bulan.</p>
+			</div>
 			</div>
 		</div>
 		</div>";}	
@@ -800,26 +811,38 @@
 								<table class='table table-striped'>
 									<thead>
 									<tr>
-										<th scope='col-sm' class='w-25'>Nama Anak</th>
-										<th scope='col-md'>".$kms['namaAnak']."</th>
+										<td scope='col-sm' class='w-25'>Nama Anak</td>
+										<th scope='col-md'>: ".$kms['namaAnak']."</th>
 									</tr>
 									</thead>
 									<tbody>
 									<tr>
-										<th scope='row'>Jenis Kelamin</th>
-										<td>".$kms['jenisKelamin']."</td>
+										<td scope='row'>Jenis Kelamin</td>
+										<th>: ".$kms['jenisKelamin']."</th>
 									</tr>
 									<tr>
-										<th scope='row'>Umur</th>
-										<td> thn</td>
+										<td scope='row'>Umur</td>
+										<th>: "; 
+											//Get age (month) from date picker and date now.
+											$dateBorn = strtotime($kms['tanggalLahirA']);
+											$dateNow = strtotime(date("Y/m/d"));
+
+											$yearBorn = date('Y', $dateBorn);
+											$yearNow = date('Y', $dateNow);
+											$monthBorn = date('m', $dateBorn);
+											$monthNow = date('m', $dateNow);
+
+											$age = (($yearNow - $yearBorn) * 12) + ($monthNow - $monthBorn);
+											echo $age;
+										echo" bulan</th>
 									</tr>
 									<tr>
-										<th scope='row'>Tinggi</th>
-										<td>".$kms['tinggi']."</td>
+										<td scope='row'>Tinggi</td>
+										<th>: ".$kms['tinggi']."</th>
 									</tr>
 									<tr>
-										<th scope='row'>Berat</th>
-										<td>".$kms['berat']."</td>
+										<td scope='row'>Berat</td>
+										<th>: ".$kms['berat']."</th>
 									</tr>
 									</tbody>
 								</table>
