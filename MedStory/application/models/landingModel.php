@@ -3,33 +3,12 @@
 
 	class landingModel extends CI_Model 
 	{
-		function recordlogin($data)
-		{
-			$username = $this->input->post('username');
-			$password = $this->input->post('password');
-
-			//Mengecek ketersedian username.
-			$this->db->select('*');
-			$this->db->from('pengguna');
-			$condition = array('namaPengguna' => $data['username'], 'password' => $data['password']);
-			$this->db->where($condition);
-			$userCheck = $this->db->get()->result();
-			if(count($userCheck) == 1){
-				$this->session->set_userdata('userTrack',$username);	
-				$this->session->set_userdata('lastLogin', date("Y/m/d h:i:sa"));
-				redirect('history');
-			}else{
-				$error_message = "Username atau Password Anda salah!"; 
-				$this->session->set_flashdata('error_login', $error_message);
-				redirect('landing');
-			}
-		}	
+		//Create new account.
 		function buat($data)
 		{
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
 
-			//Mengecek ketersedian username.
 			$this->db->select('*');
 			$this->db->from('pengguna');
 			$condition = array('namaPengguna' => $this->input->post('username'));
@@ -45,10 +24,14 @@
 				redirect('landing');
 			}
 		}
+
+		//Insert user feedback.
 		function masukan($data)
 		{
 			$this->db->insert('masukan',$data);	
 		}
+
+		//Get data.
 		public function get_data_review(){
 			$data = $this->db->get('review');
 			return $data->result_array();

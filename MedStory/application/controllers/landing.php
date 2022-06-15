@@ -14,17 +14,33 @@
 			$data['dataUpdate']= $this->landingModel->get_data_pengumuman();
 			$this->load->view('LandingPage', $data);
 		}
-		/*Insert*/
+
+		/*User login validation*/
 		public function savedata(){
-			$data = array(
-				'username' => $this->input->post('username'),
-				'password' => $this->input->post('password')
-			);
-			$this->landingModel->recordlogin($data, 'loginuser');
+			$username = $this->input->post('username');
+			$password = $this->input->post('password');
+
+			//Check user data.
+			$this->db->select('*');
+			$this->db->from('pengguna');
+			$condition = array('namaPengguna' => $username, 'password' => $password);
+			$this->db->where($condition);
+			$userCheck = $this->db->get()->result();
+			if(count($userCheck) == 1){
+				$this->session->set_userdata('userTrack',$username);	
+				$this->session->set_userdata('lastLogin', date("Y/m/d h:i:sa"));
+				redirect('history');
+			}else{
+				$data['errorLogin'] = "Username atau Password Anda salah!"; 
+				$this->index();
+				$this->load->view('LandingPage', $data);
+			}
 		}
-		/*Insert Buat akun*/
+
+		/*Create new account.*/
 		public function newUser(){
 			$condition = $this->input->post('username');
+			//File setting.
 			$initialize = $this->upload->initialize(array(
 				"upload_path" => './assets/uploads',
 				"allowed_types" => 'jpg',
@@ -33,7 +49,7 @@
 				"file_name" => 'user_' . $condition
 			));
 			$data = array(
-				//Data diri
+				//User data.
 				"namaLengkap" => $this->input->post('fullname'),
 				"nik" => $this->input->post('nik'),
 				"tempatLahir" => $this->input->post('tLahir'),
@@ -43,7 +59,7 @@
 				"tinggiBadan" => $this->input->post('tBadan'),
 				"beratBadan" => $this->input->post('bBadan'),
 				"jKelamin" => $this->input->post('cat_input'),
-				//Data akun
+				//Account data.
 				"namaPengguna" => $this->input->post('username'),
 				"email" => $this->input->post('email'),
 				"nomorPonsel" => $this->input->post('ponsel'),
@@ -57,6 +73,8 @@
 				$this->landingModel->buat($data, 'pengguna');
 			}
 		}
+
+		//Insert user feedback.
 		public function insertMasukkan(){
 			$data = array(
 				'id_masukan' => 'NULL',
@@ -69,6 +87,8 @@
 			$this->index();
 			$this->load->view('LandingPage', $data);
 		}
+
+		//Log-out.
 		public function logout(){
 			if($this->input->post('validation') == 'KONFIRMASI'){
 				$this->session->sess_destroy();
