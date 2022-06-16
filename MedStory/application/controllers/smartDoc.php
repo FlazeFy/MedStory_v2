@@ -18,11 +18,12 @@
 			$data['dataUser']= $this->accountModel->get_data_user();
 			$this->load->view('smartDocPage', $data);
 		}
+
+		//Check ssymptomn in db.
 		public function searchGejala()
 		{
 			$gejala = $this->input->post('gejala');
 
-			//Mengecek ketersedian gejala.
 			$this->db->select('*');
 			$this->db->from('gejala');
 			$condition = array('nama_gejala' => $gejala);

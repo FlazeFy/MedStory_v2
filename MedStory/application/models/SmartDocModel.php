@@ -2,6 +2,7 @@
 	defined('BASEPATH') OR exit('No direct script access alowed');
 
 	class SmartDocModel extends CI_Model {
+		//Get data.
 		public function get_data_penyakit(){
 			$data = $this->db->get('smartdoc');
 			return $data->result_array();
@@ -31,9 +32,10 @@
 			$this->db->order_by('datecreated','DESC');
 			return $data = $this->db->get()->result_array();
 		}
+
+		//Insert kms data.
 		public function insertKms($data){
 			$this->db->insert('kms',$data);	
-			// redirect('smartDoc');
 		}
 	}
 ?>

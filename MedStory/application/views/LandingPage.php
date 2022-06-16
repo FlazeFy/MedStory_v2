@@ -235,7 +235,7 @@
 				</li>
                 <div id="ddParent">
                     <button id="dropbutton"><img width="30" src="http://localhost/MedStory/assets/Setting.png"></button>
-					<!--DropDown menu navigation-->
+					<!--DropDown navigation.-->
 					<div id="dropdown-content">
 						<a>Tentang</a>
 						<a>Kebijakan & Privasi</a>
@@ -637,8 +637,9 @@
 						echo"<div id='myCarousel' class='carousel slide' data-ride='carousel' data-interval='0'>
 						<!-- Carousel indicators -->
 						<ol class='carousel-indicators'>";
-						$item = 0;
-						$page = 0;
+						$item = 0; //Count item.
+						$page = 0; //Count page.
+						$z = 3; //Set max item per page.
 						foreach ($dataReview as $review){
 							foreach ($dataPengguna as $pengguna){
 								if ($review['id_user'] == $pengguna['id_user']){
@@ -646,11 +647,11 @@
 										echo"<li data-target='#myCarousel' data-slide-to='0' class='active'></li>";
 										$item++;
 										$page++;
-									} else if ($item % 3 == 0){
+									} else if ($item % $z == 0){
 										echo"<li data-target='#myCarousel' data-slide-to='".$page."'></li>";
 										$item++;
 										$page++;
-									} else if ($item % 3 != 0){
+									} else if ($item % $z != 0){
 										$item++;
 									}
 								}
@@ -660,12 +661,13 @@
 
 						<!-- Wrapper for carousel items -->
 						<div class='carousel-inner'>";
-							$k = 1;
-							$state = ' active';
+							$k = 1; //Count item.
+							$y = 4; //Set max item per page.
+							$state = ' active'; //Initial class.
 							foreach ($dataReview as $review){
 								foreach ($dataPengguna as $pengguna){
 									if ($review['id_user'] == $pengguna['id_user']){
-										if($k % 4 == 0  || $k == 1){
+										if($k % $y == 0  || $k == 1){
 											echo"<div class='item carousel-item".$state."' >
 											<div class='row' style='margin:20px;'>";
 										}
@@ -695,7 +697,7 @@
 										
 										$k++;
 										$state = ' ';
-										if($k % 4 == 0){
+										if($k % $y == 0){
 											echo"</div>
 										</div>";
 										}
@@ -929,7 +931,6 @@
 			keyboard: false
 		});  
 	</script>
-
     </body>
 
 </html>

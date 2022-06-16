@@ -38,11 +38,11 @@
                 <li><a href="history">Forum</a></li>
                 <li><a href="dataKu">Dataku</a></li>
 				<li><a href="nomorDarurat">Darurat</a></li>
-                <li style="float:right"><button type="submit" class='btn btn-danger' style='height:40px; margin:13px 10px 0px 10px;' data-toggle="modal" data-target="#signOutModal"><i class='fa fa-sign-out'></i> Ganti Akun</button></li>
+                <li style="float:right"><button data-toggle="modal" data-target="#signOutModal" type="submit" class='btn btn-danger' style='height:40px; margin:13px 10px 0px 10px;'><i class='fa fa-sign-out'></i> Ganti Akun</button></li>
                 <li style="float:right"><button onclick="window.location.href='account'" class='btn btn-primary' style='height:40px; background:#212121; margin:13px 0px 0px 10px;'><i class='fa fa-user-circle'></i> <?= $data = $this->session->userdata('userTrack'); ?></button></li>
                 <div id="ddParent">
-					<button id="dropbutton"><img id="set" src="http://localhost/MedStory/assets/Setting.png"></button>
-					<!--Dropdown menu navigation.-->
+					<button id="dropbutton"><img width="30" src="http://localhost/MedStory/assets/Setting.png"></button>
+					<!--Dropdown navigation.-->
 					<div id="dropdown-content">
 						<a href="tentang">Tentang</a>
 						<a href="kebijakan">Kebijakan & Privasi</a>
@@ -333,7 +333,6 @@
 			keyboard: false
 		});  
 	</script>
-
     </body>
 	
 </html>

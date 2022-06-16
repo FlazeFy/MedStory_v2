@@ -13,6 +13,8 @@
 			$data['dataCovid']= $this->nomorDaruratModel->get_data_covid();
 			$this->load->view('nomorDaruratPage', $data);
 		}
+
+		//Copy coordinate modal.
 		public function copyCoor(){
 			$data['success_copy'] = "Kordinat berhasil disalin"; 
 			$this->index();
