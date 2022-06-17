@@ -2,6 +2,7 @@
 	defined('BASEPATH') OR exit('No direct script access alowed');
 
 	class DataKuModel extends CI_Model {
+		//Get data.
 		public function get_total_kebutuhan(){
 			$this->db->select('asupan.kalori, jadwalkalori.waktu, jadwalkalori.date');
 			$this->db->from('pengguna');
@@ -43,14 +44,19 @@
 			$data = $this->db->get('jadwalkalori');
 			return $data->result_array();
 		}	
+
+		//Insert asupan.
 		public function insertJadwal($data){
 			$this->db->insert('jadwalkalori',$data);	
 			//redirect('dataKu');
 		}
+
+		//Insert daily calorie.
 		public function insertCal($data){
 			$this->db->insert('kebutuhankalori',$data);	
 			redirect('dataKu');
 		}
+		
 		public function refresh(){
 			redirect('dataKu');
 		}

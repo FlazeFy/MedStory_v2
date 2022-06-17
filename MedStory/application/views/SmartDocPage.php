@@ -211,9 +211,9 @@
 				<li><a href="history">Forum</a></li>
 				<li><a href="dataKu">Dataku</a></li>
 				<li><a href="nomorDarurat">Darurat</a></li>
-					<li style="float:right"><button type="submit" class='btn btn-danger' data-toggle="modal" data-target="#signOutModal" style='height:40px; margin:13px 10px 0px 10px;'><i class='fa fa-sign-out'></i> Ganti Akun</button></li>
-					<li style="float:right"><button onclick="window.location.href='account'" class='btn btn-primary' style='height:40px; background:#212121; margin:13px 0px 0px 10px;'><i class='fa fa-user-circle'></i> <?= $data = $this->session->userdata('userTrack'); ?></button></li>
-					<div id="ddParent">
+				<li style="float:right"><button type="submit" class='btn btn-danger' data-toggle="modal" data-target="#signOutModal" style='height:40px; margin:13px 10px 0px 10px;'><i class='fa fa-sign-out'></i> Ganti Akun</button></li>
+				<li style="float:right"><button onclick="window.location.href='account'" class='btn btn-primary' style='height:40px; background:#212121; margin:13px 0px 0px 10px;'><i class='fa fa-user-circle'></i> <?= $data = $this->session->userdata('userTrack'); ?></button></li>
+				<div id="ddParent">
 					<button id="dropbutton"><img width="30" src="http://localhost/MedStory/assets/Setting.png"></button>
 					<!--DropDown menu navigation-->
 					<div id="dropdown-content">
@@ -226,37 +226,35 @@
 
 		<!--Back to top.-->
 		<button onclick="topFunction()" id="myBtn" title="Kembali ke atas">
-			<img src='http://localhost/MedStory/assets/Back.png' width='35px' height='35px' style="transform: rotate(90deg);">
+			<img src='http://localhost/MedStory/assets/Back.png' width='35px' style="transform: rotate(90deg);">
 		</button>
 
 		<br><br><br>
 		<!--Content.-->
 		<div class="container bg-white mb-2 mt-2 p-3" style="border-radius: 10px;">
 			<h5 style="text-align: left; font-weight:w600;">Kalkulator BMI</h5>	
-			<div class='card-body'>
-				<div class='container'>
-					<div class='row'>
-						<div class='col-md-6'>
-							<h6 style='color:black;'>Apa itu BMI?</h6>                        
-							<p>Body Mass Index (BMI) atau Indeks Massa Tubuh (IMT) adalah angka yang menjadi penilaian standar untuk menentukan apakah berat badan Anda tergolong normal, kurang, berlebih, atau obesitas.</p>
-						</div>
-						<div class='col-md-6'>
-							<!--Count BMI.-->
-							<div class="row">
-								<div class="col-sm">
-									<h5 class='font-weight-100' style='font-size: 16px;'>Tinggi Badan (Cm)</h5>
-									<input type="number" class="form-control" id="tinggi">
-								</div>
-								<div class="col-sm">
-									<h5 class='font-weight-100' style='font-size: 16px;'>Berat Badan (Kg)</h5>
-									<input type="number" class="form-control" id="berat">
-								</div>
-								<div class="col-sm">
-									<button class='btn btn-success' style='height:100px;' id='hitung'>Hitung</button>
-								</div>
-							</div>	
-							<h5 class='font-weight-w500' id='hasil'></h5>				
-						</div>
+			<div class='container'>
+				<div class='row'>
+					<div class='col-md-6'>
+						<h6 class='text-secondary'>Apa itu BMI?</h6>                        
+						<p>Body Mass Index (BMI) atau Indeks Massa Tubuh (IMT) adalah angka yang menjadi penilaian standar untuk menentukan apakah berat badan Anda tergolong normal, kurang, berlebih, atau obesitas.</p>
+					</div>
+					<div class='col-md-6'>
+						<!--Count BMI.-->
+						<div class="row">
+							<div class="col-sm">
+								<h5 class='font-weight-100' style='font-size: 16px;'>Tinggi Badan (Cm)</h5>
+								<input type="number" class="form-control" id="tinggi">
+							</div>
+							<div class="col-sm">
+								<h5 class='font-weight-100' style='font-size: 16px;'>Berat Badan (Kg)</h5>
+								<input type="number" class="form-control" id="berat">
+							</div>
+							<div class="col-sm">
+								<button class='btn btn-success' style='height:100px;' id='hitung'>Hitung</button>
+							</div>
+						</div>	
+						<h5 class='font-weight-w500' id='hasil'></h5>				
 					</div>
 				</div>
 			</div>
@@ -264,190 +262,185 @@
 		
 		<div class="container bg-white mb-2 mt-2 p-3" style="border-radius: 10px;">
 			<h5 style="text-align: left; font-weight:w600;">RoboDoc</h5>	
-			<div class='card-body'>
-				<div class='container'>
-					<div class='row'>
-						<div class='col-md-6'>
-							<h6 style='color:black;'>Apa itu RoboDoc?</h6>                        
-							<p>RoboDoc adalah fitur yang dapat mendukung Anda untuk mengetahui penyakit yang Anda derita dengan cepat dan tanpa perlu diagnosa lansung dengan dokter. Anda cukup memberitahukan gejala yang Anda derita kepada RoboDoc. Dan kami akan menampilkan daftar kemungkinan penyakit yang Anda derita.</p>
-						</div>
-						<div class='col-md-6'>
-							<!--Search symptom.-->
-							<form autocomplete="off" action="smartDoc/searchGejala" method="POST">
-								<div class="col-sm">
-									<h5 class='font-weight-100' style='font-size: 16px;'>Gejala</h5>
-									<div class="autocomplete" style="width:300px;">
-										<textarea rows="3" cols="60" name="gejala" id="myInput" required>Sertakan tanda "," untuk menambahkan gejala lainnya</textarea><br>
-									</div>
+			<div class='container'>
+				<div class='row'>
+					<div class='col-md-6'>
+						<h6 class='text-secondary'>Apa itu RoboDoc?</h6>                        
+						<p>RoboDoc adalah fitur yang dapat mendukung Anda untuk mengetahui penyakit yang Anda derita dengan cepat dan tanpa perlu diagnosa lansung dengan dokter. Anda cukup memberitahukan gejala yang Anda derita kepada RoboDoc. Dan kami akan menampilkan daftar kemungkinan penyakit yang Anda derita.</p>
+					</div>
+					<div class='col-md-6'>
+						<!--Search symptom.-->
+						<form autocomplete="off" action="smartDoc/searchGejala" method="POST">
+							<div class="col-sm">
+								<h5 class='font-weight-100' style='font-size: 16px;'>Gejala</h5>
+								<div class="autocomplete" style="width:300px;">
+									<textarea rows="3" cols="60" name="gejala" id="myInput" required>Sertakan tanda "," untuk menambahkan gejala lainnya</textarea><br>
 								</div>
-								<div class="col-sm">
-									<button class='btn btn-success' type='submit'>Cari</button>
-								</div>
-							</form>
-							<h5 class='font-weight-w500' id='hasil'></h5>				
-						</div>
-					</div><!--End of row.-->
-					
-					<!--Search result.-->
-					<section>
-						<h5 class='font-weight-100 text-secondary' style='font-size: 14px; font-style:italic;'>Menampilkan
-						<?php
-							$count = 0; //Count item.
-							$namaGejala = $this->session->userdata('gejala');
-							foreach($dataGejala as $gejala){
-								if($gejala['nama_gejala'] == $namaGejala){
-									foreach($dataRelasi as $relasi){
-										if($relasi['id_gejala'] == $gejala['id_gejala']){
-											foreach($dataPenyakit as $penyakit){
-												if($penyakit['id_penyakit'] == $relasi['id_penyakit']){
-													$count++;
-												}
+							</div>
+							<div class="col-sm">
+								<button class='btn btn-success' type='submit'>Cari</button>
+							</div>
+						</form>
+						<h5 class='font-weight-w500' id='hasil'></h5>				
+					</div>
+				</div><!--End of row.-->
+				
+				<!--Search result.-->
+				<section>
+					<h5 class='font-weight-100 text-secondary' style='font-size: 14px; font-style:italic;'>Menampilkan
+					<?php
+						$count = 0; //Count item.
+						$namaGejala = $this->session->userdata('gejala');
+						foreach($dataGejala as $gejala){
+							if($gejala['nama_gejala'] == $namaGejala){
+								foreach($dataRelasi as $relasi){
+									if($relasi['id_gejala'] == $gejala['id_gejala']){
+										foreach($dataPenyakit as $penyakit){
+											if($penyakit['id_penyakit'] == $relasi['id_penyakit']){
+												$count++;
 											}
 										}
 									}
 								}
 							}
-							echo $count." Pencarian";
-						?>
-						</h5>
-						<div class="container-fluid">
-							<div class="row">
-								<!--List penyakit.-->
-								<div class="col-md-3" style="max-height: calc(80vh - 140px); max-width:auto; overflow-y: auto;">
-									<div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-										<?php
-											$state = ' active'; //Intital class.
-											$namaGejala = $this->session->userdata('gejala');
-											foreach($dataGejala as $gejala){
-												if($gejala['nama_gejala'] == $namaGejala){
-													foreach($dataRelasi as $relasi){
-														if($relasi['id_gejala'] == $gejala['id_gejala']){
-															foreach($dataPenyakit as $penyakit){
-																if($penyakit['id_penyakit'] == $relasi['id_penyakit']){
-																	echo"<a class='nav-link mb-3 p-3 shadow".$state."' id='v-pills-".$penyakit['id_penyakit']."-tab' data-toggle='pill' href='#v-pills-".$penyakit['id_penyakit']."' role='tab' aria-controls='v-pills-".$penyakit['id_penyakit']."' aria-selected='true'>
-																	<span class='font-weight-bold small text-uppercase'>".$penyakit['nama_penyakit']."</span></a>";
-																	$state = ' ';
-																}
+						}
+						echo $count." Pencarian";
+					?>
+					</h5>
+					<div class="container-fluid">
+						<div class="row">
+							<!--List penyakit.-->
+							<div class="col-md-3" style="max-height: calc(80vh - 140px); max-width:auto; overflow-y: auto;">
+								<div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+									<?php
+										$state = ' active'; //Intital class.
+										$namaGejala = $this->session->userdata('gejala');
+										foreach($dataGejala as $gejala){
+											if($gejala['nama_gejala'] == $namaGejala){
+												foreach($dataRelasi as $relasi){
+													if($relasi['id_gejala'] == $gejala['id_gejala']){
+														foreach($dataPenyakit as $penyakit){
+															if($penyakit['id_penyakit'] == $relasi['id_penyakit']){
+																echo"<a class='nav-link mb-3 p-3 shadow".$state."' id='v-pills-".$penyakit['id_penyakit']."-tab' data-toggle='pill' href='#v-pills-".$penyakit['id_penyakit']."' role='tab' aria-controls='v-pills-".$penyakit['id_penyakit']."' aria-selected='true'>
+																<span class='font-weight-bold small text-uppercase'>".$penyakit['nama_penyakit']."</span></a>";
+																$state = ' ';
 															}
 														}
 													}
 												}
 											}
-										?>
-									</div>
+										}
+									?>
 								</div>
+							</div>
 
-								<!--Data penyakit.-->
-								<div class='col-md-9'>
-									<div class='tab-content' id='v-pills-tabContent'>
-										<?php
-											$state = ' active'; //Intital class.
-											$namaGejala = $this->session->userdata('gejala');
-											foreach($dataGejala as $gejala){
-												if($gejala['nama_gejala'] == $namaGejala){
-													foreach($dataRelasi as $relasi){
-														if($relasi['id_gejala'] == $gejala['id_gejala']){
-															foreach($dataPenyakit as $penyakit){
-																if($penyakit['id_penyakit'] == $relasi['id_penyakit']){
-																	echo"<div class='tab-pane fade shadow rounded bg-white show ".$state." p-4' id='v-pills-".$penyakit['id_penyakit']."' role='tabpanel' aria-labelledby='v-pills-".$penyakit['id_penyakit']."-tab' style='border: 3px solid #4183D7;'>
-																		<h5 style='margin-bottom:20px; font-size:15px;'>".$penyakit['nama_penyakit']."</h5>
-																		<div style='float:right; margin-top:-50px;'>
-																			<h5><img style='width:25px;' src='http://localhost/MedStory/assets/icon/rasio.png'> Rasio di Indonesia</h5>
-																				<p style='font-size:12px; color:#616161;'>".$penyakit['rasio']."</p>
-																		</div>
-																		<h5><img style='width:25px;' src='http://localhost/MedStory/assets/icon/penanganan.png'> Penanganan</h5>
-																			<p style='margin-bottom:20px;'>".$penyakit['penanganan']."</p>
-																		<h5><img style='width:25px;' src='http://localhost/MedStory/assets/icon/obat.png'> Obat</h5>
-																			<p style='margin-bottom:20px;'>"; 
-																			foreach($dataRelasiObat as $relObat){
-																				if($relObat['id_penyakit'] == $penyakit['id_penyakit']){
-																					foreach($dataObat as $obat){
-																						if($relObat['id_obat'] == $obat['id_obat']){
-																							echo "<a type='button' style='color:#22A7F0; text-decoration:underline;' data-toggle='modal' data-target='#modalObat".$obat['id_obat']."' title='".$obat['namaObat']."'>".$obat['namaObat'].",</a>";
-																						}
+							<!--Data penyakit.-->
+							<div class='col-md-9'>
+								<div class='tab-content' id='v-pills-tabContent'>
+									<?php
+										$state = ' active'; //Intital class.
+										$namaGejala = $this->session->userdata('gejala');
+										foreach($dataGejala as $gejala){
+											if($gejala['nama_gejala'] == $namaGejala){
+												foreach($dataRelasi as $relasi){
+													if($relasi['id_gejala'] == $gejala['id_gejala']){
+														foreach($dataPenyakit as $penyakit){
+															if($penyakit['id_penyakit'] == $relasi['id_penyakit']){
+																echo"<div class='tab-pane fade shadow rounded bg-white show ".$state." p-4' id='v-pills-".$penyakit['id_penyakit']."' role='tabpanel' aria-labelledby='v-pills-".$penyakit['id_penyakit']."-tab' style='border: 3px solid #4183D7;'>
+																	<h5 style='margin-bottom:20px; font-size:15px;'>".$penyakit['nama_penyakit']."</h5>
+																	<div style='float:right; margin-top:-50px;'>
+																		<h5><img style='width:25px;' src='http://localhost/MedStory/assets/icon/rasio.png'> Rasio di Indonesia</h5>
+																			<p style='font-size:12px; color:#616161;'>".$penyakit['rasio']."</p>
+																	</div>
+																	<h5><img style='width:25px;' src='http://localhost/MedStory/assets/icon/penanganan.png'> Penanganan</h5>
+																		<p style='margin-bottom:20px;'>".$penyakit['penanganan']."</p>
+																	<h5><img style='width:25px;' src='http://localhost/MedStory/assets/icon/obat.png'> Obat</h5>
+																		<p style='margin-bottom:20px;'>"; 
+																		foreach($dataRelasiObat as $relObat){
+																			if($relObat['id_penyakit'] == $penyakit['id_penyakit']){
+																				foreach($dataObat as $obat){
+																					if($relObat['id_obat'] == $obat['id_obat']){
+																						echo "<a type='button' style='color:#22A7F0; text-decoration:underline;' data-toggle='modal' data-target='#modalObat".$obat['id_obat']."' title='".$obat['namaObat']."'>".$obat['namaObat'].",</a>";
 																					}
 																				}
 																			}
-																			echo"</p>
-																		<h5><img style='width:25px;' src='http://localhost/MedStory/assets/icon/pencegahan.png'> Pencegahan</h5>
-																			<p style='margin-bottom:20px;'>".$penyakit['pencegahan']."</p>
-																		<h5><img style='width:25px;' src='http://localhost/MedStory/assets/icon/gejala.png'> Gejala lainnya</h5>";
-																		foreach($dataRelasi as $relasi2){
-																			if($relasi2['id_penyakit'] == $penyakit['id_penyakit']){
-																				foreach($dataGejala as $gejala2){
-																					if($gejala2['id_gejala'] == $relasi2['id_gejala']){
-																						echo"<a>".$gejala2['nama_gejala'].", </a>";
-																					}
+																		}
+																		echo"</p>
+																	<h5><img style='width:25px;' src='http://localhost/MedStory/assets/icon/pencegahan.png'> Pencegahan</h5>
+																		<p style='margin-bottom:20px;'>".$penyakit['pencegahan']."</p>
+																	<h5><img style='width:25px;' src='http://localhost/MedStory/assets/icon/gejala.png'> Gejala lainnya</h5>";
+																	foreach($dataRelasi as $relasi2){
+																		if($relasi2['id_penyakit'] == $penyakit['id_penyakit']){
+																			foreach($dataGejala as $gejala2){
+																				if($gejala2['id_gejala'] == $relasi2['id_gejala']){
+																					echo"<a>".$gejala2['nama_gejala'].", </a>";
 																				}
 																			}
-																		}																			
-																	echo"</div>";
-																	$state = ' ';
-																}
+																		}
+																	}																			
+																echo"</div>";
+																$state = ' ';
 															}
 														}
 													}
 												}
 											}
-										?>
-									</div>
+										}
+									?>
 								</div>
-							</div><!--End of row.-->
-						</div>
-					</section>
-
-				</div>
+							</div>
+						</div><!--End of row.-->
+					</div>
+				</section>
 			</div>
 		</div><!--End of container.-->
 
 		<div class="container bg-white mb-2 mt-2 p-3" style="border-radius: 10px;">
 			<h5 style="text-align: left; font-weight:w600;">Kalkulator Kalori</h5>	
-			<div class='card-body'>
-				<div class='container'>
-					<div class='row'>
-						<div class='col-md-6'>
-							<h6 style='color:black;'>Apa itu Kalkulator kalori?</h6>                        
-							<p>Dengan alat ini Anda mengetahui berapa asupan kalori yang dibutuhkan. Hasil perhitungannya dapat Anda gunakan sebagai salah satu acuan untuk mengontrol asupan kalori per hari.</p>								
-							<h5 class='font-weight-w500' id='hasilCal'></h5>
-						</div>
-						<div class='col-md-6'>
-							<div class="row">
-								<div class="col-sm">
-									<h5 class='font-weight-100' style='font-size: 16px;'>Tinggi Badan (Cm)</h5>
-									<input type="number" class="form-control" id="tinggiCal">
-								</div>
-								<div class="col-sm">
-									<h5 class='font-weight-100' style='font-size: 16px;'>Berat Badan (Kg)</h5>
-									<input type="number" class="form-control" id="beratCal">
-								</div>
-								<div class="col-sm">
-									<h5 class='font-weight-100' style='font-size: 16px;'>Umur (Thn)</h5>
-									<input type="number" class="form-control" id="umurCal">
-								</div>
-							</div>	
-							<div class="row mt-1">
-								<div class="col-sm">
-									<h5 class='font-weight-100' style='font-size: 16px;'>Aktivitas</h5>
-									<select class="form-control" id="aktivitasCal">
-										<option value="1">Tidak pernah berolahraga dalam seminggu</option>
-										<option value="2">1-3 kali dalam seminggu</option>
-										<option value="3">3-5 kali dalam seminggu</option>
-										<option value="4">6-7 kali dalam seminggu</option>
-										<option value="5">Setiap hari / Pekerjaan fisik</option>
-									</select>
-								</div>
-								<div class="col-sm-3">
-									<h5 class='font-weight-100' style='font-size: 16px;'>Jenis Kelamin</h5>
-									<select class="form-control" id="jKelaminCal">
-										<option value="1">Pria</option>
-										<option value="2">Wanita</option>
-									</select>
-								</div>
-							</div>	
-							<div class="row">
-								<div class="col-sm">
-									<button class='btn btn-success' style='margin-top:10px;' id='hitungCal'>Hitung</button>
-								</div>
+			<div class='container'>
+				<div class='row'>
+					<div class='col-md-6'>
+						<h6 class='text-secondary'>Apa itu Kalkulator kalori?</h6>                        
+						<p>Dengan alat ini Anda mengetahui berapa asupan kalori yang dibutuhkan. Hasil perhitungannya dapat Anda gunakan sebagai salah satu acuan untuk mengontrol asupan kalori per hari.</p>								
+						<h5 class='font-weight-w500' id='hasilCal'></h5>
+					</div>
+					<div class='col-md-6'>
+						<div class="row">
+							<div class="col-sm">
+								<h5 class='font-weight-100' style='font-size: 16px;'>Tinggi Badan (Cm)</h5>
+								<input type="number" class="form-control" id="tinggiCal">
+							</div>
+							<div class="col-sm">
+								<h5 class='font-weight-100' style='font-size: 16px;'>Berat Badan (Kg)</h5>
+								<input type="number" class="form-control" id="beratCal">
+							</div>
+							<div class="col-sm">
+								<h5 class='font-weight-100' style='font-size: 16px;'>Umur (Thn)</h5>
+								<input type="number" class="form-control" id="umurCal">
+							</div>
+						</div>	
+						<div class="row mt-1">
+							<div class="col-sm">
+								<h5 class='font-weight-100' style='font-size: 16px;'>Aktivitas</h5>
+								<select class="form-control" id="aktivitasCal">
+									<option value="1">Tidak pernah berolahraga dalam seminggu</option>
+									<option value="2">1-3 kali dalam seminggu</option>
+									<option value="3">3-5 kali dalam seminggu</option>
+									<option value="4">6-7 kali dalam seminggu</option>
+									<option value="5">Setiap hari / Pekerjaan fisik</option>
+								</select>
+							</div>
+							<div class="col-sm-3">
+								<h5 class='font-weight-100' style='font-size: 16px;'>Jenis Kelamin</h5>
+								<select class="form-control" id="jKelaminCal">
+									<option value="1">Pria</option>
+									<option value="2">Wanita</option>
+								</select>
+							</div>
+						</div>	
+						<div class="row">
+							<div class="col-sm">
+								<button class='btn btn-success' style='margin-top:10px;' id='hitungCal'>Hitung</button>
 							</div>
 						</div>
 					</div>
@@ -457,148 +450,146 @@
 
 		<div class="container bg-white mb-2 mt-2 p-3" style="border-radius: 10px;">
 			<h5 style="text-align: left; font-weight:w600;">Kartu Menuju Sehat</h5>	
-			<div class='card-body'>
-				<div class='container'>
-					<div class='row'>
-						<div class='col-md-6'>
-							<h6 style='color:black;'>Apa itu KMS?</h6>                        
-							<p>Kartu Menuju Sehat adalah suatu patokan yang digunakan untuk mencatat grafik perkembangan setiap anak dengan mengacu pada berat badan, umur, serta jenis kelamin. Alat ini juga digunakan untuk melihat perkembangan balita tersebut dan menjadi acuan agar menjaga bayi tetap sehat dan mendapatkan gizi yang tepat.</p>							
-						</div>
-						<div class='col-md-6'>
-							<!--Count KMS.-->
-							<form method='POST' action='smartDoc/hitungKMS'>
-							<div class="row" >
-								<input class='form-control' type='text' name='id_user' 
-									value='<?php foreach ($dataUser as $data){echo $data['id_user'];}?>' hidden></input>
-								<div class="col-sm">
-									<h5 class='font-weight-100' style='font-size: 16px;'>Nama Anak</h5>
-									<input type="name" class="form-control" name="namaAnak">
-								</div>
-								<div class="col-sm-3">
-									<h5 class='font-weight-100' style='font-size: 16px;'>Jenis Kelamin</h5>
-									<select class="form-control" name="jKelaminAnak">
-										<option value="Pria">Pria</option>
-										<option value="Wanita">Wanita</option>
-									</select>
-								</div>
-							</div>	
-							<div class="row mt-1">
-								<div class="col-sm">
-									<h5 class='font-weight-100' style='font-size: 16px;'>Tinggi Badan (Cm)</h5>
-									<input type="number" class="form-control" name="tinggiAnak">
-								</div>
-								<div class="col-sm">
-									<h5 class='font-weight-100' style='font-size: 16px;'>Berat Badan (Kg)</h5>
-									<input type="number" class="form-control" name="beratAnak">
-								</div>
-								<div class="col-sm">
-									<h5 class='font-weight-100' style='font-size: 16px;'>Tanggal Lahir</h5>
-									<input type="date" class="form-control" name="tglLahirAnak">
-								</div>	
-							</div>	
-							<div class="row">
-								<div class="col-sm">
-									<button class='btn btn-success' style='margin-top:10px;' type='submit'>Hitung</button>
-								</div>
-							</div>
-							</form>
-						</div>
+			<div class='container'>
+				<div class='row'>
+					<div class='col-md-6'>
+						<h6 class='text-secondary'>Apa itu KMS?</h6>                        
+						<p>Kartu Menuju Sehat adalah suatu patokan yang digunakan untuk mencatat grafik perkembangan setiap anak dengan mengacu pada berat badan, umur, serta jenis kelamin. Alat ini juga digunakan untuk melihat perkembangan balita tersebut dan menjadi acuan agar menjaga bayi tetap sehat dan mendapatkan gizi yang tepat.</p>							
 					</div>
-					<br>
-
-					<!--KMS history.-->
-					<div class='row'>
-						<div class='col-md-7'>
-						<h5 class='font-weight-w500' data-toggle="collapse" href="#collapseriwayatKMS" role='button' style='color:#4183D7;'><i class="fa fa-history"></i> Riwayat<i class="fa fa-angle-down" style='float:right;'></i></h5><hr>  
-							<div id="collapseriwayatKMS" class='card-body collapse show' style='width:100%;'>
-								<?php
-								$jml = 0; //Count item.
-								foreach($dataKMS as $kms){
-									$jml++;
-								}
-								if ($jml > 0){ 
-									echo"<div id='carouselKMS' class='carousel slide' data-ride='carousel' data-interval='0' style='top:-30px;'>
-									<!-- Carousel indicators -->
-									<ol class='carousel-indicators'>";
-									$item = 0; //Count item.
-									$page = 0; //Count page.
-									$k = 3; //Set max item per page.
-									foreach($dataKMS as $kms){
-										if($item == 0 && $page == 0){
-											echo"<li data-target='#carouselKMS' data-slide-to='0' class='active'></li>";
-											$item++;
-											$page++;
-										} else if ($item % $k == 0){
-											echo"<li data-target='#carouselKMS' data-slide-to='".$page."'></li>";
-											$item++;
-											$page++;
-										} else if ($item % $k != 0){
-											$item++;
-										}
-									}
-									echo"</ol>   
-
-									<!-- Wrapper for carousel items -->
-									<div class='carousel-inner'>";
-									$k = 1; //Count item.
-									$state = ' active'; //Initial class.
-									$x = 4; //Set max item per page.
-									foreach($dataKMS as $kms){
-										if($k % $x == 0  || $k == 1){
-											echo"<div class='item carousel-item".$state."' >
-											<div class='row' style='margin:20px;'>";
-										}
-										echo"<div class='card' style='border-radius:6px; border:none; height:100px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
-											margin-bottom:5px; width:100%;'>
-											<div class='row' style=''>
-												<div class='col-sm-1' style='background:#4183D7; left:10px; top:-5px; height:100px; border-top-left-radius: 6px; border-bottom-left-radius: 6px;'>
-													<h4 style='margin-top:35px; margin-left:-5px; color:white;'>"; 
-													if($kms['jenisKelamin'] == 'Wanita'){
-														echo"<i class='fa fa-venus fa-md'></i>"; 
-													} else {
-														echo"<i class='fa fa-mars fa-md'></i>"; 
-													}
-													
-													echo"</h4>
-												</div>
-												<div class='col-sm' >
-													<p style='font-size:14px; color:#22A7F0; text-align:left; margin-top:10px;'><i class='fa-solid fa-baby'></i> ".$kms['namaAnak']."</p>
-													<p style='font-size:14px; color:grey; text-align:left;'><i class='fa-solid fa-weight-scale'></i> ".$kms['berat']." kg / ".$kms['tinggi']." cm</p>
-													<p style='font-size:14px; color:grey; text-align:left;'><i class='fa-solid fa-calendar'></i> ".$kms['tanggalLahirA']."</p>
-												</div>
-												<div class='col-sm' >
-													<p style='font-size:12px; color:grey; float:right; white-space: nowrap; font-style:italic;'>dibuat pada ".$kms['datecreated']."</p>
-													<button class='btn btn-info' style='float:right; margin-top:25px;' data-toggle='modal' data-target='#detailKMS".$kms['id_kms']."'>Detail</button>
-												</div>
-											</div>
-										</div>";
-										$k++;
-										$state = ' ';
-										if($k % $x == 0){
-											echo"</div>
-										</div>";
-										}
-									}
-									echo"</div>
-									</div></div>
-									<!-- Carousel controls -->
-									<a class='carousel-control-prev' href='#carouselKMS' data-slide='prev'>
-										<i class='fa fa-angle-left'></i>
-									</a>
-									<a class='carousel-control-next' href='#carouselKMS' data-slide='next'>
-										<i class='fa fa-angle-right'></i>
-									</a>
-									</div>";
-								} else {
-									echo "<div class='container'>
-										<p style='font-style:italic; text-align:center; color:grey; font-size:14px;'>Anda belum pernah menghitung KMS</p>
-										<img src='http://localhost/MedStory/assets/icon/Empty.gif' alt='Sorry.png' style='display: block;
-											margin-left: auto; margin-right: auto; width: 200px; height: 200px; margin-top:-20px;'>
-									</div>";
-								}
-								?> 
-								</div>    	
+					<div class='col-md-6'>
+						<!--Count KMS.-->
+						<form method='POST' action='smartDoc/hitungKMS'>
+						<div class="row" >
+							<input class='form-control' type='text' name='id_user' 
+								value='<?php foreach ($dataUser as $data){echo $data['id_user'];}?>' hidden></input>
+							<div class="col-sm">
+								<h5 class='font-weight-100' style='font-size: 16px;'>Nama Anak</h5>
+								<input type="name" class="form-control" name="namaAnak">
 							</div>
+							<div class="col-sm-3">
+								<h5 class='font-weight-100' style='font-size: 16px;'>Jenis Kelamin</h5>
+								<select class="form-control" name="jKelaminAnak">
+									<option value="Pria">Pria</option>
+									<option value="Wanita">Wanita</option>
+								</select>
+							</div>
+						</div>	
+						<div class="row mt-1">
+							<div class="col-sm">
+								<h5 class='font-weight-100' style='font-size: 16px;'>Tinggi Badan (Cm)</h5>
+								<input type="number" class="form-control" name="tinggiAnak">
+							</div>
+							<div class="col-sm">
+								<h5 class='font-weight-100' style='font-size: 16px;'>Berat Badan (Kg)</h5>
+								<input type="number" class="form-control" name="beratAnak">
+							</div>
+							<div class="col-sm">
+								<h5 class='font-weight-100' style='font-size: 16px;'>Tanggal Lahir</h5>
+								<input type="date" class="form-control" name="tglLahirAnak">
+							</div>	
+						</div>	
+						<div class="row">
+							<div class="col-sm">
+								<button class='btn btn-success' style='margin-top:10px;' type='submit'>Hitung</button>
+							</div>
+						</div>
+						</form>
+					</div>
+				</div>
+				<br>
+
+				<!--KMS history.-->
+				<div class='row'>
+					<div class='col-md-7'>
+					<h5 class='font-weight-w500' data-toggle="collapse" href="#collapseriwayatKMS" role='button' style='color:#4183D7;'><i class="fa fa-history"></i> Riwayat<i class="fa fa-angle-down" style='float:right;'></i></h5><hr>  
+						<div id="collapseriwayatKMS" class='card-body collapse show' style='width:100%;'>
+							<?php
+							$jml = 0; //Count item.
+							foreach($dataKMS as $kms){
+								$jml++;
+							}
+							if ($jml > 0){ 
+								echo"<div id='carouselKMS' class='carousel slide' data-ride='carousel' data-interval='0' style='top:-30px;'>
+								<!-- Carousel indicators -->
+								<ol class='carousel-indicators'>";
+								$item = 0; //Count item.
+								$page = 0; //Count page.
+								$k = 3; //Set max item per page.
+								foreach($dataKMS as $kms){
+									if($item == 0 && $page == 0){
+										echo"<li data-target='#carouselKMS' data-slide-to='0' class='active'></li>";
+										$item++;
+										$page++;
+									} else if ($item % $k == 0){
+										echo"<li data-target='#carouselKMS' data-slide-to='".$page."'></li>";
+										$item++;
+										$page++;
+									} else if ($item % $k != 0){
+										$item++;
+									}
+								}
+								echo"</ol>   
+
+								<!-- Wrapper for carousel items -->
+								<div class='carousel-inner'>";
+								$k = 1; //Count item.
+								$state = ' active'; //Initial class.
+								$x = 4; //Set max item per page.
+								foreach($dataKMS as $kms){
+									if($k % $x == 0  || $k == 1){
+										echo"<div class='item carousel-item".$state."' >
+										<div class='row' style='margin:20px;'>";
+									}
+									echo"<div class='card' style='border-radius:6px; border:none; height:100px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
+										margin-bottom:5px; width:100%;'>
+										<div class='row' style=''>
+											<div class='col-sm-1' style='background:#4183D7; left:10px; top:-5px; height:100px; border-top-left-radius: 6px; border-bottom-left-radius: 6px;'>
+												<h4 style='margin-top:35px; margin-left:-5px; color:white;'>"; 
+												if($kms['jenisKelamin'] == 'Wanita'){
+													echo"<i class='fa fa-venus fa-md'></i>"; 
+												} else {
+													echo"<i class='fa fa-mars fa-md'></i>"; 
+												}
+												
+												echo"</h4>
+											</div>
+											<div class='col-sm' >
+												<p style='font-size:14px; color:#22A7F0; text-align:left; margin-top:10px;'><i class='fa-solid fa-baby'></i> ".$kms['namaAnak']."</p>
+												<p style='font-size:14px; color:grey; text-align:left;'><i class='fa-solid fa-weight-scale'></i> ".$kms['berat']." kg / ".$kms['tinggi']." cm</p>
+												<p style='font-size:14px; color:grey; text-align:left;'><i class='fa-solid fa-calendar'></i> ".$kms['tanggalLahirA']."</p>
+											</div>
+											<div class='col-sm' >
+												<p style='font-size:12px; color:grey; float:right; white-space: nowrap; font-style:italic;'>dibuat pada ".$kms['datecreated']."</p>
+												<button class='btn btn-info' style='float:right; margin-top:25px;' data-toggle='modal' data-target='#detailKMS".$kms['id_kms']."'>Detail</button>
+											</div>
+										</div>
+									</div>";
+									$k++;
+									$state = ' ';
+									if($k % $x == 0){
+										echo"</div>
+									</div>";
+									}
+								}
+								echo"</div>
+								</div></div>
+								<!-- Carousel controls -->
+								<a class='carousel-control-prev' href='#carouselKMS' data-slide='prev'>
+									<i class='fa fa-angle-left'></i>
+								</a>
+								<a class='carousel-control-next' href='#carouselKMS' data-slide='next'>
+									<i class='fa fa-angle-right'></i>
+								</a>
+								</div>";
+							} else {
+								echo "<div class='container'>
+									<p style='font-style:italic; text-align:center; color:grey; font-size:14px;'>Anda belum pernah menghitung KMS</p>
+									<img src='http://localhost/MedStory/assets/icon/Empty.gif' alt='Sorry.png' style='display: block;
+										margin-left: auto; margin-right: auto; width: 200px; height: 200px; margin-top:-20px;'>
+								</div>";
+							}
+							?> 
+							</div>    	
 						</div>
 					</div>
 				</div>

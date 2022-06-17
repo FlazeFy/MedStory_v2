@@ -20,6 +20,8 @@
 			$data['dataUser']= $this->accountModel->get_data_user();
 			$this->load->view('dataKuPage', $data);
 		}
+
+		//Add asupan.
 		public function tambahJadwalCal(){
 			$total = $this->input->post('id_asupan[]');		
 			for($i = 0; $i < count($total); $i++){	
@@ -34,13 +36,17 @@
 			}
 			redirect('dataKu');
 		}
+
+		//Add daily calorie.
 		public function calHarian(){
 			$data = array(
 				'id_kebutuhan' => 'NULL',
 				'id_user' => $this->input->post('id_user'),
 				'kalori' => $this->input->post('calTotal'),
 				'date' => $this->input->post('date2'),
-			);	
+			);
+
+			//Validate calorie.	
 			if(($data['kalori'] >= 600)&&($data['kalori'] <= 6000)){
 				$this->DataKuModel->insertCal($data, 'kebutuhankalori');
 			} else {

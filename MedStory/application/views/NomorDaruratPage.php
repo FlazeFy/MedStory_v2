@@ -53,6 +53,8 @@
 				color:#4183D7; 
 				white-space: nowrap;
 			}
+
+			/*Message Info.*/
 			#msgNoDokter1{
 				font-style:italic; 
 				text-align:center; 
@@ -267,7 +269,7 @@
 						<!--Fasilitas kesehatan.-->
 						<div class="collapse show" id="multiCollapseExample1" data-parent="#accordion">
 							<div class="container">
-								<h5 style="text-align: left; color:#696969; margin-top:10px;">Fasilitas Kesehatan</h5>
+								<h5>Fasilitas Kesehatan</h5>
 								<?php
 									$i = 1; //Make collapse unique.
 									$status = ' show'; //Make collapse unique.
@@ -452,7 +454,7 @@
 						<!--Dokter praktik.-->
 						<div class="collapse" id="multiCollapseExample2" data-parent="#accordion">
 							<div class="container">
-								<h5 style="text-align: left; color:#696969; margin-top:10px;">Praktek Dokter</h5>
+								<h5>Praktek Dokter</h5>
 								<div id="accordionDoctor">
 									<!--Collapse control dokter-->
 									<button class='btn btn-primary' data-toggle='collapse' data-target='#collapseDUmum' aria-expanded='false' 
