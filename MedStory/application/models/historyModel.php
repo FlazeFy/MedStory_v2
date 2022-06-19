@@ -2,12 +2,11 @@
 	defined('BASEPATH') OR exit('No direct script access alowed');
 
 	class historyModel extends CI_Model {
-		//News Feed
+		//Get data.
 		public function get_data_berita(){
 			$data = $this->db->get('newsfeed');
 			return $data->result_array();
 		}
-
 		public function get_all_diskusi()
 		{
 			$this->db->select('*');
@@ -23,14 +22,6 @@
 			$this->db->where('namaPengguna',$condition);
 			$this->db->order_by('datetime','DESC');
 			return $data = $this->db->get()->result_array();
-		}
-		public function posting($data){
-			$this->db->insert('diskusi',$data);	
-			redirect('history');
-		}
-		public function insertReply($data){
-			$this->db->insert('balasan',$data);	
-			redirect('history');
 		}
 		public function get_all_balasan()
 		{
@@ -51,10 +42,6 @@
 			$data = $this->db->get('jadwalkalori');
 			return $data->result_array();
 		}
-		public function insertJadwal($data){
-			$this->db->insert('jadwalkalori',$data);	
-			// redirect('history');
-		}
 		public function get_data_userKebutuhan(){
 			$this->db->select('*');
 			$this->db->from('kebutuhankalori');
@@ -62,10 +49,6 @@
 			$condition = array('date' => date("Y/m/d"), 'namaPengguna' =>  $this->session->userdata('userTrack'));
 			$this->db->where($condition);
 			return $data = $this->db->get()->result_array();
-		}
-		public function insertCal($data){
-			$this->db->insert('kebutuhankalori',$data);	
-			redirect('history');
 		}
 		public function get_total_kebutuhan(){
 			$this->db->select('kalori, waktu');
@@ -76,5 +59,29 @@
 			$this->db->where($condition);
 			return $data = $this->db->get()->result_array();
 		}	
+
+		//Create discussion.
+		public function posting($data){
+			$this->db->insert('diskusi',$data);	
+			redirect('history');
+		}
+
+		//Reply discussion.
+		public function insertReply($data){
+			$this->db->insert('balasan',$data);	
+			redirect('history');
+		}
+
+		//Insert daily asupan calorie.
+		public function insertJadwal($data){
+			$this->db->insert('jadwalkalori',$data);	
+			// redirect('history');
+		}
+
+		//Insert today calorie.
+		public function insertCal($data){
+			$this->db->insert('kebutuhankalori',$data);	
+			redirect('history');
+		}
 	}
 ?>

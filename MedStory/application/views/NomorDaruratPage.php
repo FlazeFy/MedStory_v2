@@ -272,7 +272,7 @@
 								<h5>Fasilitas Kesehatan</h5>
 								<?php
 									$i = 1; //Make collapse unique.
-									$status = ' show'; //Make collapse unique.
+									$status = ' show'; //Initial class.
 									foreach($dataFaskes as $data){ echo"
 										<div id='accordion2'>
 											<div class='card m-3' style='border-radius:6px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; border:0;'>

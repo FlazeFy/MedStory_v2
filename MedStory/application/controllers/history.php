@@ -21,8 +21,10 @@
 			$data['totalUserKebutuhan']= $this->historyModel->get_total_kebutuhan();
 			$this->load->view('HistoryPage', $data);
 		}
-		//Buat diskusi.
+
+		//Create discussion.
 		public function tambahDiskusi(){
+			//Get post type.
 			if($this->input->post('imageSwitchD') == 'on'){
 				$date = date("Ymdhis");
 				$username = $this->session->userdata('userTrack');
@@ -30,6 +32,8 @@
 			} else {
 				$imageURL = 'null';
 			}
+
+			//File setting.
 			$initialize = $this->upload->initialize(array(
 				"upload_path" => './assets/uploads/diskusi',
 				"allowed_types" => 'jpg',
@@ -59,8 +63,10 @@
 				$this->historyModel->posting($data, 'diskusi');
 			} 
 		}
-		//Balas diskusi.
+
+		//Reply discussion.
 		public function balasDiskusi(){
+			//Get post type.
 			if($this->input->post('imageSwitchR') == 'on'){
 				$date = date("Ymdhis");
 				$username = $this->session->userdata('userTrack');
@@ -68,6 +74,8 @@
 			} else {
 				$imageURL = 'null';
 			}
+
+			//File setting.
 			$initialize = $this->upload->initialize(array(
 				"upload_path" => './assets/uploads/balasan',
 				"allowed_types" => 'jpg',
@@ -99,7 +107,7 @@
 			} 
 		}
 
-		//Verified jawaban.
+		//Verified answer.
 		public function checkReply(){
 			$this->db->set('status', 'verified');
 			$this->db->where('id_balasan', $this->input->post('id_balasan'));
@@ -107,20 +115,9 @@
 			redirect('history');
 		}
 
-		// public function tambahJadwalCal(){
-		// 	$data = array(
-		// 		'id_jadwal' => 'NULL',
-		// 		'id_user' => $this->input->post('id_user'),
-		// 		'id_asupan' => $this->input->post('id_asupan'),
-		// 		'date' => date("Y/m/d"),
-		// 		'waktu' =>  $this->input->post('waktu')
-		// 	);	
-		// 	$this->historyModel->insertJadwal($data, 'jadwalkalori');
-			
-		// 	//error. list only insert 1 item
-		// }
-
+		//Insert daily asupan calorie.
 		public function tambahJadwalCal(){
+			//Multiple item insert.
 			$total = $this->input->post('id_asupan[]');		
 			for($i = 0; $i < count($total); $i++){	
 				$data = array(
@@ -135,17 +132,22 @@
 			redirect('history');
 		}
 
+		//Delete asupan by id.
 		public function hapusAsupan(){
 			$this->db->where('id_jadwal',  $this->input->post('id_jadwal'));
 			$this->db->delete('jadwalkalori');
 			redirect('history');
 		}
+
+		//Delete asupan in today list.
 		public function hapusSemuaAsupan(){
 			$condition = array('date' => date("Y/m/d"), 'id_user' => $this->input->post('id_user'));
 			$this->db->where($condition);
 			$this->db->delete('jadwalkalori');
 			redirect('history');
 		}
+
+		//Insert today calorie.
 		public function calHarian(){
 			$data = array(
 				'id_kebutuhan' => 'NULL',
@@ -161,6 +163,8 @@
 				$this->load->view('HistoryPage', $data);
 			}
 		}
+
+		//Search control
 		public function searchDiskusiByKat()
 		{
 			if($this->input->post('kategori') != null){

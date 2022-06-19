@@ -1,9 +1,5 @@
-<!--Leonardho R. Sitanggang
-    1302194041  SE-43-03
--->
 <!DOCTYPE html>
 <html>
-
     <head>
         <title>MedStory | Forum</title>
         <!--Meta tags-->
@@ -17,14 +13,14 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-		<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>-->
 		
 		<!-- chartist CSS -->
 		<link href="http://localhost/MedStory/assets/css/chartist-js/dist/chartist.min.css" rel="stylesheet">
 		<link href="http://localhost/MedStory/assets/css/chartist-js/dist/chartist-init.css" rel="stylesheet">
 		<link href="http://localhost/MedStory/assets/css/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
+		<!--Chart.-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
         <!--Source file.-->
         <link rel="stylesheet" type="text/css" href="http://localhost/MedStory/assets/css/Main.css" />
@@ -43,43 +39,66 @@
 				background:#22A7F0; 
 				box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 			}
+			.form-control{
+				background:#f4f4f4; 
+				border-width: 0 0 3px; 
+				border-bottom: 3.5px solid #4183D7; 
+				color:#212121;
+			}
+			#imgNoDataForum{
+				display: block;
+				margin-left: auto; 
+				margin-right: auto; 
+				width: 200px; 
+			}
+			#msgNoDataForumb{
+				font-style:italic; 
+				text-align:center; 
+				font-size:16px; 
+				color:#7289da;
+			}
+			#postDate{
+				font-size:11px; 
+				font-weight:400; 
+				padding-top:5px; 
+				float:left; 
+				font-style:italic;
+			}
+
+			/*Navigation tabs.*/
 			.nav-pills-custom .nav-link {
-    color: #212121;
-    background: #fff;
-    position: relative;
-}
+				color: #212121;
+				background: #fff;
+				position: relative;
+			}
+			.nav-pills-custom .nav-link:hover {
+				color: white;
+				background: #22A7F0;
+				position: relative;
+			}
+			.nav-pills-custom .nav-link.active {
+				color: white;
+				background: #4183D7;
+			}
+			@media (min-width: 992px) {
+				.nav-pills-custom .nav-link::before {
+					content: '';
+					display: block;
+					border-top: 8px solid transparent;
+					border-left: 10px solid #4183D7;
+					border-bottom: 8px solid transparent;
+					position: absolute;
+					top: 50%;
+					right: -10px;
+					transform: translateY(-50%);
+					opacity: 0;
+				}
+			}
+			.nav-pills-custom .nav-link.active::before {
+				opacity: 1;
+			}
 
-.nav-pills-custom .nav-link:hover {
-    color: white;
-    background: #22A7F0;
-    position: relative;
-}
-
-.nav-pills-custom .nav-link.active {
-    color: white;
-    background: #4183D7;
-}
-
-
-/* Add indicator arrow for the active tab */
-@media (min-width: 992px) {
-    .nav-pills-custom .nav-link::before {
-        content: '';
-        display: block;
-        border-top: 8px solid transparent;
-        border-left: 10px solid #4183D7;
-        border-bottom: 8px solid transparent;
-        position: absolute;
-        top: 50%;
-        right: -10px;
-        transform: translateY(-50%);
-        opacity: 0;
-    }
-}
-
-.nav-pills-custom .nav-link.active::before {
-    opacity: 1;
-}
+			/*Carousel.*/
 			.carousel {
 				margin: 10px auto;
 				padding: 0 30px;
@@ -215,6 +234,7 @@
 				border-radius: 5px;
 				background-color: rgb(40, 207, 54);
 			}
+
 			/*News feed*/
 			.row .col-sm .thumb-wrapper{
 				height:240px;
@@ -230,281 +250,328 @@
 				color:#212121;
 			}
 
+			/*Sidebar.*/
 			.sidebar {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 99;
-  top: 0;
-  left: 0;
-  background-color: #4183D7;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-  box-shadow: #212121 0px 8px 30px;
-}
-
-.sidebar a {
-  text-decoration: none;
-  font-size: 25px;
-  color: white;
-  display: block;
-  transition: 0.3s;
-}
-
-.sidebar a:hover {
-  color: #f1f1f1;
-}
-
-.sidebar .closebtn {
-  position: absolute;
-  top: 0px;
-  right: 25px;
-  margin-left: 50px;
-}
-.sidebar .bookbtn {
-  position: absolute;
-  top: 5px;
-  left: 25px;
-  margin-right: 50px;
-}
-
-#main {
-  transition: margin-left .5s;
-}
-
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-  .sidebar {padding-top: 15px;}
-  .sidebar a {font-size: 16px;}
-}
-
-/*Donut*/
-.circular{
-  height:100px;
-  width: 100px;
-  transform:scale(1);
-  margin-bottom:10px;
-}
-.circular .inner{
-  position: absolute;
-  z-index: 6;
-  top: 50%;
-  left: 50%;
-  height: 80px;
-  width: 80px;
-  margin: -40px 0 0 -40px;
-  background: #4183D7;
-  border-radius: 100%;
- 
-}
-.circular .number{
-  position: absolute;
-  top:50%;
-  left:50%;
-  transform: translate(-50%, -50%);
-  z-index:10;
-  font-size:18px;
-  font-weight:500;
-  color:white;
-}
-.circular .bar{
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background: #fff;
-  -webkit-border-radius: 100%;
-  clip: rect(0px, 100px, 100px, 50px);
-}
-.circle .bar .progress{
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  -webkit-border-radius: 100%;
-  clip: rect(0px, 50px, 100px, 0px);
-  background: <?php 
-	$cal = 0;
-	foreach($dataUser as $user){
-		if($user['namaPengguna'] == $this->session->userdata('userTrack')){	
-			foreach($dataKebutuhan as $kebutuhan){
-				if(($kebutuhan['id_user'] == $user['id_user'])&&($kebutuhan['date'] == date("Y-m-d"))){
-					$cal = $kebutuhan['kalori'];
-				}
+				height: 100%;
+				width: 0;
+				position: fixed;
+				z-index: 99;
+				top: 0;
+				left: 0;
+				background-color: #4183D7;
+				overflow-x: hidden;
+				transition: 0.5s;
+				padding-top: 60px;
+				box-shadow: #212121 0px 8px 30px;
 			}
-		}
-	}
-	if(($cal <= 1200) && ($user['jKelamin'] == 'Wanita')){
-		echo"#22A7F0";
-	} else if(($cal > 1200) && ($cal < 1700) && ($user['jKelamin'] == 'Wanita')){
-		echo"#29bd04";
-	} else if(($cal >= 1700)  && ($cal < 2300) && ($user['jKelamin'] == 'Wanita')){
-		echo"#de6000";
-	} else if(($cal >= 2300) && ($user['jKelamin'] == 'Wanita')){
-		echo"#df4759";
+			.sidebar a {
+				text-decoration: none;
+				font-size: 25px;
+				color: white;
+				display: block;
+				transition: 0.3s;
+			}
+			.sidebar a:hover {
+				color: #f1f1f1;
+			}
+			.sidebar .closebtn {
+				position: absolute;
+				top: 0px;
+				right: 25px;
+				margin-left: 50px;
+			}
+			.sidebar .bookbtn {
+				position: absolute;
+				top: 5px;
+				left: 25px;
+				margin-right: 50px;
+			}
 
-	} else if(($cal <= 1400) && ($user['jKelamin'] == 'Pria')){
-		echo"#22A7F0";
-	} else if(($cal > 1400) && ($cal < 1900) && ($user['jKelamin'] == 'Pria')){
-		echo"#29bd04";
-	} else if(($cal >= 1900)  && ($cal < 2500) && ($user['jKelamin'] == 'Pria')){
-		echo"#de6000";
-	} else if(($cal >= 2500) && ($user['jKelamin'] == 'Pria')){
-		echo"#df4759";
-	}
-  ?>;
-}
-.circle .left .progress{
-  z-index:1;
-  animation: left 4s linear both;
-}
-@keyframes left{
-  100%{
-    transform: rotate(<?php 
-		$cal = 0;
-		$deg = 0;
-		foreach($dataUser as $user){
-			if($user['namaPengguna'] == $this->session->userdata('userTrack')){	
-				foreach($dataKebutuhan as $kebutuhan){
-					if(($kebutuhan['id_user'] == $user['id_user'])&&($kebutuhan['date'] == date("Y-m-d"))){
-						$cal = $kebutuhan['kalori'];
+			/*Asupan item text.*/
+			#asupanTitle{
+				font-size:13px; 
+				color:#22A7F0; 
+				text-align:left; 
+				position:absolute; 
+				white-space: nowrap;
+			}
+			#asupanSecondary{
+				font-size:12px; 
+				color:#808080; 
+				text-align:left; 
+				position:absolute; 
+				top:20px;
+			}
+			#asupanBody{
+				font-size:13px; 
+				text-align:left; 
+				position:absolute; 
+				top:40px;
+			}
+			#asupanImg{
+				width:90px; 
+				height:58px; 
+				border-radius:4px; 
+				margin-left:-10px; 
+				margin-top:1px;
+				margin-bottom:1px;
+			}
+
+			#main {
+				transition: margin-left .5s;
+			}
+			@media screen and (max-height: 450px) {
+				.sidebar {padding-top: 15px;}
+				.sidebar a {font-size: 16px;}
+			}
+			#sidebarStatus{
+				color: whitesmoke; 
+				font-size:14px; 
+			}
+			#msgNoData{
+				font-style:italic; 
+				text-align:center; 
+				color:white; 
+				font-size:14px;
+			}
+			#msgNoData2{
+				font-style:italic; 
+				text-align:center; 
+				color:grey; 
+				font-size:14px;
+			}
+			#imgNoData{
+				display: block;
+				margin-left: auto; 
+				margin-right: auto; 
+				width: 200px; 
+				height: 200px;
+				margin-top:-20px;
+			}
+
+			/*Sidebar Donut*/
+			.circular{
+				height:100px;
+				width: 100px;
+				transform:scale(1);
+				margin-bottom:10px;
+			}
+			.circular .inner{
+				position: absolute;
+				z-index: 6;
+				top: 50%;
+				left: 50%;
+				height: 80px;
+				width: 80px;
+				margin: -40px 0 0 -40px;
+				background: #4183D7;
+				border-radius: 100%;
+			}
+			.circular .number{
+				position: absolute;
+				top:50%;
+				left:50%;
+				transform: translate(-50%, -50%);
+				z-index:10;
+				font-size:18px;
+				font-weight:500;
+				color:white;
+			}
+			.circular .bar{
+				position: absolute;
+				height: 100%;
+				width: 100%;
+				background: #fff;
+				-webkit-border-radius: 100%;
+				clip: rect(0px, 100px, 100px, 50px);
+			}
+			.circle .bar .progress{
+				position: absolute;
+				height: 100%;
+				width: 100%;
+				-webkit-border-radius: 100%;
+				clip: rect(0px, 50px, 100px, 0px);
+				background: 
+				<?php 
+					//Set chart color by calorie.
+					$cal = 0; //Get today calori.
+					foreach($dataUser as $user){
+						if($user['namaPengguna'] == $this->session->userdata('userTrack')){	
+							foreach($dataKebutuhan as $kebutuhan){
+								if(($kebutuhan['id_user'] == $user['id_user'])&&($kebutuhan['date'] == date("Y-m-d"))){
+									$cal = $kebutuhan['kalori'];
+								}
+							}
+						}
 					}
-				}
-			}
-		}
-		if($cal >= 1600){
-			echo "180";
-		} else {
-			$cal = 1600 - $cal;
-			$deg = ($cal / 1600) * 100 *1.8;
-			echo $deg; 
-		}
-	?>deg);
-  }
-}
-.circle .right {
-  transform: rotate(180deg);
-  z-index:3;
- 
-}
-.circle .right .progress{
-  animation: right 4s linear both;
-  animation-delay:4s;
-}
-#checkCont {
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  font-size: 22px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
+					if(($cal <= 1200) && ($user['jKelamin'] == 'Wanita')){
+						echo"#22A7F0";
+					} else if(($cal > 1200) && ($cal < 1700) && ($user['jKelamin'] == 'Wanita')){
+						echo"#29bd04";
+					} else if(($cal >= 1700)  && ($cal < 2300) && ($user['jKelamin'] == 'Wanita')){
+						echo"#de6000";
+					} else if(($cal >= 2300) && ($user['jKelamin'] == 'Wanita')){
+						echo"#df4759";
 
-/* Hide the browser's default checkbox */
-#checkCont input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 35px;
-  width: 35px;
-  background-color: #eee;
-  border-radius:6px;
-}
-
-/* When the checkbox is checked, add a blue background */
-.container input:checked ~ .checkmark {
-  background-color: #2196F3;
-  border-radius:6px;
-}
-
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-/* Show the checkmark when checked */
-.container input:checked ~ .checkmark:after {
-  display: block;
-}
-
-/* Style the checkmark/indicator */
-.container .checkmark:after {
-  left: 13px;
-  top: 8px;
-  width: 8px;
-  height: 15px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-@keyframes right{
-  100%{
-    transform: rotate(<?php 
-		$cal = 0;
-		$deg = 0;
-		foreach($dataUser as $user){
-			if($user['namaPengguna'] == $this->session->userdata('userTrack')){	
-				foreach($dataKebutuhan as $kebutuhan){
-					if(($kebutuhan['id_user'] == $user['id_user'])&&($kebutuhan['date'] == date("Y-m-d"))){
-						$cal = $kebutuhan['kalori'];
+					} else if(($cal <= 1400) && ($user['jKelamin'] == 'Pria')){
+						echo"#22A7F0";
+					} else if(($cal > 1400) && ($cal < 1900) && ($user['jKelamin'] == 'Pria')){
+						echo"#29bd04";
+					} else if(($cal >= 1900)  && ($cal < 2500) && ($user['jKelamin'] == 'Pria')){
+						echo"#de6000";
+					} else if(($cal >= 2500) && ($user['jKelamin'] == 'Pria')){
+						echo"#df4759";
 					}
+				?>;
+			}
+			.circle .left .progress{
+				z-index:1;
+				animation: left 4s linear both;
+			}
+			/*Set chart line bar by calorie*/
+			@keyframes left{
+				100%{
+					transform: rotate(<?php 
+						$cal = 0;
+						$deg = 0;
+						foreach($dataUser as $user){
+							if($user['namaPengguna'] == $this->session->userdata('userTrack')){	
+								foreach($dataKebutuhan as $kebutuhan){
+									if(($kebutuhan['id_user'] == $user['id_user'])&&($kebutuhan['date'] == date("Y-m-d"))){
+										$cal = $kebutuhan['kalori'];
+									}
+								}
+							}
+						}
+						if($cal >= 1600){
+							echo "180";
+						} else {
+							$cal = 1600 - $cal;
+							$deg = ($cal / 1600) * 100 *1.8;
+							echo $deg; 
+						}
+					?>deg);
 				}
 			}
-		}
-		if($cal <= 1600){
-			echo "0";
-		} else {
-			$cal = $cal - 1600;
-			$deg = ($cal / 1600) * 100 *1.8;
-			echo $deg;
-		} 
-	?>deg);
-  }
-}
-@media screen and (max-width: 800px) {
-    .button-text {
-        display: none;
-    }
-}
+			.circle .right {
+				transform: rotate(180deg);
+				z-index:3;	
+			}
+			.circle .right .progress{
+				animation: right 4s linear both;
+				animation-delay:4s;
+			}
 
-/*Panduan*/
-.row .col-3 .nav.flex-column.nav-pills .nav-link{
-	color:#212121;
-}
-.row .col-3 .nav.flex-column.nav-pills .nav-link.active{
-	color:whitesmoke;
-	background:#4183D7;
-}
-.row .col-9 .tab-content .tab-pane.fade.show.active{
-	border: 3px solid #4183D7;
-	background:white;
-	border-radius:3px;
-	box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-	padding:10px;
-}
+			/*Checkbox.*/
+			#checkCont {
+				display: block;
+				position: relative;
+				padding-left: 35px;
+				margin-bottom: 12px;
+				cursor: pointer;
+				font-size: 22px;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}
+			#checkCont input {
+				position: absolute;
+				opacity: 0;
+				cursor: pointer;
+				height: 0;
+				width: 0;
+			}
+			.checkmark {
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 35px;
+				width: 35px;
+				background-color: #eee;
+				border-radius:6px;
+			}
+			.container input:checked ~ .checkmark {
+				background-color: #2196F3;
+				border-radius:6px;
+			}
+			.checkmark:after {
+				content: "";
+				position: absolute;
+				display: none;
+			}
+			.container input:checked ~ .checkmark:after {
+				display: block;
+			}
+			.container .checkmark:after {
+				left: 13px;
+				top: 8px;
+				width: 8px;
+				height: 15px;
+				border: solid white;
+				border-width: 0 3px 3px 0;
+				-webkit-transform: rotate(45deg);
+				-ms-transform: rotate(45deg);
+				transform: rotate(45deg);
+			}
+			/*Set chart line bar by calorie*/
+			@keyframes right{
+			100%{
+				transform: rotate(<?php 
+					$cal = 0;
+					$deg = 0;
+					foreach($dataUser as $user){
+						if($user['namaPengguna'] == $this->session->userdata('userTrack')){	
+							foreach($dataKebutuhan as $kebutuhan){
+								if(($kebutuhan['id_user'] == $user['id_user'])&&($kebutuhan['date'] == date("Y-m-d"))){
+									$cal = $kebutuhan['kalori'];
+								}
+							}
+						}
+					}
+					if($cal <= 1600){
+						echo "0";
+					} else {
+						$cal = $cal - 1600;
+						$deg = ($cal / 1600) * 100 *1.8;
+						echo $deg;
+					} 
+				?>deg);
+			}
+			}
+			@media screen and (max-width: 800px) {
+				.button-text {
+					display: none;
+				}
+			}
+
+			/*Modal Help.*/
+			.row .col-3 .nav.flex-column.nav-pills .nav-link{
+				color:#212121;
+			}
+			.row .col-3 .nav.flex-column.nav-pills .nav-link.active{
+				color:whitesmoke;
+				background:#4183D7;
+			}
+			.row .col-9 .tab-content .tab-pane.fade.show.active{
+				border: 3px solid #4183D7;
+				background:white;
+				border-radius:3px;
+				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+				padding:10px;
+			}
 		</style>
     </head>
+	
     <body>
+		<!--Sidebar asupan manager.-->
 		<div id="mySidebar" class="sidebar">
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class='fa fa-arrow-left'></i></a>
 			<div class="d-flex flex-column align-items-center text-center">
 				<div class="mt-2" style='width:90%;'>
-					<p style="color: whitesmoke;"><?php 
+					<p style="color: whitesmoke;">
+					<?php 
+						//Get user age from date born.
 						foreach ($dataUser as $data){
 							echo $data['namaLengkap'];
 							$birthDate = $data['tanggalLahir'];
@@ -514,53 +581,60 @@
 							? ((date("Y") - $birthDate[0]) - 1)
 							: (date("Y") - $birthDate[0]));
 						echo " - ".$age;
-					?> thn</p>
+					?> 
+					thn</p>
 					<hr style='background:white; margin-top:-7px;'>
 				</div>
+
 				<h4 style="color: whitesmoke;">Kebutuhan Kalori</h4>
+				<!--Calorie chart.-->
 				<?php
-					$cek = 'null';
-					foreach($checkKebutuhan as $cek){$cek = 'available';}
-					
+					$cek = 'null'; //Initial value for today calorie validation.
+					foreach($checkKebutuhan as $cek){
+						$cek = 'available';
+					}
+
 					if($cek != 'null'){
-					echo"<div class='row' style='width:100%;'>
-						<div class='col-md-6'>
-							<a style='color: whitesmoke; font-size:14px; margin-bottom:5px;'>Detail</a>
-							<a style='color: whitesmoke; font-size:13px;'>Tinggi Badan: </a>
-							<a style='color: whitesmoke; font-size:14px; font-weight:bold;'>"; foreach($dataUser as $user){echo $user['tinggiBadan']; } echo" Cm</a>
-							<a style='color: whitesmoke; font-size:13px;'>Berat Badan: </a>
-							<a style='color: whitesmoke; font-size:14px; font-weight:bold;'>"; foreach($dataUser as $user){echo $user['beratBadan']; } echo" Kg</a>
-						</div>
-						<div class='col-md-6'>
-							<a style='color: whitesmoke; font-size:14px; margin-bottom:5px; margin-left:-50px;'>Hari ini</a>
-							<!--Diagram-->
-							<div class='circular'>
-								<div class='inner'></div>
-									<div class='number'></div>
-									<div class='circle'>
-									<div class='bar left'>
-										<div class='progress'></div>
-									</div>
-									<div class='bar right'>
-										<div class='progress'></div>
+						echo"
+						<div class='row' style='width:100%;'>
+							<div class='col-md-6'>
+								<a id='sidebarStatus' class='mb-1'>Detail</a>
+								<a id='sidebarStatus'>Tinggi Badan: </a>
+								<b id='sidebarStatus'>"; foreach($dataUser as $user){echo $user['tinggiBadan']; } echo" Cm</b>
+								<a id='sidebarStatus'>Berat Badan: </a>
+								<b id='sidebarStatus'>"; foreach($dataUser as $user){echo $user['beratBadan']; } echo" Kg</b>
+							</div>
+							<div class='col-md-6'>
+								<a id='sidebarStatus' class='mb-1 mr-5'>Hari ini</a>
+								<!--Diagram-->
+								<div class='circular'>
+									<div class='inner'></div>
+										<div class='number'></div>
+										<div class='circle'>
+										<div class='bar left'>
+											<div class='progress'></div>
+										</div>
+										<div class='bar right'>
+											<div class='progress'></div>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					</div>";
+						</div>";
 					} else {
-						echo "<div class='container' style='padding:10px;'>
-							<p style='font-style:italic; text-align:center; color:white; font-size:14px;'>Tidak ada data hari ini</p>
+						echo "
+						<div class='container' style='padding:10px;'>
+							<p id='msgNoData'>Tidak ada data hari ini</p>
 							<form action='history/calHarian' method='post'>
-							<div class='row' style='margin-bottom:10px;'>
+							<div class='row mb-2'>
 								<div class='col-md-8'>
-								<input class='form-control' name='calTotal' type='number' required></input>";
-								foreach($dataUser as $userr){
-									echo"<input class='form-control' name='id_user' value='".$userr['id_user']."' hidden></input>";
-								}
-								echo"</div>
-								<div class='col-md' style='position:absolute; left:100px;'>
-								<button class='btn btn-success' type='submit'><i class='fa fa-plus'></i> Tambah</button>
+									<input class='form-control' name='calTotal' type='number' required></input>";
+									foreach($dataUser as $userr){
+										echo"<input class='form-control' name='id_user' value='".$userr['id_user']."' hidden></input>";
+									}
+									echo"</div>
+									<div class='col-md' style='position:absolute; left:100px;'>
+									<button class='btn btn-success' type='submit'><i class='fa fa-plus'></i> Tambah</button>
 								</div>
 							</div>
 							</form>
@@ -568,34 +642,52 @@
 						</div>";
 					}	
 				?>
-				<div class='container-fluid bg-white' style='height:<?php 
-					$cek = 'null';
-					foreach($checkKebutuhan as $cek){$cek = 'available';}if($cek != 'null'){echo"380px";}else{echo"370px";}
+				<div class='container-fluid bg-white' style='height:
+					<?php 
+						//Container style based on calorie today.
+						$cek = 'null';
+						foreach($checkKebutuhan as $cek){
+							$cek = 'available';
+						}
+						if($cek != 'null'){
+							echo"380px";
+						} else {
+							echo"370px";
+						}
 					?>; padding:5px;'>
+
 					<!--Control section-->
 					<?php
-						$cek = 'null';
-						foreach($checkKebutuhan as $cek){$cek = 'available';}
+						$cek = 'null'; //Initial value for today calorie validation.
+						foreach($checkKebutuhan as $cek){
+							$cek = 'available';
+						}
 						
 						if($cek != 'null'){
-							echo"<button class='btn btn-success' style='float:right;' title='Reset' data-toggle='modal' data-target='#hapusSemuaAsupan'><i class='fa fa-refresh'></i></button>
+							echo"
+							<button class='btn btn-success' style='float:right;' title='Reset' data-toggle='modal' data-target='#hapusSemuaAsupan'><i class='fa fa-refresh'></i></button>
 							<button class='btn btn-info' style='background:#22A7F0;' href='#myCarouseCal' data-slide='prev' title='Kemarin'>
 								<i class='fa fa-angle-left'></i>
 							</button>
 							<button class='btn btn-info' style='background:#22A7F0;' href='#myCarouselCal' data-slide='next' title='Besok'>
 								<i class='fa fa-angle-right'></i>
 							</button>
-							<button class='btn btn-primary' data-toggle='modal' data-target='#asupanModal' style='float:left;";  
-							//Memeriksa jika kalori telah cukup. Akan menampilkan button berbeda.
-							$totalCalW = 0; $calorie = 0; $ket = 0;
+							<button class='btn btn-primary' data-toggle='modal' data-target='#asupanModal' style='float:left;"; 
+
+							//Set button style if calorie sufficient.
+							$totalCalW = 0; //Get total asupan calorie. 
+							$calorie = 0; //Get daily needed calorie.
+							$ket = 0; //Calorie difference.
 							foreach($totalUserKebutuhan as $calWaktu){
 								$totalCalW += $calWaktu['kalori'];
 							}
+
 							foreach($dataKebutuhan as $kebutuhan){
 								if(($kebutuhan['id_user'] == $user['id_user'])&&($kebutuhan['date'] == date("Y-m-d"))){
 									$calorie = $kebutuhan['kalori'];
 								}
 							}
+
 							$ket = $calorie-$totalCalW;
 							if($ket <= 0){
 								echo"color:white; background:#d9534f; border:none;";
@@ -605,14 +697,17 @@
 							echo"border-width:2px;'><i class='fa fa-plus'></i> Tambah asupan</button>";
 						}
 					?>
-					<div class='row' style='width:100%; height:20px; margin-top:5px;'>
+
+					<div class='row mt-2 w-100 h-20'>
 						<div class='col border-right'>
 							<a style="font-size:13px;">Total : 
 							<?php
-								$cek = 'null';
+								$cek = 'null'; //Initial value for calorie validation for today. 
 								$totalCalW=0;
-								foreach($checkKebutuhan as $cek){$cek = 'available';}
-								
+								foreach($checkKebutuhan as $cek){
+									$cek = 'available';
+								}
+								//Total calorie.
 								if($cek != 'null'){
 									foreach($totalUserKebutuhan as $calWaktu){
 										$totalCalW += $calWaktu['kalori'];}
@@ -626,9 +721,12 @@
 							<a style='font-size:13px;'>Sisa : ";
 								$total = 0;
 								$calorie = 0;
-								$cek2 = 'null';
-								foreach($checkKebutuhan as $cek){$cek2 = 'available';}
+								$cek2 = 'null'; //Initial value for calorie validation for today.
+								foreach($checkKebutuhan as $cek){
+									$cek2 = 'available';
+								}
 								
+								//Remaining calorie needed.
 								if($cek2 != 'null'){
 									foreach($dataKebutuhan as $kebutuhan){
 										if(($kebutuhan['id_user'] == $user['id_user'])&&($kebutuhan['date'] == date("Y-m-d"))){
@@ -639,42 +737,57 @@
 								} else {
 									echo " - ";
 								}								
-							?> </a>
+							?> 
+							</a>
 						</div>
 					</div>
-					<hr style="margin-top:7px;">
-					<!--Item section-->
+					<hr style="margin-top:5px;">
+
+					<!--Item section.-->
 					<a style='font-size:15px; margin-top:-10px;'>Hari ini</a>
+
+					<!--Scrollable list asupan.-->
 					<div class='container-fluid' style='width:100%; max-height: calc(60vh - 160px); overflow-x: auto;'>
 					<?php
-						$cek = 'null';
-						foreach($checkKebutuhan as $cek){$cek = 'available';}
+						$cek = 'null'; //Initial value for calorie validation for today.
+						foreach($checkKebutuhan as $cek){
+							$cek = 'available';
+						}
 						
 						if($cek == 'available'){
 							foreach($dataUser as $user){
 								if($user['namaPengguna'] == $this->session->userdata('userTrack')){
-									echo"<a style='font-size:13px; color:#808080; text-align:left;'>Pagi ~ "; $totalCalW=0; foreach($totalUserKebutuhan as $calWaktu){if($calWaktu['waktu'] == 'pagi'){
-										$totalCalW += $calWaktu['kalori'];}} echo $totalCalW." cal </a>";
+
+									echo"
+									<a style='font-size:13px; color:#808080; text-align:left;'>Pagi ~ "; 
+										$totalCalW=0; //Get total calorie.
+										foreach($totalUserKebutuhan as $calWaktu){
+											if($calWaktu['waktu'] == 'pagi'){
+												$totalCalW += $calWaktu['kalori'];
+											}
+										} echo $totalCalW." cal </a>";									
+									//Asupan pagi.
 									foreach($dataJadwal as $cal){
 										if(($cal['id_user'] == $user['id_user'])&&($cal['date'] == date("Y-m-d"))&&($cal['waktu'] == 'pagi')){
 											foreach($dataAsupan as $asupan){
 												if($cal['id_asupan'] == $asupan['id_asupan']){
-													echo"<!--Item-->
-													<div class='card' style='border-radius:6px; border:none; height:75px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
-														margin-bottom:5px;";if($asupan['kalori'] < 100){echo "border-left: 4px solid #29bd04";}
+													echo"
+													<div class='card mb-2 rounded h-75 shadow p-1' style='";
+														//Set border style by asupan calorie.
+														if($asupan['kalori'] < 100){echo "border-left: 4px solid #29bd04";}
 														else if(($asupan['kalori'] >= 100)&&($asupan['kalori'] < 200)){echo "border-left: 4px solid #de6000";}
-														else if($asupan['kalori'] >= 200){echo "border-left: 4px solid #df4759";} echo"'>
+														else if($asupan['kalori'] >= 200){echo "border-left: 4px solid #df4759";} 
+														echo"'>
 														<div class='row' style='width:100%;'>
 															<div class='col'>
-																<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
-																	style='width:90px; height:60px; border-radius:4px; margin-left:-10px; margin-top:3px;'>
+																<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' id='asupanImg'>
 															</div>
 															<div class='col' style='left:-35px; margin-left:5px;'>
-																<a style='font-size:13px; color:#22A7F0; text-align:left; position:absolute; white-space: nowrap;'>".$asupan['nama']."</a>
-																<a style='font-size:12px; color:#808080; text-align:left; position:absolute; top:20px;'>".$asupan['kategori']."</a>
-																<a style='font-size:13px; text-align:left; position:absolute; top:40px;'>".$asupan['kalori']." cal</a>
+																<a id='asupanTitle'>".$asupan['nama']."</a>
+																<a id='asupanSecondary'>".$asupan['kategori']."</a>
+																<a id='asupanBody'>".$asupan['kalori']." cal</a>
 															</div>
-															<div class='row' style='left:30px; height:40px; margin-top:10px;'>
+															<div class='row h-40 mt-1 pt-2 pb-2'>
 																<button class='btn btn-danger' style='margin:3px;' title='Hapus' data-toggle='modal' data-target='#hapusAsupan".$cal['id_jadwal']."'><i class='fa fa-trash'></i></button>
 															</div>
 														</div>
@@ -683,28 +796,34 @@
 											}
 										}
 									}
-									echo"<a style='font-size:13px; color:#808080; text-align:left;'>Siang ~ "; $totalCalW=0; foreach($totalUserKebutuhan as $calWaktu){if($calWaktu['waktu'] == 'siang'){
-										$totalCalW += $calWaktu['kalori'];}} echo $totalCalW." cal </a>";
+
+									echo"<a style='font-size:13px; color:#808080; text-align:left;'>Siang ~ "; 
+										$totalCalW = 0; //Get total calorie. 
+										foreach($totalUserKebutuhan as $calWaktu){
+											if($calWaktu['waktu'] == 'siang'){
+												$totalCalW += $calWaktu['kalori'];
+											}
+										} echo $totalCalW." cal </a>";
+									//Asupan siang.
 									foreach($dataJadwal as $cal2){
 										if(($cal2['id_user'] == $user['id_user'])&&($cal2['date'] == date("Y-m-d"))&&($cal2['waktu'] == 'siang')){
 											foreach($dataAsupan as $asupan){
 												if($cal2['id_asupan'] == $asupan['id_asupan']){
-													echo"<!--Item-->
-													<div class='card' style='border-radius:6px; border:none; height:75px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
-														margin-bottom:5px;";if($asupan['kalori'] < 100){echo "border-left: 4px solid #29bd04";}
+													echo"
+													<div class='card mb-2 rounded h-75 shadow p-1' style='";
+														if($asupan['kalori'] < 100){echo "border-left: 4px solid #29bd04";}
 														else if(($asupan['kalori'] >= 100)&&($asupan['kalori'] < 200)){echo "border-left: 4px solid #de6000";}
 														else if($asupan['kalori'] >= 200){echo "border-left: 4px solid #df4759";} echo"'>
 														<div class='row' style='width:100%;'>
 															<div class='col'>
-																<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
-																	style='width:90px; height:60px; border-radius:4px; margin-left:-10px; margin-top:3px;'>
+																<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' id='asupanImg'>
 															</div>
 															<div class='col' style='left:-35px; margin-left:5px;'>
-																<a style='font-size:13px; color:#22A7F0; text-align:left; position:absolute; white-space: nowrap;'>".$asupan['nama']."</a>
-																<a style='font-size:12px; color:#808080; text-align:left; position:absolute; top:20px;'>".$asupan['kategori']."</a>
-																<a style='font-size:13px; text-align:left; position:absolute; top:40px;'>".$asupan['kalori']." cal</a>
+																<a id='asupanTitle'>".$asupan['nama']."</a>
+																<a id='asupanSecondary'>".$asupan['kategori']."</a>
+																<a id='asupanBody'>".$asupan['kalori']." cal</a>
 															</div>
-															<div class='row' style='left:30px; height:40px; margin-top:10px;'>
+															<div class='row h-40 mt-1 pt-2 pb-2'>
 																<button class='btn btn-danger' style='margin:3px;' title='Hapus' data-toggle='modal' data-target='#hapusAsupan".$cal2['id_jadwal']."'><i class='fa fa-trash'></i></button>
 															</div>
 														</div>
@@ -713,28 +832,34 @@
 											}
 										}
 									}
-									echo"<a style='font-size:13px; color:#808080; text-align:left;'>Malam ~ "; $totalCalW=0; foreach($totalUserKebutuhan as $calWaktu){if($calWaktu['waktu'] == 'malam'){
-										$totalCalW += $calWaktu['kalori'];}} echo $totalCalW." cal </a>";
+
+									echo"<a style='font-size:13px; color:#808080; text-align:left;'>Malam ~ "; 
+										$totalCalW=0; //Get total calorie.
+										foreach($totalUserKebutuhan as $calWaktu){
+											if($calWaktu['waktu'] == 'malam'){
+												$totalCalW += $calWaktu['kalori'];
+											}
+										} echo $totalCalW." cal </a>";
+										//Asupan malam.
 									foreach($dataJadwal as $cal3){
 										if(($cal3['id_user'] == $user['id_user'])&&($cal3['date'] == date("Y-m-d"))&&($cal3['waktu'] == 'malam')){
 											foreach($dataAsupan as $asupan){
 												if($cal3['id_asupan'] == $asupan['id_asupan']){
-													echo"<!--Item-->
-													<div class='card' style='border-radius:6px; border:none; height:75px; box-shadow: #d4d4d4 0px 4px 12px; padding:5px;
-														margin-bottom:5px;";if($asupan['kalori'] < 100){echo "border-left: 4px solid #29bd04";}
+													echo"
+													<div class='card mb-2 rounded h-75 shadow p-1' style='";
+														if($asupan['kalori'] < 100){echo "border-left: 4px solid #29bd04";}
 														else if(($asupan['kalori'] >= 100)&&($asupan['kalori'] < 200)){echo "border-left: 4px solid #de6000";}
 														else if($asupan['kalori'] >= 200){echo "border-left: 4px solid #df4759";} echo"'>
 														<div class='row' style='width:100%;'>
 															<div class='col'>
-																<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' 
-																	style='width:90px; height:60px; border-radius:4px; margin-left:-10px; margin-top:3px;'>
+																<img src='http://localhost/MedStory/assets/asupan/".$asupan['nama'].".jpg' alt='".$asupan['nama']."' id='asupanImg'>
 															</div>
 															<div class='col' style='left:-35px; margin-left:5px;'>
-																<a style='font-size:13px; color:#22A7F0; text-align:left; position:absolute; white-space: nowrap;'>".$asupan['nama']."</a>
-																<a style='font-size:12px; color:#808080; text-align:left; position:absolute; top:20px;'>".$asupan['kategori']."</a>
-																<a style='font-size:13px; text-align:left; position:absolute; top:40px;'>".$asupan['kalori']." cal</a>
+																<a id='asupanTitle'>".$asupan['nama']."</a>
+																<a id='asupanSecondary'>".$asupan['kategori']."</a>
+																<a id='asupanBody'>".$asupan['kalori']." cal</a>
 															</div>
-															<div class='row' style='left:30px; height:40px; margin-top:10px;'>
+															<div class='row h-40 mt-1 pt-2 pb-2'>
 																<button class='btn btn-danger' style='margin:3px;' title='Hapus' data-toggle='modal' data-target='#hapusAsupan".$cal3['id_jadwal']."'><i class='fa fa-trash'></i></button>
 															</div>
 														</div>
@@ -747,9 +872,8 @@
 							}
 						} else {
 							echo "<div class='container'>
-								<p style='font-style:italic; text-align:center; color:grey; font-size:14px;'>Anda belum membuat kebutuhan kalori hari ini</p>
-								<img src='http://localhost/MedStory/assets/icon/Empty.gif' alt='Sorry.png' style='display: block;
-									margin-left: auto; margin-right: auto; width: 200px; height: 200px; margin-top:-20px;'>
+								<p id='msgNoData2'>Anda belum membuat kebutuhan kalori hari ini</p>
+								<img id='imgNoData' src='http://localhost/MedStory/assets/icon/Empty.gif' alt='Sorry.png'>
 							</div>";
 						}
 					?>
@@ -760,49 +884,51 @@
 					<button type="submit" class='btn btn-danger' style='height:40px; margin:10px 0px 0px 0px; float:right;' data-toggle="modal" data-target="#signOutModal"><i class='fa fa-sign-out'></i> Ganti Akun</button>
 				</div>
 			</div>
-		</div>
-		<div id='main'> <!--if design not flex and go wrong. delete this-->
-        <!--Main Navigation menu.-->
-        <div id="Navigation">
-            <ul>
-                <img id="logo" src="http://localhost/MedStory/assets/logoWhite.png">
-				<li style="float:left; margin-left:15px;" onclick="openNav()" title='Kebutuhan kalori harian'><a><i class='fa fa-calendar-check-o fa-lg'></i></a></li>
-				<li style="float:left; margin-left:-5x;" title='Bantuan'><a type='button' class="bookbtn" data-toggle='modal' data-target='#bantuanCalModal'><i class='fa fa-book fa-lg'></i></a></li>
-                <li><a href="smartDoc">SmartDoc</a></li>
-                <li  id="active"><a href="">Forum</a></li>
-                <li><a href="dataKu">Dataku</a></li>
-				<li><a href="nomorDarurat">Darurat</a></li>
-                <li style="float:right"><button type="submit" class='btn btn-danger' style='height:40px; margin:13px 10px 0px 10px;' data-toggle="modal" data-target="#signOutModal"><i class='fa fa-sign-out'></i> Ganti Akun</button></li>
-                <li style="float:right"><button onclick="window.location.href='account'" class='btn btn-primary' style='height:40px; background:#212121; margin:13px 0px 0px 10px;'><i class='fa fa-user-circle'></i> <?= $data = $this->session->userdata('userTrack'); ?></button></li>
-                <div id="ddParent">
-                    <button id="dropbutton"><img id="set" src="http://localhost/MedStory/assets/Setting.png"></button>
+		</div><!--End of sidebar.-->
+
+		<!--Content-->
+		<div id='main'> 
+			<!--Main Navigation menu.-->
+			<div id="Navigation">
+				<ul>
+					<img id="logo" src="http://localhost/MedStory/assets/logoWhite.png">
+					<li style="float:left; margin-left:15px;" onclick="openNav()" title='Kebutuhan kalori harian'><a><i class='fa fa-calendar-check-o fa-lg'></i></a></li>
+					<li style="float:left; margin-left:-5x;" title='Bantuan'><a type='button' class="bookbtn" data-toggle='modal' data-target='#bantuanCalModal'><i class='fa fa-book fa-lg'></i></a></li>
+					<li><a href="smartDoc">SmartDoc</a></li>
+					<li  id="active"><a href="">Forum</a></li>
+					<li><a href="dataKu">Dataku</a></li>
+					<li><a href="nomorDarurat">Darurat</a></li>
+					<li style="float:right"><button type="submit" class='btn btn-danger' style='height:40px; margin:13px 10px 0px 10px;' data-toggle="modal" data-target="#signOutModal"><i class='fa fa-sign-out'></i> Ganti Akun</button></li>
+					<li style="float:right"><button onclick="window.location.href='account'" class='btn btn-primary' style='height:40px; background:#212121; margin:13px 0px 0px 10px;'><i class='fa fa-user-circle'></i> <?= $data = $this->session->userdata('userTrack'); ?></button></li>
+					<div id="ddParent">
+					<button id="dropbutton"><img width="30" src="http://localhost/MedStory/assets/Setting.png"></button>
 					<!--DropDown menu navigation-->
 					<div id="dropdown-content">
 						<a href="tentang">Tentang</a>
 						<a href="kebijakan">Kebijakan & Privasi</a>
 					</div>
-                </div>
-            </ul>
-        </div>
+				</div>
+			</ul>
+		</div>
         <main>
 
 		<!--Back to top.-->
 		<button onclick="topFunction()" id="myBtn" title="Kembali ke atas">
-			<img src='http://localhost/MedStory/assets/Back.png' width='35px' height='35px' style="transform: rotate(90deg);">
+			<img src='http://localhost/MedStory/assets/Back.png' width='35px' style="transform: rotate(90deg);">
 		</button>
 
         <!--News feeds.-->
         <br><br><br>
         <h5 style="margin-left: 13%;">Selamat datang, <?= $this->session->userdata('userTrack'); ?></h5>
-        <div class="container bg-white" id="card-car" style="margin-bottom: 1%; margin-top: 1%; padding-top: 0.5%; border-radius: 10px;">
-          <h5 style="text-align: left; color:#696969;">Informasi kesehatan</h5>				
+        <div class="container bg-white mb-2 mt-2 pt-3" style="border-radius: 10px;">
+          	<h5 class="text-secondary">Informasi kesehatan</h5>				
 		  	<div class='col-md'>
 				<div id='myCarouselNews' class='carousel slide' data-ride='carousel' data-interval='0'>
 				<!-- Carousel indicators -->
 				<ol class='carousel-indicators'>
 				<?php
-					$item = 0;
-					$page = 0;
+					$item = 0; //Count item.
+					$page = 0; //Count page.
 					foreach ($dataBerita as $data){
 						if($item == 0 && $page == 0){
 							echo"<li data-target='#myCarouselNews' data-slide-to='0' class='active'></li>";
@@ -819,23 +945,23 @@
 				?>
 				</ol>   
 
-				<!-- Wrapper for carousel items -->
-				
+				<!-- Wrapper for carousel items -->			
 					<div class='carousel-inner'>
 					<?php
-						$k = 1;
-						$state = ' active';
+						$k = 1; //Make collapse unique.
+						$state = ' active'; //Initial class.
+						$z = 4; //Set max item per page.
 						foreach ($dataBerita as $berita){
-							if($k % 4 == 0  || $k == 1){
+							if($k % $z == 0  || $k == 1){
 								echo"<div class='item carousel-item".$state."' >
 								<div class='row' style='margin:20px;'>";
 							}
-							echo"<div class='col-sm' type='button' data-toggle='collapse' data-target='#newsContent".$k."' aria-expanded='false' aria-controls='multiCollapseExampleNews'
-								style='margin-bottom:10px;' title='Tekan untuk melihat isi'>
+							echo"
+								<div class='col-sm' type='button' data-toggle='collapse' data-target='#newsContent".$k."' aria-expanded='false' aria-controls='multiCollapseExampleNews' title='Tekan untuk melihat isi'>
 									<div class='thumb-wrapper'>
 										<div class='img-box'>
 											<img src='http://localhost/MedStory/assets/newsImage/Main".$berita['idBerita'].".jpeg' alt='Card image cap' 
-												style='width:270px; height:120px; border-radius:10px;'>								
+												style='width:270px; height:125px; border-radius:10px;'>								
 										</div>
 										<div class='thumb-content'>
 											<h5 style='font-size:16px;'>".$berita['title']."</h5>									
@@ -845,7 +971,7 @@
 								</div>";
 								$k++;
 								$state = ' ';
-							if($k % 4 == 0){
+							if($k % $z == 0){
 								echo"</div>
 								</div>";
 							}
@@ -878,452 +1004,471 @@
 				?>
 				</div>	
 			</div>
-		</div>
+		</div><!--End of container.-->
 
-		<div class="container bg-white" id="card-car" style="margin-bottom: 1%; border-radius: 10px;">
-			<br>
-		<div id="accordion">
-			<button class="btn btn-primary" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample2"
-				style='box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 10px;'><i class="fa fa-globe mr-2"></i>Forum Diskusi</button>
-			<button class="btn btn-primary" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2"
-				style='box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 10px;'><i class="fa fa-user-o mr-2"></i>Pertanyaan Saya</button>
-			<button class="btn btn-info" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample2"
-				style='box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 10px;'><i class="fa fa-bar-chart mr-2"></i><span class="button-text">Statistik</span></button>
-			<button class="btn btn-success" style="float:right; box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 10px;" data-toggle="modal" data-target="#tambahDiskusiModal" 
-				aria-expanded="false" aria-controls="multiCollapseExample2"><i class="fa fa-plus mr-2"></i><span class="button-text">Buat Pertanyaan</span></button>
-			</p><hr>
-			<div class="row">
-			<div class="col-md-12">
-				<div class="collapse show" id="multiCollapseExample1" data-parent="#accordion">
-					<div class="container-fluid">
-						<form action='history/searchDiskusiByKat' method="POST">
-						<div class='row'>
-							<div class='col-md-2'>
-								<h5 style="text-align: left; color:#696969; float:left;">Forum diskusi</h5>
-							</div>
-							<div class='col-md-1' style='margin-left:-2%;'>
-								<span class='font-weight-100' style='font-size: 14px; color:grey;'>Kategori</span>
-							</div>
-							<div class='col-md-3' style='margin-top:-7px; margin-left:-2%;'>
-								<select class="form-control" name="kategori" style="background:#f4f4f4; border-width: 0 0 3px; 
-									border-bottom: 3.5px solid #4183D7; color:#212121;">
-									<option value='All'>Semua Kategori</option>
-									<option value='Penyakit Dalam'>Penyakit Dalam</option>
-									<option value='Penyakit Menular'>Penyakit Menular</option>
-									<option value='Vaksin & Imunisasi'>Vaksin & Imunisasi</option>
-									<option value='Kulit & Kelamin'>Kulit & Kelamin</option>
-									<option value='Otot & Saraf'>Otot & Saraf</option>
-									<option value='THT & Mata'>THT & Mata</option>
-									<option value='Penyakit Lansia'>Penyakit Lansia</option>
-									<option value='Obat-Obatan'>Obat-Obatan</option>
-									<option value='Gaya Hidup Sehat'>Gaya Hidup Sehat</option>
-									<option value='Kandungan & Bedah'>Kandungan & Bedah</option>
-									<option value='Gigi'>Gigi</option>
-									<option value='Anak'>Anak</option>
-								</select>
-							</div>
-							<div class='col-md-1' style='margin-left:-2%; margin-top:-7px;'>
-								<button class='btn btn-success' type='submit'><i class="fa-solid fa-magnifying-glass"></i></button>
-							</div>
-						</div>
-						</form>
+		<div class="container bg-white mb-2 mt-2" style="border-radius: 10px;"><br>
+			<div id="accordion">
+				<button class="btn btn-primary" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample2"><i class="fa fa-globe mr-2"></i>Forum Diskusi</button>
+				<button class="btn btn-primary" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2"><i class="fa fa-user-o mr-2"></i>Pertanyaan Saya</button>
+				<button class="btn btn-info" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample2"><i class="fa fa-bar-chart mr-2"></i><span class="button-text">Statistik</span></button>
+				<button class="btn btn-success" style="float:right; box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 10px;" data-toggle="modal" data-target="#tambahDiskusiModal" 
+					aria-expanded="false" aria-controls="multiCollapseExample2"><i class="fa fa-plus mr-2"></i><span class="button-text">Buat Pertanyaan</span></button>
+				<hr>
+				<div class="row">
 
-						<div id='myCarouselDiskusi' class='carousel slide' data-ride='carousel' data-interval='0'>
-							<!-- Carousel indicators -->
-							<ol class='carousel-indicators carousel-indicators-numbers' style='bottom: -50px;'>
-							<?php
-								$page = 0; $item = 0;
-								foreach ($dataDiskusi as $data){
-									if(($this->session->userdata('set_kategori') == $data['kategori']) || ($this->session->userdata('set_kategori') == 'All')){	
-										if($item == 0 && $page == 0){
-											echo"<li data-target='#myCarouselDiskusi' data-slide-to='0' class='active'>1</li>";
-											$item++;
-											$page++;
-										} else if ($item % 4 == 0){
-											echo"<li data-target='#myCarouselDiskusi' data-slide-to='".$page."'>"; echo $page+1; echo"</li>";
-											$item++;
-											$page++;
-										} else if ($item % 4 != 0){
-											$item++;
+					<div class="col-md-12">
+						<div class="collapse show" id="multiCollapseExample1" data-parent="#accordion">
+							<div class="container-fluid">
+								<form action='history/searchDiskusiByKat' method="POST">
+								<div class='row'>
+									<div class='col-md-2'>
+										<h5 style="text-align: left; color:#696969; float:left;">Forum diskusi</h5>
+									</div>
+									<div class='col-md-1' style='margin-left:-2%;'>
+										<span class='font-weight-100' style='font-size: 14px; color:grey;'>Kategori</span>
+									</div>
+									<div class='col-md-3' style='margin-top:-7px; margin-left:-2%;'>
+										<select class="form-control" name="kategori">
+											<option value='All'>Semua Kategori</option>
+											<option value='Penyakit Dalam'>Penyakit Dalam</option>
+											<option value='Penyakit Menular'>Penyakit Menular</option>
+											<option value='Vaksin & Imunisasi'>Vaksin & Imunisasi</option>
+											<option value='Kulit & Kelamin'>Kulit & Kelamin</option>
+											<option value='Otot & Saraf'>Otot & Saraf</option>
+											<option value='THT & Mata'>THT & Mata</option>
+											<option value='Penyakit Lansia'>Penyakit Lansia</option>
+											<option value='Obat-Obatan'>Obat-Obatan</option>
+											<option value='Gaya Hidup Sehat'>Gaya Hidup Sehat</option>
+											<option value='Kandungan & Bedah'>Kandungan & Bedah</option>
+											<option value='Gigi'>Gigi</option>
+											<option value='Anak'>Anak</option>
+										</select>
+									</div>
+									<div class='col-md-1' style='margin-left:-2%; margin-top:-7px;'>
+										<button class='btn btn-success' type='submit'><i class="fa-solid fa-magnifying-glass"></i></button>
+									</div>
+								</div>
+								</form>
+
+								<div id='myCarouselDiskusi' class='carousel slide' data-ride='carousel' data-interval='0'>
+									<!-- Carousel indicators -->
+									<ol class='carousel-indicators carousel-indicators-numbers' style='bottom: -50px;'>
+									<?php
+										$page = 0; //Count page.
+										$item = 0; //Count item.
+										$z = 6; //Set max item per page.
+										foreach ($dataDiskusi as $data){
+											if(($this->session->userdata('set_kategori') == $data['kategori']) || ($this->session->userdata('set_kategori') == 'All')){	
+												if($item == 0 && $page == 0){
+													echo"<li data-target='#myCarouselDiskusi' data-slide-to='0' class='active'>1</li>";
+													$item++;
+													$page++;
+												} else if ($item % $z == 0){
+													echo"<li data-target='#myCarouselDiskusi' data-slide-to='".$page."'>"; echo $page+1; echo"</li>";
+													$item++;
+													$page++;
+												} else if ($item % $z != 0){
+													$item++;
+												}
+											}
 										}
-									}
-								}
-							?>
-							</ol>
-							<!-- Wrapper for carousel items -->
-							<div class='carousel-inner'>
-							<?php 
-								$i = 1; $count = 0; $k = 0;
-								$state = ' active';
-								foreach($dataDiskusi as $data){
-									if(($this->session->userdata('set_kategori') == $data['kategori']) || ($this->session->userdata('set_kategori') == 'All')){	
-										if(($k % 4 == 0) || ($k == 0)){
-											echo"<div class='item carousel-item".$state."' >
-											<div class='col-md'>";
-										}	
-										echo"
-										<div id='accordion2'>
-											<div class='card' style='border-radius:6px; margin:15px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; border:0;'>
-												<div class='card-header' id='headingOne' style='border-width:1px; border-radius:6px; background:white;'>
-													<img src='http://localhost/MedStory/assets/uploads/user_".$data['namaPengguna'].".jpg' alt='Card image cap' class='rounded-circle img-fluid' 
-														style='width:45px; height:45px; margin-top: -1%; float:left;' data-toggle='modal' data-target='#zoom".$data['id_diskusi']."'>
-													<h5 style='font-size:18px; padding-left:15px; float:left; color:#22A7F0;'>".$data['namaPengguna']."</h2>
-													<h5 style='font-size:11px; font-weight:400; padding-top:5px; float:left; font-style:italic;'> ~ pada ".$data['datetime']."</h5>
-													<h5 style='font-size:18px; float:right;'>".$data['kategori']."</h5><br><hr>";
-													if($data['imageURL'] == 'null'){
-														echo"<p style='font-size:13px;'>".$data['pertanyaan']."</p>";
-													} else {
-												echo"<div class='row' style='margin-bottom:1%;'>
-														<div class='col-md-4 border-right'>
-															<img src='http://localhost/MedStory/assets/uploads/diskusi/diskusi_".$data['imageURL'].".jpg' style='border-radius:6px; width:100%; height:100%; cursor:pointer' 
-															alt='' data-toggle='modal' data-target='#zoom".$data['id_diskusi']."'>
-														</div>
-														<div class='col-md-6' style=''>
-														<p style='font-size:13px;'>".$data['pertanyaan']."</p>
-														</div>
-													</div>";
-													}
-													echo"<h6 style='font-size:13px; float:right; padding-left:5px;'>".$data['view']."</h6>
-														<img src='http://localhost/MedStory/assets/View.png' style='width:25px; height:25px; float:right; margin-top:-5px; padding-left:5px;'>
-													<h6 style='font-size:13px; float:right; padding-left:5px;'>".$data['up']."</h6>
-														<img src='http://localhost/MedStory/assets/Up.png' style='width:25px; height:22px; float:right; margin-top:-4px; padding-left:5px;'>
-													<h6 style='font-size:13px; float:right; padding-left:5px;'>"; 
-														$a = 0;
-														foreach ($dataBalasan as $countComment){if ($data['id_diskusi'] == $countComment['id_diskusi']){ $a++;}}
-														echo $a;
-														echo"</h6>
-														<img src='http://localhost/MedStory/assets/Comment.png' style='width:25px; height:20px; float:right; margin-top:-2px; padding-left:5px;'>
-													<h5 style='font-size:14px; float:left; color:#4183D7;' type='button' data-toggle='collapse' data-target='#collapse".$i."' 
-													aria-expanded='true' aria-controls='collapseOne''>Lihat komentar
-														<img src='http://localhost/MedStory/assets/icon/Drop Down.png' style='width:25px; height:20px; float:left; padding-left:3px;'></h5>
-												</div> <!--End of header-->
-												<!--Extend balasan.-->
-												<div id='collapse".$i."' class='collapse' aria-labelledby='headingOne' data-parent='#accordion2'>
-													<div class='card-body'>";
-													foreach ($dataBalasan as $reply){
-														if ($data['id_diskusi'] == $reply['id_diskusi']){
-															if($reply['status'] == 'verified'){echo"<div class='container' style='background:#f4f4f4; border-left: 8px solid rgb(40, 207, 54); padding:5px; border-radius:4px; margin-bottom:5px;'>
-																<i class='fa fa-check-circle' style='float:right; margin-top:20px; color:rgb(40, 207, 54);'></i>";}
-																else {echo"<div class='container'>";} 
-															echo"<img src='http://localhost/MedStory/assets/uploads/user_".$reply['pengirim'].".jpg' alt='Card image cap' class='rounded-circle img-fluid' style='width:45px; height:45px; 
-															float:left; margin-right:1%;'>";
-															if(($reply['pengirim'] != $this->session->userdata('userTrack')) && ($reply['status'] == 'null')&& ($data['namaPengguna'] == $this->session->userdata('userTrack'))){
-																echo"<form action='history/checkReply' method='post'>
-																<input type='text' class='form-control' name='id_balasan' value='".$reply['id_balasan']."' hidden>
-																<button class='btn btn-success' style='float:right;'><i class='fa fa-check-circle-o'></i></button>
-																</form>";
+									?>
+									</ol>
+									<!-- Wrapper for carousel items -->
+									<div class='carousel-inner'>
+									<?php 
+										$i = 1; //Make collapse unique.
+										$count = 0; //Count replies.
+										$k = 0; //Count item.
+										$z = 6; //Set max item per page.
+										$state = ' active'; //Initial class.
+										foreach($dataDiskusi as $data){
+											if(($this->session->userdata('set_kategori') == $data['kategori']) || ($this->session->userdata('set_kategori') == 'All')){	
+												if(($k % $z == 0) || ($k == 0)){
+													echo"<div class='item carousel-item".$state."' >
+													<div class='col-md'>";
+												}	
+												echo"
+												<div id='accordion2'>
+													<div class='card' style='border-radius:6px; margin:15px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; border:0;'>
+														<div class='card-header' id='headingOne' style='border-width:1px; border-radius:6px; background:white;'>
+															<img src='http://localhost/MedStory/assets/uploads/user_".$data['namaPengguna'].".jpg' alt='Card image cap' class='rounded-circle img-fluid' 
+																style='width:45px; height:45px; margin-top: -1%; float:left;' data-toggle='modal' data-target='#zoom".$data['id_diskusi']."'>
+															<h5 style='font-size:18px; padding-left:15px; float:left; color:#22A7F0;'>".$data['namaPengguna']."</h2>
+															<h5 id='postDate'> ~ pada ".$data['datetime']."</h5>
+															<h5 style='font-size:18px; float:right;'>".$data['kategori']."</h5><br><hr>";
+															if($data['imageURL'] == 'null'){
+																echo"<p style='font-size:13px;'>".$data['pertanyaan']."</p>";
+															} else {
+																echo"
+																<div class='row' style='margin-bottom:1%;'>
+																	<div class='col-md-4 border-right'>
+																		<img src='http://localhost/MedStory/assets/uploads/diskusi/diskusi_".$data['imageURL'].".jpg' style='border-radius:6px; width:100%; height:100%; cursor:pointer' 
+																		alt='' data-toggle='modal' data-target='#zoom".$data['id_diskusi']."'>
+																	</div>
+																	<div class='col-md-6' style=''>
+																		<p style='font-size:13px;'>".$data['pertanyaan']."</p>
+																	</div>
+																</div>";
 															}
-															echo"<h5 style='font-size:18px; margin-left:15px; color:#22A7F0;'>".$reply['pengirim']."</h5>";
-															if ($reply['imageURL'] != 'null'){
-																echo"<div class='row' style='margin-bottom:1%;'>
-																<div class='col-md-4 border-right'>
-																	<img  src='http://localhost/MedStory/assets/uploads/balasan/balasan_".$reply['imageURL'].".jpg' style='border-radius:6px; width:100%; height:100%; cursor:pointer' 
-																	alt='' data-toggle='modal' data-target='#zoom".$reply['id_balasan']."'>
-																</div>
-																<div class='col-md-6' style=''>
-																	<p style='font-size:13px;'>".$reply['isi']."</p>
-																</div>
-															</div> <!--End of image row-->";
-															} else { 
-																echo"<p style='font-size:13px;'>".$reply['isi']."</p>";
-															}
-															echo"</div> <!--End of container-->"; 
-															$count++;
-														}
-													} 
-													if(($count == 0) &&($data['namaPengguna'] == $this->session->userdata('userTrack'))) {
-														echo "<div class='container' style='margin-top:1%; margin-bottom:2%;'>
-														<p style='font-style:italic; text-align:center; color:grey;'>Maaf, pertanyaan Anda belum dijawab</p>
-														<img src='http://localhost/MedStory/assets/icon/Questions.gif' alt='Sorry.png' style='display: block;
-															margin-left: auto; margin-right: auto; width: 200px; height: 200px;'>
-														<p style='font-style:italic; text-align:center; font-size:18px; color:#7289da;'>Jangan khawatir, ini hanya masalah waktu</p>
-													</div>";
-													} else if (($count == 0) &&($data['namaPengguna'] != $this->session->userdata('userTrack'))){
-														echo "<div class='container' style='margin-top:1%; margin-bottom:2%;'>
-														<p style='font-style:italic; text-align:center; color:grey;'>Pertanyaan ini belum dijawab</p>
-														<img src='http://localhost/MedStory/assets/icon/Questions.gif' alt='Error404.png' style='display: block;
-															margin-left: auto; margin-right: auto; width: 200px; height: 200px;'>
-														<p style='font-style:italic; text-align:center; font-size:18px; color:#7289da;'>Ayo jadi yang pertama</p>
-														</div>";
-													} else if ($count > 0) {echo"<a style='font-size:13px; font-style:italic;'>Menampilkan ".$count." balasan...</a><br>";}
-													echo"<form method='post' action='history/balasDiskusi' class='form-inline' enctype='multipart/form-data'>
-														<input type='text' class='form-control' name='inputIdB' value='".$data['id_diskusi']."' hidden>
-														<div class='container'><hr>
-															<label class='switch' style='float:left; margin-right:1%;'>
-															<input type='checkbox' name='imageSwitchR'>
-																<span class='slider round' type='button' data-toggle='collapse' data-target='#collapseImage".$i."'></span>
-															</label>
-															<a style='float:left;'>Image</a>
-															<button class='btn btn-primary' style='color:whitesmoke; background-color:#00a13e; float:right; border:none;' type='submit'>Balas</button>
-															<input class='form-control' type='text' placeholder='Ketik balasan Anda disini...' style='width:40%; float:right; margin-right:1%;
-																background:#f4f4f4; border-width: 0 0 3px; border-bottom: 3.5px solid #4183D7; color:#212121;' name='inputIsi'>
-															<div class='collapse' id='collapseImage".$i."'>
-																<div class='container' style='width:40%; float:left;'>
-																	<div class='input-group mb-3' style='background-color:#212121; border-width: 0 0 3px; border-bottom: 3.5px solid #4183D7; color:#212121;
-																		border-radius:5px;'>
-																		<div class='input-group-prepend'>
-																			<span class='input-group-text'>jpg</span>
+															echo"<h6 style='font-size:13px; float:right; padding-left:5px;'>".$data['view']."</h6>
+																<img src='http://localhost/MedStory/assets/View.png' style='width:25px; height:25px; float:right; margin-top:-5px; padding-left:5px;'>
+															<h6 style='font-size:13px; float:right; padding-left:5px;'>".$data['up']."</h6>
+																<img src='http://localhost/MedStory/assets/Up.png' style='width:25px; height:22px; float:right; margin-top:-4px; padding-left:5px;'>
+															<h6 style='font-size:13px; float:right; padding-left:5px;'>"; 
+																$a = 0; //Count replies.
+																foreach ($dataBalasan as $countComment){if ($data['id_diskusi'] == $countComment['id_diskusi']){ $a++;}}
+																echo $a;
+																echo"</h6>
+																<img src='http://localhost/MedStory/assets/Comment.png' style='width:25px; float:right; margin-top:-2px; padding-left:5px;'>
+															<h5 style='font-size:14px; float:left; color:#4183D7;' type='button' data-toggle='collapse' data-target='#collapse".$i."' 
+															aria-expanded='true' aria-controls='collapseOne''>Lihat komentar
+																<img src='http://localhost/MedStory/assets/icon/Drop Down.png' style='width:25px; float:left; padding-left:3px;'></h5>
+														</div> <!--End of header-->
+
+														<!--Extend balasan.-->
+														<div id='collapse".$i."' class='collapse' aria-labelledby='headingOne' data-parent='#accordion2'>
+															<div class='card-body'>";
+															foreach ($dataBalasan as $reply){
+																if ($data['id_diskusi'] == $reply['id_diskusi']){
+																	if($reply['status'] == 'verified'){
+																		echo"
+																		<div class='container' style='background:#f4f4f4; border-left: 4px solid rgb(40, 207, 54); padding:5px; border-radius:4px; margin-bottom:5px;'>
+																		<i class='fa fa-check-circle' style='float:right; margin-top:20px; color:rgb(40, 207, 54);'></i>";
+																	} else {
+																			echo"<div class='container'>";
+																	} 
+																	echo"<img src='http://localhost/MedStory/assets/uploads/user_".$reply['pengirim'].".jpg' alt='Card image cap' class='rounded-circle img-fluid' style='width:45px; height:45px; 
+																	float:left; margin-right:1%;'>";
+																	if(($reply['pengirim'] != $this->session->userdata('userTrack')) && ($reply['status'] == 'null')&& ($data['namaPengguna'] == $this->session->userdata('userTrack'))){
+																		echo"
+																		<form action='history/checkReply' method='post'>
+																			<input type='text' class='form-control' name='id_balasan' value='".$reply['id_balasan']."' hidden>
+																			<button class='btn btn-success' style='float:right;'><i class='fa fa-check-circle-o'></i></button>
+																		</form>";
+																	}
+																	echo"<h5 style='font-size:18px; margin-left:15px; color:#22A7F0;'>".$reply['pengirim']."</h5>";
+																	if ($reply['imageURL'] != 'null'){
+																		echo"<div class='row' style='margin-bottom:1%;'>
+																		<div class='col-md-4 border-right'>
+																			<img  src='http://localhost/MedStory/assets/uploads/balasan/balasan_".$reply['imageURL'].".jpg' style='border-radius:6px; width:100%; height:100%; cursor:pointer' 
+																			alt='' data-toggle='modal' data-target='#zoom".$reply['id_balasan']."'>
 																		</div>
-																		<div class='custom-file'>
-																			<input type='file' class='custom-file-input' id='uploadImage' name='uploadImageR' accept='image/*'>
-																			<label class='custom-file-label text-left' for='uploadImage'>file size max 2 mb</label>
+																		<div class='col-md-6' style=''>
+																			<p style='font-size:13px;'>".$reply['isi']."</p>
+																		</div>
+																	</div> <!--End of image row-->";
+																	} else { 
+																		echo"<p style='font-size:13px;'>".$reply['isi']."</p>";
+																	}
+																	echo"</div> <!--End of container-->"; 
+																	$count++;
+																}
+															} 
+															if(($count == 0) &&($data['namaPengguna'] == $this->session->userdata('userTrack'))) {
+																echo "<div class='container' style='margin-top:1%; margin-bottom:2%;'>
+																<p style='font-style:italic; text-align:center; color:grey;'>Maaf, pertanyaan Anda belum dijawab</p>
+																<img src='http://localhost/MedStory/assets/icon/Questions.gif' alt='Sorry.png' id='imgNoDataForum'>
+																<p id='msgNoDataForumb'>Jangan khawatir, ini hanya masalah waktu</p>
+															</div>";
+															} else if (($count == 0) &&($data['namaPengguna'] != $this->session->userdata('userTrack'))){
+																echo "<div class='container' style='margin-top:1%; margin-bottom:2%;'>
+																<p style='font-style:italic; text-align:center; color:grey;'>Pertanyaan ini belum dijawab</p>
+																<img src='http://localhost/MedStory/assets/icon/Questions.gif' alt='Error404.png' id='imgNoDataForum'>
+																<p id='msgNoDataForumb'>Ayo jadi yang pertama</p>
+																</div>";
+															} else if ($count > 0) {echo"<a style='font-size:13px; font-style:italic;'>Menampilkan ".$count." balasan...</a><br>";}
+																echo"
+																<form method='post' action='history/balasDiskusi' class='form-inline' enctype='multipart/form-data'>
+																<input type='text' class='form-control' name='inputIdB' value='".$data['id_diskusi']."' hidden>
+																<div class='container'><hr>
+																	<label class='switch' style='float:left; margin-right:1%;'>
+																	<input type='checkbox' name='imageSwitchR'>
+																		<span class='slider round' type='button' data-toggle='collapse' data-target='#collapseImage".$i."'></span>
+																	</label>
+																	<a style='float:left;'>Image</a>
+																	<button class='btn btn-primary' style='color:whitesmoke; background-color:#00a13e; float:right; border:none;' type='submit'>Balas</button>
+																	<input class='form-control' type='text' placeholder='Ketik balasan Anda disini...' style='width:40%; float:right; margin-right:1%;
+																		background:#f4f4f4; border-width: 0 0 3px; border-bottom: 3.5px solid #4183D7; color:#212121;' name='inputIsi'>
+																	<div class='collapse' id='collapseImage".$i."'>
+																		<div class='container' style='width:40%; float:left;'>
+																			<div class='input-group mb-3' style='background-color:#212121; border-width: 0 0 3px; border-bottom: 3.5px solid #4183D7; color:#212121;
+																				border-radius:5px;'>
+																				<div class='input-group-prepend'>
+																					<span class='input-group-text'>jpg</span>
+																				</div>
+																				<div class='custom-file'>
+																					<input type='file' class='custom-file-input' id='uploadImage' name='uploadImageR' accept='image/*'>
+																					<label class='custom-file-label text-left' for='uploadImage'>file size max 2 mb</label>
+																				</div>
+																			</div>
 																		</div>
 																	</div>
-																</div>
-															</div>
-														</div> <!--End of input container-->
-													</form>
-													</div> <!--End of card body-->
-												</div> <!--End of collapse-->
-											</div>
-										</div>";
-										$k++;
-										$state = ' ';
-										if($k % 4 == 0){
-											echo"</div>
-										</div>";
-										}										
-										$count = 0; $i++;
-									} 
-								}
-								//Need to be simplify / optimized
-								if($k > 4){ 
-									echo"
-									</div></div></div>
-									<!-- Carousel controls -->
-									<a class='carousel-control-prev' href='#myCarouselDiskusi' data-slide='prev'>
-										<i class='fa fa-angle-left'></i>
-									</a>
-									<a class='carousel-control-next' href='#myCarouselDiskusi' data-slide='next'>
-										<i class='fa fa-angle-right'></i>
-									</a></div>";
-								} else if($k == 4){ 
-									echo"</div></div>";
-								// } else if(($k == 2)||($k == 3)||($k == 1)){
-								} else if(($k >= 1)&&($k <= 3)){
-									echo"</div></div></div></div>";
-								} else if($k == 0){
-									echo"</div></div>";
-									echo "<div class='container'>
-										<p style='font-style:italic; text-align:center; color:grey;'>Tidak terdapat pertanyaan dengan kategori terkait</p>
-										<img src='http://localhost/MedStory/assets/icon/Empty.gif' alt='Sorry.png' style='display: block;
-											margin-left: auto; margin-right: auto; width: 250px; height: 250px;'>
-									</div>";
-								}
-								// echo $k."=k";
-								//Check this
-							?>
+																</div> <!--End of input container-->
+															</form>
+															</div> <!--End of card body-->
+														</div> <!--End of collapse-->
+													</div>
+												</div>";
+												$k++;
+												$state = ' ';
+												if($k % $z == 0){
+													echo"</div>
+												</div>";
+												}										
+												$count = 0; $i++;
+											}
 											
-					</div>
-				</div>
-				<br>
-			</div>
-			<div class="col-md-12">
-				<div class="collapse" id="multiCollapseExample2" data-parent="#accordion">
-					<div class="container-fluid" style='margin-top:-25px;'>
-						<h5 style="text-align: left; color:#696969;">Pertanyaan saya</h5>
-						<div id='myCarouselDiskusiSaya' class='carousel slide' data-ride='carousel' data-interval='0'>
-							<!-- Carousel indicators -->
-							<ol class='carousel-indicators carousel-indicators-numbers' style='bottom: -50px;'>
-							<?php
-								$page = 0; $item = 0;
-								foreach ($dataDiskusi as $data){
-									if($data['namaPengguna'] == $this->session->userdata('userTrack')){
-										if($item == 0 && $page == 0){
-											echo"<li data-target='#myCarouselDiskusiSaya' data-slide-to='0' class='active'>1</li>";
-											$item++;
-											$page++;
-										} else if ($item % 4 == 0){
-											echo"<li data-target='#myCarouselDiskusiSaya' data-slide-to='".$page."'>"; echo $page+1; echo"</li>";
-											$item++;
-											$page++;
-										} else if ($item % 4 != 0){
-											$item++;
 										}
-									}
-								}
-							?>
-							</ol>
-							<!-- Wrapper for carousel items -->
-							<div class='carousel-inner'>
-							<?php 
-								$i = 1; $count = 0; $k = 0;
-								$state = ' active';
-								foreach($dataDiskusi as $data){	
-									if($data['namaPengguna'] == $this->session->userdata('userTrack')){
-										if($k % 4 == 0  || $k == 0){
-											echo"<div class='item carousel-item".$state."' >
-											<div class='col-md'>";
-										}	
-										echo"
-										<div id='accordion3'>
-											<div class='card' style='border-radius:6px; margin:15px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; border:0;'>
-												<div class='card-header' id='headingOne' style='border-width:1px; border-radius:6px; background:white;'>
-													<img src='http://localhost/MedStory/assets/uploads/user_".$data['namaPengguna'].".jpg' alt='Card image cap' class='rounded-circle img-fluid' 
-														style='width:45px; height:45px; margin-top: -1%; float:left;' data-toggle='modal' data-target='#zoom".$data['id_diskusi']."'>
-													<h5 style='font-size:18px; padding-left:15px; float:left; color:#22A7F0;'>Anda</h2>
-													<h5 style='font-size:11px; font-weight:400; padding-top:5px; float:left; font-style:italic;'> ~ pada ".$data['datetime']."</h5>
-													<h5 style='font-size:18px; float:right;'>".$data['kategori']."</h5><br><hr>";
-													if($data['imageURL'] == 'null'){
-														echo"<p style='font-size:13px;'>".$data['pertanyaan']."</p>";
-													} else {
-												echo"<div class='row' style='margin-bottom:1%;'>
-														<div class='col-md-4 border-right'>
-															<img src='http://localhost/MedStory/assets/uploads/diskusi/diskusi_".$data['imageURL'].".jpg' style='border-radius:6px; width:100%; height:100%; cursor:pointer' 
-															alt='' data-toggle='modal' data-target='#zoom".$data['id_diskusi']."'>
-														</div>
-														<div class='col-md-6' style=''>
-														<p style='font-size:13px;'>".$data['pertanyaan']."</p>
-														</div>
-													</div>";
-													}
-													echo"<h6 style='font-size:13px; float:right; padding-left:5px;'>".$data['view']."</h6>
-														<img src='http://localhost/MedStory/assets/View.png' style='width:25px; height:25px; float:right; margin-top:-5px; padding-left:5px;'>
-													<h6 style='font-size:13px; float:right; padding-left:5px;'>".$data['up']."</h6>
-														<img src='http://localhost/MedStory/assets/Up.png' style='width:25px; height:22px; float:right; margin-top:-4px; padding-left:5px;'>
-													<h6 style='font-size:13px; float:right; padding-left:5px;'>"; 
-														$a = 0;
-														foreach ($dataBalasan as $countComment){if ($data['id_diskusi'] == $countComment['id_diskusi']){ $a++;}}
-														echo $a;
-														echo"</h6>
-														<img src='http://localhost/MedStory/assets/Comment.png' style='width:25px; height:20px; float:right; margin-top:-2px; padding-left:5px;'>
-													<h5 style='font-size:14px; float:left; color:#4183D7;' type='button' data-toggle='collapse' data-target='#collapse".$i."' 
-													aria-expanded='true' aria-controls='collapseOne''>Lihat komentar
-														<img src='http://localhost/MedStory/assets/icon/Drop Down.png' style='width:25px; height:20px; float:left; padding-left:3px;'></h5>
-												</div> <!--End of header-->
-												<!--Extend balasan.-->
-												<div id='collapse".$i."' class='collapse' aria-labelledby='headingOne' data-parent='#accordion3'>
-													<div class='card-body'>";
-													foreach ($dataBalasan as $reply){
-														if ($data['id_diskusi'] == $reply['id_diskusi']){
-															if($reply['status'] == 'verified'){echo"<div class='container' style='background:#f4f4f4; border-left: 8px solid rgb(40, 207, 54); padding:5px; border-radius:4px; margin-bottom:5px;'>
-																<i class='fa fa-check-circle' style='float:right; margin-top:20px; color:rgb(40, 207, 54);'></i>";}
-																else {echo"<div class='container'>";} 
-															echo"<img src='http://localhost/MedStory/assets/uploads/user_".$reply['pengirim'].".jpg' alt='Card image cap' class='rounded-circle img-fluid' style='width:45px; height:45px; 
-															float:left; margin-right:1%;'>";
-															if(($reply['pengirim'] != $this->session->userdata('userTrack')) && ($reply['status'] == 'null')){
-																echo"<form action='history/checkReply' method='post'>
-																<input type='text' class='form-control' name='id_balasan' value='".$reply['id_balasan']."' hidden>
-																<button class='btn btn-success' style='float:right;'><i class='fa fa-check-circle-o'></i></button>
-																</form>";
+										echo"</div>"; //end of carousel-inner.
+										//Carousel fixes. if there's another bug. check this.
+										if($k % $z != 0){
+											echo"</div></div>";
+										}
+										if($k >= $z){ 
+											echo"
+											<!-- Carousel controls -->
+											<a class='carousel-control-prev' href='#myCarouselDiskusi' data-slide='prev'>
+												<i class='fa fa-angle-left'></i>
+											</a>
+											<a class='carousel-control-next' href='#myCarouselDiskusi' data-slide='next'>
+												<i class='fa fa-angle-right'></i>
+											</a>";
+										} else if($k == 0){
+											echo "<div class='container'>
+												<p style='font-style:italic; text-align:center; color:grey;'>Tidak terdapat pertanyaan dengan kategori terkait</p>
+												<img src='http://localhost/MedStory/assets/icon/Empty.gif' alt='Sorry.png' style='display: block;
+													margin-left: auto; margin-right: auto; width: 250px; height: 250px;'>
+											</div>";
+										}
+									?></div>
+								</div>									
+							</div>
+						</div>
+					</div><!--End of col collapse-->
+
+					<div class="col-md-12">
+						<div class="collapse" id="multiCollapseExample2" data-parent="#accordion">
+							<div class="container-fluid">
+								<h5 style="text-align: left; color:#696969;">Pertanyaan saya</h5>
+								<div id='myCarouselDiskusiSaya' class='carousel slide' data-ride='carousel' data-interval='0'>
+									<!-- Carousel indicators -->
+									<ol class='carousel-indicators carousel-indicators-numbers' style='bottom: -50px;'>
+									<?php
+										$page = 0; //Count page.
+										$item = 0; //Count item.
+										$z = 6; //Set max item per page.
+										foreach ($dataDiskusi as $data){
+											if($data['namaPengguna'] == $this->session->userdata('userTrack')){
+												if($item == 0 && $page == 0){
+													echo"<li data-target='#myCarouselDiskusiSaya' data-slide-to='0' class='active'>1</li>";
+													$item++;
+													$page++;
+												} else if ($item % $z == 0){
+													echo"<li data-target='#myCarouselDiskusiSaya' data-slide-to='".$page."'>"; echo $page+1; echo"</li>";
+													$item++;
+													$page++;
+												} else if ($item % $z != 0){
+													$item++;
+												}
+											}
+										}
+									?>
+									</ol>
+
+									<!-- Wrapper for carousel items -->
+									<div class='carousel-inner'>
+									<?php 
+										$i = 1; //Make collapse unique.
+										$count = 0; //Count replies.
+										$k = 0; //Count item.
+										$state = ' active'; //Initial class.
+										$z = 6; //Set max item per page.
+										foreach($dataDiskusi as $data){	
+											if($data['namaPengguna'] == $this->session->userdata('userTrack')){
+												if($k % $z == 0  || $k == 0){
+													echo"<div class='item carousel-item".$state."' >
+													<div class='col-md'>";
+												}	
+												echo"
+												<div id='accordion3'>
+													<div class='card' style='border-radius:6px; margin:15px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; border:0;'>
+														<div class='card-header' id='headingOne' style='border-width:1px; border-radius:6px; background:white;'>
+															<img src='http://localhost/MedStory/assets/uploads/user_".$data['namaPengguna'].".jpg' alt='Card image cap' class='rounded-circle img-fluid' 
+																style='width:45px; height:45px; margin-top: -1%; float:left;' data-toggle='modal' data-target='#zoom".$data['id_diskusi']."'>
+															<h5 style='font-size:18px; padding-left:15px; float:left; color:#22A7F0;'>Anda</h2>
+															<h5 id='postDate'> ~ pada ".$data['datetime']."</h5>
+															<h5 style='font-size:18px; float:right;'>".$data['kategori']."</h5><br><hr>";
+															//Discussion Image.
+															if($data['imageURL'] == 'null'){
+																echo"<p style='font-size:13px;'>".$data['pertanyaan']."</p>";
+															} else {
+																echo"
+																<div class='row' style='margin-bottom:1%;'>
+																	<div class='col-md-4 border-right'>
+																		<img src='http://localhost/MedStory/assets/uploads/diskusi/diskusi_".$data['imageURL'].".jpg' style='border-radius:6px; width:100%; height:100%; cursor:pointer' 
+																		alt='' data-toggle='modal' data-target='#zoom".$data['id_diskusi']."'>
+																	</div>
+																	<div class='col-md-6' style=''>
+																	<p style='font-size:13px;'>".$data['pertanyaan']."</p>
+																	</div>
+																</div>";
 															}
-															echo"<h5 style='font-size:18px; margin-left:15px; color:#22A7F0;'>".$reply['pengirim']."</h5>
-															";
-															if ($reply['imageURL'] != 'null'){
-																echo"<div class='row' style='margin-bottom:1%;'>
-																<div class='col-md-4 border-right'>
-																	<img  src='http://localhost/MedStory/assets/uploads/balasan/balasan_".$reply['imageURL'].".jpg' style='border-radius:6px; width:100%; height:100%; cursor:pointer' 
-																	alt='' data-toggle='modal' data-target='#zoom".$reply['id_balasan']."'>
-																</div>
-																<div class='col-md-6' style=''>
-																	<p style='font-size:13px;'>".$reply['isi']."</p>
-																</div>
-															</div> <!--End of image row-->";
-															} else { 
-																echo"<p style='font-size:13px;'>".$reply['isi']."</p>";
-															}
-															echo"</div> <!--End of container-->"; 
-															$count++;
-														}
-													} 
-													if(($count == 0) &&($data['namaPengguna'] == $this->session->userdata('userTrack'))) {
-														echo "<div class='container' style='margin-top:1%; margin-bottom:2%;'>
-														<p style='font-style:italic; text-align:center; color:grey;'>Maaf, pertanyaan Anda belum dijawab</p>
-														<img src='http://localhost/MedStory/assets/icon/Questions.gif' alt='Sorry.png' style='display: block;
-															margin-left: auto; margin-right: auto; width: 200px; height: 200px;'>
-														<p style='font-style:italic; text-align:center; font-size:18px; color:#7289da;'>Jangan khawatir, ini hanya masalah waktu</p>
-													</div>";
-													} else if (($count == 0) &&($data['namaPengguna'] != $this->session->userdata('userTrack'))){
-														echo "<div class='container' style='margin-top:1%; margin-bottom:2%;'>
-														<p style='font-style:italic; text-align:center; color:grey;'>Pertanyaan ini belum dijawab</p>
-														<img src='http://localhost/MedStory/assets/icon/Questions.gif' alt='Error404.png' style='display: block;
-															margin-left: auto; margin-right: auto; width: 200px; height: 200px;'>
-														<p style='font-style:italic; text-align:center; font-size:18px; color:#7289da;'>Ayo jadi yang pertama</p>
-														</div>";
-													} else if ($count > 0) {echo"<a style='font-size:13px; font-style:italic;'>Menampilkan ".$count." balasan...</a><br>";}
-													echo"<form method='post' action='history/balasDiskusi' class='form-inline' enctype='multipart/form-data'>
-														<input type='text' class='form-control' name='inputIdB' value='".$data['id_diskusi']."' hidden>
-														<div class='container'><hr>
-															<label class='switch' style='float:left; margin-right:1%;'>
-															<input type='checkbox' name='imageSwitchR'>
-																<span class='slider round' type='button' data-toggle='collapse' data-target='#collapseImage".$i."'></span>
-															</label>
-															<a style='float:left;'>Image</a>
-															<button class='btn btn-primary' style='color:whitesmoke; background-color:#00a13e; float:right; border:none;' type='submit'>Balas</button>
-															<input class='form-control' type='text' placeholder='Ketik balasan Anda disini...' style='width:40%; float:right; margin-right:1%;
-																background:#f4f4f4; border-width: 0 0 3px; border-bottom: 3.5px solid #4183D7; color:#212121;' name='inputIsi'>
-															<div class='collapse' id='collapseImage".$i."'>
-																<div class='container' style='width:40%; float:left;'>
-																	<div class='input-group mb-3' style='background-color:#212121; border-width: 0 0 3px; border-bottom: 3.5px solid #4183D7; color:#212121;
-																		border-radius:5px;'>
-																		<div class='input-group-prepend'>
-																			<span class='input-group-text'>jpg</span>
-																		</div>
-																		<div class='custom-file'>
-																			<input type='file' class='custom-file-input' id='uploadImage' name='uploadImageR' accept='image/*'>
-																			<label class='custom-file-label text-left' for='uploadImage'>file size max 2 mb</label>
+															echo"
+															<h6 style='font-size:13px; float:right; padding-left:5px;'>".$data['view']."</h6>
+																<img src='http://localhost/MedStory/assets/View.png' style='width:25px; height:25px; float:right; margin-top:-5px; padding-left:5px;'>
+															<h6 style='font-size:13px; float:right; padding-left:5px;'>".$data['up']."</h6>
+																<img src='http://localhost/MedStory/assets/Up.png' style='width:25px; height:22px; float:right; margin-top:-4px; padding-left:5px;'>
+															<h6 style='font-size:13px; float:right; padding-left:5px;'>"; 
+																$a = 0; //Count replies.
+																foreach ($dataBalasan as $countComment){
+																	if ($data['id_diskusi'] == $countComment['id_diskusi']){ 
+																		$a++;
+																	}
+																}
+																echo $a;
+															echo"</h6>
+															<img src='http://localhost/MedStory/assets/Comment.png' style='width:25px; float:right; margin-top:-2px; padding-left:5px;'>
+															<h5 style='font-size:14px; float:left; color:#4183D7;' type='button' data-toggle='collapse' data-target='#collapse".$i."' 
+															aria-expanded='true' aria-controls='collapseOne''>Lihat komentar
+															<img src='http://localhost/MedStory/assets/icon/Drop Down.png' style='width:25px; float:left; padding-left:3px;'></h5>
+														</div> <!--End of card header-->
+
+														<!--Extend balasan.-->
+														<div id='collapse".$i."' class='collapse' aria-labelledby='headingOne' data-parent='#accordion3'>
+															<div class='card-body'>";
+															//List Replies.
+															foreach ($dataBalasan as $reply){
+																if ($data['id_diskusi'] == $reply['id_diskusi']){
+																	if($reply['status'] == 'verified'){
+																		echo"
+																		<div class='container' style='background:#f4f4f4; border-left: 4px solid rgb(40, 207, 54); padding:5px; border-radius:4px; margin-bottom:5px;'>
+																		<i class='fa fa-check-circle' style='float:right; margin-top:20px; color:rgb(40, 207, 54);'></i>";
+																	} else {
+																		echo"<div class='container'>";
+																	} 
+																	echo"<img src='http://localhost/MedStory/assets/uploads/user_".$reply['pengirim'].".jpg' alt='Card image cap' class='rounded-circle img-fluid' style='width:45px;
+																	float:left; margin-right:1%;'>";
+																	if(($reply['pengirim'] != $this->session->userdata('userTrack')) && ($reply['status'] == 'null')){
+																		echo"
+																		<form action='history/checkReply' method='post'>
+																			<input type='text' class='form-control' name='id_balasan' value='".$reply['id_balasan']."' hidden>
+																			<button class='btn btn-success' style='float:right;'><i class='fa fa-check-circle-o'></i></button>
+																		</form>";
+																	}
+																	echo"<h5 style='font-size:18px; margin-left:15px; color:#22A7F0;'>".$reply['pengirim']."</h5>";
+																	if ($reply['imageURL'] != 'null'){
+																		echo"
+																		<div class='row mb-1'>
+																			<div class='col-md-4 border-right'>
+																				<img  src='http://localhost/MedStory/assets/uploads/balasan/balasan_".$reply['imageURL'].".jpg' style='border-radius:6px; width:100%; height:100%; cursor:pointer' 
+																				alt='' data-toggle='modal' data-target='#zoom".$reply['id_balasan']."'>
+																			</div>
+																			<div class='col-md-6' style=''>
+																				<p style='font-size:13px;'>".$reply['isi']."</p>
+																			</div>
+																		</div>";
+																	} else { 
+																		echo"<p style='font-size:13px;'>".$reply['isi']."</p>";
+																	}
+																	echo"</div>"; 
+																	$count++;
+																}
+															} 
+															if(($count == 0) &&($data['namaPengguna'] == $this->session->userdata('userTrack'))) {
+																echo "<div class='container' style='margin-top:1%; margin-bottom:2%;'>
+																<p style='font-style:italic; text-align:center; color:grey;'>Maaf, pertanyaan Anda belum dijawab</p>
+																<img src='http://localhost/MedStory/assets/icon/Questions.gif' alt='Sorry.png' id='imgNoDataForum'>
+																<p id='msgNoDataForumb'>Jangan khawatir, ini hanya masalah waktu</p>
+															</div>";
+															} else if (($count == 0) &&($data['namaPengguna'] != $this->session->userdata('userTrack'))){
+																echo "<div class='container' style='margin-top:1%; margin-bottom:2%;'>
+																<p style='font-style:italic; text-align:center; color:grey;'>Pertanyaan ini belum dijawab</p>
+																<img src='http://localhost/MedStory/assets/icon/Questions.gif' alt='Error404.png' id='imgNoDataForum'>
+																<p id='msgNoDataForumb'>Ayo jadi yang pertama</p>
+																</div>";
+															} else if ($count > 0) {echo"<a style='font-size:13px; font-style:italic;'>Menampilkan ".$count." balasan...</a><br>";}
+															echo"<form method='post' action='history/balasDiskusi' class='form-inline' enctype='multipart/form-data'>
+																<input type='text' class='form-control' name='inputIdB' value='".$data['id_diskusi']."' hidden>
+																<div class='container'><hr>
+																	<label class='switch' style='float:left; margin-right:1%;'>
+																	<input type='checkbox' name='imageSwitchR'>
+																		<span class='slider round' type='button' data-toggle='collapse' data-target='#collapseImage".$i."'></span>
+																	</label>
+																	<a style='float:left;'>Image</a>
+																	<button class='btn btn-primary' style='color:whitesmoke; background-color:#00a13e; float:right; border:none;' type='submit'>Balas</button>
+																	<input class='form-control' type='text' placeholder='Ketik balasan Anda disini...' style='width:40%; float:right; margin-right:1%;
+																		background:#f4f4f4; border-width: 0 0 3px; border-bottom: 3.5px solid #4183D7; color:#212121;' name='inputIsi'>
+																	<div class='collapse' id='collapseImage".$i."'>
+																		<div class='container' style='width:40%; float:left;'>
+																			<div class='input-group mb-3' style='background-color:#212121; border-width: 0 0 3px; border-bottom: 3.5px solid #4183D7; color:#212121;
+																				border-radius:5px;'>
+																				<div class='input-group-prepend'>
+																					<span class='input-group-text'>jpg</span>
+																				</div>
+																				<div class='custom-file'>
+																					<input type='file' class='custom-file-input' id='uploadImage' name='uploadImageR' accept='image/*'>
+																					<label class='custom-file-label text-left' for='uploadImage'>file size max 2 mb</label>
+																				</div>
+																			</div>
 																		</div>
 																	</div>
-																</div>
-															</div>
-														</div> <!--End of input container-->
-													</form>
-													</div> <!--End of card body-->
-												</div> <!--End of collapse-->
-											</div>
-										</div>";
-										$k++;
-										$state = ' ';
-										if($k % 4 == 0){
-											echo"</div>
-										</div>";
+																</div> <!--End of input container-->
+															</form>
+															</div> <!--End of card body-->
+														</div> <!--End of collapse-->
+													</div>
+												</div>";
+												$k++;
+												$state = ' ';
+												if($k % $z == 0){
+													echo"</div>
+												</div>";
+												}
+												$count = 0; $i++; 
+											}
 										}
-										$count = 0; $i++; 
-									}
-								}
-								//Need to be simplify / optimized
-								if($k > 4){ 
-									echo"
-									</div></div></div>
-									<!-- Carousel controls -->
-									<a class='carousel-control-prev' href='#myCarouselDiskusiSaya' data-slide='prev'>
-										<i class='fa fa-angle-left'></i>
-									</a>
-									<a class='carousel-control-next' href='#myCarouselDiskusiSaya' data-slide='next'>
-										<i class='fa fa-angle-right'></i>
-									</a></div>";
-								} else if($k == 4){ 
-									echo"</div></div>";
-								// } else if(($k == 2)||($k == 3)||($k == 1)){
-								} else if(($k >= 1)&&($k <= 3)){
-									echo"</div></div></div></div>";
-								} else if($k == 0){
-									echo"</div></div>";
-									echo "<div class='container'>
-										<p style='font-style:italic; text-align:center; color:grey;'>Tidak terdapat pertanyaan dengan kategori terkait</p>
-										<img src='http://localhost/MedStory/assets/icon/Empty.gif' alt='Sorry.png' style='display: block;
-											margin-left: auto; margin-right: auto; width: 250px; height: 250px;'>
-									</div>";
-								}
-								// echo $k."=k";
-								//Check this
-							?>
+										echo"</div>"; //end of carousel-inner.
+										//Carousel fixes. if there's another bug. check this.
+										if($k % $z != 0){
+											echo"</div></div>";
+										}
+										if($k > $z){ 
+											echo"
+											<!-- Carousel controls -->
+											<a class='carousel-control-prev' href='#myCarouselDiskusiSaya' data-slide='prev'>
+												<i class='fa fa-angle-left'></i>
+											</a>
+											<a class='carousel-control-next' href='#myCarouselDiskusiSaya' data-slide='next'>
+												<i class='fa fa-angle-right'></i>
+											</a>";
+										} else if($k == 1){
+											echo "<div class='container'>
+												<p style='font-style:italic; text-align:center; color:grey;'>Tidak terdapat pertanyaan dengan kategori terkait</p>
+												<img src='http://localhost/MedStory/assets/icon/Empty.gif' alt='Sorry.png' style='display: block;
+													margin-left: auto; margin-right: auto; width: 250px; height: 250px;'>
+											</div>";
+										}
+									?>
+								</div>
+							</div>
 						</div>
-					</div>
-				</div>
-				<div class="col-md-12">
-					<div class="collapse" id="multiCollapseExample3" data-parent="#accordion">
-						<div class="container">
-						<h5 style="text-align: left; color:#696969;">Statistik</h5>
-							<h6 style="text-align: center; color:#696969;">Kategori Diskusi</h6>
-							<div id="statistikDiskusiKat" style="height:290px; width:100%; min-width:300px;"></div>
-							<h6 style="text-align: center; color:#696969;">Total Diskusi per bulan 2022</h6>
-							<canvas id="statistikDiskusiBulan" style="width:100%;max-width:600px; margin-left:20%;"></canvas>
+					</div><!--End of col collapse.-->
+
+					<div class="col-md-12">
+						<div class="collapse" id="multiCollapseExample3" data-parent="#accordion">
+							<div class="container">
+							<h5 style="text-align: left; color:#696969;">Statistik</h5>
+								<h6 style="text-align: center; color:#696969;">Kategori Diskusi</h6>
+								<div id="statistikDiskusiKat" style="height:290px; width:100%; min-width:300px;"></div>
+								<h6 style="text-align: center; color:#696969;">Total Diskusi per bulan 2022</h6>
+								<canvas id="statistikDiskusiBulan" style="width:100%;max-width:600px; margin-left:20%;"></canvas>
+							</div>
 						</div>
-					</div>
-				</div>
-			</div><br>
-		</div>
+					</div><!--End of col collapse.-->
+
+				</div><br>
+			</div>
 		</div>
 		
         <!-- Footer -->
@@ -1331,51 +1476,51 @@
         <section style="background-color: #4183D7; padding-top: 3px;">
         <div class="container text-center text-md-start mt-5">
         <div class="row mt-3">
-          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-            <!-- Deskripsi -->
-            <h6 class="text-uppercase fw-bold mb-4" style="color: #212121; font-size: large;">MedStory</h6>
-            <p style="color: whitesmoke;">
-              MedStory merupakan sebuah aplikasi yang menyimpan data riwayat kesehatan setiap kali
-              seseorang berobat. Dilengkapi dengan fitur scan QR, live chat dengan dokter, forum kesehatan,
-              informasi kesehatan, nomor darurat, dan juga pencarian dokter. 
-            </p>
-          </div>
-          <div class="col-md-2 col-lg-2 col-xl-4 mx-auto mb-4">
-            <h6 class="text-uppercase fw-bold mb-4" style="color: #212121; font-size: large;">Kelompok 4</h6>
-            <p style="color: whitesmoke;">
-              <a class="text-reset">Leonardho R. Sitanggang</a>
-            </p>
-            <p style="color: whitesmoke;">
-              <a class="text-reset">Fauzan Reza Ananda</a>
-            </p>
-            <p style="color: whitesmoke;">
-              <a class="text-reset">Muhammad Rafi Alfarisi</a>
-            </p>
-            <p style="color: whitesmoke;">
-              <a class="text-reset">Muhammad Akmal Fadhlillah</a>
-            </p>
-            <p style="color: whitesmoke;">
-                <a class="text-reset">Ananda Ardian Pratama P.</a>
-              </p>
-          </div>
-          <div class="col-md-3 col-lg-2 col-xl-4 mx-auto mb-4">
-            <h6 class="text-uppercase fw-bold mb-4" style="color: #212121; font-size: large;">NIM</h6>
-            <p style="color: whitesmoke;">
-                <a class="text-reset">1302194041</a>
-            </p>
-            <p style="color: whitesmoke;">
-                <a class="text-reset">1302194003</a>
-            </p>
-            <p style="color: whitesmoke;">
-                <a class="text-reset">1302194024</a>
-            </p>
-            <p style="color: whitesmoke;">
-                <a class="text-reset">1302190103</a>
-            </p>
-            <p style="color: whitesmoke;">
-                <a class="text-reset">1302194049</a>
-            </p>
-          </div>
+			<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+				<!-- Deskripsi -->
+				<h6 class="text-uppercase fw-bold mb-4" style="color: #212121; font-size: large;">MedStory</h6>
+				<p style="color: whitesmoke;">
+				MedStory merupakan sebuah aplikasi yang menyimpan data riwayat kesehatan setiap kali
+				seseorang berobat. Dilengkapi dengan fitur scan QR, live chat dengan dokter, forum kesehatan,
+				informasi kesehatan, nomor darurat, dan juga pencarian dokter. 
+				</p>
+			</div>
+			<div class="col-md-2 col-lg-2 col-xl-4 mx-auto mb-4">
+				<h6 class="text-uppercase fw-bold mb-4" style="color: #212121; font-size: large;">Kelompok 4</h6>
+				<p style="color: whitesmoke;">
+				<a class="text-reset">Leonardho R. Sitanggang</a>
+				</p>
+				<p style="color: whitesmoke;">
+				<a class="text-reset">Fauzan Reza Ananda</a>
+				</p>
+				<p style="color: whitesmoke;">
+				<a class="text-reset">Muhammad Rafi Alfarisi</a>
+				</p>
+				<p style="color: whitesmoke;">
+				<a class="text-reset">Muhammad Akmal Fadhlillah</a>
+				</p>
+				<p style="color: whitesmoke;">
+					<a class="text-reset">Ananda Ardian Pratama P.</a>
+				</p>
+			</div>
+			<div class="col-md-3 col-lg-2 col-xl-4 mx-auto mb-4">
+				<h6 class="text-uppercase fw-bold mb-4" style="color: #212121; font-size: large;">NIM</h6>
+				<p style="color: whitesmoke;">
+					<a class="text-reset">1302194041</a>
+				</p>
+				<p style="color: whitesmoke;">
+					<a class="text-reset">1302194003</a>
+				</p>
+				<p style="color: whitesmoke;">
+					<a class="text-reset">1302194024</a>
+				</p>
+				<p style="color: whitesmoke;">
+					<a class="text-reset">1302190103</a>
+				</p>
+				<p style="color: whitesmoke;">
+					<a class="text-reset">1302194049</a>
+				</p>
+			</div>
         </section>
 
 		<!-- Sign out Modal -->
@@ -1753,8 +1898,7 @@
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLabel">Asupan Hari ini</h5>
 				<div class="col-sm">
-					<select class="form-control" name="waktu" style="background:#f4f4f4; border-width: 0 0 3px; 
-						border-bottom: 3.5px solid #4183D7; color:#212121; width:200px;">
+					<select class="form-control" name="waktu" style='width:200px;'>
 						<option value="pagi">Pagi</option>
 						<option value="siang">Siang</option>
 						<option value="malam">Malam</option>
@@ -2012,25 +2156,8 @@
 		</div>
 		</div>
 				
-		<!--Cal Donut-->
-		<script>
-			const numb = document.querySelector(".number");
-			let counter = 0;
-			setInterval(() => {
-			if(counter == <?php foreach($dataUser as $user) {if($user['namaPengguna'] == $this->session->userdata('userTrack')){	
-				foreach($dataKebutuhan as $kebutuhan){ if(($kebutuhan['id_user'] == $user['id_user'])&&($kebutuhan['date'] == date("Y-m-d"))){
-				echo $kebutuhan['kalori'];}}}}?> ){
-
-				clearInterval();
-			}else{
-				counter+=1;
-				numb.textContent = counter + " cal";
-			}
-			}, 0);
-		</script>
-
-		<!--Javascript signout-->
 		<script type="text/javascript">
+			//Refresh page.
 			function refreshMessage() {
 				window.location.href="http://localhost/MedStory/history";  
 			}
@@ -2052,6 +2179,21 @@
 				document.documentElement.scrollTop = 0;
 			}
 
+			//Calorie donat chart.
+			const numb = document.querySelector(".number");
+			let counter = 0;
+			setInterval(() => {
+			if(counter == <?php foreach($dataUser as $user) {if($user['namaPengguna'] == $this->session->userdata('userTrack')){	
+				foreach($dataKebutuhan as $kebutuhan){ if(($kebutuhan['id_user'] == $user['id_user'])&&($kebutuhan['date'] == date("Y-m-d"))){
+				echo $kebutuhan['kalori'];}}}}?> ){
+
+				clearInterval();
+			}else{
+				counter+=1;
+				numb.textContent = counter + " cal";
+			}
+			}, 0);
+
 			//Side nav
 			function openNav() {
 				document.getElementById("mySidebar").style.width = "350px";
@@ -2062,6 +2204,7 @@
 				document.getElementById("mySidebar").style.width = "0";
 				document.getElementById("main").style.marginLeft= "0";
 			}
+
 			//Discussion line chart
 			var Jan = <?php $i = 0; $check = ''; foreach($dataDiskusi as $data){$check = $data['datetime']; $month = explode("-", $check); 
 				if($month[1] == '01'){$i++;}}echo $i;?>;
@@ -2091,6 +2234,7 @@
 			var xValues = ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];
 			var yValues = [Jan,Feb,Mar,Apr,Mei,Jun,Jul,Agu,Sep,Okt,Nov,Des];
 
+			//Line chart setting.
 			new Chart("statistikDiskusiBulan", {
 			type: "line",
 			data: {
@@ -2112,33 +2256,35 @@
 			});
         </script>
 
-		<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+		<!--Others CDN.-->
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-		<!--Ajax for json-->
 		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>  
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>				
 		
-		<!-- chartist chart -->
+		<!--Chartist chart.-->
 		<script src="http://localhost/MedStory/assets/js/chartist-js/dist/chartist.min.js"></script>
 		<script src="http://localhost/MedStory/assets/js/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
-		<!--c3 JavaScript -->
+		
+		<!--C3 JavaScript.-->
 		<script src="http://localhost/MedStory/assets/js/d3/d3.min.js"></script>
 		<script src="http://localhost/MedStory/assets/js/c3-master/c3.min.js"></script>
 		<script src="https://kit.fontawesome.com/12801238e9.js" crossorigin="anonymous"></script>
 
-		<!--Jquery-->
         <script>
+			//Popover.
 			$(document).ready(function(){
 				$(function () {
 					$('[data-toggle="popover"]').popover()
 				})
 			})
+
 			//Set file name when upload.
 			$('.custom-file-input').on('change', function() { 
 				let fileName = $(this).val().split('\\').pop(); 
 				$(this).next('.custom-file-label').addClass("selected").html(fileName); 
 			});
 
+			//Modal setting.
 			$(window).on('load', function() {
 				$('#errorCalHarian').modal('show');
 			});
@@ -2147,9 +2293,10 @@
 				keyboard: false
 			});  
 
-			//Statistic
+			//Discussion Statistic donut.
 			$(function() {
 				"use strict";
+				//Statistic setting.
 				var chart2 = new Chartist.Bar('.amp-pxl', {
 				}, {
 					axisX: {
@@ -2238,6 +2385,7 @@
 					}
 				});
 
+				//Statistic donut animation.
 				for (var i = 0; i < replyChart.length; i++) {
 					replyChart[i].on('draw', function(data) {
 						if (data.type === 'line' || data.type === 'area') {
