@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Apr 2022 pada 11.00
+-- Waktu pembuatan: 25 Jun 2022 pada 03.23
 -- Versi server: 10.4.19-MariaDB
 -- Versi PHP: 8.0.7
 
@@ -100,7 +100,11 @@ INSERT INTO `balasan` (`id_balasan`, `pengirim`, `isi`, `id_diskusi`, `datetime`
 (1, 'vasilykash', 'setau saya sih tidak', 4, '2022-03-08 14:49:30', 'null', 'null'),
 (13, 'rosemonde', 'boleh yg penting sdh konsultasi ke dokter. Dan kalau tidak salah HbA1c harus dibawah 7,5%', 1, '2022-04-11 05:15:39', 'null', 'verified'),
 (14, 'flazefy', 'sinovac, moderna, aztra zeneca', 3, '2022-04-12 04:19:05', 'null', 'verified'),
-(19, 'teresevyy', 'awdadwad', 13, '2022-04-21 03:50:59', 'null', 'null');
+(19, 'teresevyy', 'awdadwad', 13, '2022-04-21 03:50:59', 'null', 'null'),
+(21, 'flazefy', 'tesssss', 14, '2022-05-17 02:35:18', 'null', 'null'),
+(25, 'rosemonde', 'hollaa', 14, '2022-06-19 02:22:43', 'null', 'null'),
+(26, 'flazefy', 'thx jawabannya', 1, '2022-06-19 02:33:04', 'null', 'null'),
+(27, 'flazefy', 'tesssss', 39, '2022-06-19 05:30:27', 'null', 'null');
 
 -- --------------------------------------------------------
 
@@ -155,7 +159,10 @@ INSERT INTO `diskusi` (`id_diskusi`, `namaPengguna`, `pertanyaan`, `kategori`, `
 (2, 'flazefy', 'Halo, ingin bertanya. Apakah anak berumur 14 thn sudah bisa vaksin? Mksh.', 'Vaksin & Imunisasi', 0, 0, 'null', '2022-03-04 06:31:58'),
 (3, 'vasilykash', 'Vaksin yang ada di Indonesia apa saja ya?', 'Vaksin & Imunisasi', 0, 0, 'null', '2022-03-08 20:04:20'),
 (4, 'richardkyle', 'Apakah cacar air bisa menular ke orang yang pernah terkena sebelumnya? thx.', 'Penyakit Menular', 0, 0, 'null', '2022-03-06 11:41:23'),
-(13, 'teresevyy', 'waedadwa', 'Kulit & Kelamin', 0, 0, 'null', '2022-04-21 03:50:46');
+(13, 'teresevyy', 'waedadwa', 'Kulit & Kelamin', 0, 0, 'null', '2022-04-21 03:50:46'),
+(14, 'flazefy', 'test', 'Kulit & Kelamin', 0, 0, 'null', '2022-05-15 06:54:36'),
+(43, 'flazefy', 'tes', 'Obat-Obatan', 0, 0, 'null', '2022-06-19 05:34:32'),
+(44, 'flazefy', 'twsdasd', 'Kulit & Kelamin', 0, 0, 'null', '2022-06-25 02:57:49');
 
 -- --------------------------------------------------------
 
@@ -194,21 +201,22 @@ INSERT INTO `dokterpraktik` (`id_dokter`, `namaDokter`, `spesialis`, `jamMulai`,
 CREATE TABLE `faskes` (
   `id_faskes` int(6) NOT NULL,
   `namaFaskes` varchar(40) NOT NULL,
-  `rating` varchar(4) NOT NULL,
+  `rating` float NOT NULL,
   `alamat` varchar(80) NOT NULL,
   `kontak` varchar(14) NOT NULL,
   `fasilitas` varchar(500) NOT NULL,
-  `poliklinik` varchar(700) NOT NULL
+  `poliklinik` varchar(700) NOT NULL,
+  `kordinat` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `faskes`
 --
 
-INSERT INTO `faskes` (`id_faskes`, `namaFaskes`, `rating`, `alamat`, `kontak`, `fasilitas`, `poliklinik`) VALUES
-(1, 'RS. Dian Harapan', '3.8', 'Jl. Teruna Bakti Yabansai Waena, Yabansai, \r\nHeram, Kota Jayapura, Papua 99358', '0967572123', 'Farmasi, Ambulans, Instalasi Bedah, Rawat Jalan, Medical Check Up, Radiologi, Ruang Perawatan Anak, NICU, IGD, Tumbuh Kembang Anak, Instalasi Bersalin, Instalasi Rawat Inap, Penunjang Diagnostik, Laboratorium, Radiologi Gigi, Ruang Tunggu, PICU', 'Bedah/Sunat, Orthopaedi dan Traumatologi, Bedah Saraf, Bedah Anak, Bedah Plastik Rekonstruksi dan Estetik, Bedah Onkologi, Bedah Umum, Urologi, Bedah Digestif, Bedah Toraks Kardiovaskular, Bedah Vaskuler dan Endovaskuler, Bedah Mulut dan Maksilofasial, Bedah Kepala Leher, Orthopaedi dan Traumatologi (Spine), Bedah Orthopaedi, Poli Gigi, Dental X-Ray, Gigi Umum, Dental Cosmetic, Mata Umum, Lasik, Operasi Katarak, Psikolog, Psikiatri, Fisioterapi, Terapi Okupasi, Terapi Wicara, THT, Alergi Imunologi, Otologi, Kebidanan, Kandungan'),
-(2, 'RSUD. Abepura', '3.6', 'Jl. Kesehatan No.1, Yobe, Abepura, Kota Jayapura, Papua 99351', '0967581064', 'Farmasi, Ambulans, Instalasi Bedah, Rawat Jalan, Medical Check Up, IGD, Penunjang Diagnostik, Instalasi Rawat Intensif, Laboratorium, Instalasi Rawat Inap, Radiologi, Bedah Bersalin, Ruang Tunggu', 'Poli Penyakit Dalam, Poli Anak, Poli Kebidanan & Peny. Kandungan, Poli Bedah, Poli Orthopedi, Poli Bedah Urologi, Poli Bedah Saraf, Poli Saraf, Poli Jantung Dan Pembuluh Darah, Poli Mata, Poli THT, Poli Gigi Dan Mulut, Fisioterapi, Poli Kulit dan Kelamin, Poli KB, Poli Paru, Poli Gizi, Poli Akupuntur, Poli VCT'),
-(3, 'RS. Bhayangkara Kotaraja', '4.1', 'Jl. Jeruk Nipis, Wahno, Abepura, Kota Jayapura, Papua 99224', '0967587787', 'Farmasi, Ambulans, Instalasi Bedah, Rawat Jalan, Medical Check Up, Radiologi, Ruang Perawatan Anak, NICU, IGD, Instalasi Bersalin Instalasi Rawat Inap, Penunjang Diagnostik, Laboratorium, Radiologi Gigi, Ruang Tunggu, PICU, Forensik', 'Poli Penyakit Dalam, Poli Anak, Poli Kebidanan & Peny. Kandungan, Poli Bedah, Poli Orthopedi, Poli Bedah Urologi, Poli Bedah Saraf, Poli Saraf, Poli Jantung Dan Pembuluh Darah, Poli Mata, Poli THT, Poli Gigi Dan Mulut, Fisioterapi, Poli Kulit dan Kelamin, Poli KB, Poli Paru, Poli Gizi, Poli Akupuntur, Poli VCT, Poli Urologi, Anestesiologi');
+INSERT INTO `faskes` (`id_faskes`, `namaFaskes`, `rating`, `alamat`, `kontak`, `fasilitas`, `poliklinik`, `kordinat`) VALUES
+(1, 'RS. Dian Harapan', 3.8, 'Jl. Teruna Bakti Yabansai Waena, Yabansai, \r\nHeram, Kota Jayapura, Papua 99358', '0967572123', 'Farmasi, Ambulans, Instalasi Bedah, Rawat Jalan, Medical Check Up, Radiologi, Ruang Perawatan Anak, NICU, IGD, Tumbuh Kembang Anak, Instalasi Bersalin, Instalasi Rawat Inap, Penunjang Diagnostik, Laboratorium, Radiologi Gigi, Ruang Tunggu, PICU', 'Bedah/Sunat, Orthopaedi dan Traumatologi, Bedah Saraf, Bedah Anak, Bedah Plastik Rekonstruksi dan Estetik, Bedah Onkologi, Bedah Umum, Urologi, Bedah Digestif, Bedah Toraks Kardiovaskular, Bedah Vaskuler dan Endovaskuler, Bedah Mulut dan Maksilofasial, Bedah Kepala Leher, Orthopaedi dan Traumatologi (Spine), Bedah Orthopaedi, Poli Gigi, Dental X-Ray, Gigi Umum, Dental Cosmetic, Mata Umum, Lasik, Operasi Katarak, Psikolog, Psikiatri, Fisioterapi, Terapi Okupasi, Terapi Wicara, THT, Alergi Imunologi, Otologi, Kebidanan, Kandungan', '-2.5910217846120474, 140.64260107215972'),
+(2, 'RSUD. Abepura', 3.6, 'Jl. Kesehatan No.1, Yobe, Abepura, Kota Jayapura, Papua 99351', '0967581064', 'Farmasi, Ambulans, Instalasi Bedah, Rawat Jalan, Medical Check Up, IGD, Penunjang Diagnostik, Instalasi Rawat Intensif, Laboratorium, Instalasi Rawat Inap, Radiologi, Bedah Bersalin, Ruang Tunggu', 'Poli Penyakit Dalam, Poli Anak, Poli Kebidanan & Peny. Kandungan, Poli Bedah, Poli Orthopedi, Poli Bedah Urologi, Poli Bedah Saraf, Poli Saraf, Poli Jantung Dan Pembuluh Darah, Poli Mata, Poli THT, Poli Gigi Dan Mulut, Fisioterapi, Poli Kulit dan Kelamin, Poli KB, Poli Paru, Poli Gizi, Poli Akupuntur, Poli VCT', '-2.615026527442366, 140.6687531971121'),
+(3, 'RS. Bhayangkara Kotaraja', 4.1, 'Jl. Jeruk Nipis, Wahno, Abepura, Kota Jayapura, Papua 99224', '0967587787', 'Farmasi, Ambulans, Instalasi Bedah, Rawat Jalan, Medical Check Up, Radiologi, Ruang Perawatan Anak, NICU, IGD, Instalasi Bersalin Instalasi Rawat Inap, Penunjang Diagnostik, Laboratorium, Radiologi Gigi, Ruang Tunggu, PICU, Forensik', 'Poli Penyakit Dalam, Poli Anak, Poli Kebidanan & Peny. Kandungan, Poli Bedah, Poli Orthopedi, Poli Bedah Urologi, Poli Bedah Saraf, Poli Saraf, Poli Jantung Dan Pembuluh Darah, Poli Mata, Poli THT, Poli Gigi Dan Mulut, Fisioterapi, Poli Kulit dan Kelamin, Poli KB, Poli Paru, Poli Gizi, Poli Akupuntur, Poli VCT, Poli Urologi, Anestesiologi', '-2.591069705470215, 140.67447289314563');
 
 -- --------------------------------------------------------
 
@@ -237,7 +245,8 @@ INSERT INTO `gejala` (`id_gejala`, `nama_gejala`) VALUES
 (9, 'Demam'),
 (10, 'Kelelahan'),
 (11, 'Kehilangan nafsu makan'),
-(12, 'Gatal');
+(12, 'Gatal'),
+(13, 'Menggigil');
 
 -- --------------------------------------------------------
 
@@ -258,9 +267,6 @@ CREATE TABLE `jadwalkalori` (
 --
 
 INSERT INTO `jadwalkalori` (`id_jadwal`, `id_user`, `id_asupan`, `date`, `waktu`) VALUES
-(3, 2, 2, '2022-04-19', 'pagi'),
-(11, 1, 4, '2022-04-23', 'pagi'),
-(14, 1, 12, '2022-04-23', 'malam'),
 (16, 1, 1, '2022-04-22', 'pagi'),
 (17, 1, 11, '2022-04-22', 'siang'),
 (18, 1, 3, '2022-04-22', 'siang'),
@@ -280,7 +286,46 @@ INSERT INTO `jadwalkalori` (`id_jadwal`, `id_user`, `id_asupan`, `date`, `waktu`
 (33, 1, 4, '2022-04-27', 'siang'),
 (34, 1, 3, '2022-04-27', 'siang'),
 (35, 1, 7, '2022-04-27', 'malam'),
-(36, 1, 12, '2022-04-27', 'malam');
+(36, 1, 12, '2022-04-27', 'malam'),
+(37, 1, 2, '2022-04-28', 'pagi'),
+(38, 1, 8, '2022-04-28', 'siang'),
+(39, 1, 5, '2022-04-28', 'siang'),
+(40, 1, 3, '2022-04-28', 'siang'),
+(41, 1, 12, '2022-05-17', 'pagi'),
+(42, 1, 2, '2022-05-17', 'pagi'),
+(43, 1, 8, '2022-05-17', 'siang'),
+(46, 1, 10, '2022-05-17', 'siang'),
+(47, 6, 11, '2022-05-17', 'pagi'),
+(48, 6, 2, '2022-05-17', 'pagi'),
+(49, 1, 10, '2022-05-25', 'pagi'),
+(50, 1, 3, '2022-05-25', 'pagi'),
+(51, 1, 2, '2022-05-25', 'malam'),
+(53, 6, 3, '2022-05-26', 'pagi'),
+(54, 6, 11, '2022-05-26', 'pagi'),
+(55, 1, 12, '2022-05-31', 'pagi'),
+(77, 1, 2, '2022-06-09', 'pagi'),
+(78, 1, 8, '2022-06-09', 'pagi'),
+(79, 1, 12, '2022-06-09', 'pagi'),
+(80, 1, 2, '2022-06-16', 'pagi'),
+(81, 1, 5, '2022-06-16', 'pagi'),
+(82, 1, 9, '2022-06-16', 'siang'),
+(83, 1, 6, '2022-06-16', 'siang'),
+(84, 1, 3, '2022-06-16', 'siang'),
+(85, 1, 1, '2022-06-17', 'pagi'),
+(86, 1, 4, '2022-06-17', 'pagi'),
+(87, 1, 11, '2022-06-17', 'siang'),
+(88, 1, 12, '2022-06-17', 'siang'),
+(89, 1, 8, '2022-06-18', 'pagi'),
+(90, 1, 11, '2022-06-18', 'pagi'),
+(91, 1, 2, '2022-06-19', 'pagi'),
+(92, 1, 12, '2022-06-19', 'pagi'),
+(94, 1, 4, '2022-06-19', 'siang'),
+(95, 1, 3, '2022-06-19', 'siang'),
+(96, 1, 2, '2022-06-19', 'malam'),
+(97, 1, 1, '2022-06-19', 'malam'),
+(98, 1, 3, '2022-06-19', 'malam'),
+(100, 1, 8, '2022-06-19', 'malam'),
+(101, 1, 6, '2022-06-19', 'malam');
 
 -- --------------------------------------------------------
 
@@ -301,10 +346,57 @@ CREATE TABLE `kebutuhankalori` (
 
 INSERT INTO `kebutuhankalori` (`id_kebutuhan`, `id_user`, `kalori`, `date`) VALUES
 (1, 1, 1778, '2022-04-22'),
-(2, 2, 1833, '2022-04-19'),
 (3, 1, 1720, '2022-04-21'),
 (5, 1, 2192, '2022-04-25'),
-(7, 1, 2200, '2022-04-27');
+(7, 1, 2200, '2022-04-27'),
+(11, 1, 1750, '2022-04-28'),
+(13, 1, 1800, '2022-05-17'),
+(14, 6, 1400, '2022-05-17'),
+(15, 1, 1800, '2022-05-25'),
+(16, 1, 1800, '2022-05-26'),
+(19, 6, 1400, '2022-05-26'),
+(20, 1, 1800, '2022-05-31'),
+(21, 1, 1800, '2022-06-04'),
+(22, 1, 1800, '2022-06-09'),
+(23, 1, 1800, '2022-06-11'),
+(24, 1, 1900, '2022-06-16'),
+(25, 1, 2000, '2022-06-17'),
+(26, 1, 1900, '2022-06-18'),
+(27, 1, 1800, '2022-06-19'),
+(28, 5, 1900, '2022-06-19'),
+(29, 6, 1700, '2022-06-19'),
+(30, 2, 1900, '2022-06-25');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `kms`
+--
+
+CREATE TABLE `kms` (
+  `id_kms` int(12) NOT NULL,
+  `id_user` int(10) NOT NULL,
+  `namaAnak` varchar(25) NOT NULL,
+  `jenisKelamin` varchar(10) NOT NULL,
+  `tinggi` int(3) NOT NULL,
+  `berat` int(2) NOT NULL,
+  `tanggalLahirA` date NOT NULL,
+  `datecreated` date NOT NULL,
+  `hasilBerat` varchar(30) NOT NULL,
+  `hasilTinggi` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `kms`
+--
+
+INSERT INTO `kms` (`id_kms`, `id_user`, `namaAnak`, `jenisKelamin`, `tinggi`, `berat`, `tanggalLahirA`, `datecreated`, `hasilBerat`, `hasilTinggi`) VALUES
+(42, 1, 'Tester123', 'Pria', 70, 7, '2022-03-17', '2022-06-14', 'Berat Badan Normal', 'Tinggi Badan Lebih'),
+(43, 1, 'Tester256', 'Wanita', 89, 15, '2022-01-05', '2022-06-14', 'Berat Badan Lebih', 'Tinggi Badan Lebih'),
+(44, 1, 'Tester256', 'Wanita', 85, 18, '2021-11-18', '2022-06-14', 'Berat Badan Lebih', 'Tinggi Badan Lebih'),
+(47, 1, 'Tester256', 'Pria', 75, 18, '2022-01-06', '2022-06-16', 'Berat Badan Lebih', 'Tinggi Badan Lebih'),
+(48, 1, 'Tester123', 'Pria', 76, 26, '2021-11-24', '2022-06-16', 'Berat Badan Lebih', 'Tinggi Badan Lebih'),
+(49, 1, 'Tester256', 'Pria', 75, 24, '2021-06-10', '2022-06-16', 'Berat Badan Lebih', 'Tinggi Badan Normal');
 
 -- --------------------------------------------------------
 
@@ -493,6 +585,14 @@ INSERT INTO `review` (`id_review`, `id_user`, `text`, `star`, `datetime`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `sertifikatvaksin`
+--
+-- Kesalahan membaca struktur untuk tabel medstory.sertifikatvaksin: #1932 - Table 'medstory.sertifikatvaksin' doesn't exist in engine
+-- Kesalahan membaca data untuk tabel medstory.sertifikatvaksin: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `medstory`.`sertifikatvaksin`' at line 1
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `smartdoc`
 --
 
@@ -512,6 +612,22 @@ CREATE TABLE `smartdoc` (
 INSERT INTO `smartdoc` (`id_penyakit`, `nama_penyakit`, `penanganan`, `rasio`, `level`, `pencegahan`) VALUES
 (1, 'Maag / Radang lambung', 'Memerlukan diagnosis medis, perlu tes pencitraan (USG), ', '150 ribu kasus pertahun', 1, 'Kurangi kafein dan coklat, Mengunyah makanan secara perlahan, Jangan berolahraga setelah makan, Beri jeda 2 jam jika ingin tidur setelah makan, Kurangi obat antiflamasi, Memperhatikan berat badan ideal'),
 (2, 'Cacar air', 'Biasanya dapat diobati sendiri, tidak perlu tes laboratorium, dan penyakit yang dapat menyebar', '150 ribu kasus pertahun', 2, 'Dapat dicegah dengan vaksinasi, Mandi oatmeal, dan gunakan pelembab');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tescovid`
+--
+-- Kesalahan membaca struktur untuk tabel medstory.tescovid: #1932 - Table 'medstory.tescovid' doesn't exist in engine
+-- Kesalahan membaca data untuk tabel medstory.tescovid: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `medstory`.`tescovid`' at line 1
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `vaksinasi`
+--
+-- Kesalahan membaca struktur untuk tabel medstory.vaksinasi: #1932 - Table 'medstory.vaksinasi' doesn't exist in engine
+-- Kesalahan membaca data untuk tabel medstory.vaksinasi: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `medstory`.`vaksinasi`' at line 1
 
 --
 -- Indexes for dumped tables
@@ -576,6 +692,12 @@ ALTER TABLE `jadwalkalori`
 --
 ALTER TABLE `kebutuhankalori`
   ADD PRIMARY KEY (`id_kebutuhan`);
+
+--
+-- Indeks untuk tabel `kms`
+--
+ALTER TABLE `kms`
+  ADD PRIMARY KEY (`id_kms`);
 
 --
 -- Indeks untuk tabel `masukan`
@@ -645,7 +767,7 @@ ALTER TABLE `asupan`
 -- AUTO_INCREMENT untuk tabel `balasan`
 --
 ALTER TABLE `balasan`
-  MODIFY `id_balasan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_balasan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT untuk tabel `covid`
@@ -657,7 +779,7 @@ ALTER TABLE `covid`
 -- AUTO_INCREMENT untuk tabel `diskusi`
 --
 ALTER TABLE `diskusi`
-  MODIFY `id_diskusi` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_diskusi` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT untuk tabel `dokterpraktik`
@@ -675,19 +797,25 @@ ALTER TABLE `faskes`
 -- AUTO_INCREMENT untuk tabel `gejala`
 --
 ALTER TABLE `gejala`
-  MODIFY `id_gejala` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_gejala` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `jadwalkalori`
 --
 ALTER TABLE `jadwalkalori`
-  MODIFY `id_jadwal` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_jadwal` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT untuk tabel `kebutuhankalori`
 --
 ALTER TABLE `kebutuhankalori`
-  MODIFY `id_kebutuhan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_kebutuhan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT untuk tabel `kms`
+--
+ALTER TABLE `kms`
+  MODIFY `id_kms` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT untuk tabel `masukan`
@@ -735,7 +863,7 @@ ALTER TABLE `review`
 -- AUTO_INCREMENT untuk tabel `smartdoc`
 --
 ALTER TABLE `smartdoc`
-  MODIFY `id_penyakit` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_penyakit` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
