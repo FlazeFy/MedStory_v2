@@ -29,6 +29,7 @@
 			if(count($userCheck) == 1){
 				$this->session->set_userdata('userTrack',$username);	
 				$this->session->set_userdata('lastLogin', date("Y/m/d h:i:sa"));
+				$this->session->set_userdata('set_kategori', 'All');
 				redirect('history');
 			}else{
 				$data['errorLogin'] = "Username atau Password Anda salah!"; 

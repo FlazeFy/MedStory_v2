@@ -16,7 +16,8 @@
 			$userCheck = $this->db->get()->result();
 			if(count($userCheck) == 0){
 				$this->db->insert('pengguna',$data);
-				$this->session->set_userdata('userTrack',$username);	
+				$this->session->set_userdata('userTrack',$username);
+				$this->session->set_userdata('set_kategori', 'All');
 				redirect('history');
 			}else{
 				$error_message = "Daftar akun gagal. Periksa kembali data Anda!"; 

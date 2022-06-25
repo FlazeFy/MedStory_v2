@@ -1572,7 +1572,7 @@
 								<option value='Anak'>Anak</option>
 							</select><br>
 							<h6 class='card-title'>Pertanyaan</h6>
-							<textarea rows="5" cols="60" name="pertanyaanTambah">Enter text here...</textarea><br>
+							<textarea rows="5" cols="60" name="pertanyaanTambah" class="form-control">Enter text here...</textarea><br>
 					</div>
 					<div class='container'> 
 						<label class='switch' style='float:left;'>
@@ -2179,21 +2179,6 @@
 				document.documentElement.scrollTop = 0;
 			}
 
-			//Calorie donat chart.
-			const numb = document.querySelector(".number");
-			let counter = 0;
-			setInterval(() => {
-			if(counter == <?php foreach($dataUser as $user) {if($user['namaPengguna'] == $this->session->userdata('userTrack')){	
-				foreach($dataKebutuhan as $kebutuhan){ if(($kebutuhan['id_user'] == $user['id_user'])&&($kebutuhan['date'] == date("Y-m-d"))){
-				echo $kebutuhan['kalori'];}}}}?> ){
-
-				clearInterval();
-			}else{
-				counter+=1;
-				numb.textContent = counter + " cal";
-			}
-			}, 0);
-
 			//Side nav
 			function openNav() {
 				document.getElementById("mySidebar").style.width = "350px";
@@ -2255,6 +2240,23 @@
 			}
 			});
         </script>
+
+		<script>
+			//Calorie donat chart.
+			const numb = document.querySelector(".number");
+			let counter = 0;
+			setInterval(() => {
+			if(counter == <?php foreach($dataUser as $user) {if($user['namaPengguna'] == $this->session->userdata('userTrack')){	
+				foreach($dataKebutuhan as $kebutuhan){ if(($kebutuhan['id_user'] == $user['id_user'])&&($kebutuhan['date'] == date("Y-m-d"))){
+				echo $kebutuhan['kalori'];}}}}?> ){
+
+				clearInterval();
+			}else{
+				counter+=1;
+				numb.textContent = counter + " cal";
+			}
+			}, 0);
+		</script>
 
 		<!--Others CDN.-->
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
