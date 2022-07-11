@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 25 Jun 2022 pada 03.23
+-- Waktu pembuatan: 11 Jul 2022 pada 05.12
 -- Versi server: 10.4.19-MariaDB
 -- Versi PHP: 8.0.7
 
@@ -74,7 +74,11 @@ INSERT INTO `asupan` (`id_asupan`, `nama`, `kategori`, `kalori`, `ukuran`) VALUE
 (10, 'Udang', 'Seafood', 100, '100 gram'),
 (11, 'Ikan Tuna', 'Seafood', 135, '100 gram'),
 (12, 'Bihun', 'Lainnya', 100, '100 gram'),
-(13, 'Kurma', 'Buah', 125, '3 butir');
+(13, 'Kurma', 'Buah', 125, '3 butir'),
+(14, 'Tahu Goreng', 'Lainnya', 35, '1 Buah'),
+(15, 'Tempe Goreng', 'Lainnya', 34, '1 Buah'),
+(16, 'Jus Jeruk', 'Buah', 47, '100 ml'),
+(17, 'Tumis Kangkung', 'Sayuran', 105, '1 Porsi');
 
 -- --------------------------------------------------------
 
@@ -84,7 +88,7 @@ INSERT INTO `asupan` (`id_asupan`, `nama`, `kategori`, `kalori`, `ukuran`) VALUE
 
 CREATE TABLE `balasan` (
   `id_balasan` int(10) NOT NULL,
-  `pengirim` varchar(30) NOT NULL,
+  `id_user` int(10) NOT NULL,
   `isi` varchar(200) NOT NULL,
   `id_diskusi` int(8) NOT NULL,
   `datetime` datetime NOT NULL,
@@ -96,15 +100,10 @@ CREATE TABLE `balasan` (
 -- Dumping data untuk tabel `balasan`
 --
 
-INSERT INTO `balasan` (`id_balasan`, `pengirim`, `isi`, `id_diskusi`, `datetime`, `imageURL`, `status`) VALUES
-(1, 'vasilykash', 'setau saya sih tidak', 4, '2022-03-08 14:49:30', 'null', 'null'),
-(13, 'rosemonde', 'boleh yg penting sdh konsultasi ke dokter. Dan kalau tidak salah HbA1c harus dibawah 7,5%', 1, '2022-04-11 05:15:39', 'null', 'verified'),
-(14, 'flazefy', 'sinovac, moderna, aztra zeneca', 3, '2022-04-12 04:19:05', 'null', 'verified'),
-(19, 'teresevyy', 'awdadwad', 13, '2022-04-21 03:50:59', 'null', 'null'),
-(21, 'flazefy', 'tesssss', 14, '2022-05-17 02:35:18', 'null', 'null'),
-(25, 'rosemonde', 'hollaa', 14, '2022-06-19 02:22:43', 'null', 'null'),
-(26, 'flazefy', 'thx jawabannya', 1, '2022-06-19 02:33:04', 'null', 'null'),
-(27, 'flazefy', 'tesssss', 39, '2022-06-19 05:30:27', 'null', 'null');
+INSERT INTO `balasan` (`id_balasan`, `id_user`, `isi`, `id_diskusi`, `datetime`, `imageURL`, `status`) VALUES
+(14, 1, 'sinovac, moderna, aztra zeneca', 3, '2022-04-12 04:19:05', 'null', 'verified'),
+(26, 1, 'thx jawabannya', 1, '2022-06-19 02:33:04', 'null', 'null'),
+(30, 1, 'tidak. cukup sekali seumur hidup', 4, '2022-07-11 04:51:49', 'null', 'null');
 
 -- --------------------------------------------------------
 
@@ -141,7 +140,7 @@ INSERT INTO `covid` (`id_tes`, `id_faskes`, `jenis`, `jamMulai`, `jamSelesai`, `
 
 CREATE TABLE `diskusi` (
   `id_diskusi` int(6) NOT NULL,
-  `namaPengguna` varchar(30) NOT NULL,
+  `id_user` int(10) NOT NULL,
   `pertanyaan` varchar(500) NOT NULL,
   `kategori` varchar(30) NOT NULL,
   `view` int(6) NOT NULL,
@@ -154,15 +153,12 @@ CREATE TABLE `diskusi` (
 -- Dumping data untuk tabel `diskusi`
 --
 
-INSERT INTO `diskusi` (`id_diskusi`, `namaPengguna`, `pertanyaan`, `kategori`, `view`, `up`, `imageURL`, `datetime`) VALUES
-(1, 'flazefy', 'Mau nanya, apakah orang dengan riwayat penyakit\r\ndiabetes boleh vaksin? ', 'Vaksin & Imunisasi', 0, 0, 'null', '2022-03-01 09:01:10'),
-(2, 'flazefy', 'Halo, ingin bertanya. Apakah anak berumur 14 thn sudah bisa vaksin? Mksh.', 'Vaksin & Imunisasi', 0, 0, 'null', '2022-03-04 06:31:58'),
-(3, 'vasilykash', 'Vaksin yang ada di Indonesia apa saja ya?', 'Vaksin & Imunisasi', 0, 0, 'null', '2022-03-08 20:04:20'),
-(4, 'richardkyle', 'Apakah cacar air bisa menular ke orang yang pernah terkena sebelumnya? thx.', 'Penyakit Menular', 0, 0, 'null', '2022-03-06 11:41:23'),
-(13, 'teresevyy', 'waedadwa', 'Kulit & Kelamin', 0, 0, 'null', '2022-04-21 03:50:46'),
-(14, 'flazefy', 'test', 'Kulit & Kelamin', 0, 0, 'null', '2022-05-15 06:54:36'),
-(43, 'flazefy', 'tes', 'Obat-Obatan', 0, 0, 'null', '2022-06-19 05:34:32'),
-(44, 'flazefy', 'twsdasd', 'Kulit & Kelamin', 0, 0, 'null', '2022-06-25 02:57:49');
+INSERT INTO `diskusi` (`id_diskusi`, `id_user`, `pertanyaan`, `kategori`, `view`, `up`, `imageURL`, `datetime`) VALUES
+(1, 1, 'Mau nanya, apakah orang dengan riwayat penyakit\r\ndiabetes boleh vaksin? ', 'Vaksin & Imunisasi', 0, 0, 'null', '2022-03-01 09:01:10'),
+(2, 1, 'Halo, ingin bertanya. Apakah anak berumur 14 thn sudah bisa vaksin? Mksh.', 'Vaksin & Imunisasi', 0, 0, 'null', '2022-03-04 06:31:58'),
+(3, 5, 'Vaksin yang ada di Indonesia apa saja ya?', 'Vaksin & Imunisasi', 0, 0, 'null', '2022-03-08 20:04:20'),
+(4, 2, 'Apakah cacar air bisa menular ke orang yang pernah terkena sebelumnya? thx.', 'Penyakit Menular', 0, 0, 'null', '2022-03-06 11:41:23'),
+(47, 1, 'Apakah boleh minum kopi sebelum sarapan?', 'Gaya Hidup Sehat', 0, 0, 'null', '2022-07-11 04:53:34');
 
 -- --------------------------------------------------------
 
@@ -325,7 +321,18 @@ INSERT INTO `jadwalkalori` (`id_jadwal`, `id_user`, `id_asupan`, `date`, `waktu`
 (97, 1, 1, '2022-06-19', 'malam'),
 (98, 1, 3, '2022-06-19', 'malam'),
 (100, 1, 8, '2022-06-19', 'malam'),
-(101, 1, 6, '2022-06-19', 'malam');
+(101, 1, 6, '2022-06-19', 'malam'),
+(106, 1, 1, '2022-06-25', 'pagi'),
+(107, 1, 3, '2022-06-25', 'pagi'),
+(108, 1, 2, '2022-06-25', 'pagi'),
+(109, 1, 9, '2022-06-25', 'pagi'),
+(110, 1, 2, '2022-06-25', 'siang'),
+(111, 1, 4, '2022-06-25', 'siang'),
+(112, 1, 3, '2022-06-25', 'siang'),
+(113, 1, 8, '2022-06-25', 'malam'),
+(114, 1, 13, '2022-06-25', 'malam'),
+(116, 1, 3, '2022-06-25', 'malam'),
+(117, 1, 12, '2022-06-25', 'malam');
 
 -- --------------------------------------------------------
 
@@ -365,7 +372,9 @@ INSERT INTO `kebutuhankalori` (`id_kebutuhan`, `id_user`, `kalori`, `date`) VALU
 (27, 1, 1800, '2022-06-19'),
 (28, 5, 1900, '2022-06-19'),
 (29, 6, 1700, '2022-06-19'),
-(30, 2, 1900, '2022-06-25');
+(30, 2, 1900, '2022-06-25'),
+(31, 1, 1800, '2022-06-25'),
+(32, 1, 1900, '2022-06-28');
 
 -- --------------------------------------------------------
 
@@ -396,7 +405,9 @@ INSERT INTO `kms` (`id_kms`, `id_user`, `namaAnak`, `jenisKelamin`, `tinggi`, `b
 (44, 1, 'Tester256', 'Wanita', 85, 18, '2021-11-18', '2022-06-14', 'Berat Badan Lebih', 'Tinggi Badan Lebih'),
 (47, 1, 'Tester256', 'Pria', 75, 18, '2022-01-06', '2022-06-16', 'Berat Badan Lebih', 'Tinggi Badan Lebih'),
 (48, 1, 'Tester123', 'Pria', 76, 26, '2021-11-24', '2022-06-16', 'Berat Badan Lebih', 'Tinggi Badan Lebih'),
-(49, 1, 'Tester256', 'Pria', 75, 24, '2021-06-10', '2022-06-16', 'Berat Badan Lebih', 'Tinggi Badan Normal');
+(49, 1, 'Tester256', 'Pria', 75, 24, '2021-06-10', '2022-06-16', 'Berat Badan Lebih', 'Tinggi Badan Normal'),
+(50, 1, 'Tester256', 'Pria', 55, 14, '2021-11-12', '2022-06-25', 'Berat Badan Lebih', 'Tinggi Badan Kurang'),
+(51, 1, 'Tester123', 'Pria', 65, 14, '2022-02-16', '2022-06-28', 'Berat Badan Lebih', 'Tinggi Badan Lebih');
 
 -- --------------------------------------------------------
 
@@ -491,19 +502,21 @@ CREATE TABLE `pengguna` (
   `namaPengguna` varchar(20) NOT NULL,
   `email` varchar(35) NOT NULL,
   `nomorPonsel` varchar(14) NOT NULL,
-  `password` varchar(25) NOT NULL
+  `password` varchar(25) NOT NULL,
+  `user_image` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `pengguna`
 --
 
-INSERT INTO `pengguna` (`id_user`, `nik`, `tempatLahir`, `tanggalLahir`, `alamat`, `pekerjaan`, `tinggiBadan`, `beratBadan`, `jKelamin`, `namaLengkap`, `namaPengguna`, `email`, `nomorPonsel`, `password`) VALUES
-(1, '1234567891234567', 'Berlin', '2001-08-08', 'Jl. Telekomunikasi No.12', 'Mahasiswa', 184, 68, 'Pria', 'Leonardho R Sitanggang', 'flazefy', 'flazen.edu@gmail.com', '08114882001', 'tester123'),
-(2, '1231231231231235', 'Montreal', '1997-11-07', '3551 Willison Street', 'Wiraswasta', 185, 73, 'Pria', 'Kyle Richard', 'richardkyle', 'kylerich8181@gmail.com', '081248857133', 'kyle123'),
-(5, '1231231231231240', 'Moscow', '1980-04-20', 'Pochtovaya, bld. 28, appt. 11', 'Teknisi Nuklir', 170, 86, 'Pria', 'Vasili Kashimir', 'vasilykash', 'vasiliKashimir15@gmail.com', '0811488901', 'icyman'),
-(6, '1234563218906471', 'Denpasar', '1994-11-09', 'Jl. Rengasdengklok', 'Desainer', 170, 61, 'Wanita', 'Rose Monde', 'rosemonde', 'rosemondea@gmail.com', '081248857133', 'fisheye123'),
-(35, '1234567893456781', 'Bandung', '1994-06-16', 'Jl. Rengasdengklok', 'Mahasiswa', 165, 58, 'Wanita', 'Terese Evy', 'teresevyy', 'teresevy@gmail.com', '082348857312', 'nopassword');
+INSERT INTO `pengguna` (`id_user`, `nik`, `tempatLahir`, `tanggalLahir`, `alamat`, `pekerjaan`, `tinggiBadan`, `beratBadan`, `jKelamin`, `namaLengkap`, `namaPengguna`, `email`, `nomorPonsel`, `password`, `user_image`) VALUES
+(1, '1234567891234567', 'Berlin', '2001-08-08', 'Jl. Telekomunikasi No.12', 'Mahasiswa', 184, 68, 'Pria', 'Leonardho R Sitanggang', 'flazefy', 'flazen.edu@gmail.com', '081148823123', 'tester123', 'user_b37e5ab180b5fec0545e65772d9af1'),
+(2, '1231231231231235', 'Montreal', '1997-11-07', '3551 Willison Street', 'Wiraswasta', 185, 73, 'Pria', 'Kyle Richard', 'richardkyle', 'kylerich8181@gmail.com', '081248857133', 'kyle123', 'user_richardkyle'),
+(5, '1231231231231240', 'Moscow', '1980-04-20', 'Pochtovaya, bld. 28, appt. 11', 'Teknisi Nuklir', 170, 86, 'Pria', 'Vasili Kashimir', 'vasilykash', 'vasiliKashimir15@gmail.com', '0811488901', 'icyman', 'user_vasilykash'),
+(6, '1234563218906471', 'Denpasar', '1994-11-09', 'Jl. Rengasdengklok', 'Desainer', 170, 61, 'Wanita', 'Rose Monde', 'rosemonde', 'rosemondea@gmail.com', '081248857133', 'fisheye123', 'user_rosemonde'),
+(35, '1234567893456781', 'Bandung', '1994-06-16', 'Jl. Rengasdengklok', 'Mahasiswa', 165, 58, 'Wanita', 'Terese Evy', 'teresevyy', 'teresevy@gmail.com', '082348857312', 'nopassword', 'user_teresevyy'),
+(36, '1231231231231231', 'bandung', '2022-06-07', 'Jl. Telekomunikasi Jl. Terusan Buah Batu', 'mahasiswa', 170, 85, 'Pria', '123', 'tester123', 'tester@gmail.com', '08123456789', 'nopass123', 'user_tester123');
 
 -- --------------------------------------------------------
 
@@ -761,13 +774,13 @@ ALTER TABLE `announcement`
 -- AUTO_INCREMENT untuk tabel `asupan`
 --
 ALTER TABLE `asupan`
-  MODIFY `id_asupan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_asupan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `balasan`
 --
 ALTER TABLE `balasan`
-  MODIFY `id_balasan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_balasan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT untuk tabel `covid`
@@ -779,19 +792,19 @@ ALTER TABLE `covid`
 -- AUTO_INCREMENT untuk tabel `diskusi`
 --
 ALTER TABLE `diskusi`
-  MODIFY `id_diskusi` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id_diskusi` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT untuk tabel `dokterpraktik`
 --
 ALTER TABLE `dokterpraktik`
-  MODIFY `id_dokter` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_dokter` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `faskes`
 --
 ALTER TABLE `faskes`
-  MODIFY `id_faskes` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_faskes` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `gejala`
@@ -803,19 +816,19 @@ ALTER TABLE `gejala`
 -- AUTO_INCREMENT untuk tabel `jadwalkalori`
 --
 ALTER TABLE `jadwalkalori`
-  MODIFY `id_jadwal` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `id_jadwal` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
 -- AUTO_INCREMENT untuk tabel `kebutuhankalori`
 --
 ALTER TABLE `kebutuhankalori`
-  MODIFY `id_kebutuhan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_kebutuhan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT untuk tabel `kms`
 --
 ALTER TABLE `kms`
-  MODIFY `id_kms` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id_kms` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT untuk tabel `masukan`
@@ -827,7 +840,7 @@ ALTER TABLE `masukan`
 -- AUTO_INCREMENT untuk tabel `newsfeed`
 --
 ALTER TABLE `newsfeed`
-  MODIFY `idBerita` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idBerita` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `obat`
@@ -839,7 +852,7 @@ ALTER TABLE `obat`
 -- AUTO_INCREMENT untuk tabel `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id_user` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id_user` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT untuk tabel `relasiobatpenyakit`
