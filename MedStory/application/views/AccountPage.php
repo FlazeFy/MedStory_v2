@@ -63,7 +63,7 @@
 						<div class="card-body">
 							<!--Mini profil.-->
 							<div class="d-flex flex-column align-items-center text-center">
-								<img src="http://localhost/MedStory/assets/uploads/user_<?php foreach ($dataUser as $data){echo $data['namaPengguna'];} ?>.jpg" alt="Admin" 
+								<img src="assets/uploads/<?php foreach ($dataUser as $data){echo $data['user_image'];} ?>.jpg" alt="Admin" 
 									class="rounded-circle img-fluid" style="width:200px; height:200px;">
 
 							<div class="mt-3">
@@ -72,12 +72,13 @@
 								<p class="text-secondary"><?php foreach ($dataUser as $data){echo $data['alamat'];}?></p>
 								
 								<!--Upload file.-->
-								<form action="<?= site_url('account/change') ?>" method="post" enctype="multipart/form-data">
+								<form action="account/change" method="post" enctype="multipart/form-data">
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 											<span class="input-group-text">Foto Profil</span>
 										</div>
 										<div class="custom-file">
+											<input hidden class="form-control" name="id" value="<?php foreach ($dataUser as $data){echo $data['id_user'];}?>"></input>
 											<input type="file" class="custom-file-input" id="uploadImage" name="uploadImage" accept='image/*' required>
 											<label class="custom-file-label text-left" for="uploadImage">max 1 mb</label>
 										</div>

@@ -35,20 +35,40 @@
 
 		//Upload user profile image.
 		public function change(){
+			//Get user image url.
+			$this->db->select('*');
+			$this->db->from('pengguna');
 			$condition = $this->session->userdata('userTrack');
+			$this->db->where('namaPengguna',$condition);
+			$user = $this->db->get()->result_array();
+			foreach($user as $u){
+				$oldImage = $u['user_image'];
+			}
+
+			//Delete old image.
+			$old = trim($oldImage);
+			unlink('./assets/uploads/'.$old.'.jpg');
+
+			//Upload new image.
+			$new = substr(md5(uniqid(mt_rand(), true)), 0, 30);
 			$initialize = $this->upload->initialize(array(
 				"upload_path" => './assets/uploads',
 				"allowed_types" => 'jpg',
-				"max_size" => 1000,
+				"max_size" => 5000,
 				"remove_spaces" => TRUE,
-				"file_name" => 'user_' . $condition
+				"file_name" => 'user_'.$new 
 			));
-			//unlink('./assets/uploads/user_'.$condition.'.jpg');
 			if (!$this->upload->do_upload('uploadImage')) {
 				$error = array('error' => $this->upload->display_errors());
 				redirect('account');
 			} else {
-				redirect('account');
+				$data = [
+					"user_image" => 'user_'.$new 
+				];
+				$this->accountModel->ubahData($data, 'pengguna');
+				$data['successEdit'] = "Akun berhasil diperbarui"; 
+				$this->index();
+				$this->load->view('AccountPage', $data);
 			}
 		}
 
