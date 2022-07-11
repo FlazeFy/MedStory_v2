@@ -25,6 +25,7 @@
 		{
 			$this->db->select('*');
 			$this->db->from('diskusi');
+			$this->db->join('pengguna','pengguna.id_user = diskusi.id_user');
 			$condition = $this->session->userdata('userTrack');
 			$this->db->where('namaPengguna',$condition);
 			return $data = $this->db->get()->result_array();
@@ -35,8 +36,9 @@
 		{
 			$this->db->select('*');
 			$this->db->from('balasan');
+			$this->db->join('pengguna','pengguna.id_user = balasan.id_user');
 			$condition = $this->session->userdata('userTrack');
-			$this->db->where('pengirim',$condition);
+			$this->db->where('namaPengguna',$condition);
 			return $data = $this->db->get()->result_array();
 		}
 	}

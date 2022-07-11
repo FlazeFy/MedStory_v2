@@ -246,7 +246,7 @@
 
 		<!--Back to top.-->
 		<button onclick="topFunction()" id="myBtn" title="Kembali ke atas">
-			<img src='http://localhost/MedStory/assets/Back.png' width='35px' style="transform: rotate(90deg);">
+			<img src='http://localhost/MedStory/assets/icon/Back.png' width='35px'>
 		</button>
 		
 		<!--Content.-->

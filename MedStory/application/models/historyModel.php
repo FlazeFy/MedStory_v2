@@ -11,13 +11,15 @@
 		{
 			$this->db->select('*');
 			$this->db->from('diskusi');
+			$this->db->join('pengguna','pengguna.id_user = diskusi.id_user');
 			$this->db->order_by('datetime','DESC');
 			return $data = $this->db->get()->result_array();
 		}
-		public function get_all_pertanyaan()
+		public function get_pertanyaan_saya()
 		{
 			$this->db->select('*');
 			$this->db->from('diskusi');
+			$this->db->join('pengguna','pengguna.id_user = diskusi.id_user');
 			$condition = $this->session->userdata('userTrack');
 			$this->db->where('namaPengguna',$condition);
 			$this->db->order_by('datetime','DESC');
@@ -27,6 +29,7 @@
 		{
 			$this->db->select('*');
 			$this->db->from('balasan');
+			$this->db->join('pengguna','pengguna.id_user = balasan.id_user');
 			$this->db->order_by('datetime','DESC');
 			return $data = $this->db->get()->result_array();
 		}

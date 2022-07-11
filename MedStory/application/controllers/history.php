@@ -14,7 +14,7 @@
 			$data['dataAsupan']= $this->historyModel->get_data_asupan();
 			$data['dataKebutuhan']= $this->historyModel->get_data_kebutuhan();
 			$data['dataJadwal']= $this->historyModel->get_data_jadwal();
-			$data['dataPertanyaan']= $this->historyModel->get_all_pertanyaan();
+			$data['dataPertanyaan']= $this->historyModel->get_pertanyaan_saya();
 			$data['dataBalasan']= $this->historyModel->get_all_balasan();
 			$data['checkKebutuhan']= $this->historyModel->get_data_userKebutuhan();
 			$data['dataUser']= $this->accountModel->get_data_user();
@@ -24,6 +24,16 @@
 
 		//Create discussion.
 		public function tambahDiskusi(){
+			//Get user id.
+			$this->db->select('*');
+			$this->db->from('pengguna');
+			$condition = $this->session->userdata('userTrack');
+			$this->db->where('namaPengguna',$condition);
+			$user = $this->db->get()->result_array();
+			foreach($user as $u){
+				$id = $u['id_user'];
+			}
+
 			//Get post type.
 			if($this->input->post('imageSwitchD') == 'on'){
 				$date = date("Ymdhis");
@@ -44,7 +54,7 @@
 
 			$data = array(
 				'id_diskusi' => 'NULL',
-				'namaPengguna' => $this->session->userdata('userTrack'),
+				'id_user' => $id,
 				'kategori' => $this->input->post('katTambah'),
 				'pertanyaan' => $this->input->post('pertanyaanTambah'),
 				'imageURL' => $imageURL,
@@ -66,6 +76,16 @@
 
 		//Reply discussion.
 		public function balasDiskusi(){
+			//Get user id.
+			$this->db->select('*');
+			$this->db->from('pengguna');
+			$condition = $this->session->userdata('userTrack');
+			$this->db->where('namaPengguna',$condition);
+			$user = $this->db->get()->result_array();
+			foreach($user as $u){
+				$id = $u['id_user'];
+			}
+
 			//Get post type.
 			if($this->input->post('imageSwitchR') == 'on'){
 				$date = date("Ymdhis");
@@ -86,7 +106,7 @@
 
 			$data = array(
 				'id_balasan' => 'NULL',
-				'pengirim' => $this->session->userdata('userTrack'),
+				'id_user' => $id,
 				'isi' => $this->input->post('inputIsi'),
 				'id_diskusi' => $this->input->post('inputIdB'),
 				'imageURL' => $imageURL,

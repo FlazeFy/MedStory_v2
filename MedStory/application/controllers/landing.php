@@ -40,14 +40,14 @@
 
 		/*Create new account.*/
 		public function newUser(){
-			$condition = $this->input->post('username');
+			$new = substr(md5(uniqid(mt_rand(), true)), 0, 30);
 			//File setting.
 			$initialize = $this->upload->initialize(array(
 				"upload_path" => './assets/uploads',
 				"allowed_types" => 'jpg',
 				"max_size" => 5000,
 				"remove_spaces" => TRUE,
-				"file_name" => 'user_' . $condition
+				"file_name" => 'user_'.$new
 			));
 			$data = array(
 				//User data.
@@ -64,7 +64,8 @@
 				"namaPengguna" => $this->input->post('username'),
 				"email" => $this->input->post('email'),
 				"nomorPonsel" => $this->input->post('ponsel'),
-				"password" => $this->input->post('password')
+				"password" => $this->input->post('password'),
+				"user_image" => 'user_'.$new 
 			);
 			if (!$this->upload->do_upload('uploadImage')) {
 				$error_message = "Format foto profil tidak sesuai atau terlalu besar!"; 
